@@ -1,0 +1,507 @@
+---
+import Layout from '../layouts/Layout.astro';
+import DesktopHeader from '../components/DesktopHeader.astro';
+import FolderGrid from '../components/FolderGrid.astro';
+import WindowMission from '../components/WindowMission.astro';
+import WindowProjects from '../components/WindowProjects.astro';
+import WindowQuiz from '../components/WindowQuiz.astro';
+import WindowPrinciple from '../components/WindowPrinciple.astro';
+import BottomDock from '../components/BottomDock.astro';
+import VideoModal from '../components/VideoModal.astro';
+import QuizModal from '../components/QuizModal.astro';
+import IndividualPageModals from '../components/IndividualPageModals.astro';
+---
+
+<Layout title="MEDIACUP - Web OS Workspace">
+	<main id="desktop-canvas">
+		<div class="desktop-stage">
+			<DesktopHeader />
+			<FolderGrid />
+			<WindowMission />
+			<WindowProjects />
+			<WindowQuiz />
+			<WindowPrinciple />
+			<BottomDock />
+		</div>
+
+		<VideoModal />
+		<QuizModal />
+		<IndividualPageModals />
+	</main>
+</Layout>
+
+<script>
+	document.addEventListener('DOMContentLoaded', () => {
+		const windows = document.querySelectorAll<HTMLElement>('.mac-window');
+		let activeZIndex = 100;
+
+		// ──────────────────────────────────────────────────
+		// 1. Drag-and-Drop Window Manager
+		// ──────────────────────────────────────────────────
+		windows.forEach((win) => {
+			const header = win.querySelector<HTMLElement>('.window-header');
+			if (!header) return;
+
+			let isDragging = false;
+			let startX = 0, startY = 0, initialLeft = 0, initialTop = 0;
+
+			const bringToFront = () => {
+				activeZIndex++;
+				win.style.zIndex = String(activeZIndex);
+				windows.forEach((w) => w.classList.remove('is-active'));
+				win.classList.add('is-active');
+			};
+
+			win.addEventListener('pointerdown', bringToFront);
+
+			header.addEventListener('pointerdown', (e: PointerEvent) => {
+				if ((e.target as HTMLElement).classList.contains('dot-btn')) return;
+				isDragging = true;
+				bringToFront();
+				win.classList.add('is-dragging');
+				header.setPointerCapture(e.pointerId);
+				startX = e.clientX;
+				startY = e.clientY;
+				const cs = window.getComputedStyle(win);
+				initialLeft = parseInt(cs.left, 10) || 0;
+				initialTop = parseInt(cs.top, 10) || 0;
+			});
+
+			header.addEventListener('pointermove', (e: PointerEvent) => {
+				if (!isDragging) return;
+				let newLeft = initialLeft + (e.clientX - startX);
+				let newTop = initialTop + (e.clientY - startY);
+				newLeft = Math.max(10, Math.min(newLeft, window.innerWidth - win.offsetWidth - 10));
+				newTop = Math.max(50, Math.min(newTop, window.innerHeight - win.offsetHeight - 70));
+				win.style.left = `${newLeft}px`;
+				win.style.top = `${newTop}px`;
+			});
+
+			const stopDrag = (e: PointerEvent) => {
+				if (!isDragging) return;
+				isDragging = false;
+				win.classList.remove('is-dragging');
+				try { header.releasePointerCapture(e.pointerId); } catch {}
+			};
+			header.addEventListener('pointerup', stopDrag);
+			header.addEventListener('pointercancel', stopDrag);
+
+			const dotRed = win.querySelector<HTMLElement>('.dot-red');
+			const dotBlack = win.querySelector<HTMLElement>('.dot-black');
+			dotRed?.addEventListener('click', (e) => { e.stopPropagation(); win.classList.add('is-minimized'); });
+			dotBlack?.addEventListener('click', (e) => { e.stopPropagation(); win.classList.toggle('is-minimized'); });
+		});
+
+		// ──────────────────────────────────────────────────
+		// 2. Authentic macOS Dock Genie Effect
+		// ──────────────────────────────────────────────────
+
+		// Map to store last source element for each open modal
+		const modalSourceMap = new Map<HTMLElement, DOMRect>();
+
+		function geniePolygon(sx: number, sy: number, t: number): string {
+			const corners = [
+				{ x: 0,   y: 0 },
+				{ x: 100, y: 0 },
+				{ x: 100, y: 100 },
+				{ x: 0,   y: 100 },
+			];
+
+			const maxDist = 141.42;
+			const dists = corners.map(c => Math.sqrt((c.x - sx) ** 2 + (c.y - sy) ** 2) / maxDist);
+
+			const cProg = dists.map(d => {
+				const speed = 0.35 + d * 1.4;
+				const raw = Math.min(1, t * speed);
+				return 1 - Math.pow(1 - raw, 2.5);
+			});
+
+			const pts = corners.map((c, i) => ({
+				x: sx + (c.x - sx) * cProg[i],
+				y: sy + (c.y - sy) * cProg[i],
+			}));
+
+			function midBelly(a: {x:number;y:number}, b: {x:number;y:number}, edgeT: number, outwardDir: {x:number;y:number}) {
+				const mx = (a.x + b.x) / 2;
+				const my = (a.y + b.y) / 2;
+				const bellyAmt = Math.sin(edgeT * Math.PI) * (1 - edgeT) * 22;
+				return {
+					x: Math.max(0, Math.min(100, mx + outwardDir.x * bellyAmt)),
+					y: Math.max(0, Math.min(100, my + outwardDir.y * bellyAmt)),
+				};
+			}
+
+			const topMid = midBelly(pts[0], pts[1], (cProg[0]+cProg[1])/2, {x:0,y:-1});
+			const rightMid = midBelly(pts[1], pts[2], (cProg[1]+cProg[2])/2, {x:1,y:0});
+			const botMid = midBelly(pts[2], pts[3], (cProg[2]+cProg[3])/2, {x:0,y:1});
+			const leftMid = midBelly(pts[3], pts[0], (cProg[3]+cProg[0])/2, {x:-1,y:0});
+
+			const all = [pts[0], topMid, pts[1], rightMid, pts[2], botMid, pts[3], leftMid];
+			return `polygon(${all.map(p => `${p.x.toFixed(2)}% ${p.y.toFixed(2)}%`).join(', ')})`;
+		}
+
+		/**
+		 * Open any modal overlay with Genie animation from sourceEl
+		 */
+		function openModalWithGenie(overlayEl: HTMLElement, sourceEl: HTMLElement) {
+			const macWin = overlayEl.querySelector('.fullscreen-mac-window, .case-study-mac-window') as HTMLElement;
+			if (!macWin) return;
+
+			const srcRect = sourceEl.getBoundingClientRect();
+			modalSourceMap.set(overlayEl, srcRect);
+
+			overlayEl.classList.add('is-open');
+			overlayEl.style.opacity = '0';
+
+			requestAnimationFrame(() => {
+				const winRect = macWin.getBoundingClientRect();
+
+				const sx = ((srcRect.left + srcRect.width / 2 - winRect.left) / winRect.width) * 100;
+				const sy = ((srcRect.top + srcRect.height / 2 - winRect.top) / winRect.height) * 100;
+
+				overlayEl.animate(
+					[{ opacity: 0 }, { opacity: 1 }],
+					{ duration: 400, fill: 'forwards', easing: 'ease-out' }
+				);
+
+				const steps = 10;
+				const keyframes: Keyframe[] = [];
+				for (let i = 0; i <= steps; i++) {
+					const t = i / steps;
+					const eased = 1 - Math.pow(1 - t, 2.2);
+					keyframes.push({
+						clipPath: geniePolygon(sx, sy, eased),
+						opacity: 0.3 + 0.7 * t,
+						offset: t,
+					});
+				}
+				keyframes[keyframes.length - 1] = {
+					clipPath: 'polygon(0% 0%, 50% 0%, 100% 0%, 100% 50%, 100% 100%, 50% 100%, 0% 100%, 0% 50%)',
+					opacity: 1,
+					offset: 1,
+				};
+
+				const anim = macWin.animate(keyframes, {
+					duration: 520,
+					easing: 'cubic-bezier(0.16, 1, 0.3, 1)',
+					fill: 'forwards',
+				});
+
+				anim.onfinish = () => {
+					macWin.style.clipPath = '';
+				};
+			});
+		}
+
+		/**
+		 * Close any modal overlay with reverse Genie animation
+		 */
+		function closeModalWithGenie(overlayEl: HTMLElement) {
+			const macWin = overlayEl.querySelector('.fullscreen-mac-window, .case-study-mac-window') as HTMLElement;
+			if (!macWin || !overlayEl.classList.contains('is-open')) return;
+
+			const winRect = macWin.getBoundingClientRect();
+			const srcRect = modalSourceMap.get(overlayEl) || new DOMRect(
+				window.innerWidth / 2 - 30, window.innerHeight - 60, 60, 60
+			);
+
+			const sx = ((srcRect.left + srcRect.width / 2 - winRect.left) / winRect.width) * 100;
+			const sy = ((srcRect.top + srcRect.height / 2 - winRect.top) / winRect.height) * 100;
+
+			overlayEl.animate(
+				[{ opacity: 1 }, { opacity: 0 }],
+				{ duration: 380, fill: 'forwards', easing: 'ease-in' }
+			);
+
+			const steps = 10;
+			const keyframes: Keyframe[] = [];
+			for (let i = 0; i <= steps; i++) {
+				const t = i / steps;
+				const reverseT = 1 - t;
+				const eased = 1 - Math.pow(1 - reverseT, 2.2);
+				keyframes.push({
+					clipPath: geniePolygon(sx, sy, eased),
+					opacity: 1 - 0.7 * t,
+					offset: t,
+				});
+			}
+			keyframes[0] = {
+				clipPath: 'polygon(0% 0%, 50% 0%, 100% 0%, 100% 50%, 100% 100%, 50% 100%, 0% 100%, 0% 50%)',
+				opacity: 1,
+				offset: 0,
+			};
+
+			const anim = macWin.animate(keyframes, {
+				duration: 420,
+				easing: 'cubic-bezier(0.55, 0, 1, 0.45)',
+				fill: 'forwards',
+			});
+
+			anim.onfinish = () => {
+				overlayEl.classList.remove('is-open');
+				overlayEl.style.opacity = '';
+				macWin.style.clipPath = '';
+			};
+		}
+
+		// ──────────────────────────────────────────────────
+		// 3. Folder Click → Open Individual Modal
+		// ──────────────────────────────────────────────────
+		const folderModalMap: Record<string, string> = {
+			principle: 'modal-page-principle',
+			cases: 'modal-page-cases',
+			framework: 'modal-page-framework',
+			capabilities: 'modal-page-capabilities',
+			about: 'modal-page-about',
+			where: 'modal-page-where',
+		};
+
+		document.querySelectorAll<HTMLElement>('.folder-item').forEach(folder => {
+			folder.addEventListener('click', () => {
+				const id = folder.getAttribute('data-folder-id');
+				if (id && folderModalMap[id]) {
+					const targetOverlay = document.getElementById(folderModalMap[id]);
+					if (targetOverlay) openModalWithGenie(targetOverlay, folder);
+				}
+			});
+		});
+
+		// ──────────────────────────────────────────────────
+		// 4. Card Action Links → Open Individual Modal
+		// ──────────────────────────────────────────────────
+		document.getElementById('btn-learn-more')?.addEventListener('click', (e) => {
+			const targetOverlay = document.getElementById('modal-page-mission');
+			if (targetOverlay) openModalWithGenie(targetOverlay, e.currentTarget as HTMLElement);
+		});
+
+		document.querySelectorAll<HTMLElement>('.project-card-item').forEach(card => {
+			card.addEventListener('click', (e) => {
+				const targetOverlay = document.getElementById('modal-page-cases');
+				if (targetOverlay) openModalWithGenie(targetOverlay, e.currentTarget as HTMLElement);
+			});
+		});
+
+		// ──────────────────────────────────────────────────
+		// 5. Cup Cases: Grid ↔ Detail View Switching
+		// ──────────────────────────────────────────────────
+		const casesGridView = document.getElementById('cases-view-grid');
+		const casesDetailView = document.getElementById('cases-view-detail');
+		const csSubtabs = document.querySelectorAll<HTMLElement>('.cs-subtab');
+		const csSidebarItems = document.querySelectorAll<HTMLElement>('.cs-sidebar-item');
+		const csPanes = document.querySelectorAll<HTMLElement>('.cs-pane');
+
+		function activateCaseStudy(caseId: string) {
+			// Switch to detail view
+			if (casesGridView) casesGridView.style.display = 'none';
+			if (casesDetailView) casesDetailView.style.display = 'flex';
+
+			// Activate sub-tab
+			csSubtabs.forEach(tab => {
+				tab.classList.toggle('is-active', tab.getAttribute('data-case-tab') === caseId);
+			});
+
+			// Activate sidebar item
+			csSidebarItems.forEach(item => {
+				item.classList.toggle('is-active', item.getAttribute('data-case-tab') === caseId);
+			});
+
+			// Show active pane
+			csPanes.forEach(pane => {
+				pane.classList.toggle('is-active', pane.id === `cs-pane-${caseId}`);
+			});
+		}
+
+		function returnToGrid() {
+			if (casesGridView) casesGridView.style.display = '';
+			if (casesDetailView) casesDetailView.style.display = 'none';
+		}
+
+		// Document icon click → switch to detail view
+		document.querySelectorAll<HTMLElement>('.case-doc-item').forEach(item => {
+			item.addEventListener('click', () => {
+				const caseId = item.getAttribute('data-case-id');
+				if (caseId) activateCaseStudy(caseId);
+			});
+		});
+
+		// Back button click → return to grid
+		document.getElementById('cs-back-to-grid')?.addEventListener('click', () => {
+			returnToGrid();
+		});
+
+		// Sub-tab click → switch case study
+		csSubtabs.forEach(tab => {
+			tab.addEventListener('click', (e) => {
+				// If clicking the × close button, return to grid
+				if ((e.target as HTMLElement).classList.contains('subtab-close')) {
+					returnToGrid();
+					return;
+				}
+				const caseId = tab.getAttribute('data-case-tab');
+				if (caseId) activateCaseStudy(caseId);
+			});
+		});
+
+		// Sidebar click → switch case study
+		csSidebarItems.forEach(item => {
+			item.addEventListener('click', () => {
+				const caseId = item.getAttribute('data-case-tab');
+				if (caseId) activateCaseStudy(caseId);
+			});
+		});
+
+		// ──────────────────────────────────────────────────
+		// 6. Close Handlers for All Modals
+		// ──────────────────────────────────────────────────
+		document.querySelectorAll<HTMLElement>('.close-modal-btn').forEach(btn => {
+			btn.addEventListener('click', () => {
+				const targetId = btn.getAttribute('data-close-target');
+				if (targetId) {
+					const targetOverlay = document.getElementById(targetId);
+					if (targetOverlay) {
+						// If closing Cup Cases, also reset to grid view
+						if (targetId === 'modal-page-cases') returnToGrid();
+						closeModalWithGenie(targetOverlay);
+					}
+				}
+			});
+		});
+
+		// Close overlays when clicking outside window body
+		document.querySelectorAll<HTMLElement>('.modal-overlay').forEach(overlay => {
+			overlay.addEventListener('click', (e) => {
+				if (e.target === overlay) {
+					if (overlay.id === 'modal-page-cases') returnToGrid();
+					closeModalWithGenie(overlay);
+				}
+			});
+		});
+
+		// ──────────────────────────────────────────────────
+		// 7. Quiz & Video Modals
+		// ──────────────────────────────────────────────────
+		const quizModal = document.getElementById('quiz-modal');
+		const videoModal = document.getElementById('video-modal');
+
+		document.getElementById('btn-take-quiz')?.addEventListener('click', () => {
+			quizModal?.classList.add('is-open');
+		});
+		document.getElementById('close-quiz-modal')?.addEventListener('click', () => quizModal?.classList.remove('is-open'));
+		document.getElementById('btn-close-quiz-dot')?.addEventListener('click', () => quizModal?.classList.remove('is-open'));
+		quizModal?.addEventListener('click', (e) => { if (e.target === quizModal) quizModal.classList.remove('is-open'); });
+
+		document.getElementById('video-file-btn')?.addEventListener('click', () => {
+			videoModal?.classList.add('is-open');
+		});
+		document.getElementById('close-video-modal')?.addEventListener('click', () => videoModal?.classList.remove('is-open'));
+		videoModal?.addEventListener('click', (e) => { if (e.target === videoModal) videoModal.classList.remove('is-open'); });
+
+		// ──────────────────────────────────────────────────
+		// 8. Bottom Dock Controls
+		// ──────────────────────────────────────────────────
+		document.querySelectorAll<HTMLElement>('.dock-btn').forEach(btn => {
+			btn.addEventListener('click', () => {
+				const dockId = btn.getAttribute('data-dock-id');
+				let targetWinId = 'win-mission';
+				if (dockId === 'dock-percent') targetWinId = 'win-principle';
+				else if (dockId === 'dock-folder') targetWinId = 'win-projects';
+				else if (dockId === 'dock-bulb') targetWinId = 'win-quiz';
+				else if (dockId === 'dock-mail') { quizModal?.classList.add('is-open'); return; }
+
+				const tw = document.getElementById(targetWinId);
+				if (tw) {
+					tw.classList.remove('is-minimized');
+					activeZIndex++;
+					tw.style.zIndex = String(activeZIndex);
+				}
+			});
+		});
+
+		// ──────────────────────────────────────────────────
+		// 9. Cup Framework Interactions
+		// ──────────────────────────────────────────────────
+		const fwNavItems = document.querySelectorAll<HTMLElement>('.fw-nav-item');
+		const fwPopovers = document.querySelectorAll<HTMLElement>('.fw-popover-card');
+
+		// Toggle pop-over on left sidebar click
+		fwNavItems.forEach(item => {
+			item.addEventListener('click', () => {
+				const target = item.getAttribute('data-fw-target');
+				
+				// Deactivate all icons & pop-overs first
+				fwNavItems.forEach(n => n.classList.remove('is-active'));
+				fwPopovers.forEach(p => p.classList.remove('is-active'));
+
+				if (target) {
+					item.classList.add('is-active');
+					const popover = document.getElementById(`fw-popover-${target}`);
+					if (popover) popover.classList.add('is-active');
+				}
+			});
+		});
+
+		// Close pop-over via X button
+		document.querySelectorAll<HTMLElement>('.fw-pop-close').forEach(btn => {
+			btn.addEventListener('click', (e) => {
+				e.stopPropagation(); // prevent bubbling to other elements
+				fwNavItems.forEach(n => n.classList.remove('is-active'));
+				fwPopovers.forEach(p => p.classList.remove('is-active'));
+			});
+		});
+
+		// ──────────────────────────────────────────────────
+		// 10. MacOS Dock Stack Interactions
+		// ──────────────────────────────────────────────────
+		const dockFolderBtn = document.querySelector<HTMLElement>('[data-dock-id="dock-folder"]');
+		const dockStack = document.querySelector<HTMLElement>('[data-dock-stack]');
+		let dockHoverLock = false;
+
+		const openDockFan = () => {
+			dockHoverLock = true;
+			dockStack?.classList.add('is-open');
+		};
+
+		const closeDockFan = () => {
+			dockHoverLock = false;
+			dockStack?.classList.remove('is-open');
+		};
+
+		dockFolderBtn?.addEventListener('pointerenter', openDockFan);
+		dockFolderBtn?.addEventListener('pointerleave', (e) => {
+			const related = e.relatedTarget as Node | null;
+			if (related && dockStack?.contains(related)) return;
+			if (!dockHoverLock) closeDockFan();
+		});
+		dockStack?.addEventListener('pointerenter', openDockFan);
+		dockStack?.addEventListener('pointerleave', (e) => {
+			const related = e.relatedTarget as Node | null;
+			if (related && dockFolderBtn?.contains(related)) return;
+			closeDockFan();
+		});
+
+		document.querySelectorAll<HTMLElement>('.ds-item').forEach(item => {
+			item.addEventListener('click', (e) => {
+				e.stopPropagation(); // prevent clicking the dock button itself
+				const targetId = item.getAttribute('data-action-target');
+				if (targetId) {
+					// 1. Close any currently open full-screen modals first
+					document.querySelectorAll('.modal-overlay.is-open').forEach(modal => {
+						closeModalWithGenie(modal as HTMLElement);
+					});
+
+					// 2. Open the requested modal
+					const targetModal = document.getElementById(targetId);
+					if (targetModal) {
+						if (targetId.startsWith('win-')) {
+							targetModal.classList.remove('is-minimized');
+							activeZIndex++;
+							targetModal.style.zIndex = String(activeZIndex);
+						} else {
+							openModalWithGenie(targetModal, item);
+						}
+					}
+				}
+			});
+		});
+	});
+</script>

@@ -1,0 +1,186 @@
+---
+---
+
+<div class="mac-window glass-window window-principle" id="win-principle" style="top: 440px; left: 52%; width: 25vw; min-width: 320px; max-width: 380px;">
+  <div class="window-header">
+    <span class="window-title-tag">The Mediacup Principle</span>
+    <div class="window-dots">
+      <span class="dot-btn dot-red"></span>
+      <span class="dot-btn dot-black"></span>
+    </div>
+  </div>
+
+  <div class="principle-content">
+    <!-- Atom / Orbit Diagram -->
+    <div class="atom-visual-container">
+      <div class="atom-orbit orbit-1"></div>
+      <div class="atom-orbit orbit-2"></div>
+      <div class="atom-orbit orbit-3"></div>
+      
+      <!-- Red node points on orbit -->
+      <span class="orbit-node node-1"></span>
+      <span class="orbit-node node-2"></span>
+      <span class="orbit-node node-3"></span>
+      <span class="orbit-node node-center"></span>
+    </div>
+
+    <!-- Toggle Switch Footer -->
+    <div class="toggle-footer">
+      <label class="toggle-switch">
+        <input type="checkbox" id="toggle-unlock-1percent" />
+        <span class="slider"></span>
+      </label>
+
+      <span class="toggle-label">
+        Unlock the <strong class="red-text">1%</strong>
+      </span>
+    </div>
+  </div>
+</div>
+
+<style>
+  .window-principle {
+    height: 420px;
+    border-radius: 26px;
+  }
+
+  .window-dots {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .principle-content {
+    padding: 20px 22px 24px 22px;
+    display: flex;
+    flex-direction: column;
+    height: calc(100% - 44px);
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  /* Atom Orbit Graphic */
+  .atom-visual-container {
+    position: relative;
+    width: 220px;
+    height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 0;
+  }
+
+  .atom-orbit {
+    position: absolute;
+    border-radius: 50%;
+    border: 2px stroke rgba(0, 0, 0, 0.22);
+    border-style: dashed;
+  }
+
+  .orbit-1 {
+    width: 200px;
+    height: 80px;
+    transform: rotate(-35deg);
+    border-color: rgba(0, 0, 0, 0.3);
+  }
+
+  .orbit-2 {
+    width: 200px;
+    height: 80px;
+    transform: rotate(35deg);
+    border-color: rgba(0, 0, 0, 0.3);
+  }
+
+  .orbit-3 {
+    width: 200px;
+    height: 80px;
+    transform: rotate(90deg);
+    border-color: rgba(0, 0, 0, 0.2);
+  }
+
+  .orbit-node {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--brand-red);
+    box-shadow: 0 0 10px rgba(230, 46, 45, 0.7);
+    transition: transform 0.4s ease;
+  }
+
+  .node-1 { top: 50px; left: 35px; }
+  .node-2 { bottom: 60px; right: 40px; }
+  .node-3 { top: 35px; right: 70px; }
+  .node-center {
+    width: 12px;
+    height: 12px;
+    background-color: #18181b;
+  }
+
+  /* Interactive Toggle */
+  .toggle-footer {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: rgba(255, 255, 255, 0.7);
+    padding: 10px 20px;
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  }
+
+  .toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 44px;
+    height: 26px;
+    flex-shrink: 0;
+  }
+
+  .toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    inset: 0;
+    background-color: #d1cbd4;
+    transition: .3s cubic-bezier(0.16, 1, 0.3, 1);
+    border-radius: 26px;
+  }
+
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: .3s cubic-bezier(0.16, 1, 0.3, 1);
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.25);
+  }
+
+  input:checked + .slider {
+    background-color: var(--brand-red);
+  }
+
+  input:checked + .slider:before {
+    transform: translateX(18px);
+  }
+
+  .toggle-label {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .red-text {
+    color: var(--brand-red);
+    font-weight: 800;
+  }
+</style>

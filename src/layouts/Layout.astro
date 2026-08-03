@@ -1,0 +1,23 @@
+---
+interface Props {
+	title?: string;
+}
+
+const { title = "MEDIACUP - Desktop OS Workspace" } = Astro.props;
+import '../styles/global.css';
+---
+
+<!css>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="MEDIACUP Interactive Desktop Workspace - We find the 1% your market is waiting for." />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+	</head>
+	<body>
+		<slot />
+	</body>
+</html>

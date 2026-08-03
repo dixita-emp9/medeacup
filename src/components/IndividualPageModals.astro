@@ -1,0 +1,1256 @@
+---
+// IndividualPageModals.astro
+// Replaces the single tabbed window with individual dedicated popups.
+---
+
+<!-- 1. OUR MISSION MODAL -->
+<div class="modal-overlay" id="modal-page-mission">
+  <div class="fullscreen-mac-window">
+    <div class="fullscreen-window-header">
+      <div class="window-title-meta">Our Mission</div>
+      <div class="fullscreen-window-controls">
+        <span class="dot-btn dot-red close-modal-btn" data-close-target="modal-page-mission"></span>
+        <span class="dot-btn dot-cream"></span>
+        <span class="dot-btn dot-cream"></span>
+      </div>
+    </div>
+    <div class="fullscreen-window-body">
+      <div class="mission-full-content">
+        <div class="mission-text-column">
+          <h1 class="mission-main-title">
+            We find the 1% your <br />
+            market is waiting for.
+          </h1>
+          <p class="mission-lead-p">
+            Most brands spread effort across everything. We find the one thing that changes the economics.
+          </p>
+          <p class="mission-secondary-p">
+            One buyer insight. One positioning shift. One structural fix. Then we build the system that makes it compound.
+          </p>
+          <div class="in-practice-section">
+            <span class="practice-badge">In Practice</span>
+            <ul class="practice-bullets">
+              <li><span class="bullet-cup-icon">☕</span><span>Every engagement starts with one question: who is actually buying, and why?</span></li>
+              <li><span class="bullet-cup-icon">☕</span><span>Every engagement produces one Thinking Document.</span></li>
+              <li><span class="bullet-cup-icon">☕</span><span>Every engagement agrees on one metric before work begins.</span></li>
+              <li><span class="bullet-cup-icon">☕</span><span>Every engagement is measured by whether that number moves.</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="watermark-column">
+          <div class="glowing-bulb-container">
+            <div class="bulb-glow"></div>
+            <span class="bulb-icon">💡</span>
+          </div>
+          <div class="watermark-typography">
+            <span>Creative</span> <br />
+            <span>Intelligence for</span> <br />
+            <span>Measurable Market</span> <br />
+            <span>Power.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 2. CUP CASES MODAL (Dual View: Grid + Tabbed Detail) -->
+<div class="modal-overlay" id="modal-page-cases">
+  <div class="fullscreen-mac-window">
+    <div class="fullscreen-window-header">
+      <div class="window-title-meta">Cup Cases</div>
+      <div class="fullscreen-window-controls">
+        <span class="dot-btn dot-red close-modal-btn" data-close-target="modal-page-cases"></span>
+        <span class="dot-btn dot-cream"></span>
+        <span class="dot-btn dot-cream"></span>
+      </div>
+    </div>
+
+    <!-- VIEW A: Document Icon Grid (MacBook Air - 11) -->
+    <div class="fullscreen-window-body cases-grid-body" id="cases-view-grid">
+      <div class="cases-document-grid">
+        <div class="case-doc-item" data-case-id="fctrylab">
+          <div class="case-doc-icon">
+            <svg width="48" height="56" viewBox="0 0 48 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 0H32L44 12V52C44 54.2091 42.2091 56 40 56H4C1.79086 56 0 54.2091 0 52V4C0 1.79086 1.79086 0 4 0Z" fill="#EFE8DA"/>
+              <path d="M32 0L44 12H36C33.7909 12 32 10.2091 32 8V0Z" fill="#DDD5C3"/>
+              <line x1="10" y1="20" x2="34" y2="20" stroke="#B8AE9C" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="10" y1="28" x2="34" y2="28" stroke="#B8AE9C" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="10" y1="36" x2="26" y2="36" stroke="#B8AE9C" stroke-width="2.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <span class="case-doc-label">FCTRYLAB</span>
+        </div>
+        <div class="case-doc-item" data-case-id="fabindia">
+          <div class="case-doc-icon">
+            <svg width="48" height="56" viewBox="0 0 48 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 0H32L44 12V52C44 54.2091 42.2091 56 40 56H4C1.79086 56 0 54.2091 0 52V4C0 1.79086 1.79086 0 4 0Z" fill="#EFE8DA"/>
+              <path d="M32 0L44 12H36C33.7909 12 32 10.2091 32 8V0Z" fill="#DDD5C3"/>
+              <line x1="10" y1="20" x2="34" y2="20" stroke="#B8AE9C" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="10" y1="28" x2="34" y2="28" stroke="#B8AE9C" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="10" y1="36" x2="26" y2="36" stroke="#B8AE9C" stroke-width="2.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <span class="case-doc-label">FabIndia</span>
+        </div>
+        <div class="case-doc-item" data-case-id="godrej-interio">
+          <div class="case-doc-icon">
+            <svg width="48" height="56" viewBox="0 0 48 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 0H32L44 12V52C44 54.2091 42.2091 56 40 56H4C1.79086 56 0 54.2091 0 52V4C0 1.79086 1.79086 0 4 0Z" fill="#EFE8DA"/>
+              <path d="M32 0L44 12H36C33.7909 12 32 10.2091 32 8V0Z" fill="#DDD5C3"/>
+              <line x1="10" y1="20" x2="34" y2="20" stroke="#B8AE9C" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="10" y1="28" x2="34" y2="28" stroke="#B8AE9C" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="10" y1="36" x2="26" y2="36" stroke="#B8AE9C" stroke-width="2.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <span class="case-doc-label">Godrej Interio</span>
+        </div>
+        <div class="case-doc-item" data-case-id="godrej-properties">
+          <div class="case-doc-icon">
+            <svg width="48" height="56" viewBox="0 0 48 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 0H32L44 12V52C44 54.2091 42.2091 56 40 56H4C1.79086 56 0 54.2091 0 52V4C0 1.79086 1.79086 0 4 0Z" fill="#EFE8DA"/>
+              <path d="M32 0L44 12H36C33.7909 12 32 10.2091 32 8V0Z" fill="#DDD5C3"/>
+              <line x1="10" y1="20" x2="34" y2="20" stroke="#B8AE9C" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="10" y1="28" x2="34" y2="28" stroke="#B8AE9C" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="10" y1="36" x2="26" y2="36" stroke="#B8AE9C" stroke-width="2.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <span class="case-doc-label">Godrej Properties</span>
+        </div>
+        <div class="case-doc-item" data-case-id="reverb-asia">
+          <div class="case-doc-icon">
+            <svg width="48" height="56" viewBox="0 0 48 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 0H32L44 12V52C44 54.2091 42.2091 56 40 56H4C1.79086 56 0 54.2091 0 52V4C0 1.79086 1.79086 0 4 0Z" fill="#EFE8DA"/>
+              <path d="M32 0L44 12H36C33.7909 12 32 10.2091 32 8V0Z" fill="#DDD5C3"/>
+              <line x1="10" y1="20" x2="34" y2="20" stroke="#B8AE9C" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="10" y1="28" x2="34" y2="28" stroke="#B8AE9C" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="10" y1="36" x2="26" y2="36" stroke="#B8AE9C" stroke-width="2.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <span class="case-doc-label">Reverb Asia</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- VIEW B: Tabbed Case Study Detail (MacBook Air - 12) -->
+    <div class="cases-detail-view" id="cases-view-detail" style="display:none;">
+      <!-- Sub-tab bar -->
+      <div class="cs-subtab-bar">
+        <button class="cs-back-btn" id="cs-back-to-grid" title="Back to all cases">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+        </button>
+        <button class="cs-subtab" data-case-tab="fctrylab">FCTRYLAB</button>
+        <button class="cs-subtab" data-case-tab="fabindia">FabIndia <span class="subtab-close">×</span></button>
+        <button class="cs-subtab" data-case-tab="godrej-interio">Godrej Interio</button>
+        <button class="cs-subtab" data-case-tab="godrej-properties">Godrej Properties</button>
+        <button class="cs-subtab" data-case-tab="reverb-asia">Reverb Asia</button>
+      </div>
+
+      <div class="cs-detail-layout">
+        <!-- Left Sidebar -->
+        <div class="cs-sidebar">
+          <div class="cs-sidebar-item" data-case-tab="fctrylab">FCTRYLAB</div>
+          <div class="cs-sidebar-item" data-case-tab="fabindia">FabIndia</div>
+          <div class="cs-sidebar-item" data-case-tab="godrej-interio">Godrej Interio</div>
+          <div class="cs-sidebar-item" data-case-tab="godrej-properties">Godrej Properties</div>
+          <div class="cs-sidebar-item" data-case-tab="reverb-asia">Reverb Asia</div>
+        </div>
+
+        <!-- Main Content Area (scrollable) -->
+        <div class="cs-main-content">
+          <!-- FCTRYLAB -->
+          <div class="cs-pane" id="cs-pane-fctrylab">
+            <span class="cs-category-label">Tech / Manufacturing</span>
+            <div class="cs-brand-name">FCTRYLAB</div>
+            <h1 class="cs-headline">Building Factory Intelligence</h1>
+            <div class="cs-cards-grid">
+              <div class="cs-info-card"><h4>The Challenge Question</h4><p>How do you predict equipment failures before they happen? Not reactive maintenance. Predictive intelligence.</p></div>
+              <div class="cs-info-card"><h4>What We Found</h4><p>Sensor data existed across 14 separate dashboards with no unified alerting threshold. Teams relied on intuition rather than data patterns.</p></div>
+              <div class="cs-info-card"><h4>What We Built</h4><p>A unified IoT intelligence layer aggregating real-time sensor feeds with ML-driven anomaly detection and automated maintenance scheduling.</p></div>
+              <div class="cs-stat-block"><h4>WHAT MOVED</h4><div class="cs-big-number">62%</div><p>reduction in unplanned downtime. $2.1M annual savings. Zero critical equipment failures in Q3-Q4.</p></div>
+            </div>
+          </div>
+
+          <!-- FabIndia -->
+          <div class="cs-pane" id="cs-pane-fabindia">
+            <span class="cs-category-label">Retail and Lifestyle / India</span>
+            <div class="cs-brand-name">FabIndia</div>
+            <h1 class="cs-headline">Connecting Marketing to Revenue</h1>
+            <div class="cs-cards-grid">
+              <div class="cs-info-card"><h4>The Challenge Question</h4><p>How do we know marketing is actually driving sales? Not just metrics. Not dashboards. Real revenue attribution.</p></div>
+              <div class="cs-info-card"><h4>What We Found</h4><p>A missing measurement layer. Digital spend and in-store footfall existed in entirely separate worlds. Acquisition cost was artificially high because nobody had connected digital touchpoints to store walk-ins.</p></div>
+              <div class="cs-info-card"><h4>What We Built</h4><p>Mapped offline leads manually. Tracked where every lead originated. Connected store visits to purchases. Ran daily feedback loops to adjust campaigns in real time.</p></div>
+              <div class="cs-stat-block"><h4>WHAT MOVED</h4><div class="cs-big-number">43%</div><p>reduction in offline purchase cost. 30% improvement in ROAS. Budget unchanged. Outcomes different.</p></div>
+            </div>
+          </div>
+
+          <!-- Godrej Interio -->
+          <div class="cs-pane" id="cs-pane-godrej-interio">
+            <span class="cs-category-label">Furniture / India</span>
+            <div class="cs-brand-name">Godrej Interio</div>
+            <h1 class="cs-headline">Redesigning the Purchase Journey</h1>
+            <div class="cs-cards-grid">
+              <div class="cs-info-card"><h4>The Challenge Question</h4><p>Why are high-intent visitors dropping off before reaching showrooms? Furniture is a tactile purchase — what's breaking the bridge?</p></div>
+              <div class="cs-info-card"><h4>What We Found</h4><p>The digital experience ended at product listing. No room visualizer. No appointment flow. No post-visit follow-up. The journey had a cliff, not a funnel.</p></div>
+              <div class="cs-info-card"><h4>What We Built</h4><p>End-to-end digital showroom experience with 3D configurator, appointment booking, and post-visit nurture sequences tied to CRM.</p></div>
+              <div class="cs-stat-block"><h4>WHAT MOVED</h4><div class="cs-big-number">3.8x</div><p>showroom visit-to-purchase conversion. 28% increase in average order value through bundled room solutions.</p></div>
+            </div>
+          </div>
+
+          <!-- Godrej Properties -->
+          <div class="cs-pane" id="cs-pane-godrej-properties">
+            <span class="cs-category-label">Real Estate / India</span>
+            <div class="cs-brand-name">Godrej Properties</div>
+            <h1 class="cs-headline">Digital-First Property Sales</h1>
+            <div class="cs-cards-grid">
+              <div class="cs-info-card"><h4>The Challenge Question</h4><p>Can you sell a ₹2 Cr apartment without a single site visit? Not just generate leads — close actual transactions digitally.</p></div>
+              <div class="cs-info-card"><h4>What We Found</h4><p>The sales team was spending 80% of time on unqualified leads. Digital channels drove volume but not intent quality. No lead scoring existed.</p></div>
+              <div class="cs-info-card"><h4>What We Built</h4><p>Virtual walkthrough platform with integrated payment booking. AI-powered lead scoring prioritizing high-intent buyers. Automated sales pipeline with real-time dashboards.</p></div>
+              <div class="cs-stat-block"><h4>WHAT MOVED</h4><div class="cs-big-number">156</div><p>units sold digitally in 72 hours during launch. ₹312 Cr revenue from digital-first campaign. 4x reduction in cost per acquisition.</p></div>
+            </div>
+          </div>
+
+          <!-- Reverb Asia -->
+          <div class="cs-pane" id="cs-pane-reverb-asia">
+            <span class="cs-category-label">Music / APAC</span>
+            <div class="cs-brand-name">Reverb Asia</div>
+            <h1 class="cs-headline">Scaling Artist Marketplaces</h1>
+            <div class="cs-cards-grid">
+              <div class="cs-info-card"><h4>The Challenge Question</h4><p>How do you build trust in a peer-to-peer marketplace where buyers can't touch the instruments? The APAC market had zero reference point.</p></div>
+              <div class="cs-info-card"><h4>What We Found</h4><p>Sellers had instruments but no photography skills. Buyers had intent but no confidence. The trust gap was visual, not transactional.</p></div>
+              <div class="cs-info-card"><h4>What We Built</h4><p>Seller onboarding toolkit with guided photo capture. Buyer confidence system with verified seller badges, condition grading, and return guarantees.</p></div>
+              <div class="cs-stat-block"><h4>WHAT MOVED</h4><div class="cs-big-number">8x</div><p>GMV growth in 6 months. Seller listing completion rate from 23% to 89%. Buyer repeat purchase rate at 34%.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 3. CUP FRAMEWORK MODAL -->
+<div class="modal-overlay" id="modal-page-framework">
+  <div class="fullscreen-mac-window">
+    <div class="fullscreen-window-header">
+      <div class="window-title-meta">Cup Framework</div>
+      <div class="fullscreen-window-controls">
+        <span class="dot-btn dot-red close-modal-btn" data-close-target="modal-page-framework"></span>
+        <span class="dot-btn dot-cream"></span>
+        <span class="dot-btn dot-cream"></span>
+      </div>
+    </div>
+    
+    <div class="fw-canvas-body">
+      <!-- Watermark Background -->
+      <div class="fw-watermark">
+        <div class="fw-bulb">💡</div>
+        <div class="fw-watermark-text">Clarity first. Then the idea nobody expects.<br>Then the number that moves.</div>
+      </div>
+
+      <!-- Left Sidebar: C-U-P Icons -->
+      <div class="fw-sidebar">
+        <!-- C -->
+        <div class="fw-nav-item" data-fw-target="clarity">
+          <div class="fw-nav-icon">
+            <svg width="40" height="48" viewBox="0 0 48 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 0H32L44 12V52C44 54.2091 42.2091 56 40 56H4C1.79086 56 0 54.2091 0 52V4C0 1.79086 1.79086 0 4 0Z" fill="#EFE8DA"/>
+              <path d="M32 0L44 12H36C33.7909 12 32 10.2091 32 8V0Z" fill="#DDD5C3"/>
+              <text x="50%" y="60%" font-family="var(--font-display)" font-size="22" font-weight="500" fill="#B8AE9C" text-anchor="middle">C</text>
+            </svg>
+          </div>
+          <span class="fw-nav-label">Clarity</span>
+        </div>
+        
+        <!-- U -->
+        <div class="fw-nav-item" data-fw-target="uncommon">
+          <div class="fw-nav-icon">
+            <svg width="40" height="48" viewBox="0 0 48 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 0H32L44 12V52C44 54.2091 42.2091 56 40 56H4C1.79086 56 0 54.2091 0 52V4C0 1.79086 1.79086 0 4 0Z" fill="#EFE8DA"/>
+              <path d="M32 0L44 12H36C33.7909 12 32 10.2091 32 8V0Z" fill="#DDD5C3"/>
+              <text x="50%" y="60%" font-family="var(--font-display)" font-size="22" font-weight="500" fill="#B8AE9C" text-anchor="middle">U</text>
+            </svg>
+          </div>
+          <span class="fw-nav-label">Uncommon Ideas</span>
+        </div>
+
+        <!-- P -->
+        <div class="fw-nav-item" data-fw-target="power">
+          <div class="fw-nav-icon">
+            <svg width="40" height="48" viewBox="0 0 48 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 0H32L44 12V52C44 54.2091 42.2091 56 40 56H4C1.79086 56 0 54.2091 0 52V4C0 1.79086 1.79086 0 4 0Z" fill="#EFE8DA"/>
+              <path d="M32 0L44 12H36C33.7909 12 32 10.2091 32 8V0Z" fill="#DDD5C3"/>
+              <text x="50%" y="60%" font-family="var(--font-display)" font-size="22" font-weight="500" fill="#B8AE9C" text-anchor="middle">P</text>
+            </svg>
+          </div>
+          <span class="fw-nav-label">Power In Market</span>
+        </div>
+      </div>
+
+
+      <!-- Pop-over Cards -->
+      <!-- Clarity (C) -->
+      <div class="fw-popover-card" id="fw-popover-clarity">
+        <div class="fw-popover-arrow"></div>
+        <div class="fw-popover-header">
+          <h3>Clarity</h3>
+          <span class="fw-pop-close">×</span>
+        </div>
+        <p class="fw-pop-sub">Defining the exact position you hold in the market</p>
+        <div class="fw-pop-body">
+          <p>Most brands are built on assumptions. <span class="fw-highlight">They lack clear positioning.</span></p>
+          <p>We find the whitespace. We define what you stand for, who you're for, and why they should care.</p>
+        </div>
+        <div class="fw-pop-list-box">
+          <span class="fw-pop-list-title">What we do here</span>
+          <ul class="fw-pop-list">
+            <li>☕ Brand Architecture</li>
+            <li>☕ Value Proposition Design</li>
+            <li>☕ Audience Segmentation</li>
+            <li>☕ Core Narrative Development</li>
+          </ul>
+        </div>
+        <button class="fw-pop-btn">Let's Find Clarity</button>
+      </div>
+
+      <!-- Uncommon Ideas (U) -->
+      <div class="fw-popover-card" id="fw-popover-uncommon">
+        <div class="fw-popover-arrow"></div>
+        <div class="fw-popover-header">
+          <h3>Uncommon Ideas</h3>
+          <span class="fw-pop-close">×</span>
+        </div>
+        <p class="fw-pop-sub">Understanding markets before influencing them</p>
+        <div class="fw-pop-body">
+          <p>Most growth problems are not marketing problems. <span class="fw-highlight">They are clarity problems.</span></p>
+          <p>Wrong message. Right buyer. Right message. Wrong channel. We remove that ambiguity before touching a single campaign. You cannot influence a market you do not understand.</p>
+        </div>
+        <div class="fw-pop-list-box">
+          <span class="fw-pop-list-title">What we do here</span>
+          <ul class="fw-pop-list">
+            <li>☕ Buyer behaviour analysis</li>
+            <li>☕ Market and category mapping</li>
+            <li>☕ Demand signal analysis</li>
+            <li>☕ Competitor narrative analysis</li>
+            <li>☕ Cultural and behavioural insights</li>
+          </ul>
+        </div>
+        <button class="fw-pop-btn">Let's Unlock Ideas</button>
+      </div>
+
+      <!-- Power (P) -->
+      <div class="fw-popover-card" id="fw-popover-power">
+        <div class="fw-popover-arrow"></div>
+        <div class="fw-popover-header">
+          <h3>Power In Market</h3>
+          <span class="fw-pop-close">×</span>
+        </div>
+        <p class="fw-pop-sub">Converting attention into measurable dominance</p>
+        <div class="fw-pop-body">
+          <p>Awareness is not power. <span class="fw-highlight">Conversion is power.</span></p>
+          <p>We design the systems that capture demand, convert it efficiently, and compound it over time.</p>
+        </div>
+        <div class="fw-pop-list-box">
+          <span class="fw-pop-list-title">What we do here</span>
+          <ul class="fw-pop-list">
+            <li>☕ Conversion Rate Optimization (CRO)</li>
+            <li>☕ Growth Loop Architecture</li>
+            <li>☕ Lifecycle Marketing</li>
+            <li>☕ Revenue Operations (RevOps)</li>
+          </ul>
+        </div>
+        <button class="fw-pop-btn">Build Market Power</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+<div class="modal-overlay" id="modal-page-capabilities">
+  <div class="fullscreen-mac-window">
+    <div class="fullscreen-window-header">
+      <div class="window-title-meta">Core Capabilities</div>
+      <div class="fullscreen-window-controls">
+        <span class="dot-btn dot-red close-modal-btn" data-close-target="modal-page-capabilities"></span>
+        <span class="dot-btn dot-cream"></span>
+        <span class="dot-btn dot-cream"></span>
+      </div>
+    </div>
+    <div class="fullscreen-window-body default-padded-body">
+      <h2 class="pane-title">Core Capabilities</h2>
+      <div class="pane-cap-grid">
+        <div class="pcap-card"><span class="pcap-emoji">🎯</span><h3>Brand Positioning</h3><p>Disruptive messaging architectures designed to win top-tier markets.</p></div>
+        <div class="pcap-card"><span class="pcap-emoji">⚡</span><h3>Digital Experience</h3><p>State-of-the-art web apps, interactive OS interfaces, and dynamic UX.</p></div>
+        <div class="pcap-card"><span class="pcap-emoji">📊</span><h3>Growth Engineering</h3><p>Data-driven acquisition engines built for long-term scalability.</p></div>
+        <div class="pcap-card"><span class="pcap-emoji">💎</span><h3>Creative Direction</h3><p>World-class visual aesthetics, motion design, and brand identity systems.</p></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 5. ABOUT US MODAL -->
+<div class="modal-overlay" id="modal-page-about">
+  <div class="fullscreen-mac-window">
+    <div class="fullscreen-window-header">
+      <div class="window-title-meta">About Us</div>
+      <div class="fullscreen-window-controls">
+        <span class="dot-btn dot-red close-modal-btn" data-close-target="modal-page-about"></span>
+        <span class="dot-btn dot-cream"></span>
+        <span class="dot-btn dot-cream"></span>
+      </div>
+    </div>
+    <div class="fullscreen-window-body default-padded-body">
+      <h2 class="pane-title">About Mediacup</h2>
+      <p class="pane-lead">Mediacup is a premier strategic design and market acceleration agency.</p>
+      <div class="pane-quote">
+        "We don't build standard websites; we engineer high-impact digital ecosystems."
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 6. WHERE WE WORK MODAL -->
+<div class="modal-overlay" id="modal-page-where">
+  <div class="fullscreen-mac-window">
+    <div class="fullscreen-window-header">
+      <div class="window-title-meta">Where We Work</div>
+      <div class="fullscreen-window-controls">
+        <span class="dot-btn dot-red close-modal-btn" data-close-target="modal-page-where"></span>
+        <span class="dot-btn dot-cream"></span>
+        <span class="dot-btn dot-cream"></span>
+      </div>
+    </div>
+    <div class="fullscreen-window-body default-padded-body">
+      <h2 class="pane-title">Where We Work</h2>
+      <div class="pane-loc-grid">
+        <div class="ploc-card"><span class="ploc-flag">🇺🇸</span><h3>New York</h3><p>5th Avenue Tech Center, NY 10001</p></div>
+        <div class="ploc-card"><span class="ploc-flag">🇬🇧</span><h3>London</h3><p>Shoreditch High St, EC16 4GG</p></div>
+        <div class="ploc-card"><span class="ploc-flag">🇯🇵</span><h3>Tokyo</h3><p>Roppongi Hills Tower, Tokyo 106</p></div>
+        <div class="ploc-card"><span class="ploc-flag">🇸🇬</span><h3>Singapore</h3><p>Marina Bay Financial Tower 2</p></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 7. THE 1% PRINCIPLE MODAL -->
+<div class="modal-overlay" id="modal-page-principle">
+  <div class="fullscreen-mac-window">
+    <div class="fullscreen-window-header">
+      <div class="window-title-meta">The 1% Principle</div>
+      <div class="fullscreen-window-controls">
+        <span class="dot-btn dot-red close-modal-btn" data-close-target="modal-page-principle"></span>
+        <span class="dot-btn dot-cream"></span>
+        <span class="dot-btn dot-cream"></span>
+      </div>
+    </div>
+    <div class="fullscreen-window-body default-padded-body">
+      <h2 class="pane-title">The 1% Principle Deep Dive</h2>
+      <div class="pane-stats-row">
+        <div class="ps-stat"><span class="ps-num">99%</span><span class="ps-lbl">Market Noise Filtered</span></div>
+        <div class="ps-stat"><span class="ps-num">1%</span><span class="ps-lbl">High-Impact Focus</span></div>
+        <div class="ps-stat"><span class="ps-num">4.8x</span><span class="ps-lbl">Avg ROI Acceleration</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(16px);
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+
+  .modal-overlay.is-open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .fullscreen-mac-window {
+    width: 93vw;
+    height: 86vh;
+    background: linear-gradient(180deg, #fbf9f4 0%, #f4eee2 100%);
+    border-radius: 32px;
+    border: 2px solid rgba(255, 255, 255, 0.95);
+    box-shadow: 0 40px 90px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    will-change: clip-path, opacity;
+  }
+
+  .fullscreen-window-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 32px;
+    background: rgba(0, 0, 0, 0.02);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  }
+
+  .window-title-meta {
+    font-family: var(--font-body);
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  .fullscreen-window-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .close-modal-btn {
+    cursor: pointer;
+  }
+
+  .fullscreen-window-body {
+    flex: 1;
+    overflow-y: auto;
+  }
+
+  .default-padded-body {
+    padding: 48px;
+  }
+
+  /* Mission layout styles */
+  .mission-full-content {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 48px;
+    padding: 56px 64px;
+    height: 100%;
+  }
+
+  .mission-main-title {
+    font-family: var(--font-display);
+    font-size: clamp(36px, 4vw, 58px);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    color: var(--text-primary);
+    margin-bottom: 28px;
+  }
+
+  .mission-lead-p {
+    font-family: var(--font-body);
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1.5;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+  }
+
+  .mission-secondary-p {
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    margin-bottom: 40px;
+  }
+
+  .in-practice-section {
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    padding-top: 32px;
+  }
+
+  .practice-badge {
+    display: inline-block;
+    background: #e62e2d;
+    color: #ffffff;
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-bottom: 24px;
+  }
+
+  .practice-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .practice-bullets li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-family: var(--font-body);
+    font-size: 15px;
+    color: var(--text-primary);
+  }
+
+  .bullet-cup-icon {
+    font-size: 16px;
+  }
+
+  .watermark-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(0, 0, 0, 0.02);
+    border-radius: 24px;
+    padding: 40px 24px;
+    text-align: center;
+  }
+
+  .glowing-bulb-container {
+    position: relative;
+    width: 90px;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .bulb-glow {
+    position: absolute;
+    inset: -10px;
+    background: radial-gradient(circle, rgba(255, 200, 0, 0.4) 0%, rgba(255, 200, 0, 0) 70%);
+    border-radius: 50%;
+  }
+
+  .bulb-icon {
+    font-size: 54px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .watermark-typography {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.3;
+    color: rgba(0, 0, 0, 0.25);
+  }
+
+  /* Document Grid Layout for Cup Cases (MacBook Air - 11) */
+  .cases-grid-body {
+    padding: 56px 64px;
+  }
+
+  .cases-document-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 48px 36px;
+    align-items: flex-start;
+  }
+
+  .case-doc-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    cursor: pointer;
+    padding: 16px;
+    border-radius: 20px;
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease;
+  }
+
+  .case-doc-item:hover {
+    transform: translateY(-4px);
+    background: rgba(0, 0, 0, 0.04);
+  }
+
+  .case-doc-icon {
+    width: 88px;
+    height: 104px;
+    background: #f7f3eb;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 16px;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.06);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: box-shadow 0.2s ease;
+  }
+
+  .case-doc-item:hover .case-doc-icon {
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.12);
+  }
+
+  .case-doc-label {
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-primary);
+    text-align: center;
+  }
+
+  /* Shared pane headings */
+  .pane-title {
+    font-family: var(--font-display);
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 32px;
+  }
+
+  .pane-lead { font-size: 18px; color: var(--text-secondary); margin-bottom: 24px; }
+  .pane-quote { font-style: italic; font-size: 20px; border-left: 4px solid #e62e2d; padding-left: 20px; color: var(--text-primary); }
+
+  .pane-framework-grid, .pane-cap-grid, .pane-loc-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px;
+  }
+
+  .pf-card, .pcap-card, .ploc-card {
+    background: rgba(255, 255, 255, 0.7); border-radius: 20px; padding: 24px; border: 1px solid rgba(0, 0, 0, 0.06);
+  }
+
+  .pf-num, .ps-num { font-family: var(--font-display); font-size: 36px; font-weight: 800; color: #e62e2d; }
+  .pcap-emoji, .ploc-flag { font-size: 32px; margin-bottom: 8px; display: block; }
+  .pane-stats-row { display: flex; gap: 48px; }
+  .ps-stat { display: flex; flex-direction: column; gap: 8px; }
+  .ps-lbl { font-size: 14px; font-weight: 600; color: var(--text-secondary); }
+
+  /* ═══════════════════════════════════════════════ */
+  /* Cup Framework Modal (MacBook Air - 14 & 15)   */
+  /* ═══════════════════════════════════════════════ */
+
+  .fw-canvas-body {
+    flex: 1;
+    position: relative;
+    display: flex;
+    overflow: hidden;
+  }
+
+  /* Watermark */
+  .fw-watermark {
+    position: absolute;
+    right: 48px;
+    bottom: 48px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .fw-bulb {
+    font-size: 48px;
+    margin-bottom: 16px;
+    opacity: 0.8;
+    filter: drop-shadow(0 0 20px rgba(255, 204, 0, 0.4));
+  }
+
+  .fw-watermark-text {
+    font-family: var(--font-display);
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.1;
+    color: rgba(0, 0, 0, 0.04);
+    text-align: right;
+    letter-spacing: -0.02em;
+  }
+
+  /* Left Sidebar: C-U-P */
+  .fw-sidebar {
+    width: 140px;
+    padding: 32px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+    border-right: 1px solid rgba(0, 0, 0, 0.05);
+    background: rgba(0, 0, 0, 0.01);
+    z-index: 10;
+  }
+
+  .fw-nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .fw-nav-item:hover {
+    transform: translateY(-4px) scale(1.05);
+  }
+
+  .fw-nav-icon {
+    width: 64px;
+    height: 76px;
+    background: #f7f3eb;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+    transition: box-shadow 0.2s ease;
+  }
+
+  .fw-nav-item:hover .fw-nav-icon,
+  .fw-nav-item.is-active .fw-nav-icon {
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+    background: #ffffff;
+  }
+
+  .fw-nav-label {
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-align: center;
+    transition: color 0.2s ease;
+  }
+
+  .fw-nav-item.is-active .fw-nav-label {
+    color: var(--text-primary);
+    font-weight: 700;
+  }
+
+  /* Center Floating Canvas */
+  .fw-center-canvas {
+    flex: 1;
+    position: relative;
+    z-index: 5;
+  }
+
+  .fw-floating-item {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transform: rotate(var(--rotation));
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    cursor: pointer;
+  }
+
+  .fw-floating-item:hover {
+    transform: rotate(0deg) scale(1.08) translateY(-6px);
+    z-index: 20;
+  }
+
+  .fw-float-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.08));
+    transition: filter 0.3s ease;
+  }
+
+  .fw-floating-item:hover .fw-float-icon {
+    filter: drop-shadow(0 20px 32px rgba(0, 0, 0, 0.15));
+  }
+
+  .fw-float-pill {
+    background: rgba(0, 0, 0, 0.04);
+    backdrop-filter: blur(8px);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    white-space: nowrap;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+
+  .fw-floating-item:hover .fw-float-pill {
+    background: rgba(0, 0, 0, 0.08);
+    color: var(--text-primary);
+  }
+
+  /* Pop-over Card (Speech Bubble) */
+  .fw-popover-card {
+    position: absolute;
+    left: 140px; /* Right next to sidebar */
+    top: 50%;
+    transform: translateY(-50%) scale(0.95);
+    opacity: 0;
+    pointer-events: none;
+    width: 380px;
+    background: #fdfaf5;
+    border-radius: 24px;
+    padding: 32px;
+    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.12);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    z-index: 30;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+  }
+
+  .fw-popover-card.is-active {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(-50%) scale(1);
+  }
+
+  /* Specific positions for each card based on icon */
+  #fw-popover-clarity { top: 20%; }
+  #fw-popover-uncommon { top: 45%; }
+  #fw-popover-power { top: 70%; }
+
+  .fw-popover-arrow {
+    position: absolute;
+    left: -10px;
+    top: 40px;
+    width: 20px;
+    height: 20px;
+    background: #fdfaf5;
+    border-left: 1px solid rgba(0, 0, 0, 0.06);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    transform: rotate(45deg);
+  }
+
+  .fw-popover-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 4px;
+  }
+
+  .fw-popover-header h3 {
+    font-family: var(--font-display);
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+  }
+
+  .fw-pop-close {
+    font-size: 20px;
+    color: var(--text-muted);
+    cursor: pointer;
+    line-height: 1;
+    padding: 4px;
+    transition: color 0.2s ease;
+  }
+
+  .fw-pop-close:hover {
+    color: var(--text-primary);
+  }
+
+  .fw-pop-sub {
+    font-family: var(--font-body);
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-bottom: 24px;
+  }
+
+  .fw-pop-body {
+    font-family: var(--font-body);
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--text-primary);
+    margin-bottom: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .fw-highlight {
+    color: #e62e2d;
+    font-weight: 600;
+  }
+
+  .fw-pop-list-box {
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+    padding-top: 16px;
+    margin-bottom: 24px;
+  }
+
+  .fw-pop-list-title {
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    display: block;
+    margin-bottom: 12px;
+  }
+
+  .fw-pop-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .fw-pop-list li {
+    font-family: var(--font-body);
+    font-size: 13px;
+    color: var(--text-primary);
+  }
+
+  .fw-pop-btn {
+    background: #111111;
+    color: #ffffff;
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 600;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 30px;
+    cursor: pointer;
+    width: max-content;
+    transition: transform 0.2s ease, background 0.2s ease;
+  }
+
+  .fw-pop-btn:hover {
+    background: #000000;
+    transform: scale(1.02);
+  }
+
+  /* ═══════════════════════════════════════════════ */
+  /* Case Study Detail View (MacBook Air - 12)      */
+  /* ═══════════════════════════════════════════════ */
+
+  .cases-detail-view {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  /* Sub-tab bar */
+  .cs-subtab-bar {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 0 32px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    background: rgba(0, 0, 0, 0.015);
+    overflow-x: auto;
+    flex-shrink: 0;
+  }
+
+  .cs-back-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    color: var(--text-secondary);
+    transition: background-color 0.2s ease, color 0.2s ease;
+    margin-right: 8px;
+  }
+
+  .cs-back-btn:hover {
+    background: rgba(0, 0, 0, 0.06);
+    color: var(--text-primary);
+  }
+
+  .cs-subtab {
+    padding: 10px 20px;
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: color 0.2s ease, border-color 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .cs-subtab:hover {
+    color: var(--text-primary);
+  }
+
+  .cs-subtab.is-active {
+    color: var(--text-primary);
+    border-bottom-color: #e62e2d;
+    font-weight: 700;
+  }
+
+  .subtab-close {
+    font-size: 14px;
+    color: var(--text-muted);
+    cursor: pointer;
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s ease;
+  }
+
+  .subtab-close:hover {
+    background: rgba(0, 0, 0, 0.1);
+  }
+
+  /* Detail layout: sidebar + content */
+  .cs-detail-layout {
+    flex: 1;
+    display: flex;
+    overflow: hidden;
+  }
+
+  /* Left sidebar */
+  .cs-sidebar {
+    width: 160px;
+    flex-shrink: 0;
+    border-right: 1px solid rgba(0, 0, 0, 0.06);
+    padding: 24px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    overflow-y: auto;
+    background: rgba(0, 0, 0, 0.015);
+  }
+
+  .cs-sidebar-item {
+    padding: 10px 24px;
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: background-color 0.15s ease, color 0.15s ease;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .cs-sidebar-item:hover {
+    background: rgba(0, 0, 0, 0.04);
+    color: var(--text-primary);
+  }
+
+  .cs-sidebar-item.is-active {
+    background: rgba(230, 46, 45, 0.06);
+    color: #e62e2d;
+    font-weight: 700;
+  }
+
+  /* Main scrollable content */
+  .cs-main-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 40px 48px;
+  }
+
+  .cs-main-content::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .cs-main-content::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.12);
+    border-radius: 10px;
+  }
+
+  /* Case study panes */
+  .cs-pane {
+    display: none;
+  }
+
+  .cs-pane.is-active {
+    display: block;
+  }
+
+  .cs-category-label {
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 500;
+    color: #8c857b;
+    letter-spacing: -0.01em;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .cs-brand-name {
+    font-family: var(--font-body);
+    font-size: 16px;
+    font-weight: 600;
+    color: #6b645b;
+    margin-bottom: 8px;
+  }
+
+  .cs-headline {
+    font-family: var(--font-display);
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 800;
+    color: #111111;
+    letter-spacing: -0.03em;
+    line-height: 1.08;
+    margin-bottom: 36px;
+  }
+
+  /* 4-column info cards grid */
+  .cs-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    align-items: stretch;
+  }
+
+  @media (max-width: 1100px) {
+    .cs-cards-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  .cs-info-card {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 24px 20px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+    border: 1px solid rgba(0, 0, 0, 0.04);
+  }
+
+  .cs-info-card h4 {
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 700;
+    color: #e62e2d;
+    margin-bottom: 14px;
+  }
+
+  .cs-info-card p {
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.6;
+    color: #4a453e;
+  }
+
+  .cs-stat-block {
+    padding: 24px 12px;
+  }
+
+  .cs-stat-block h4 {
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 700;
+    color: #e62e2d;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .cs-big-number {
+    font-family: var(--font-display);
+    font-size: clamp(56px, 6vw, 90px);
+    font-weight: 800;
+    color: #e62e2d;
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+    margin-bottom: 16px;
+  }
+
+  .cs-stat-block p {
+    font-family: var(--font-body);
+    font-size: 14px;
+    line-height: 1.5;
+    color: #6b645b;
+  }
+</style>

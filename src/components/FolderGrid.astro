@@ -1,0 +1,263 @@
+---
+const folders = [
+  { id: 'principle', name: 'The 1% Principle', isRed: true },
+  { id: 'cases', name: 'Cup Cases', isRed: false },
+  { id: 'framework', name: 'Cup Framework', isRed: false },
+  { id: 'capabilities', name: 'Core Capabilities', isRed: false },
+  { id: 'about', name: 'About Us', isRed: false },
+  { id: 'where', name: 'Where We Work', isRed: false },
+];
+---
+
+<div class="folder-grid-container">
+  {folders.map(folder => (
+    <div class="desktop-item folder-item" data-folder-id={folder.id} tabindex="0">
+      <div class={`folder-icon ${folder.isRed ? 'is-red' : 'is-cream'}`}>
+        <div class="folder-tab"></div>
+        <div class="folder-body">
+          {folder.isRed ? (
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-inner-icon"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>
+          ) : (
+            <div class="folder-file-sheets">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          )}
+        </div>
+      </div>
+      <span class="desktop-label">{folder.name}</span>
+    </div>
+  ))}
+
+  <!-- Video File Icon -->
+  <div class="desktop-item file-item" id="video-file-btn" tabindex="0">
+    <div class="video-icon-box">
+      <div class="video-preview-bg">
+        <div class="play-badge">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        </div>
+      </div>
+    </div>
+    <span class="desktop-label">Brand_Video.avi</span>
+  </div>
+
+  <!-- Compass / Clock Widget -->
+  <div class="desktop-item widget-item" id="compass-widget-btn" tabindex="0">
+    <div class="compass-box">
+      <div class="compass-dial">
+        <div class="needle"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Coffee Cup Floating Indicator from Screenshot -->
+  <div class="coffee-cursor-indicator" title="Mediacup Break">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--brand-red)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+    <div class="cursor-pointer-arrow">▲</div>
+  </div>
+</div>
+
+<style>
+  .folder-grid-container {
+    position: absolute;
+    top: 95px;
+    left: 48px;
+    display: grid;
+    grid-template-columns: repeat(2, 155px);
+    grid-gap: 32px 28px;
+    z-index: 6;
+  }
+
+  .desktop-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 16px;
+    padding: 8px 6px;
+    transition: transform var(--transition-fast), background-color var(--transition-fast);
+    outline: none;
+  }
+
+  .desktop-item:hover {
+    transform: translateY(-4px) scale(1.05);
+  }
+
+  .desktop-item:focus, .desktop-item:active {
+    background-color: rgba(0, 0, 0, 0.06);
+  }
+
+  /* Folder Styling */
+  .folder-icon {
+    position: relative;
+    width: 110px;
+    height: 82px;
+    margin-bottom: 12px;
+  }
+
+  .folder-tab {
+    position: absolute;
+    top: 0;
+    left: 8px;
+    width: 44px;
+    height: 14px;
+    border-top-left-radius: 9px;
+    border-top-right-radius: 9px;
+  }
+
+  .folder-body {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Red Folder */
+  .folder-icon.is-red .folder-tab {
+    background-color: var(--folder-red);
+  }
+
+  .folder-icon.is-red .folder-body {
+    background: linear-gradient(135deg, #e62e2d 0%, #cc2120 100%);
+    color: white;
+  }
+
+  /* Cream Folder */
+  .folder-icon.is-cream .folder-tab {
+    background-color: #e4dec3;
+  }
+
+  .folder-icon.is-cream .folder-body {
+    background: linear-gradient(135deg, #f0e9d7 0%, #e3dcb5 100%);
+    border: 2px solid rgba(255, 255, 255, 0.85);
+  }
+
+  .folder-file-sheets {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 40px;
+  }
+
+  .folder-file-sheets span {
+    height: 4px;
+    background-color: rgba(0, 0, 0, 0.25);
+    border-radius: 2px;
+  }
+
+  .folder-file-sheets span:nth-child(1) { width: 100%; }
+  .folder-file-sheets span:nth-child(2) { width: 70%; }
+  .folder-file-sheets span:nth-child(3) { width: 85%; }
+
+  .desktop-label {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-align: center;
+    line-height: 1.25;
+    word-break: break-word;
+  }
+
+  /* Video Icon Box */
+  .video-icon-box {
+    width: 110px;
+    height: 84px;
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 5px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    margin-bottom: 12px;
+  }
+
+  .video-preview-bg {
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    background: linear-gradient(135deg, #a7b5d9 0%, #6879a5 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .play-badge {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    padding-left: 2px;
+  }
+
+  /* Compass Clock Widget */
+  .compass-box {
+    width: 110px;
+    height: 110px;
+    background: linear-gradient(135deg, #fbf9f4 0%, #ede6d4 100%);
+    border-radius: 26px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid rgba(255, 255, 255, 0.95);
+  }
+
+  .compass-dial {
+    position: relative;
+    width: 66px;
+    height: 66px;
+    border-radius: 50%;
+    border: 2px solid rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .needle {
+    width: 4px;
+    height: 42px;
+    background: linear-gradient(to bottom, #e62e2d 50%, #18181b 50%);
+    border-radius: 2px;
+    transform: rotate(45deg);
+    transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .compass-box:hover .needle {
+    transform: rotate(225deg);
+  }
+
+  /* Coffee Cup Floating Indicator from Screenshot */
+  .coffee-cursor-indicator {
+    position: absolute;
+    top: 170px;
+    right: -55px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    pointer-events: none;
+    animation: floatBob 3s ease-in-out infinite;
+  }
+
+  .cursor-pointer-arrow {
+    font-size: 16px;
+    color: #18181b;
+    transform: rotate(-30deg) translateY(-4px);
+  }
+
+  @keyframes floatBob {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+</style>

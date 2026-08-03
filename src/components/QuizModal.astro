@@ -1,0 +1,196 @@
+---
+---
+
+<div class="modal-overlay" id="quiz-modal">
+  <div class="modal-window quiz-dialog">
+    <div class="modal-header">
+      <div class="header-left">
+        <span class="dot-btn dot-red" id="btn-close-quiz-dot"></span>
+        <span class="modal-title">MEDIACUP - Compatibility Quiz</span>
+      </div>
+      <button class="close-modal-btn" id="close-quiz-modal">&times;</button>
+    </div>
+    
+    <div class="quiz-dialog-body">
+      <div class="quiz-step active" id="qstep-1">
+        <span class="quiz-tag">Question 1 of 3</span>
+        <h3 class="quiz-question">What is your primary market strategy objective for 2026?</h3>
+        
+        <div class="quiz-options">
+          <button class="quiz-option-btn">
+            <span class="opt-num">A</span>
+            <span class="opt-text">Finding the 1% high-value structural market whitespace</span>
+          </button>
+          <button class="quiz-option-btn">
+            <span class="opt-num">B</span>
+            <span class="opt-text">Optimizing product messaging & brand capabilities</span>
+          </button>
+          <button class="quiz-option-btn">
+            <span class="opt-num">C</span>
+            <span class="opt-text">Unlocking new customer segment acquisition models</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="quiz-step" id="qstep-result" style="display: none;">
+        <div class="result-badge">100% Match</div>
+        <h3 class="quiz-question">You are ready for the MEDIACUP Principle.</h3>
+        <p class="result-desc">We structuralize your brand positioning to capture the top 1% market opportunity waiting for you.</p>
+        <button class="learn-more-btn" id="btn-quiz-cta">Schedule Strategy Session</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(12px);
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+
+  .modal-overlay.is-open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .quiz-dialog {
+    width: 90%;
+    max-width: 520px;
+    background: #fcfbfa;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    transform: scale(0.9);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .modal-overlay.is-open .quiz-dialog {
+    transform: scale(1);
+  }
+
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    background: rgba(0, 0, 0, 0.02);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  }
+
+  .modal-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .close-modal-btn {
+    background: transparent;
+    border: none;
+    color: #8e8e93;
+    font-size: 24px;
+    cursor: pointer;
+    line-height: 1;
+  }
+
+  .quiz-dialog-body {
+    padding: 28px 24px;
+  }
+
+  .quiz-tag {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--brand-red);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  .quiz-question {
+    font-family: var(--font-heading);
+    font-size: 22px;
+    font-weight: 700;
+    color: #111111;
+    line-height: 1.25;
+    margin-bottom: 24px;
+  }
+
+  .quiz-options {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .quiz-option-btn {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 16px;
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 16px;
+    cursor: pointer;
+    text-align: left;
+    transition: transform var(--transition-fast), border-color var(--transition-fast), background-color var(--transition-fast);
+  }
+
+  .quiz-option-btn:hover {
+    transform: translateY(-2px);
+    border-color: var(--brand-red);
+    background: #fdf6f6;
+  }
+
+  .opt-num {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #18181b;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .opt-text {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-primary);
+  }
+
+  .result-badge {
+    display: inline-block;
+    background: var(--brand-red);
+    color: white;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 12px;
+    margin-bottom: 12px;
+  }
+
+  .result-desc {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin-bottom: 24px;
+  }
+</style>
