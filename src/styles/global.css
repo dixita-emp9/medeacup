@@ -506,13 +506,39 @@ html, body {
    Keep the draggable desktop workspace out of the mobile stacking context. */
 @media (max-width: 720px) {
   .desktop-stage > .mac-window,
-  .desktop-stage > #contact-panel {
-    display: none !important;
-  }
-
   #desktop-canvas,
   .desktop-stage {
     min-height: 100svh;
+    height: 1200px;
+  }
+
+  html,
+  body {
+    height: auto;
+    min-height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  #desktop-canvas {
     height: 100svh;
+    min-height: 100svh;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  .desktop-stage {
+    min-height: 1200px;
+  }
+
+  .dock-wrapper {
+    position: fixed !important;
+    bottom: max(18px, env(safe-area-inset-bottom));
+  }
+
+  .contact-panel {
+    width: min(360px, calc(100vw - 32px));
+    bottom: max(12px, env(safe-area-inset-bottom));
   }
 }

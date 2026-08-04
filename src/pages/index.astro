@@ -416,6 +416,24 @@ import IndividualPageModals from '../components/IndividualPageModals.astro';
 		// ──────────────────────────────────────────────────
 		// 8. Bottom Dock Controls
 		// ──────────────────────────────────────────────────
+		const isMobileViewport = () => window.matchMedia('(max-width: 720px)').matches;
+		const openMobilePage = (id: string, source: HTMLElement) => {
+			const modal = document.getElementById(id);
+			if (modal) openModalWithGenie(modal, source);
+		};
+
+		document.querySelectorAll<HTMLElement>('[data-top-action]').forEach((control) => {
+			const activate = () => {
+				if (!isMobileViewport()) return;
+				if (control.dataset.topAction === 'home') window.scrollTo({ top: 0, behavior: 'smooth' });
+				if (control.dataset.topAction === 'mail') document.querySelector<HTMLElement>('[data-dock-id="dock-mail"]')?.click();
+			};
+			control.addEventListener('click', activate);
+			control.addEventListener('keydown', (event) => {
+				if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); activate(); }
+			});
+		});
+
 		document.querySelectorAll<HTMLElement>('.dock-btn').forEach(btn => {
 			btn.addEventListener('click', () => {
 				const dockId = btn.getAttribute('data-dock-id');
@@ -423,6 +441,21 @@ import IndividualPageModals from '../components/IndividualPageModals.astro';
 					dockBtn.classList.remove('is-active', 'is-active-home');
 				});
 				btn.classList.add('is-active');
+				if (isMobileViewport()) {
+					if (dockId === 'dock-home') {
+						window.scrollTo({ top: 0, behavior: 'smooth' });
+						btn.classList.add('is-active-home');
+						return;
+					}
+					if (dockId === 'dock-folder') {
+						document.querySelector<HTMLElement>('.mobile-folder-grid')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+						return;
+					}
+					if (dockId === 'dock-bulb') {
+						openMobilePage('modal-page-framework', btn);
+						return;
+					}
+				}
 				let targetWinId = 'win-mission';
 				if (dockId === 'dock-percent') {
 					const principleModal = document.getElementById('modal-page-principle');
