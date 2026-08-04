@@ -7,6 +7,7 @@ import WindowProjects from '../components/WindowProjects.astro';
 import WindowQuiz from '../components/WindowQuiz.astro';
 import WindowPrinciple from '../components/WindowPrinciple.astro';
 import BottomDock from '../components/BottomDock.astro';
+import ContactPanel from '../components/ContactPanel.astro';
 import VideoModal from '../components/VideoModal.astro';
 import QuizModal from '../components/QuizModal.astro';
 import IndividualPageModals from '../components/IndividualPageModals.astro';
@@ -22,6 +23,7 @@ import IndividualPageModals from '../components/IndividualPageModals.astro';
 			<WindowQuiz />
 			<WindowPrinciple />
 			<BottomDock />
+			<ContactPanel />
 		</div>
 
 		<VideoModal />
@@ -372,6 +374,15 @@ import IndividualPageModals from '../components/IndividualPageModals.astro';
 			overlay.addEventListener('click', (e) => {
 				if (e.target === overlay) {
 					if (overlay.id === 'modal-page-cases') returnToGrid();
+					if (overlay.id === 'modal-page-principle') {
+						const checkboxes = overlay.querySelectorAll<HTMLInputElement>('[data-principle-checkbox]');
+						const lockedStage = overlay.querySelector<HTMLElement>('[data-principle-stage]');
+						const openStage = overlay.querySelector<HTMLElement>('[data-principle-expanded]');
+						checkboxes.forEach((checkbox) => { checkbox.checked = false; });
+						lockedStage?.classList.remove('is-hidden');
+						openStage?.classList.add('is-hidden');
+						openStage?.setAttribute('hidden', 'true');
+					}
 					closeModalWithGenie(overlay);
 				}
 			});
@@ -393,6 +404,9 @@ import IndividualPageModals from '../components/IndividualPageModals.astro';
 		document.getElementById('video-file-btn')?.addEventListener('click', () => {
 			videoModal?.classList.add('is-open');
 		});
+		document.getElementById('about-showreel-btn')?.addEventListener('click', () => {
+			videoModal?.classList.add('is-open');
+		});
 		document.getElementById('close-video-modal')?.addEventListener('click', () => videoModal?.classList.remove('is-open'));
 		videoModal?.addEventListener('click', (e) => { if (e.target === videoModal) videoModal.classList.remove('is-open'); });
 
@@ -402,11 +416,31 @@ import IndividualPageModals from '../components/IndividualPageModals.astro';
 		document.querySelectorAll<HTMLElement>('.dock-btn').forEach(btn => {
 			btn.addEventListener('click', () => {
 				const dockId = btn.getAttribute('data-dock-id');
+				document.querySelectorAll<HTMLElement>('.dock-btn').forEach((dockBtn) => {
+					dockBtn.classList.remove('is-active', 'is-active-home');
+				});
+				btn.classList.add('is-active');
 				let targetWinId = 'win-mission';
-				if (dockId === 'dock-percent') targetWinId = 'win-principle';
+				if (dockId === 'dock-percent') {
+					const principleModal = document.getElementById('modal-page-principle');
+					if (principleModal) openModalWithGenie(principleModal, btn);
+					return;
+				}
 				else if (dockId === 'dock-folder') targetWinId = 'win-projects';
 				else if (dockId === 'dock-bulb') targetWinId = 'win-quiz';
-				else if (dockId === 'dock-mail') { quizModal?.classList.add('is-open'); return; }
+				else if (dockId === 'dock-mail') {
+					const contactPanel = document.getElementById('contact-panel');
+					const isOpen = contactPanel?.classList.contains('is-open');
+					if (isOpen) {
+						contactPanel?.classList.remove('is-open');
+						contactPanel?.setAttribute('aria-hidden', 'true');
+						btn.classList.remove('is-active');
+					} else {
+						contactPanel?.classList.add('is-open');
+						contactPanel?.setAttribute('aria-hidden', 'false');
+					}
+					return;
+				}
 
 				const tw = document.getElementById(targetWinId);
 				if (tw) {
@@ -450,34 +484,181 @@ import IndividualPageModals from '../components/IndividualPageModals.astro';
 		});
 
 		// ──────────────────────────────────────────────────
+		// 10. Core Capabilities Search + Accordion
+		// ──────────────────────────────────────────────────
+		const capabilitiesModal = document.getElementById('modal-page-capabilities');
+		const capabilityRows = Array.from(capabilitiesModal?.querySelectorAll<HTMLElement>('.capability-row') ?? []);
+		const capabilitySearch = capabilitiesModal?.querySelector<HTMLInputElement>('[data-capabilities-search]');
+		const capabilityFilters = Array.from(capabilitiesModal?.querySelectorAll<HTMLElement>('[data-capability-filter]') ?? []);
+
+		const filterCapabilities = (query = '', category = 'all') => {
+			const normalizedQuery = query.trim().toLowerCase();
+			capabilityRows.forEach((row) => {
+				const matchesCategory = category === 'all' || row.dataset.capability === category;
+				const matchesQuery = !normalizedQuery || row.textContent?.toLowerCase().includes(normalizedQuery);
+				row.hidden = !(matchesCategory && matchesQuery);
+			});
+		};
+
+		capabilitySearch?.addEventListener('input', () => filterCapabilities(capabilitySearch.value));
+		capabilityFilters.forEach((filter) => {
+			filter.addEventListener('click', () => {
+				capabilityFilters.forEach((button) => button.classList.remove('is-active'));
+				filter.classList.add('is-active');
+				filterCapabilities(capabilitySearch?.value ?? '', filter.dataset.capabilityFilter ?? 'all');
+			});
+		});
+
+		capabilityRows.forEach((row) => {
+			const header = row.querySelector<HTMLButtonElement>('.capability-row-header');
+			header?.addEventListener('click', () => {
+				const expanded = row.classList.toggle('is-expanded');
+				header.setAttribute('aria-expanded', String(expanded));
+				const chevron = header.querySelector<HTMLElement>('.capability-chevron');
+				if (chevron) chevron.textContent = expanded ? '⌃' : '⌄';
+			});
+		});
+
+		const whereFilters = document.querySelectorAll<HTMLElement>('#modal-page-where .where-sector-filters button');
+		whereFilters.forEach((filter) => {
+			filter.addEventListener('click', () => {
+				whereFilters.forEach((button) => button.classList.remove('is-active'));
+				filter.classList.add('is-active');
+			});
+		});
+
+		// Close contact panel when clicking outside
+		document.addEventListener('click', (e) => {
+			const contactPanel = document.getElementById('contact-panel');
+			const dockMailBtn  = document.querySelector<HTMLElement>('[data-dock-id="dock-mail"]');
+			if (
+				contactPanel?.classList.contains('is-open') &&
+				!contactPanel.contains(e.target as Node) &&
+				e.target !== dockMailBtn &&
+				!dockMailBtn?.contains(e.target as Node)
+			) {
+				contactPanel.classList.remove('is-open');
+				contactPanel.setAttribute('aria-hidden', 'true');
+				dockMailBtn?.classList.remove('is-active');
+			}
+		});
+
+		// ──────────────────────────────────────────────────
+		// 11. The 1% Principle — toggle + expand animation
+		// ──────────────────────────────────────────────────
+		const pplStage     = document.getElementById('ppl-stage');
+		const pplCheckbox  = document.getElementById('ppl-checkbox') as HTMLInputElement | null;
+		const pplExpandBtn = document.getElementById('ppl-expand-btn');
+
+		// Toggle unlock
+		if (pplCheckbox && pplStage) {
+			pplCheckbox.addEventListener('change', () => {
+				if (pplCheckbox.checked) {
+					pplStage.classList.add('is-unlocked');
+				} else {
+					// Locking again also collapses expanded view
+					pplStage.classList.remove('is-unlocked', 'is-expanded');
+				}
+			});
+		}
+
+		// Expand button
+		pplExpandBtn?.addEventListener('click', () => {
+			pplStage?.classList.add('is-expanded');
+		});
+
+		// Reset everything when modal is closed
+		const principleModal = document.getElementById('modal-page-principle');
+		principleModal?.querySelector('.close-modal-btn')?.addEventListener('click', () => {
+			if (pplCheckbox) pplCheckbox.checked = false;
+			pplStage?.classList.remove('is-unlocked', 'is-expanded');
+		});
+
+
+		// ──────────────────────────────────────────────────
 		// 10. MacOS Dock Stack Interactions
 		// ──────────────────────────────────────────────────
 		const dockFolderBtn = document.querySelector<HTMLElement>('[data-dock-id="dock-folder"]');
 		const dockStack = document.querySelector<HTMLElement>('[data-dock-stack]');
-		let dockHoverLock = false;
+		const dockFanItems = Array.from(document.querySelectorAll<HTMLElement>('.ds-item:nth-child(-n + 3)'));
+		let dockHoverTimer: ReturnType<typeof setTimeout> | undefined;
+		let dockCloseTimer: ReturnType<typeof setTimeout> | undefined;
+
+		const D2R = Math.PI / 180;
+		const pointOnFanArc = (center: { x: number; y: number }, radius: number, angle: number) => ({
+			x: center.x - radius * Math.cos(angle * D2R),
+			y: center.y - radius * Math.sin(angle * D2R),
+		});
+
+		const positionDockFan = () => {
+			if (!dockFolderBtn || !dockStack) return;
+			const buttonRect = dockFolderBtn.getBoundingClientRect();
+			const stackRect = dockStack.getBoundingClientRect();
+			const origin = {
+				x: buttonRect.left + buttonRect.width / 2 - stackRect.left,
+				// Start the first card above the dock instead of at the button center.
+				y: buttonRect.top - stackRect.top - 28,
+			};
+			const startAngle = 9;
+			const step = 4.5;
+			const radius = 1360;
+			const firstCenter = {
+				x: origin.x + radius * Math.cos(startAngle * D2R),
+				y: origin.y + radius * Math.sin(startAngle * D2R),
+			};
+
+			dockFanItems.forEach((item, index) => {
+				const angle = startAngle + index * step;
+				const point = pointOnFanArc(firstCenter, radius, angle);
+				item.style.setProperty('--fan-x', `${point.x}px`);
+				item.style.setProperty('--fan-y', `${point.y}px`);
+				item.style.setProperty('--fan-rotation', `${angle}deg`);
+				item.style.transitionDelay = `${index * 34}ms`;
+			});
+		};
 
 		const openDockFan = () => {
-			dockHoverLock = true;
+			if (dockHoverTimer) clearTimeout(dockHoverTimer);
+			if (dockCloseTimer) clearTimeout(dockCloseTimer);
+			positionDockFan();
 			dockStack?.classList.add('is-open');
 		};
 
 		const closeDockFan = () => {
-			dockHoverLock = false;
+			if (dockHoverTimer) clearTimeout(dockHoverTimer);
+			if (dockCloseTimer) clearTimeout(dockCloseTimer);
 			dockStack?.classList.remove('is-open');
 		};
 
-		dockFolderBtn?.addEventListener('pointerenter', openDockFan);
+		const scheduleDockOpen = () => {
+			if (dockHoverTimer) clearTimeout(dockHoverTimer);
+			if (dockCloseTimer) clearTimeout(dockCloseTimer);
+			dockHoverTimer = setTimeout(openDockFan, 130);
+		};
+
+		const scheduleDockClose = () => {
+			if (dockHoverTimer) clearTimeout(dockHoverTimer);
+			if (dockCloseTimer) clearTimeout(dockCloseTimer);
+			dockCloseTimer = setTimeout(closeDockFan, 420);
+		};
+
+		// Seed the hidden cards at their real arc positions before the first hover.
+		positionDockFan();
+		dockFolderBtn?.addEventListener('pointerenter', scheduleDockOpen);
 		dockFolderBtn?.addEventListener('pointerleave', (e) => {
 			const related = e.relatedTarget as Node | null;
-			if (related && dockStack?.contains(related)) return;
-			if (!dockHoverLock) closeDockFan();
+			if (related && (dockFolderBtn.contains(related) || dockFanItems.some((item) => item.contains(related)))) return;
+			scheduleDockClose();
 		});
-		dockStack?.addEventListener('pointerenter', openDockFan);
-		dockStack?.addEventListener('pointerleave', (e) => {
-			const related = e.relatedTarget as Node | null;
-			if (related && dockFolderBtn?.contains(related)) return;
-			closeDockFan();
+		dockFanItems.forEach((item) => {
+			item.addEventListener('pointerenter', openDockFan);
+			item.addEventListener('pointerleave', (e) => {
+				const related = e.relatedTarget as Node | null;
+				if (related && (dockFolderBtn?.contains(related) || dockFanItems.some((other) => other.contains(related)))) return;
+				scheduleDockClose();
+			});
 		});
+		window.addEventListener('resize', positionDockFan);
 
 		document.querySelectorAll<HTMLElement>('.ds-item').forEach(item => {
 			item.addEventListener('click', (e) => {

@@ -2,15 +2,15 @@
 
 :root {
   /* Color Palette */
-  --bg-desktop: #f5f2eb;
-  --bg-desktop-accent: #ede8dc;
+  --bg-desktop: #ffffff;
+  --bg-desktop-accent: #f6f3ec;
   --brand-red: #e62e2d;
   --brand-red-hover: #cf2322;
   --text-primary: #18181b;
   --text-secondary: #52525b;
   --text-muted: #8e8e93;
   --card-bg-solid: #fcfbfa;
-  --card-bg-cream: #f4f0e6;
+  --card-bg-cream: #F6F2EC;
   --folder-red: #e62e2d;
   --folder-cream: #eadecc;
   --folder-border: #d4c7b2;
@@ -40,7 +40,7 @@
 }
 
 html, body {
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   overflow: hidden;
   font-family: var(--font-body);
@@ -52,7 +52,7 @@ html, body {
 /* Full Screen Desktop Canvas */
 #desktop-canvas {
   position: relative;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   background: 
     radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.85) 0%, transparent 65%),
@@ -64,7 +64,7 @@ html, body {
 /* Desktop Stage Container - Spans Entire Desktop Viewport Edge-to-Edge */
 .desktop-stage {
   position: relative;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   margin: 0;
 }
@@ -182,4 +182,322 @@ html, body {
 }
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(0, 0, 0, 0.3);
+}
+
+
+/* ─────────────────────────────────────────────
+   The 1% Principle — animated locked / unlocked
+   ───────────────────────────────────────────── */
+
+/* Stage fills the full window body height */
+#modal-page-principle .ppl-stage {
+  position: relative;  /* anchor for absolute toggle */
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  box-sizing: border-box;
+  padding-top: clamp(96px, 18vh, 180px);
+  /* no overflow:hidden — fullscreen-mac-window handles that */
+}
+
+/* ── Content area (watermark + visual + expand) ── */
+#modal-page-principle .ppl-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  padding: 0 32px;
+  width: 100%;
+  /* Start invisible, slightly below center */
+  opacity: 0;
+  transform: translateY(28px);
+  pointer-events: none;
+  transition: opacity 0.5s cubic-bezier(0.16,1,0.3,1),
+              transform 0.5s cubic-bezier(0.16,1,0.3,1);
+}
+
+#modal-page-principle .ppl-stage.is-unlocked .ppl-content {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+  transition-delay: 0.1s;
+}
+
+/* Faded watermark headline */
+#modal-page-principle .ppl-watermark {
+  font-family: var(--font-display, serif);
+  font-size: clamp(26px, 3.2vw, 50px);
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: rgba(23,23,23,0.18);
+  text-align: center;
+  margin: 0;
+  user-select: none;
+}
+
+/* Visual wrapper — flex column: blob is decorative, cards + expand stack */
+#modal-page-principle .ppl-visual-wrap {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+}
+
+/* Ambient blob */
+#modal-page-principle .ppl-blob {
+  position: absolute;
+  width: 300px;
+  height: 200px;
+  background: radial-gradient(ellipse at center, rgba(180,170,210,0.22) 0%, transparent 70%);
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -65%);
+  pointer-events: none;
+}
+
+/* Card fan — height accounts for rotated card overspill */
+#modal-page-principle .ppl-cards {
+  position: relative;
+  width: 240px;
+  height: 180px;
+  flex-shrink: 0;
+}
+
+#modal-page-principle .ppl-card {
+  position: absolute;
+  inset: 20px;  /* inset to leave rotation breathing room */
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: 0 16px 36px rgba(0,0,0,0.15);
+}
+
+#modal-page-principle .ppl-card-face {
+  position: absolute;
+  inset: 0;
+  border-radius: 22px;
+  opacity: 0.92;
+}
+
+#modal-page-principle .ppl-card-a { transform: rotate(-20deg) translateX(-24px); }
+#modal-page-principle .ppl-card-b { transform: rotate(-6deg)  translateX(0px);   }
+#modal-page-principle .ppl-card-c { transform: rotate(12deg)  translateX(20px);  }
+
+/* Expand button — below the cards with proper spacing */
+#modal-page-principle .ppl-expand-btn {
+  appearance: none;
+  border: 0;
+  border-radius: 999px;
+  padding: 11px 26px;
+  background: #111;
+  color: #fff;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.22);
+  flex-shrink: 0;
+  transition: background 0.2s, transform 0.2s;
+}
+#modal-page-principle .ppl-expand-btn:hover { background: #333; transform: scale(1.05); }
+
+/* ── Toggle row — absolutely at center (locked) → bottom (unlocked) ── */
+#modal-page-principle .ppl-toggle-row {
+  position: absolute;
+  left: 50%;
+  /* Locked: centered vertically */
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: top 0.55s cubic-bezier(0.16,1,0.3,1),
+              transform 0.55s cubic-bezier(0.16,1,0.3,1);
+  z-index: 5;
+}
+
+/* Unlocked: slides to 40px from bottom */
+#modal-page-principle .ppl-stage.is-unlocked .ppl-toggle-row {
+  top: calc(100% - 56px);
+  transform: translateX(-50%);
+}
+
+/* Label text */
+#modal-page-principle .ppl-copy {
+  font-family: var(--font-body);
+  font-size: 17px;
+  font-weight: 500;
+  color: rgba(23,23,23,0.65);
+}
+
+#modal-page-principle .ppl-copy strong { color: #ef3b2d; font-weight: 700; }
+
+/* Show/hide labels based on state */
+#modal-page-principle .ppl-copy--locked   { display: inline; }
+#modal-page-principle .ppl-copy--unlocked { display: none; }
+#modal-page-principle .ppl-stage.is-unlocked .ppl-copy--locked   { display: none; }
+#modal-page-principle .ppl-stage.is-unlocked .ppl-copy--unlocked { display: inline; }
+
+/* ── Toggle switch ── */
+#modal-page-principle .ppl-switch {
+  position: relative;
+  width: 44px;
+  height: 26px;
+  flex: 0 0 auto;
+}
+#modal-page-principle .ppl-switch input { width: 0; height: 0; opacity: 0; }
+
+#modal-page-principle .ppl-slider {
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  background: #d9d3cb;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+  cursor: pointer;
+  transition: background 0.25s ease;
+}
+#modal-page-principle .ppl-slider::before {
+  content: '';
+  position: absolute;
+  top: 3px; left: 3px;
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.22);
+  transition: transform 0.25s ease;
+}
+#modal-page-principle .ppl-switch input:checked + .ppl-slider { background: #14d48b; }
+#modal-page-principle .ppl-switch input:checked + .ppl-slider::before { transform: translateX(18px); }
+
+@media (max-width: 720px) {
+  #modal-page-principle .ppl-stage { padding-top: 72px; }
+  #modal-page-principle .ppl-watermark { font-size: clamp(20px, 7vw, 32px); }
+  #modal-page-principle .ppl-cards { width: 190px; height: 140px; }
+}
+
+/* ── Expanded view (shown when Expand is clicked) ── */
+
+/* Hidden by default */
+#modal-page-principle .ppl-expanded-view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  padding: 44px 48px 80px; /* bottom padding leaves room for toggle */
+  width: 100%;
+  overflow-y: auto;
+  /* Start invisible */
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s cubic-bezier(0.16,1,0.3,1);
+}
+
+/* When expanded: show expanded view, hide visual content */
+#modal-page-principle .ppl-stage.is-expanded .ppl-expanded-view {
+  opacity: 1;
+  pointer-events: auto;
+  transition-delay: 0.1s;
+}
+#modal-page-principle .ppl-stage.is-expanded .ppl-content {
+  display: none;
+}
+
+/* Hero headline */
+#modal-page-principle .ppl-exp-hero {
+  text-align: center;
+  max-width: 720px;
+}
+
+#modal-page-principle .ppl-exp-title {
+  margin: 0 0 14px;
+  font-family: var(--font-display, serif);
+  font-size: clamp(32px, 4vw, 62px);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  color: #171717;
+}
+
+#modal-page-principle .ppl-exp-subtitle {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.5;
+  color: rgba(23,23,23,0.55);
+  text-align: center;
+}
+
+/* 4-column insight grid */
+#modal-page-principle .ppl-exp-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  width: 100%;
+  max-width: 960px;
+}
+
+#modal-page-principle .ppl-exp-card {
+  padding: 22px 20px;
+  border-radius: 22px;
+  background: rgba(249,244,235,0.85);
+  border: 1px solid rgba(190,181,167,0.25);
+  box-shadow: 0 6px 20px rgba(67,53,32,0.05);
+  min-height: 180px;
+}
+
+/* First card has a blue highlight border */
+#modal-page-principle .ppl-exp-card--active {
+  border: 2px solid #4f9cf9;
+  background: rgba(249,252,255,0.9);
+}
+
+#modal-page-principle .ppl-exp-percent {
+  font-family: var(--font-display, serif);
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1;
+  color: #ef3b2d;
+  margin-bottom: 14px;
+  letter-spacing: -0.02em;
+}
+
+#modal-page-principle .ppl-exp-card p {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgba(23,23,23,0.6);
+  margin: 0;
+}
+
+/* Footer line */
+#modal-page-principle .ppl-exp-footer {
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: rgba(23,23,23,0.5);
+  text-align: center;
+  margin: 0;
+}
+
+@media (max-width: 900px) {
+  #modal-page-principle .ppl-exp-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 560px) {
+  #modal-page-principle .ppl-exp-grid { grid-template-columns: 1fr; }
+  #modal-page-principle .ppl-expanded-view { padding: 32px 20px 80px; }
+}
+
+/* Large Screen Container Wrapper */
+@media (min-width: 1920px) {
+  body {
+    background-color: #ffffff;
+  }
+  #desktop-canvas {
+    width: 80%;
+    margin: 0 auto;
+  }
 }

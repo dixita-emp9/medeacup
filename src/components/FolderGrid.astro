@@ -1,30 +1,19 @@
 ---
 const folders = [
-  { id: 'principle', name: 'The 1% Principle', isRed: true },
-  { id: 'cases', name: 'Cup Cases', isRed: false },
-  { id: 'framework', name: 'Cup Framework', isRed: false },
-  { id: 'capabilities', name: 'Core Capabilities', isRed: false },
-  { id: 'about', name: 'About Us', isRed: false },
-  { id: 'where', name: 'Where We Work', isRed: false },
+  { id: 'principle', name: 'The 1% Principle', img: '/the1.png' },
+  { id: 'cases', name: 'Cup Cases', img: '/cupcase.png' },
+  { id: 'framework', name: 'Cup Framework', img: '/folder.png' },
+  { id: 'capabilities', name: 'Core Capabilities', img: '/folder.png' },
+  { id: 'about', name: 'About Us', img: '/folder.png' },
+  { id: 'where', name: 'Where We Work', img: '/folder.png' },
 ];
 ---
 
 <div class="folder-grid-container">
   {folders.map(folder => (
     <div class="desktop-item folder-item" data-folder-id={folder.id} tabindex="0">
-      <div class={`folder-icon ${folder.isRed ? 'is-red' : 'is-cream'}`}>
-        <div class="folder-tab"></div>
-        <div class="folder-body">
-          {folder.isRed ? (
-            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-inner-icon"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>
-          ) : (
-            <div class="folder-file-sheets">
-              <span></span>
-              <span></span>
-              <span></span>
-            </div>
-          )}
-        </div>
+      <div class="folder-img-wrap">
+        <img src={folder.img} alt={folder.name} class="folder-icon-img" />
       </div>
       <span class="desktop-label">{folder.name}</span>
     </div>
@@ -61,7 +50,7 @@ const folders = [
 <style>
   .folder-grid-container {
     position: absolute;
-    top: 95px;
+    top: 125px;
     left: 48px;
     display: grid;
     grid-template-columns: repeat(2, 155px);
@@ -88,78 +77,32 @@ const folders = [
     background-color: rgba(0, 0, 0, 0.06);
   }
 
-  /* Folder Styling */
-  .folder-icon {
-    position: relative;
-    width: 110px;
-    height: 82px;
-    margin-bottom: 12px;
-  }
-
-  .folder-tab {
-    position: absolute;
-    top: 0;
-    left: 8px;
-    width: 44px;
-    height: 14px;
-    border-top-left-radius: 9px;
-    border-top-right-radius: 9px;
-  }
-
-  .folder-body {
-    position: absolute;
-    top: 10px;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    border-radius: 18px;
+  /* Folder Image Styling */
+  .folder-img-wrap {
+    width: 100px;
+    height: 75px;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    margin-bottom: 12px;
   }
 
-  /* Red Folder */
-  .folder-icon.is-red .folder-tab {
-    background-color: var(--folder-red);
+  .folder-icon-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 6px 16px rgba(0,0,0,0.1));
+    transition: filter 0.2s ease, transform 0.2s ease;
   }
 
-  .folder-icon.is-red .folder-body {
-    background: linear-gradient(135deg, #e62e2d 0%, #cc2120 100%);
-    color: white;
+  .desktop-item:hover .folder-icon-img {
+    filter: drop-shadow(0 10px 24px rgba(0,0,0,0.15));
   }
-
-  /* Cream Folder */
-  .folder-icon.is-cream .folder-tab {
-    background-color: #e4dec3;
-  }
-
-  .folder-icon.is-cream .folder-body {
-    background: linear-gradient(135deg, #f0e9d7 0%, #e3dcb5 100%);
-    border: 2px solid rgba(255, 255, 255, 0.85);
-  }
-
-  .folder-file-sheets {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    width: 40px;
-  }
-
-  .folder-file-sheets span {
-    height: 4px;
-    background-color: rgba(0, 0, 0, 0.25);
-    border-radius: 2px;
-  }
-
-  .folder-file-sheets span:nth-child(1) { width: 100%; }
-  .folder-file-sheets span:nth-child(2) { width: 70%; }
-  .folder-file-sheets span:nth-child(3) { width: 85%; }
 
   .desktop-label {
     font-size: 15px;
-    font-weight: 600;
-    color: var(--text-secondary);
+    font-weight: 500;
+    color: #898989;
     text-align: center;
     line-height: 1.25;
     word-break: break-word;

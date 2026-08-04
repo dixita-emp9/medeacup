@@ -374,13 +374,66 @@
         <span class="dot-btn dot-cream"></span>
       </div>
     </div>
-    <div class="fullscreen-window-body default-padded-body">
-      <h2 class="pane-title">Core Capabilities</h2>
-      <div class="pane-cap-grid">
-        <div class="pcap-card"><span class="pcap-emoji">🎯</span><h3>Brand Positioning</h3><p>Disruptive messaging architectures designed to win top-tier markets.</p></div>
-        <div class="pcap-card"><span class="pcap-emoji">⚡</span><h3>Digital Experience</h3><p>State-of-the-art web apps, interactive OS interfaces, and dynamic UX.</p></div>
-        <div class="pcap-card"><span class="pcap-emoji">📊</span><h3>Growth Engineering</h3><p>Data-driven acquisition engines built for long-term scalability.</p></div>
-        <div class="pcap-card"><span class="pcap-emoji">💎</span><h3>Creative Direction</h3><p>World-class visual aesthetics, motion design, and brand identity systems.</p></div>
+    <div class="fullscreen-window-body capabilities-window-body">
+      <div class="capabilities-canvas">
+        <div class="capabilities-intro">
+          <h1>Four pillars. Mapped to CUP.</h1>
+          <span class="capabilities-info" title="Our four capability pillars">i</span>
+        </div>
+
+        <div class="capabilities-controls">
+          <label class="capabilities-search">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+            <input type="search" data-capabilities-search placeholder="Search our capabilities" />
+          </label>
+          <button class="capability-filter is-active" type="button" data-capability-filter="all" aria-label="All capabilities">
+            <svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h5l2 2h11v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M3 7V5a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v2"/></svg>
+          </button>
+          <button class="capability-filter" type="button" data-capability-filter="clarity" aria-label="Clarity capabilities">
+            <svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l4 4v14H6z"/><path d="M15 3v5h4"/></svg>
+          </button>
+          <button class="capability-filter" type="button" data-capability-filter="power" aria-label="Power capabilities">
+            <svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 13h4l2-5 3 9 2-4h5"/></svg>
+          </button>
+        </div>
+
+        <div class="capabilities-list" data-capabilities-list>
+          <article class="capability-row is-expanded" data-capability="clarity">
+            <button class="capability-row-header" type="button" aria-expanded="true">
+              <span class="capability-row-icon">Aa</span>
+              <span class="capability-row-heading"><small>C Clarity</small><strong>Market Intelligence</strong></span>
+              <span class="capability-chevron">⌃</span>
+            </button>
+            <div class="capability-row-detail">
+              <p>Understanding markets before influencing them. This stage removes guesswork and replaces assumptions with insight.</p>
+              <p>Buyer behaviour analysis. Market and category mapping. Demand signal analysis. Competitor narrative analysis. Cultural and behavioural insights.</p>
+            </div>
+          </article>
+          <article class="capability-row" data-capability="clarity">
+            <button class="capability-row-header" type="button" aria-expanded="false">
+              <span class="capability-row-icon">Aa</span>
+              <span class="capability-row-heading"><small>C Clarity</small><strong>Strategic Direction</strong></span>
+              <span class="capability-chevron">⌄</span>
+            </button>
+            <div class="capability-row-detail"><p>Turn evidence into a clear strategic direction and a decision system your team can use.</p></div>
+          </article>
+          <article class="capability-row" data-capability="uncommon">
+            <button class="capability-row-header" type="button" aria-expanded="false">
+              <span class="capability-row-icon">Aa</span>
+              <span class="capability-row-heading"><small>U Uncommon Ideas</small><strong>Creative Systems</strong></span>
+              <span class="capability-chevron">⌄</span>
+            </button>
+            <div class="capability-row-detail"><p>Distinctive creative systems that make the right idea easy to recognise, remember, and repeat.</p></div>
+          </article>
+          <article class="capability-row" data-capability="power">
+            <button class="capability-row-header" type="button" aria-expanded="false">
+              <span class="capability-row-icon">Aa</span>
+              <span class="capability-row-heading"><small>P Power in Market</small><strong>Market Activation</strong></span>
+              <span class="capability-chevron">⌄</span>
+            </button>
+            <div class="capability-row-detail"><p>Build the launch, conversion, and growth loops that turn market clarity into measurable movement.</p></div>
+          </article>
+        </div>
       </div>
     </div>
   </div>
@@ -397,12 +450,38 @@
         <span class="dot-btn dot-cream"></span>
       </div>
     </div>
-    <div class="fullscreen-window-body default-padded-body">
-      <h2 class="pane-title">About Mediacup</h2>
-      <p class="pane-lead">Mediacup is a premier strategic design and market acceleration agency.</p>
-      <div class="pane-quote">
-        "We don't build standard websites; we engineer high-impact digital ecosystems."
-      </div>
+    <div class="fullscreen-window-body about-window-body">
+      <aside class="about-story-panel">
+        <h1 class="about-story-title">Build the cup</h1>
+
+        <div class="about-story-label">
+          <svg width="25" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12v18l-6-4-6 4z"/></svg>
+          <span>Brand Showreel</span>
+        </div>
+
+        <button class="about-showreel" id="about-showreel-btn" type="button" aria-label="Play brand showreel">
+          <span class="about-showreel-word">BLOSSOM</span>
+          <span class="about-play-button">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          </span>
+        </button>
+
+        <div class="about-story-label">
+          <svg width="25" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12v18l-6-4-6 4z"/></svg>
+          <span>What we believe</span>
+        </div>
+
+        <p class="about-belief">The best firms are not the ones with the most clients. They are the ones whose work travels without them. Do good work. Let God see.</p>
+      </aside>
+
+      <section class="about-copy-column">
+        <p>In 2019, we took a diaper brand in Dubai that nobody had heard of. We did not start with ads. We started with free trials in Facebook mother groups. 400 leads. 60% conversion. The product sold before the brand existed.</p>
+        <p>That taught us something most marketing firms never learn: <strong>growth does not start with campaigns. It starts with understanding who is already buying and why.</strong></p>
+        <p>A few years later, a sneaker brand in the US came to us after crossing $1M in sales. They could not tell us who their buyer was. We stopped guessing and started asking. The answer changed everything. $500 in monitored sales became $3,000 a month in under 40 days. Not from more spend. From understanding.</p>
+        <p>That is what Mediacup does. We find the insight that changes the economics, then we build the system that compounds it.</p>
+        <p>We are not a large firm. That is intentional. Every engagement begins with a direct conversation with the Founding Partner. The person who diagnoses the problem is the same person who designs the solution. We operate embedded within the business, not advising from the outside. Close to the problem. Close to the team. Accountable to outcomes.</p>
+        <p>We work across D2C, retail, real estate, education, and hospitality in India, the UK, the UAE, the USA, and Belgium. Our clients include Godrej, FabIndia, Hirandani, DY Patil, Fern Hotels, Best Western, and FCTRYLAB.</p>
+      </section>
     </div>
   </div>
 </div>
@@ -418,36 +497,161 @@
         <span class="dot-btn dot-cream"></span>
       </div>
     </div>
-    <div class="fullscreen-window-body default-padded-body">
-      <h2 class="pane-title">Where We Work</h2>
-      <div class="pane-loc-grid">
-        <div class="ploc-card"><span class="ploc-flag">🇺🇸</span><h3>New York</h3><p>5th Avenue Tech Center, NY 10001</p></div>
-        <div class="ploc-card"><span class="ploc-flag">🇬🇧</span><h3>London</h3><p>Shoreditch High St, EC16 4GG</p></div>
-        <div class="ploc-card"><span class="ploc-flag">🇯🇵</span><h3>Tokyo</h3><p>Roppongi Hills Tower, Tokyo 106</p></div>
-        <div class="ploc-card"><span class="ploc-flag">🇸🇬</span><h3>Singapore</h3><p>Marina Bay Financial Tower 2</p></div>
+    <div class="fullscreen-window-body where-window-body">
+      <div class="where-canvas">
+
+        <!-- ── Client file icons ── -->
+
+        <!-- GODREJ — top left -->
+        <div class="where-client-card where-godrej">
+          <div class="where-file-icon">
+            <div class="where-file-body">
+              <img src="/clients/godrej.png" alt="Godrej Interio" class="where-logo" />
+            </div>
+          </div>
+          <span class="where-client-label">GODREJ</span>
+        </div>
+
+        <!-- FCTRYLAB — bottom left -->
+        <div class="where-client-card where-fctrylab">
+          <div class="where-file-icon">
+            <div class="where-file-body">
+              <img src="/clients/fctrylab.png" alt="FCTRYLAB" class="where-logo" />
+            </div>
+          </div>
+          <span class="where-client-label">FCTRYLAB</span>
+        </div>
+
+        <!-- REVERB — top right -->
+        <div class="where-client-card where-reverb">
+          <div class="where-file-icon">
+            <div class="where-file-body">
+              <img src="/clients/reverb.png" alt="Reverb" class="where-logo" />
+            </div>
+          </div>
+          <span class="where-client-label">REVERB</span>
+        </div>
+
+        <!-- FABINDIA — right middle -->
+        <div class="where-client-card where-fabindia">
+          <div class="where-file-icon">
+            <div class="where-file-body">
+              <img src="/clients/fabindia.png" alt="Fabindia" class="where-logo" />
+            </div>
+          </div>
+          <span class="where-client-label">FABINDIA</span>
+        </div>
+
+        <!-- JACOB'S — bottom right -->
+        <div class="where-client-card where-jacobs">
+          <div class="where-file-icon">
+            <div class="where-file-body">
+              <img src="/clients/jacobs.png" alt="Jacob's Garden" class="where-logo" />
+            </div>
+          </div>
+          <span class="where-client-label">JACOB'S</span>
+        </div>
+
+
+        <!-- ── Orbital diagram (center) ── -->
+        <div class="where-orbit-field" aria-label="Our work across India">
+          <!-- Orbit glob image (dot cloud + orbit lines + nodes) -->
+          <img src="/glob.svg" alt="Orbital client map" class="where-glob-img" />
+        </div>
+
+        <!-- India pill — sits above the glob, positioned on the canvas -->
+        <div class="where-country-pill"><span>🇮🇳</span> India</div>
+
+        <!-- ── Sector filter pills ── -->
+        <div class="where-sector-filters">
+          <button class="is-active" type="button">D2C</button>
+          <button type="button">Retail</button>
+          <button type="button">Real Estate</button>
+          <button type="button">Hospitality</button>
+          <button type="button">Education</button>
+        </div>
+
       </div>
     </div>
   </div>
 </div>
 
+
 <!-- 7. THE 1% PRINCIPLE MODAL -->
 <div class="modal-overlay" id="modal-page-principle">
   <div class="fullscreen-mac-window">
     <div class="fullscreen-window-header">
-      <div class="window-title-meta">The 1% Principle</div>
+      <div class="window-title-meta">the 1% Principle</div>
       <div class="fullscreen-window-controls">
         <span class="dot-btn dot-red close-modal-btn" data-close-target="modal-page-principle"></span>
         <span class="dot-btn dot-cream"></span>
         <span class="dot-btn dot-cream"></span>
       </div>
     </div>
-    <div class="fullscreen-window-body default-padded-body">
-      <h2 class="pane-title">The 1% Principle Deep Dive</h2>
-      <div class="pane-stats-row">
-        <div class="ps-stat"><span class="ps-num">99%</span><span class="ps-lbl">Market Noise Filtered</span></div>
-        <div class="ps-stat"><span class="ps-num">1%</span><span class="ps-lbl">High-Impact Focus</span></div>
-        <div class="ps-stat"><span class="ps-num">4.8x</span><span class="ps-lbl">Avg ROI Acceleration</span></div>
+
+    <!-- Single-stage — add class 'is-unlocked' to animate -->
+    <div class="ppl-stage" id="ppl-stage" style="flex:1;">
+
+      <!-- Content: hidden until unlocked -->
+      <div class="ppl-content">
+        <p class="ppl-watermark">Growth is hidden in the 1%.</p>
+
+        <div class="ppl-visual-wrap">
+          <div class="ppl-blob"></div>
+          <div class="ppl-cards">
+            <div class="ppl-card ppl-card-a">
+              <div class="ppl-card-face" style="background:linear-gradient(135deg,#a78bfa 0%,#60a5fa 100%);"></div>
+            </div>
+            <div class="ppl-card ppl-card-b">
+              <div class="ppl-card-face" style="background:linear-gradient(135deg,#34d399 0%,#06b6d4 100%);"></div>
+            </div>
+            <div class="ppl-card ppl-card-c">
+              <div class="ppl-card-face" style="background:linear-gradient(135deg,#3b82f6 0%,#6366f1 100%);"></div>
+            </div>
+          </div>
+          <button class="ppl-expand-btn" id="ppl-expand-btn" type="button">Expand</button>
+        </div>
       </div>
+
+      <!-- Expanded view: shown when Expand is clicked -->
+      <div class="ppl-expanded-view">
+        <div class="ppl-exp-hero">
+          <h2 class="ppl-exp-title">Growth is hidden in the 1%.</h2>
+          <p class="ppl-exp-subtitle">In every category, a small number of decisions<br/>determine most of the outcome.</p>
+        </div>
+
+        <div class="ppl-exp-grid">
+          <article class="ppl-exp-card ppl-exp-card--active">
+            <div class="ppl-exp-percent">1%</div>
+            <p>of customers generate most revenue. Who are they? Where do they come from? Why do they stay?</p>
+          </article>
+          <article class="ppl-exp-card">
+            <div class="ppl-exp-percent">1%</div>
+            <p>of channels drive most growth. Which one is yours? Most brands are not sure.</p>
+          </article>
+          <article class="ppl-exp-card">
+            <div class="ppl-exp-percent">1%</div>
+            <p>of messages build real authority. The one sentence your buyer will repeat.</p>
+          </article>
+          <article class="ppl-exp-card">
+            <div class="ppl-exp-percent">1%</div>
+            <p>of strategic decisions determine market leadership. One structural change. Everything else follows.</p>
+          </article>
+        </div>
+
+        <p class="ppl-exp-footer">The 1% is never the obvious thing. That is why most brands miss it.</p>
+      </div>
+
+      <!-- Toggle row — centered (locked) → bottom (unlocked) -->
+      <div class="ppl-toggle-row" id="ppl-toggle-row">
+        <label class="ppl-switch">
+          <input type="checkbox" id="ppl-checkbox" />
+          <span class="ppl-slider"></span>
+        </label>
+        <span class="ppl-copy ppl-copy--locked">Unlock the <strong>1%</strong></span>
+        <span class="ppl-copy ppl-copy--unlocked">1% <strong>Unlocked</strong></span>
+      </div>
+
     </div>
   </div>
 </div>
@@ -514,10 +718,737 @@
   .fullscreen-window-body {
     flex: 1;
     overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .principle-popup-body {
+    position: relative;
+    min-height: 100%;
+    padding: 26px;
+  }
+
+  .principle-stage {
+    position: absolute;
+    inset: 16px;
+    border-radius: 24px;
+    background: rgba(251, 248, 240, 0.92);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.6);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 36px 42px;
+    transition: opacity 220ms ease, transform 260ms ease, filter 220ms ease;
+  }
+
+  .principle-stage.is-locked {
+    gap: 28px;
+    justify-content: flex-start;
+    padding-top: clamp(96px, 18vh, 180px);
+  }
+
+  .principle-stage.is-open {
+    justify-content: flex-start;
+    padding-top: 36px;
+  }
+
+  .principle-stage.is-hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0.985);
+  }
+
+  .principle-hero,
+  .principle-expanded-hero {
+    text-align: center;
+    max-width: 760px;
+  }
+
+  .principle-locked-title,
+  .principle-open-title {
+    font-family: var(--font-display);
+    font-size: clamp(36px, 4.3vw, 68px);
+    line-height: 1;
+    letter-spacing: -0.04em;
+    color: #171717;
+    margin-bottom: 10px;
+  }
+
+  .principle-locked-subtitle,
+  .principle-open-subtitle {
+    font-family: var(--font-body);
+    font-size: 18px;
+    line-height: 1.45;
+    color: rgba(23, 23, 23, 0.52);
+    max-width: 520px;
+    margin: 0 auto;
+  }
+
+  .principle-visual {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+  }
+
+  .principle-cards {
+    position: relative;
+    width: 220px;
+    height: 150px;
+  }
+
+  .principle-card {
+    position: absolute;
+    inset: 0;
+    border-radius: 26px;
+    background:
+      radial-gradient(circle at 30% 30%, rgba(255,255,255,0.92), rgba(247, 240, 228, 0.92) 42%, rgba(240, 233, 220, 0.98) 100%);
+    border: 1px solid rgba(190, 181, 167, 0.22);
+    box-shadow: 0 18px 28px rgba(67, 53, 32, 0.06);
+  }
+
+  .principle-card-a { transform: rotate(-22deg) translate(-30px, 18px); }
+  .principle-card-b { transform: rotate(-10deg) translate(-8px, 6px); }
+  .principle-card-c { transform: rotate(8deg) translate(18px, -2px); }
+  .principle-card-d { transform: rotate(20deg) translate(42px, 16px); }
+
+  .principle-expand-btn {
+    appearance: none;
+    border: 0;
+    border-radius: 999px;
+    background: #000;
+    color: #fff;
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 600;
+    padding: 10px 18px;
+    cursor: pointer;
+    box-shadow: 0 12px 24px rgba(0,0,0,0.18);
+  }
+
+  .principle-toggle-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 12px;
+  }
+
+  .principle-switch {
+    position: relative;
+    width: 42px;
+    height: 24px;
+    flex: 0 0 auto;
+  }
+
+  .principle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .principle-slider {
+    position: absolute;
+    inset: 0;
+    background: #ded7cb;
+    border-radius: 999px;
+    transition: background 180ms ease;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+  }
+
+  .principle-slider::before {
+    content: '';
+    position: absolute;
+    left: 3px;
+    top: 3px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.22);
+    transition: transform 180ms ease;
+  }
+
+  .principle-switch input:checked + .principle-slider {
+    background: #14d48b;
+  }
+
+  .principle-switch input:checked + .principle-slider::before {
+    transform: translateX(18px);
+  }
+
+  .principle-toggle-copy {
+    font-family: var(--font-body);
+    font-size: 18px;
+    color: rgba(23, 23, 23, 0.6);
+  }
+
+  .principle-toggle-copy strong {
+    color: #ef3b2d;
+    font-weight: 700;
+  }
+
+  .principle-insights-grid {
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+    width: min(100%, 1120px);
+  }
+
+  .principle-insight-card {
+    min-height: 170px;
+    border-radius: 24px;
+    background: rgba(249, 244, 235, 0.88);
+    border: 1px solid rgba(190, 181, 167, 0.22);
+    padding: 22px 18px;
+    box-shadow: 0 18px 28px rgba(67, 53, 32, 0.05);
+  }
+
+  .principle-insight-percent {
+    font-family: var(--font-display);
+    font-size: 52px;
+    line-height: 0.9;
+    color: #ef3b2d;
+    margin-bottom: 12px;
+  }
+
+  .principle-insight-card p {
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.45;
+    color: rgba(23, 23, 23, 0.58);
+  }
+
+  .principle-footer-copy {
+    margin-top: 20px;
+    font-family: var(--font-body);
+    font-size: 16px;
+    color: rgba(23, 23, 23, 0.58);
+    text-align: center;
+  }
+
+  @media (max-width: 1100px) {
+    .principle-insights-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 720px) {
+    .principle-stage {
+      inset: 10px;
+      padding: 24px 18px;
+    }
+
+    .principle-insights-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .principle-locked-title,
+    .principle-open-title {
+      font-size: clamp(30px, 10vw, 52px);
+    }
   }
 
   .default-padded-body {
     padding: 48px;
+  }
+
+  /* Where We Work — MacBook Air-22 orbital client map */
+  .where-window-body {
+    min-height: 0;
+    padding: 0;
+    background: #f6f1e8;
+    overflow: hidden;
+    flex: 1;
+    display: flex;
+  }
+
+  .where-canvas {
+    position: relative;
+    width: 100%;
+    flex: 1;
+    min-height: 520px;
+  }
+
+  /* ── Client card: file icon + label ── */
+  .where-client-card {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  /* The file icon shape with dog-ear corner */
+  .where-file-icon {
+    position: relative;
+    width: 148px;
+    height: 172px;
+    filter: drop-shadow(0 14px 30px rgba(60,50,35,0.12));
+  }
+
+  /* Main body of the file */
+  .where-file-body {
+    position: absolute;
+    inset: 0;
+    background: #eee8da;
+    border-radius: 4px 4px 6px 6px;
+    clip-path: polygon(0 0, 72% 0, 100% 22%, 100% 100%, 0 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 8px 8px;
+  }
+
+  /* Dog-ear triangle — top right folded corner */
+  .where-file-icon::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 40px;
+    height: 36px;
+    background: linear-gradient(225deg, #d8d0c0 50%, transparent 50%);
+    border-radius: 0 4px 0 0;
+    z-index: 2;
+  }
+
+  .where-logo {
+    width: 108px;
+    height: 72px;
+    object-fit: contain;
+    object-position: center;
+  }
+
+  /* Client name label below icon */
+  .where-client-label {
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    color: rgba(55,55,55,0.65);
+  }
+
+  /* ── Positions — spread around the centered glob ── */
+  .where-godrej   { left: 4%;   top: 10%; }
+  .where-fctrylab { left: 12%;  top: 52%; }
+  .where-reverb   { right: 24%; top: 8%;  }
+  .where-fabindia { right: 4%;  top: 34%; }
+  .where-jacobs   { right: 12%; top: 54%; }
+
+  /* ── Orbital diagram — truly centered ── */
+  .where-orbit-field {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 620px;
+    height: 560px;
+    transform: translate(-50%, -50%);
+  }
+
+  .where-glob-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+  }
+
+  /* India pill — canvas-level, above the glob */
+  .where-country-pill {
+    position: absolute;
+    top: 14%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 18px;
+    border: 1px solid rgba(80,75,68,0.18);
+    border-radius: 20px;
+    background: rgba(246,241,232,0.95);
+    backdrop-filter: blur(8px);
+    color: rgba(65,65,65,0.78);
+    font-family: var(--font-body);
+    font-size: 16px;
+    font-weight: 500;
+    white-space: nowrap;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    z-index: 10;
+  }
+
+  /* ── Sector filter pills ── */
+  .where-sector-filters {
+    position: absolute;
+    bottom: 6%;
+    left: 50%;
+    display: flex;
+    gap: 8px;
+    transform: translateX(-50%);
+    white-space: nowrap;
+  }
+
+  .where-sector-filters button {
+    padding: 10px 20px;
+    border: 0;
+    border-radius: 22px;
+    background: rgba(224,218,208,0.80);
+    color: rgba(70,70,70,0.68);
+    cursor: pointer;
+    font-family: var(--font-body);
+    font-size: 14px;
+    transition: background 180ms ease, color 180ms ease, transform 180ms ease;
+  }
+
+  .where-sector-filters button:hover,
+  .where-sector-filters button.is-active {
+    background: rgba(205,200,188,0.95);
+    color: #2a2a2a;
+    transform: translateY(-2px);
+  }
+
+  @media (max-width: 900px) {
+    .where-window-body { overflow-y: auto; }
+    .where-canvas { transform: scale(0.82); transform-origin: top center; min-height: 680px; }
+  }
+
+
+  /* Core Capabilities — MacBook Air -21 */
+  .capabilities-window-body {
+    position: relative;
+    min-height: 0;
+    padding: 0 30px 84px;
+    background: #f6f1e8;
+    overflow-y: auto;
+  }
+
+  .capabilities-canvas {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: min(100%, 760px);
+    margin: 0 auto;
+    padding-top: clamp(90px, 13vh, 150px);
+  }
+
+  .capabilities-intro {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 84px;
+    color: rgba(40, 40, 40, 0.62);
+  }
+
+  .capabilities-intro h1 {
+    margin: 0;
+    font-family: var(--font-body);
+    font-size: clamp(20px, 1.8vw, 30px);
+    font-weight: 500;
+    letter-spacing: -0.045em;
+  }
+
+  .capabilities-info {
+    display: grid;
+    place-items: center;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.05);
+    font-family: Georgia, serif;
+    font-size: 14px;
+    font-style: italic;
+  }
+
+  .capabilities-controls {
+    display: grid;
+    grid-template-columns: minmax(280px, 1fr) 64px 64px 64px;
+    gap: 8px;
+    width: 100%;
+    margin-bottom: 12px;
+  }
+
+  .capabilities-search,
+  .capability-filter {
+    display: flex;
+    align-items: center;
+    border: 0;
+    background: rgba(226, 222, 214, 0.76);
+    color: rgba(45, 45, 45, 0.68);
+  }
+
+  .capabilities-search {
+    gap: 14px;
+    min-height: 64px;
+    padding: 0 24px;
+    border-radius: 32px;
+  }
+
+  .capabilities-search input {
+    width: 100%;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: #262626;
+    font-family: var(--font-body);
+    font-size: 20px;
+  }
+
+  .capabilities-search input::placeholder { color: rgba(75, 75, 75, 0.55); }
+
+  .capability-filter {
+    justify-content: center;
+    min-height: 64px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 180ms ease, color 180ms ease, transform 180ms ease;
+  }
+
+  .capability-filter:hover,
+  .capability-filter.is-active {
+    background: rgba(212, 207, 198, 0.95);
+    color: #232323;
+    transform: translateY(-2px);
+  }
+
+  .capabilities-list {
+    width: 100%;
+    padding: 0 18px;
+    border-radius: 28px;
+    background: rgba(226, 222, 214, 0.76);
+  }
+
+  .capability-row {
+    border-bottom: 1px solid rgba(80, 74, 65, 0.1);
+  }
+
+  .capability-row:last-child { border-bottom: 0; }
+
+  .capability-row-header {
+    display: grid;
+    grid-template-columns: 48px 1fr 24px;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    min-height: 74px;
+    padding: 10px 0;
+    border: 0;
+    background: transparent;
+    color: #3b3a38;
+    cursor: pointer;
+    text-align: left;
+  }
+
+  .capability-row-icon {
+    display: grid;
+    place-items: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 14px;
+    background: #ee2e2d;
+    color: #fff;
+    font-family: Georgia, serif;
+    font-size: 13px;
+    box-shadow: 0 4px 10px rgba(238, 46, 45, 0.16);
+  }
+
+  .capability-row-heading {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .capability-row-heading small {
+    color: rgba(70, 68, 64, 0.42);
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .capability-row-heading strong {
+    color: rgba(35, 35, 35, 0.7);
+    font-family: var(--font-body);
+    font-size: 19px;
+    font-weight: 500;
+    letter-spacing: -0.04em;
+  }
+
+  .capability-chevron {
+    color: rgba(60, 60, 60, 0.54);
+    font-size: 22px;
+    line-height: 1;
+  }
+
+  .capability-row-detail {
+    max-height: 0;
+    padding: 0 40px 18px 60px;
+    overflow: hidden;
+    color: rgba(60, 60, 60, 0.48);
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.35;
+    opacity: 0;
+    transform: translateY(-12px);
+    transition: max-height 700ms cubic-bezier(0.16, 1, 0.3, 1), opacity 500ms ease, transform 700ms cubic-bezier(0.16, 1, 0.3, 1), padding 700ms ease;
+    transition-delay: 120ms;
+  }
+
+  .capability-row-detail p { margin: 0 0 14px; }
+  .capability-row-detail p:last-child { margin-bottom: 0; }
+  .capability-row.is-expanded .capability-row-detail {
+    max-height: 180px;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (max-width: 720px) {
+    .capabilities-window-body { padding: 0 16px 100px; }
+    .capabilities-canvas { padding-top: 64px; }
+    .capabilities-intro { margin-bottom: 44px; }
+    .capabilities-controls { grid-template-columns: 1fr repeat(3, 48px); }
+    .capabilities-search { min-height: 52px; padding: 0 16px; }
+    .capability-filter { min-height: 48px; }
+    .capabilities-search input { font-size: 15px; }
+  }
+
+  /* About Us — MacBook Air -19 editorial layout */
+  .about-window-body {
+    display: grid;
+    grid-template-columns: minmax(330px, 34%) minmax(0, 1fr);
+    gap: clamp(34px, 5vw, 92px);
+    padding: 28px 42px 96px;
+    background: #f6f1e8;
+    overflow-y: auto;
+  }
+
+  .about-story-panel {
+    align-self: stretch;
+    padding: 42px 34px 38px;
+    border: 1px solid rgba(110, 96, 76, 0.12);
+    border-radius: 30px;
+    background: rgba(247, 242, 233, 0.82);
+  }
+
+  .about-story-title {
+    margin: 0 0 34px;
+    color: #111;
+    font-family: var(--font-display);
+    font-size: clamp(42px, 4.2vw, 72px);
+    font-weight: 500;
+    letter-spacing: -0.075em;
+    line-height: 0.95;
+  }
+
+  .about-story-label {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    min-height: 62px;
+    margin-bottom: 14px;
+    padding: 0 18px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.7);
+    color: #ef302d;
+    font-family: var(--font-body);
+    font-size: clamp(18px, 1.5vw, 28px);
+    font-weight: 500;
+  }
+
+  .about-showreel {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    aspect-ratio: 1.18;
+    margin-bottom: 28px;
+    overflow: hidden;
+    border: 10px solid rgba(255, 255, 255, 0.6);
+    border-radius: 30px;
+    background:
+      radial-gradient(circle at 68% 35%, rgba(255, 255, 255, 0.52), transparent 25%),
+      linear-gradient(135deg, #8791c8 0%, #b3a5c8 46%, #dfc9b4 100%);
+    cursor: pointer;
+    box-shadow: 0 12px 28px rgba(60, 48, 35, 0.12);
+  }
+
+  .about-showreel::before,
+  .about-showreel::after {
+    position: absolute;
+    bottom: -18%;
+    width: 36%;
+    height: 90%;
+    border-radius: 48% 52% 12% 12%;
+    background: linear-gradient(90deg, rgba(71, 83, 130, 0.32), rgba(244, 232, 206, 0.5));
+    content: '';
+    transform: rotate(18deg);
+  }
+
+  .about-showreel::before { left: 14%; }
+  .about-showreel::after { right: 12%; transform: rotate(-16deg); opacity: 0.75; }
+
+  .about-showreel-word {
+    position: relative;
+    z-index: 1;
+    color: rgba(255, 255, 255, 0.62);
+    font-family: var(--font-display);
+    font-size: clamp(24px, 2.6vw, 46px);
+    letter-spacing: -0.06em;
+  }
+
+  .about-play-button {
+    position: absolute;
+    z-index: 2;
+    display: grid;
+    place-items: center;
+    width: 74px;
+    height: 74px;
+    border-radius: 50%;
+    background: rgba(24, 24, 24, 0.75);
+    color: #fff;
+    transition: transform 180ms ease, background 180ms ease;
+  }
+
+  .about-showreel:hover .about-play-button {
+    background: #ef302d;
+    transform: scale(1.08);
+  }
+
+  .about-belief {
+    margin: 38px 8px 0;
+    color: #111;
+    font-family: var(--font-display);
+    font-size: clamp(28px, 2.6vw, 48px);
+    font-weight: 500;
+    letter-spacing: -0.06em;
+    line-height: 0.98;
+  }
+
+  .about-copy-column {
+    align-self: start;
+    width: 100%;
+    max-width: none;
+    padding: clamp(48px, 9vw, 130px) 48px 40px 0;
+  }
+
+  .about-copy-column p {
+    margin: 0 0 34px;
+    color: rgba(35, 35, 35, 0.62);
+    font-family: var(--font-body);
+    font-size: clamp(17px, 1.35vw, 25px);
+    line-height: 1.35;
+  }
+
+  .about-copy-column strong {
+    color: rgba(27, 27, 27, 0.82);
+    font-weight: 700;
+  }
+
+  @media (max-width: 900px) {
+    .about-window-body { grid-template-columns: 1fr; padding: 24px 20px 110px; }
+    .about-copy-column { padding: 18px 8px 0; }
+    .about-belief { font-size: clamp(30px, 8vw, 48px); }
   }
 
   /* Mission layout styles */
