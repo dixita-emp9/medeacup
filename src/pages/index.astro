@@ -145,11 +145,14 @@ import IndividualPageModals from '../components/IndividualPageModals.astro';
 		/**
 		 * Open any modal overlay with Genie animation from sourceEl
 		 */
-		function openModalWithGenie(overlayEl: HTMLElement, sourceEl: HTMLElement) {
+		function openModalWithGenie(overlayEl: HTMLElement, sourceEl: HTMLElement | null, isHistoryEvent = false) {
+			if (!isHistoryEvent) {
+				history.pushState({ modal: overlayEl.id }, "", "#" + overlayEl.id);
+			}
 			const macWin = overlayEl.querySelector('.fullscreen-mac-window, .case-study-mac-window') as HTMLElement;
 			if (!macWin) return;
 
-			const srcRect = sourceEl.getBoundingClientRect();
+			const srcRect = sourceEl ? sourceEl.getBoundingClientRect() : new DOMRect(window.innerWidth / 2 - 30, window.innerHeight - 60, 60, 60);
 			modalSourceMap.set(overlayEl, srcRect);
 
 			overlayEl.classList.add('is-open');
@@ -198,7 +201,7 @@ import IndividualPageModals from '../components/IndividualPageModals.astro';
 		/**
 		 * Close any modal overlay with reverse Genie animation
 		 */
-		function closeModalWithGenie(overlayEl: HTMLElement) {
+		function closeModalWithGenie(overlayEl: HTMLElement, isHistoryEvent = false) {
 			const macWin = overlayEl.querySelector('.fullscreen-mac-window, .case-study-mac-window') as HTMLElement;
 			if (!macWin || !overlayEl.classList.contains('is-open')) return;
 
@@ -243,6 +246,11 @@ import IndividualPageModals from '../components/IndividualPageModals.astro';
 				overlayEl.classList.remove('is-open');
 				overlayEl.style.opacity = '';
 				macWin.style.clipPath = '';
+
+				if (window.matchMedia('(max-width: 900px)').matches) {
+					document.querySelectorAll('.dock-btn').forEach(btn => btn.classList.remove('is-active', 'is-active-home'));
+					document.querySelector('[data-dock-id="dock-home"]')?.classList.add('is-active', 'is-active-home');
+				}
 			};
 		}
 
@@ -258,7 +266,7 @@ import IndividualPageModals from '../components/IndividualPageModals.astro';
 			where: 'modal-page-where',
 		};
 
-		document.querySelectorAll<HTMLElement>('.folder-item, .mobile-folder-item, .mobile-principle-card').forEach(folder => {
+		document.querySelectorAll<HTMLElement>('.folder-item, .mobile-folder-item, .mobile-principle-card, #win-principle').forEach(folder => {
 			folder.addEventListener('click', () => {
 				const id = folder.getAttribute('data-folder-id');
 				if (id && folderModalMap[id]) {
@@ -292,7 +300,10 @@ import IndividualPageModals from '../components/IndividualPageModals.astro';
 		const csSidebarItems = document.querySelectorAll<HTMLElement>('.cs-sidebar-item');
 		const csPanes = document.querySelectorAll<HTMLElement>('.cs-pane');
 
-		function activateCaseStudy(caseId: string) {
+		function activateCaseStudy(caseId: string, isHistoryEvent = false) {
+			if (!isHistoryEvent) {
+				history.pushState({ modal: "modal-page-cases", view: "detail", caseId: caseId }, "", "#modal-page-cases-" + caseId);
+			}
 			// Switch to detail view
 			if (casesGridView) casesGridView.style.display = 'none';
 			if (casesDetailView) casesDetailView.style.display = 'flex';
@@ -328,7 +339,11 @@ import IndividualPageModals from '../components/IndividualPageModals.astro';
 
 		// Back button click → return to grid
 		document.getElementById('cs-back-to-grid')?.addEventListener('click', () => {
-			returnToGrid();
+			if (window.history.state && window.history.state.view === "detail") {
+				window.history.back();
+			} else {
+				returnToGrid();
+			}
 		});
 
 		// Sub-tab click → switch case study
@@ -336,7 +351,11 @@ import IndividualPageModals from '../components/IndividualPageModals.astro';
 			tab.addEventListener('click', (e) => {
 				// If clicking the × close button, return to grid
 				if ((e.target as HTMLElement).classList.contains('subtab-close')) {
-					returnToGrid();
+					if (window.history.state && window.history.state.view === "detail") {
+						window.history.back();
+					} else {
+						returnToGrid();
+					}
 					return;
 				}
 				const caseId = tab.getAttribute('data-case-tab');
@@ -353,27 +372,128 @@ import IndividualPageModals from '../components/IndividualPageModals.astro';
 		});
 
 		// ──────────────────────────────────────────────────
+		
+		// ──────────────────────────────────────────────────
+		// 5.5 Cup Framework: Mobile Grid ↔ Detail View Switching
+		// ──────────────────────────────────────────────────
+		const fwMobileGrid = document.getElementById("fw-mobile-grid");
+		const fwDesktopCanvas = document.getElementById("fw-desktop-canvas");
+		const fwTitle = document.querySelector("#modal-page-framework .mobile-nav-title");
+
+		function activateFrameworkDetail(caseId, isHistoryEvent = false) {
+			if (!isHistoryEvent) {
+				history.pushState({ modal: "modal-page-framework", view: "detail", caseId: caseId }, "", "#modal-page-framework-" + caseId);
+			}
+			// Switch to detail view on mobile
+			const modal = document.getElementById("modal-page-framework");
+			if (modal) modal.classList.add("is-mobile-detail");
+
+			// Activate corresponding popover card
+			document.querySelectorAll("#modal-page-framework .fw-popover-card").forEach(card => {
+				card.classList.toggle("is-active", card.id === "fw-popover-" + caseId);
+			});
+
+			// Update header title
+			if (fwTitle) {
+				const titleMap = {
+					clarity: "Clarity",
+					uncommon: "Uncommon Ideas",
+					power: "Power In Market"
+				};
+				fwTitle.innerHTML = titleMap[caseId] + ' <svg class="dropdown-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>';
+			}
+		}
+
+		
+		function returnToFrameworkGrid() {
+			const modal = document.getElementById("modal-page-framework");
+			if (modal) modal.classList.remove("is-mobile-detail");
+			document.querySelectorAll("#modal-page-framework .fw-popover-card").forEach(card => card.classList.remove("is-active"));
+			if (fwTitle) {
+				fwTitle.innerHTML = 'Cup Framework <svg class="dropdown-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>';
+			}
+		}
+
+		
+		// Framework explicit back button logic
+		// Mobile grid document click
+		document.querySelectorAll("#fw-mobile-grid .fw-grid-item").forEach(item => {
+			item.addEventListener("click", () => {
+				const caseId = item.getAttribute("data-fw-target");
+				if (caseId) activateFrameworkDetail(caseId);
+			});
+		});
+
 		// 6. Close Handlers for All Modals
 		// ──────────────────────────────────────────────────
 		document.querySelectorAll<HTMLElement>('.close-modal-btn').forEach(btn => {
-			btn.addEventListener('click', () => {
-				const targetId = btn.getAttribute('data-close-target');
-				if (targetId) {
-					const targetOverlay = document.getElementById(targetId);
-					if (targetOverlay) {
-						// If closing Cup Cases, also reset to grid view
-						if (targetId === 'modal-page-cases') returnToGrid();
-						closeModalWithGenie(targetOverlay);
+			btn.addEventListener('click', (e) => {
+				e.preventDefault();
+				if (window.history.state && window.history.state.modal) {
+					window.history.back();
+				} else {
+					// Fallback
+					const targetId = btn.getAttribute('data-close-target');
+					if (targetId) {
+						const targetOverlay = document.getElementById(targetId);
+						if (targetOverlay) {
+							if (targetId === "modal-page-cases" && casesGridView && casesGridView.style.display === "none") { returnToGrid(); return; }
+							if (targetId === "modal-page-framework" && targetOverlay.classList.contains("is-mobile-detail")) { returnToFrameworkGrid(); return; }
+							if (targetId === "modal-page-cases") returnToGrid();
+							if (targetId === "modal-page-framework") returnToFrameworkGrid();
+							closeModalWithGenie(targetOverlay);
+						}
 					}
 				}
 			});
+		});
+
+		// ──────────────────────────────────────────────────
+		// 7. Popstate Event Listener for Browser History
+		// ──────────────────────────────────────────────────
+		window.addEventListener('popstate', (e) => {
+			const state = e.state;
+
+			// If no state, it means we returned to the home page
+			if (!state || !state.modal) {
+				document.querySelectorAll<HTMLElement>('.modal-overlay.is-open').forEach(modal => {
+					// Also reset grids just in case
+					if (modal.id === "modal-page-cases") returnToGrid();
+					if (modal.id === "modal-page-framework") returnToFrameworkGrid();
+					closeModalWithGenie(modal, true);
+				});
+				return;
+			}
+
+			// We have a modal state
+			const targetModal = document.getElementById(state.modal);
+			if (targetModal) {
+				// Ensure the modal is open
+				if (!targetModal.classList.contains('is-open')) {
+					openModalWithGenie(targetModal, null, true);
+				}
+
+				// Handle sub-views
+				if (state.view === "detail") {
+					if (state.modal === "modal-page-cases") {
+						activateCaseStudy(state.caseId, true);
+					} else if (state.modal === "modal-page-framework") {
+						activateFrameworkDetail(state.caseId, true);
+					}
+				} else {
+					// It's the grid view, so close any active detail view
+					if (state.modal === "modal-page-cases") returnToGrid();
+					if (state.modal === "modal-page-framework") returnToFrameworkGrid();
+				}
+			}
 		});
 
 		// Close overlays when clicking outside window body
 		document.querySelectorAll<HTMLElement>('.modal-overlay').forEach(overlay => {
 			overlay.addEventListener('click', (e) => {
 				if (e.target === overlay) {
-					if (overlay.id === 'modal-page-cases') returnToGrid();
+					if (overlay.id === "modal-page-cases") returnToGrid();
+					if (overlay.id === "modal-page-framework") returnToFrameworkGrid();
 					if (overlay.id === 'modal-page-principle') {
 						const checkboxes = overlay.querySelectorAll<HTMLInputElement>('[data-principle-checkbox]');
 						const lockedStage = overlay.querySelector<HTMLElement>('[data-principle-stage]');
@@ -383,7 +503,8 @@ import IndividualPageModals from '../components/IndividualPageModals.astro';
 						openStage?.classList.add('is-hidden');
 						openStage?.setAttribute('hidden', 'true');
 					}
-					closeModalWithGenie(overlay);
+					overlay.classList.remove("is-mobile-detail");
+						if (window.history.state && window.history.state.modal === overlay.id) { window.history.back(); } else { closeModalWithGenie(overlay); }
 				}
 			});
 		});
@@ -448,7 +569,10 @@ import IndividualPageModals from '../components/IndividualPageModals.astro';
 						return;
 					}
 					if (dockId === 'dock-folder') {
-						document.querySelector<HTMLElement>('.mobile-folder-grid')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+						const dockStack = document.querySelector('[data-dock-stack]');
+						if (dockStack) {
+							dockStack.classList.toggle('is-open');
+						}
 						return;
 					}
 					if (dockId === 'dock-bulb') {
@@ -665,6 +789,15 @@ import IndividualPageModals from '../components/IndividualPageModals.astro';
 			if (dockCloseTimer) clearTimeout(dockCloseTimer);
 			dockStack?.classList.remove('is-open');
 		};
+
+		document.addEventListener('click', (e) => {
+			const target = e.target as Node;
+			if (dockStack?.classList.contains('is-open')) {
+				if (!dockFolderBtn?.contains(target) && !dockStack.contains(target)) {
+					closeDockFan();
+				}
+			}
+		});
 
 		const scheduleDockOpen = () => {
 			if (dockHoverTimer) clearTimeout(dockHoverTimer);

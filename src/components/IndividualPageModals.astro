@@ -6,6 +6,15 @@
 <!-- 1. OUR MISSION MODAL -->
 <div class="modal-overlay" id="modal-page-mission">
   <div class="fullscreen-mac-window">
+    <div class="mobile-modal-nav">
+      <button type="button" class="mobile-nav-back close-modal-btn" data-close-target="modal-page-mission" aria-label="Back">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14.5 5-7 7 7 7"/></svg>
+      </button>
+      <div class="mobile-nav-title">
+        Our Mission <svg class="dropdown-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+      </div>
+      <button type="button" class="mobile-nav-more" aria-label="More options"><i></i><i></i><i></i></button>
+    </div>
     <div class="fullscreen-window-header">
       <div class="window-title-meta">Our Mission</div>
       <div class="fullscreen-window-controls">
@@ -57,6 +66,15 @@
 <!-- 2. CUP CASES MODAL (Dual View: Grid + Tabbed Detail) -->
 <div class="modal-overlay" id="modal-page-cases">
   <div class="fullscreen-mac-window">
+    <div class="mobile-modal-nav">
+      <button type="button" class="mobile-nav-back close-modal-btn" data-close-target="modal-page-cases" aria-label="Back">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14.5 5-7 7 7 7"/></svg>
+      </button>
+      <div class="mobile-nav-title">
+        Cup Cases <svg class="dropdown-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+      </div>
+      <button type="button" class="mobile-nav-more" aria-label="More options"><i></i><i></i><i></i></button>
+    </div>
     <div class="fullscreen-window-header">
       <div class="window-title-meta">Cup Cases</div>
       <div class="fullscreen-window-controls">
@@ -231,6 +249,15 @@
 <!-- 3. CUP FRAMEWORK MODAL -->
 <div class="modal-overlay" id="modal-page-framework">
   <div class="fullscreen-mac-window">
+    <div class="mobile-modal-nav">
+      <button type="button" class="mobile-nav-back close-modal-btn" id="fw-mobile-back" data-close-target="modal-page-framework" aria-label="Back">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14.5 5-7 7 7 7"/></svg>
+      </button>
+      <div class="mobile-nav-title">
+        Cup Framework <svg class="dropdown-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+      </div>
+      <button type="button" class="mobile-nav-more" aria-label="More options"><i></i><i></i><i></i></button>
+    </div>
     <div class="fullscreen-window-header">
       <div class="window-title-meta">Cup Framework</div>
       <div class="fullscreen-window-controls">
@@ -240,7 +267,54 @@
       </div>
     </div>
     
-    <div class="fw-canvas-body">
+    
+    <!-- MOBILE VIEW A: Document Grid (Hidden on desktop) -->
+    <div class="fw-mobile-grid-view" id="fw-mobile-grid">
+      <div class="fw-search-bar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        <input type="search" placeholder="Search" />
+      </div>
+      <div class="cases-document-grid">
+        <div class="case-doc-item fw-grid-item" data-fw-target="clarity">
+          <div class="case-doc-icon">
+            <svg width="48" height="56" viewBox="0 0 48 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 0H32L44 12V52C44 54.2091 42.2091 56 40 56H4C1.79086 56 0 54.2091 0 52V4C0 1.79086 1.79086 0 4 0Z" fill="#EFE8DA"/>
+              <path d="M32 0L44 12H36C33.7909 12 32 10.2091 32 8V0Z" fill="#DDD5C3"/>
+              <line x1="10" y1="20" x2="34" y2="20" stroke="#B8AE9C" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="10" y1="28" x2="34" y2="28" stroke="#B8AE9C" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="10" y1="36" x2="26" y2="36" stroke="#B8AE9C" stroke-width="2.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <span class="case-doc-label">Clarity</span>
+        </div>
+        <div class="case-doc-item fw-grid-item" data-fw-target="uncommon">
+          <div class="case-doc-icon">
+            <svg width="48" height="56" viewBox="0 0 48 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 0H32L44 12V52C44 54.2091 42.2091 56 40 56H4C1.79086 56 0 54.2091 0 52V4C0 1.79086 1.79086 0 4 0Z" fill="#EFE8DA"/>
+              <path d="M32 0L44 12H36C33.7909 12 32 10.2091 32 8V0Z" fill="#DDD5C3"/>
+              <line x1="10" y1="20" x2="34" y2="20" stroke="#B8AE9C" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="10" y1="28" x2="34" y2="28" stroke="#B8AE9C" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="10" y1="36" x2="26" y2="36" stroke="#B8AE9C" stroke-width="2.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <span class="case-doc-label">Uncommon Ideas</span>
+        </div>
+        <div class="case-doc-item fw-grid-item" data-fw-target="power">
+          <div class="case-doc-icon">
+            <svg width="48" height="56" viewBox="0 0 48 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 0H32L44 12V52C44 54.2091 42.2091 56 40 56H4C1.79086 56 0 54.2091 0 52V4C0 1.79086 1.79086 0 4 0Z" fill="#EFE8DA"/>
+              <path d="M32 0L44 12H36C33.7909 12 32 10.2091 32 8V0Z" fill="#DDD5C3"/>
+              <line x1="10" y1="20" x2="34" y2="20" stroke="#B8AE9C" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="10" y1="28" x2="34" y2="28" stroke="#B8AE9C" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="10" y1="36" x2="26" y2="36" stroke="#B8AE9C" stroke-width="2.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <span class="case-doc-label">Power In market</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="fw-canvas-body" id="fw-desktop-canvas">
       <!-- Watermark Background -->
       <div class="fw-watermark">
         <div class="fw-bulb">💡</div>
@@ -366,6 +440,15 @@
 </div>
 <div class="modal-overlay" id="modal-page-capabilities">
   <div class="fullscreen-mac-window">
+    <div class="mobile-modal-nav">
+      <button type="button" class="mobile-nav-back close-modal-btn" data-close-target="modal-page-capabilities" aria-label="Back">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14.5 5-7 7 7 7"/></svg>
+      </button>
+      <div class="mobile-nav-title">
+        Core Capabilities <svg class="dropdown-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+      </div>
+      <button type="button" class="mobile-nav-more" aria-label="More options"><i></i><i></i><i></i></button>
+    </div>
     <div class="fullscreen-window-header">
       <div class="window-title-meta">Core Capabilities</div>
       <div class="fullscreen-window-controls">
@@ -442,6 +525,15 @@
 <!-- 5. ABOUT US MODAL -->
 <div class="modal-overlay" id="modal-page-about">
   <div class="fullscreen-mac-window">
+    <div class="mobile-modal-nav">
+      <button type="button" class="mobile-nav-back close-modal-btn" data-close-target="modal-page-about" aria-label="Back">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14.5 5-7 7 7 7"/></svg>
+      </button>
+      <div class="mobile-nav-title">
+        About Us <svg class="dropdown-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+      </div>
+      <button type="button" class="mobile-nav-more" aria-label="More options"><i></i><i></i><i></i></button>
+    </div>
     <div class="fullscreen-window-header">
       <div class="window-title-meta">About Us</div>
       <div class="fullscreen-window-controls">
@@ -489,6 +581,15 @@
 <!-- 6. WHERE WE WORK MODAL -->
 <div class="modal-overlay" id="modal-page-where">
   <div class="fullscreen-mac-window">
+    <div class="mobile-modal-nav">
+      <button type="button" class="mobile-nav-back close-modal-btn" data-close-target="modal-page-where" aria-label="Back">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14.5 5-7 7 7 7"/></svg>
+      </button>
+      <div class="mobile-nav-title">
+        Where We Work <svg class="dropdown-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+      </div>
+      <button type="button" class="mobile-nav-more" aria-label="More options"><i></i><i></i><i></i></button>
+    </div>
     <div class="fullscreen-window-header">
       <div class="window-title-meta">Where We Work</div>
       <div class="fullscreen-window-controls">
@@ -580,6 +681,15 @@
 <!-- 7. THE 1% PRINCIPLE MODAL -->
 <div class="modal-overlay" id="modal-page-principle">
   <div class="fullscreen-mac-window">
+    <div class="mobile-modal-nav">
+      <button type="button" class="mobile-nav-back close-modal-btn" data-close-target="modal-page-principle" aria-label="Back">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14.5 5-7 7 7 7"/></svg>
+      </button>
+      <div class="mobile-nav-title">
+        The 1% Principle <svg class="dropdown-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+      </div>
+      <button type="button" class="mobile-nav-more" aria-label="More options"><i></i><i></i><i></i></button>
+    </div>
     <div class="fullscreen-window-header">
       <div class="window-title-meta">the 1% Principle</div>
       <div class="fullscreen-window-controls">
@@ -607,6 +717,12 @@
             </div>
             <div class="ppl-card ppl-card-c">
               <div class="ppl-card-face" style="background:linear-gradient(135deg,#3b82f6 0%,#6366f1 100%);"></div>
+            </div>
+            <div class="ppl-card ppl-card-d">
+              <div class="ppl-card-face" style="background:linear-gradient(135deg,#f4f0e8 0%,#d8d2c8 100%);"></div>
+            </div>
+            <div class="ppl-card ppl-card-e">
+              <div class="ppl-card-face" style="background:linear-gradient(135deg,#eef0e8 0%,#cfd8c7 100%);"></div>
             </div>
           </div>
           <button class="ppl-expand-btn" id="ppl-expand-btn" type="button">Expand</button>
@@ -721,6 +837,8 @@
     display: flex;
     flex-direction: column;
   }
+
+  .mobile-principle-nav { display: none; }
 
   .principle-popup-body {
     position: relative;
@@ -1801,8 +1919,8 @@
   .fw-popover-card {
     position: absolute;
     left: 140px; /* Right next to sidebar */
-    top: 50%;
-    transform: translateY(-50%) scale(0.95);
+    transform: scale(0.95);
+    transform-origin: left top;
     opacity: 0;
     pointer-events: none;
     width: 380px;
@@ -1818,13 +1936,13 @@
   .fw-popover-card.is-active {
     opacity: 1;
     pointer-events: auto;
-    transform: translateY(-50%) scale(1);
+    transform: scale(1);
   }
 
   /* Specific positions for each card based on icon */
-  #fw-popover-clarity { top: 20%; }
-  #fw-popover-uncommon { top: 45%; }
-  #fw-popover-power { top: 70%; }
+  #fw-popover-clarity { top: 30px; }
+  #fw-popover-uncommon { top: 168px; }
+  #fw-popover-power { top: 306px; }
 
   .fw-popover-arrow {
     position: absolute;
@@ -2184,4 +2302,357 @@
     line-height: 1.5;
     color: #6b645b;
   }
+
+  @media (max-width: 900px) {
+    .modal-overlay {
+      z-index: 2300;
+      background: #fbfaf7;
+      backdrop-filter: none;
+    }
+
+    .modal-overlay .fullscreen-mac-window {
+      position: relative;
+      width: 100vw;
+      height: 100svh;
+      min-height: 100svh;
+      border: 0;
+      border-radius: 0;
+      background: #fbfaf7;
+      box-shadow: none;
+    }
+
+    .modal-overlay .fullscreen-window-header { display: none; }
+
+    .mobile-modal-nav {
+      position: absolute;
+      inset: 27px 24px auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 30;
+      pointer-events: none; /* Let clicks pass through empty space */
+    }
+
+    .mobile-modal-nav > * {
+      pointer-events: auto; /* Re-enable clicks on buttons and title */
+    }
+
+    .mobile-modal-nav button {
+      appearance: none;
+      display: grid;
+      place-items: center;
+      width: 50px;
+      height: 50px;
+      padding: 0;
+      border: 1px solid rgba(117, 106, 91, 0.14);
+      border-radius: 50%;
+      background: #faf8f3;
+      color: #9b9b98;
+      box-shadow: 0 2px 8px rgba(57, 49, 36, 0.04);
+      cursor: pointer;
+    }
+
+    .mobile-nav-back svg {
+      width: 25px;
+      height: 25px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .mobile-nav-title {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .mobile-nav-title svg {
+      width: 16px;
+      height: 16px;
+      opacity: 0.5;
+    }
+
+    .mobile-nav-more {
+      display: flex !important;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+    }
+    .mobile-nav-more i {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: currentColor;
+    }
+
+    #modal-page-principle .fullscreen-window-body {
+      overflow: hidden;
+      background: #fbfaf7;
+    }
+
+    #modal-page-principle .ppl-stage {
+      inset: 0;
+      min-height: 100%;
+      padding: 0;
+      border-radius: 0;
+      background: #fbfaf7;
+      box-shadow: none;
+    }
+
+    #modal-page-principle .ppl-toggle-row {
+      top: 50% !important;
+      bottom: auto !important;
+      transform: translate(-50%, -50%) !important;
+      gap: 12px;
+      white-space: nowrap;
+    }
+
+    #modal-page-principle .ppl-copy { font-size: 20px; }
+
+    #modal-page-principle .ppl-stage.is-unlocked:not(.is-expanded) {
+      justify-content: flex-start;
+      padding-top: 215px;
+    }
+
+    #modal-page-principle .ppl-stage.is-unlocked.is-expanded {
+      justify-content: flex-start;
+      padding-top: 75px;
+    }
+
+    #modal-page-principle .ppl-stage.is-expanded .ppl-expanded-view {
+      gap: 28px;
+      padding: 55px 0 118px;
+      overflow: hidden;
+      opacity: 1;
+    }
+
+    #modal-page-principle .ppl-stage.is-expanded .ppl-exp-hero {
+      width: min(350px, calc(100vw - 40px));
+      flex: 0 0 auto;
+    }
+
+    #modal-page-principle .ppl-stage.is-expanded .ppl-exp-title {
+      margin-bottom: 18px;
+      color: rgba(177, 169, 158, 0.2);
+      font-size: clamp(42px, 11vw, 58px);
+      line-height: 0.96;
+    }
+
+    #modal-page-principle .ppl-stage.is-expanded .ppl-exp-subtitle {
+      color: rgba(23, 23, 23, 0.52);
+      font-size: 16px;
+      line-height: 1.35;
+    }
+
+    #modal-page-principle .ppl-stage.is-expanded .ppl-exp-grid {
+      display: flex;
+      flex: 0 0 auto;
+      gap: 26px;
+      width: 100vw;
+      max-width: none;
+      padding: 0 52px;
+      scroll-padding-left: 52px;
+      overflow-x: auto;
+      overflow-y: visible;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+      touch-action: pan-x;
+    }
+
+    #modal-page-principle .ppl-stage.is-expanded .ppl-exp-grid::-webkit-scrollbar { display: none; }
+
+    #modal-page-principle .ppl-stage.is-expanded .ppl-exp-card {
+      flex: 0 0 min(278px, calc(100vw - 105px));
+      min-height: 310px;
+      padding: 28px 30px;
+      border-radius: 32px;
+      scroll-snap-align: start;
+    }
+
+    #modal-page-principle .ppl-stage.is-expanded .ppl-exp-percent {
+      margin-bottom: 22px;
+      font-size: 56px;
+      font-weight: 400;
+    }
+
+    #modal-page-principle .ppl-stage.is-expanded .ppl-exp-card p {
+      font-size: 18px;
+      line-height: 1.55;
+    }
+
+    #modal-page-principle .ppl-stage.is-expanded .ppl-exp-footer {
+      width: min(350px, calc(100vw - 48px));
+      flex: 0 0 auto;
+      font-size: 15px;
+      line-height: 1.4;
+    }
+
+    #modal-page-principle .ppl-stage.is-expanded .ppl-toggle-row {
+      top: 86% !important;
+    }
+
+    #modal-page-principle .ppl-stage.is-unlocked .ppl-content {
+      gap: 20px;
+      padding: 0 18px;
+      transform: translateY(0) !important;
+    }
+
+    #modal-page-principle .ppl-stage.is-unlocked .ppl-watermark {
+      width: min(350px, 90vw);
+      color: rgba(177, 169, 158, 0.2);
+      font-size: clamp(42px, 10.5vw, 58px);
+      line-height: 0.95;
+    }
+
+    #modal-page-principle .ppl-stage.is-unlocked .ppl-visual-wrap {
+      gap: 55px;
+      isolation: isolate;
+    }
+
+    #modal-page-principle .ppl-stage.is-unlocked .ppl-cards {
+      width: min(330px, 78vw);
+      height: 255px;
+      z-index: 1;
+    }
+
+    #modal-page-principle .ppl-stage.is-unlocked .ppl-card {
+      inset: 18px 28px;
+      border-radius: 28px;
+      box-shadow: 0 18px 30px rgba(82, 72, 58, 0.12);
+    }
+
+    #modal-page-principle .ppl-stage.is-unlocked .ppl-card-a { transform: rotate(-22deg) translate(-34px, 12px); }
+    #modal-page-principle .ppl-stage.is-unlocked .ppl-card-b { transform: rotate(-11deg) translate(-17px, 2px); }
+    #modal-page-principle .ppl-stage.is-unlocked .ppl-card-c { transform: rotate(8deg) translate(12px, -4px); }
+    #modal-page-principle .ppl-stage.is-unlocked .ppl-card-d { transform: rotate(18deg) translate(30px, 8px); }
+    #modal-page-principle .ppl-stage.is-unlocked .ppl-card-e { transform: rotate(22deg) translate(28px, 8px); }
+
+    #modal-page-principle .ppl-stage.is-unlocked .ppl-expand-btn {
+      position: relative;
+      z-index: 100;
+      isolation: isolate;
+      margin-top: 0;
+      padding: 11px 23px;
+      font-size: 15px;
+    }
+
+    #modal-page-principle .ppl-stage.is-unlocked .ppl-toggle-row {
+      top: 80% !important;
+      bottom: auto !important;
+      transform: translate(-50%, -50%) !important;
+    }
+  }
+
+    /* Framework Mobile Grid View */
+    .fw-mobile-grid-view {
+      display: none;
+      padding: 100px 24px 40px;
+      height: 100%;
+      overflow-y: auto;
+    }
+
+    .fw-search-bar {
+      position: relative;
+      margin-bottom: 32px;
+    }
+    
+    .fw-search-bar svg {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 18px;
+      height: 18px;
+      color: #9b9b98;
+    }
+
+    .fw-search-bar input {
+      width: 100%;
+      height: 48px;
+      border: 1px solid rgba(0,0,0,0.06);
+      background: #f7f3eb;
+      border-radius: 24px;
+      padding: 0 16px 0 44px;
+      font-size: 16px;
+      color: var(--text-primary);
+      outline: none;
+    }
+
+    
+
+    /* Mobile overrides */
+    @media (max-width: 900px) {
+      .fw-mobile-grid-view {
+        display: block;
+      }
+      #fw-desktop-canvas {
+        display: none !important; /* hidden by default on mobile, shown via JS */
+        flex-direction: column;
+        padding: 100px 24px 40px;
+        overflow-y: auto;
+      }
+      
+      /* Detail View Active State */
+      #modal-page-framework.is-mobile-detail .fw-mobile-grid-view {
+        display: none !important;
+      }
+      #modal-page-framework.is-mobile-detail #fw-desktop-canvas {
+        display: flex !important;
+      }
+      .fw-sidebar {
+        display: none !important; /* hide sidebar on mobile */
+      }
+      .fw-watermark {
+        position: relative !important;
+        right: auto !important;
+        bottom: auto !important;
+        align-items: flex-start !important;
+        margin-top: 60px;
+        margin-bottom: 60px;
+        opacity: 0.6;
+        order: 3;
+      }
+      .fw-watermark-text {
+        text-align: left !important;
+        font-size: 24px !important;
+        color: #0000002b !important;
+      }
+      
+      .fw-popover-card {
+        position: relative !important;
+        left: 0 !important;
+        top: 0 !important;
+        transform: none !important;
+        width: 100% !important;
+        padding: 32px 24px !important;
+        background: #f1efe9 !important;
+        border-radius: 24px !important;
+        box-shadow: none !important;
+        border: none !important;
+        display: none; /* hide inactive cards */
+        order: 1;
+      }
+      .fw-popover-card.is-active {
+        display: block;
+      }
+      .fw-popover-arrow, .fw-pop-close {
+        display: none !important; /* hide arrow and desktop close button */
+      }
+      
+      .fw-pop-body {
+        margin-bottom: 24px;
+      }
+    }
+
+
+    .mobile-modal-nav button svg {
+      pointer-events: none;
+    }
 </style>
