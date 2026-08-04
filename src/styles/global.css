@@ -504,8 +504,11 @@ html, body {
 
 /* The phone home screen uses the dedicated composition in FolderGrid.astro.
    Keep the draggable desktop workspace out of the mobile stacking context. */
-@media (max-width: 720px) {
-  .desktop-stage > .mac-window,
+@media (max-width: 900px) {
+  .desktop-stage > .mac-window {
+    display: none !important;
+  }
+
   #desktop-canvas,
   .desktop-stage {
     min-height: 100svh;
