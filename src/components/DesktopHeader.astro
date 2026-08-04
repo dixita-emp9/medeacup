@@ -7,8 +7,12 @@
   </div>
 
   <div class="top-status-dots">
-    <span class="status-circle"></span>
-    <span class="status-circle"></span>
+    <span class="status-circle status-user" aria-label="Profile">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.2" fill="currentColor"/><path d="M5.5 19c.8-3.1 3-4.7 6.5-4.7s5.7 1.6 6.5 4.7" fill="currentColor"/></svg>
+    </span>
+    <span class="status-circle status-mail" aria-label="Contact us">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5.5" width="17" height="13" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><path d="m5.5 8 5 4a2.5 2.5 0 0 0 3 0l5-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </span>
   </div>
 </header>
 
@@ -60,8 +64,51 @@
     cursor: pointer;
   }
 
+  .status-circle svg {
+    display: none;
+  }
+
   .status-circle:hover {
     transform: scale(1.15);
     background-color: var(--brand-red);
+  }
+
+  @media (max-width: 720px) {
+    .desktop-header {
+      top: 34px;
+      height: 62px;
+      padding: 0 40px;
+      align-items: center;
+    }
+
+    .logo-text {
+      font-size: clamp(28px, 7.6vw, 40px);
+      letter-spacing: -0.055em;
+      filter: none;
+    }
+
+    .top-status-dots {
+      gap: 12px;
+    }
+
+    .status-circle {
+      width: 54px;
+      height: 54px;
+      border: 0;
+      background: #383838;
+      color: #fff;
+      box-shadow: none;
+    }
+
+    .status-circle svg {
+      display: block;
+      width: 29px;
+      height: 29px;
+    }
+
+    .status-circle:hover {
+      background: #383838;
+      transform: none;
+    }
   }
 </style>

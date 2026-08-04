@@ -258,7 +258,7 @@ import IndividualPageModals from '../components/IndividualPageModals.astro';
 			where: 'modal-page-where',
 		};
 
-		document.querySelectorAll<HTMLElement>('.folder-item').forEach(folder => {
+		document.querySelectorAll<HTMLElement>('.folder-item, .mobile-folder-item, .mobile-principle-card').forEach(folder => {
 			folder.addEventListener('click', () => {
 				const id = folder.getAttribute('data-folder-id');
 				if (id && folderModalMap[id]) {
@@ -395,6 +395,9 @@ import IndividualPageModals from '../components/IndividualPageModals.astro';
 		const videoModal = document.getElementById('video-modal');
 
 		document.getElementById('btn-take-quiz')?.addEventListener('click', () => {
+			quizModal?.classList.add('is-open');
+		});
+		document.getElementById('mobile-take-quiz')?.addEventListener('click', () => {
 			quizModal?.classList.add('is-open');
 		});
 		document.getElementById('close-quiz-modal')?.addEventListener('click', () => quizModal?.classList.remove('is-open'));
