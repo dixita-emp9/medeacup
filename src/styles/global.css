@@ -374,7 +374,7 @@ html, body {
 #modal-page-principle .ppl-switch input:checked + .ppl-slider { background: #14d48b; }
 #modal-page-principle .ppl-switch input:checked + .ppl-slider::before { transform: translateX(18px); }
 
-@media (max-width: 720px) {
+@media (max-width: 900px) {
   #modal-page-principle .ppl-stage { padding-top: 72px; }
   #modal-page-principle .ppl-watermark { font-size: clamp(20px, 7vw, 32px); }
   #modal-page-principle .ppl-cards { width: 190px; height: 140px; }

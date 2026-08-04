@@ -416,7 +416,7 @@ import IndividualPageModals from '../components/IndividualPageModals.astro';
 		// ──────────────────────────────────────────────────
 		// 8. Bottom Dock Controls
 		// ──────────────────────────────────────────────────
-		const isMobileViewport = () => window.matchMedia('(max-width: 720px)').matches;
+		const isMobileViewport = () => window.matchMedia('(max-width: 900px)').matches;
 		const openMobilePage = (id: string, source: HTMLElement) => {
 			const modal = document.getElementById(id);
 			if (modal) openModalWithGenie(modal, source);
