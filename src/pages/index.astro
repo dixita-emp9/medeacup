@@ -877,8 +877,6 @@ import IndividualPageModals from '../components/IndividualPageModals.astro';
 			dockCloseTimer = setTimeout(closeDockFan, 420);
 		};
 
-		// Seed the hidden cards at their real arc positions before the first hover.
-		positionDockFan();
 		dockFolderBtn?.addEventListener('pointerenter', scheduleDockOpen);
 		dockFolderBtn?.addEventListener('pointerleave', (e) => {
 			const related = e.relatedTarget as Node | null;
@@ -893,7 +891,9 @@ import IndividualPageModals from '../components/IndividualPageModals.astro';
 				scheduleDockClose();
 			});
 		});
-		window.addEventListener('resize', positionDockFan);
+		window.addEventListener('resize', () => {
+			if (dockStack?.classList.contains('is-open')) positionDockFan();
+		});
 
 		document.querySelectorAll<HTMLElement>('.ds-item').forEach(item => {
 			item.addEventListener('click', (e) => {
