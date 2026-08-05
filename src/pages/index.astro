@@ -546,6 +546,21 @@ import IndividualPageModals from '../components/IndividualPageModals.astro';
 		// ──────────────────────────────────────────────────
 		const quizModal = document.getElementById('quiz-modal');
 		const videoModal = document.getElementById('video-modal');
+		const videoSource = 'https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?autoplay=1';
+
+		function openVideoModal() {
+			if (!videoModal) return;
+			const container = videoModal.querySelector<HTMLElement>('.video-container');
+			if (container && !container.querySelector('iframe')) {
+				const iframe = document.createElement('iframe');
+				iframe.src = videoSource;
+				iframe.title = 'MEDIACUP Brand Showcase Video';
+				iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+				iframe.allowFullscreen = true;
+				container.replaceChildren(iframe);
+			}
+			videoModal.classList.add('is-open');
+		}
 
 		document.getElementById('btn-take-quiz')?.addEventListener('click', () => {
 			quizModal?.classList.add('is-open');
@@ -558,11 +573,12 @@ import IndividualPageModals from '../components/IndividualPageModals.astro';
 		quizModal?.addEventListener('click', (e) => { if (e.target === quizModal) quizModal.classList.remove('is-open'); });
 
 		document.getElementById('video-file-btn')?.addEventListener('click', () => {
-			videoModal?.classList.add('is-open');
+			openVideoModal();
 		});
 		document.getElementById('about-showreel-btn')?.addEventListener('click', () => {
-			videoModal?.classList.add('is-open');
+			openVideoModal();
 		});
+		document.getElementById('video-play-button')?.addEventListener('click', openVideoModal);
 		document.getElementById('close-video-modal')?.addEventListener('click', () => videoModal?.classList.remove('is-open'));
 		videoModal?.addEventListener('click', (e) => { if (e.target === videoModal) videoModal.classList.remove('is-open'); });
 
