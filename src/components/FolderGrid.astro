@@ -13,7 +13,7 @@ const folders = [
   {folders.map(folder => (
     <div class="desktop-item folder-item" data-folder-id={folder.id} tabindex="0">
       <div class="folder-img-wrap">
-        <img src={folder.img} alt={folder.name} class="folder-icon-img" />
+        <img src={folder.img} alt={folder.name} width="100" height="75" class="folder-icon-img" />
       </div>
       <span class="desktop-label">{folder.name}</span>
     </div>
@@ -75,7 +75,7 @@ const folders = [
     {folders.map(folder => (
       <button class="mobile-folder-item" data-folder-id={folder.id}>
         <span class={`mobile-folder-tile ${folder.id === 'principle' ? 'is-principle' : ''}`}>
-          <img src={folder.img} alt="" />
+          <img src={folder.img} alt="" width="100" height="75" />
         </span>
         <span>{folder.name}</span>
       </button>
