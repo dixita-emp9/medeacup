@@ -794,7 +794,7 @@
     background: rgba(0, 0, 0, 0.45);
     backdrop-filter: blur(16px);
     z-index: 2000;
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: center;
     opacity: 0;
@@ -803,6 +803,7 @@
   }
 
   .modal-overlay.is-open {
+    display: flex;
     opacity: 1;
     pointer-events: auto;
   }
