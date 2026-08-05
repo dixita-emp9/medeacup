@@ -299,6 +299,15 @@ import IndividualPageModals from '../components/IndividualPageModals.astro';
 		const csSubtabs = document.querySelectorAll<HTMLElement>('.cs-subtab');
 		const csSidebarItems = document.querySelectorAll<HTMLElement>('.cs-sidebar-item');
 		const csPanes = document.querySelectorAll<HTMLElement>('.cs-pane');
+		const casesSearch = document.querySelector<HTMLInputElement>('[data-cases-search]');
+		const casesMobileTitle = document.querySelector<HTMLElement>('#modal-page-cases .mobile-nav-title');
+		const caseTitleMap: Record<string, string> = {
+			fctrylab: 'FCTRYLAB',
+			fabindia: 'FabIndia',
+			'godrej-interio': 'Godrej Interio',
+			'godrej-properties': 'Godrej Properties',
+			'reverb-asia': 'Reverb Asia',
+		};
 
 		function activateCaseStudy(caseId: string, isHistoryEvent = false) {
 			if (!isHistoryEvent) {
@@ -307,6 +316,7 @@ import IndividualPageModals from '../components/IndividualPageModals.astro';
 			// Switch to detail view
 			if (casesGridView) casesGridView.style.display = 'none';
 			if (casesDetailView) casesDetailView.style.display = 'flex';
+			document.getElementById('modal-page-cases')?.classList.add('is-detail');
 
 			// Activate sub-tab
 			csSubtabs.forEach(tab => {
@@ -322,12 +332,32 @@ import IndividualPageModals from '../components/IndividualPageModals.astro';
 			csPanes.forEach(pane => {
 				pane.classList.toggle('is-active', pane.id === `cs-pane-${caseId}`);
 			});
+
+			if (casesMobileTitle) {
+				casesMobileTitle.innerHTML = `${caseTitleMap[caseId] || 'Cup Cases'} <svg class="dropdown-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>`;
+			}
 		}
 
 		function returnToGrid() {
 			if (casesGridView) casesGridView.style.display = '';
 			if (casesDetailView) casesDetailView.style.display = 'none';
+			document.getElementById('modal-page-cases')?.classList.remove('is-detail');
+			if (casesMobileTitle) {
+				casesMobileTitle.innerHTML = 'Cup Cases <svg class="dropdown-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>';
+			}
 		}
+
+		function returnToCasesGridFromDetail() {
+			returnToGrid();
+			history.replaceState({ modal: "modal-page-cases" }, "", "#modal-page-cases");
+		}
+
+		casesSearch?.addEventListener('input', () => {
+			const query = casesSearch.value.trim().toLowerCase();
+			document.querySelectorAll<HTMLElement>('#modal-page-cases .case-doc-item').forEach((item) => {
+				item.hidden = Boolean(query) && !item.textContent?.toLowerCase().includes(query);
+			});
+		});
 
 		// Document icon click → switch to detail view
 		document.querySelectorAll<HTMLElement>('.case-doc-item').forEach(item => {
@@ -339,11 +369,7 @@ import IndividualPageModals from '../components/IndividualPageModals.astro';
 
 		// Back button click → return to grid
 		document.getElementById('cs-back-to-grid')?.addEventListener('click', () => {
-			if (window.history.state && window.history.state.view === "detail") {
-				window.history.back();
-			} else {
-				returnToGrid();
-			}
+			returnToCasesGridFromDetail();
 		});
 
 		// Sub-tab click → switch case study
@@ -351,11 +377,7 @@ import IndividualPageModals from '../components/IndividualPageModals.astro';
 			tab.addEventListener('click', (e) => {
 				// If clicking the × close button, return to grid
 				if ((e.target as HTMLElement).classList.contains('subtab-close')) {
-					if (window.history.state && window.history.state.view === "detail") {
-						window.history.back();
-					} else {
-						returnToGrid();
-					}
+					returnToCasesGridFromDetail();
 					return;
 				}
 				const caseId = tab.getAttribute('data-case-tab');
@@ -429,11 +451,21 @@ import IndividualPageModals from '../components/IndividualPageModals.astro';
 		document.querySelectorAll<HTMLElement>('.close-modal-btn').forEach(btn => {
 			btn.addEventListener('click', (e) => {
 				e.preventDefault();
+				const targetId = btn.getAttribute('data-close-target');
+				if (targetId === "modal-page-cases" && casesDetailView && casesDetailView.style.display !== "none") {
+					returnToCasesGridFromDetail();
+					return;
+				}
+				if (targetId === "modal-page-cases" && casesGridView && casesGridView.style.display !== "none") {
+					const casesOverlay = document.getElementById(targetId);
+					history.replaceState(null, "", window.location.pathname + window.location.search);
+					if (casesOverlay) closeModalWithGenie(casesOverlay);
+					return;
+				}
 				if (window.history.state && window.history.state.modal) {
 					window.history.back();
 				} else {
 					// Fallback
-					const targetId = btn.getAttribute('data-close-target');
 					if (targetId) {
 						const targetOverlay = document.getElementById(targetId);
 						if (targetOverlay) {
@@ -617,6 +649,18 @@ import IndividualPageModals from '../components/IndividualPageModals.astro';
 		const fwNavItems = document.querySelectorAll<HTMLElement>('.fw-nav-item');
 		const fwPopovers = document.querySelectorAll<HTMLElement>('.fw-popover-card');
 
+		function alignFrameworkPointer(target: string) {
+			const navItem = document.querySelector<HTMLElement>(`.fw-nav-item[data-fw-target="${target}"]`);
+			const popover = document.getElementById(`fw-popover-${target}`);
+			if (!navItem || !popover) return;
+
+			requestAnimationFrame(() => {
+				const navRect = navItem.getBoundingClientRect();
+				const popoverRect = popover.getBoundingClientRect();
+				popover.style.setProperty('--fw-arrow-top', `${navRect.top + navRect.height / 2 - popoverRect.top}px`);
+			});
+		}
+
 		// Toggle pop-over on left sidebar click
 		fwNavItems.forEach(item => {
 			item.addEventListener('click', () => {
@@ -629,7 +673,10 @@ import IndividualPageModals from '../components/IndividualPageModals.astro';
 				if (target) {
 					item.classList.add('is-active');
 					const popover = document.getElementById(`fw-popover-${target}`);
-					if (popover) popover.classList.add('is-active');
+					if (popover) {
+						popover.classList.add('is-active');
+						alignFrameworkPointer(target);
+					}
 				}
 			});
 		});

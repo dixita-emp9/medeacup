@@ -84,6 +84,11 @@
       </div>
     </div>
 
+    <div class="mobile-cases-search">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"></circle><path d="m16 16 5 5"></path></svg>
+      <input type="search" placeholder="Search" aria-label="Search Cup Cases" data-cases-search />
+    </div>
+
     <!-- VIEW A: Document Icon Grid (MacBook Air - 11) -->
     <div class="fullscreen-window-body cases-grid-body" id="cases-view-grid">
       <div class="cases-document-grid">
@@ -182,9 +187,11 @@
             <div class="cs-brand-name">FCTRYLAB</div>
             <h1 class="cs-headline">Building Factory Intelligence</h1>
             <div class="cs-cards-grid">
+              <div class="cs-story-cards">
               <div class="cs-info-card"><h4>The Challenge Question</h4><p>How do you predict equipment failures before they happen? Not reactive maintenance. Predictive intelligence.</p></div>
               <div class="cs-info-card"><h4>What We Found</h4><p>Sensor data existed across 14 separate dashboards with no unified alerting threshold. Teams relied on intuition rather than data patterns.</p></div>
               <div class="cs-info-card"><h4>What We Built</h4><p>A unified IoT intelligence layer aggregating real-time sensor feeds with ML-driven anomaly detection and automated maintenance scheduling.</p></div>
+              </div>
               <div class="cs-stat-block"><h4>WHAT MOVED</h4><div class="cs-big-number">62%</div><p>reduction in unplanned downtime. $2.1M annual savings. Zero critical equipment failures in Q3-Q4.</p></div>
             </div>
           </div>
@@ -195,9 +202,11 @@
             <div class="cs-brand-name">FabIndia</div>
             <h1 class="cs-headline">Connecting Marketing to Revenue</h1>
             <div class="cs-cards-grid">
+              <div class="cs-story-cards">
               <div class="cs-info-card"><h4>The Challenge Question</h4><p>How do we know marketing is actually driving sales? Not just metrics. Not dashboards. Real revenue attribution.</p></div>
               <div class="cs-info-card"><h4>What We Found</h4><p>A missing measurement layer. Digital spend and in-store footfall existed in entirely separate worlds. Acquisition cost was artificially high because nobody had connected digital touchpoints to store walk-ins.</p></div>
               <div class="cs-info-card"><h4>What We Built</h4><p>Mapped offline leads manually. Tracked where every lead originated. Connected store visits to purchases. Ran daily feedback loops to adjust campaigns in real time.</p></div>
+              </div>
               <div class="cs-stat-block"><h4>WHAT MOVED</h4><div class="cs-big-number">43%</div><p>reduction in offline purchase cost. 30% improvement in ROAS. Budget unchanged. Outcomes different.</p></div>
             </div>
           </div>
@@ -208,9 +217,11 @@
             <div class="cs-brand-name">Godrej Interio</div>
             <h1 class="cs-headline">Redesigning the Purchase Journey</h1>
             <div class="cs-cards-grid">
+              <div class="cs-story-cards">
               <div class="cs-info-card"><h4>The Challenge Question</h4><p>Why are high-intent visitors dropping off before reaching showrooms? Furniture is a tactile purchase — what's breaking the bridge?</p></div>
               <div class="cs-info-card"><h4>What We Found</h4><p>The digital experience ended at product listing. No room visualizer. No appointment flow. No post-visit follow-up. The journey had a cliff, not a funnel.</p></div>
               <div class="cs-info-card"><h4>What We Built</h4><p>End-to-end digital showroom experience with 3D configurator, appointment booking, and post-visit nurture sequences tied to CRM.</p></div>
+              </div>
               <div class="cs-stat-block"><h4>WHAT MOVED</h4><div class="cs-big-number">3.8x</div><p>showroom visit-to-purchase conversion. 28% increase in average order value through bundled room solutions.</p></div>
             </div>
           </div>
@@ -221,9 +232,11 @@
             <div class="cs-brand-name">Godrej Properties</div>
             <h1 class="cs-headline">Digital-First Property Sales</h1>
             <div class="cs-cards-grid">
+              <div class="cs-story-cards">
               <div class="cs-info-card"><h4>The Challenge Question</h4><p>Can you sell a ₹2 Cr apartment without a single site visit? Not just generate leads — close actual transactions digitally.</p></div>
               <div class="cs-info-card"><h4>What We Found</h4><p>The sales team was spending 80% of time on unqualified leads. Digital channels drove volume but not intent quality. No lead scoring existed.</p></div>
               <div class="cs-info-card"><h4>What We Built</h4><p>Virtual walkthrough platform with integrated payment booking. AI-powered lead scoring prioritizing high-intent buyers. Automated sales pipeline with real-time dashboards.</p></div>
+              </div>
               <div class="cs-stat-block"><h4>WHAT MOVED</h4><div class="cs-big-number">156</div><p>units sold digitally in 72 hours during launch. ₹312 Cr revenue from digital-first campaign. 4x reduction in cost per acquisition.</p></div>
             </div>
           </div>
@@ -234,9 +247,11 @@
             <div class="cs-brand-name">Reverb Asia</div>
             <h1 class="cs-headline">Scaling Artist Marketplaces</h1>
             <div class="cs-cards-grid">
+              <div class="cs-story-cards">
               <div class="cs-info-card"><h4>The Challenge Question</h4><p>How do you build trust in a peer-to-peer marketplace where buyers can't touch the instruments? The APAC market had zero reference point.</p></div>
               <div class="cs-info-card"><h4>What We Found</h4><p>Sellers had instruments but no photography skills. Buyers had intent but no confidence. The trust gap was visual, not transactional.</p></div>
               <div class="cs-info-card"><h4>What We Built</h4><p>Seller onboarding toolkit with guided photo capture. Buyer confidence system with verified seller badges, condition grading, and return guarantees.</p></div>
+              </div>
               <div class="cs-stat-block"><h4>WHAT MOVED</h4><div class="cs-big-number">8x</div><p>GMV growth in 6 months. Seller listing completion rate from 23% to 89%. Buyer repeat purchase rate at 34%.</p></div>
             </div>
           </div>
@@ -1690,6 +1705,10 @@
     padding: 56px 64px;
   }
 
+  .mobile-cases-search {
+    display: none;
+  }
+
   .cases-document-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
@@ -2246,6 +2265,10 @@
     align-items: stretch;
   }
 
+  .cs-story-cards {
+    display: contents;
+  }
+
   @media (max-width: 1100px) {
     .cs-cards-grid { grid-template-columns: repeat(2, 1fr); }
   }
@@ -2498,6 +2521,173 @@
       top: 86% !important;
     }
 
+    #modal-page-cases .fullscreen-window-body.cases-grid-body {
+      padding: 180px 24px 170px;
+      overflow-y: auto;
+    }
+
+    #modal-page-cases .mobile-cases-search {
+      position: absolute;
+      top: 100px;
+      left: 24px;
+      right: 24px;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      gap: 0;
+      height: 48px;
+      padding: 0 16px;
+      border-radius: 24px;
+      background: #f7f3eb;
+      border: 1px solid rgba(0,0,0,.06);
+    }
+
+    #modal-page-cases .mobile-cases-search svg {
+      width: 18px;
+      height: 18px;
+      margin-right: 10px;
+      flex: 0 0 auto;
+      fill: none;
+      stroke: #aaa9a6;
+      stroke-width: 2.2;
+      stroke-linecap: round;
+    }
+
+    #modal-page-cases .mobile-cases-search input {
+      min-width: 0;
+      width: 100%;
+      border: 0;
+      outline: 0;
+      background: transparent;
+      color: #555;
+      font: 16px var(--font-body);
+    }
+
+    #modal-page-cases .mobile-cases-search input::placeholder { color: #aaa9a6; }
+
+    #modal-page-cases.is-detail .mobile-cases-search { display: none; }
+
+    #modal-page-cases .cases-document-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 48px 36px; }
+
+    #modal-page-cases .case-doc-item { gap: 12px; padding: 0; }
+    #modal-page-cases .case-doc-icon { width: 88px; height: 104px; border-radius: 16px; box-shadow: 0 10px 24px rgba(0,0,0,.06); }
+    #modal-page-cases .case-doc-icon svg { width: 48px; height: 56px; }
+    #modal-page-cases .case-doc-label { font-size: 15px; font-weight: 600; color: var(--text-primary); white-space: nowrap; }
+
+    #modal-page-cases .cases-detail-view {
+      display: flex !important;
+      position: relative;
+      padding: 0 0 120px;
+      overflow: hidden;
+    }
+
+    #modal-page-cases .cs-subtab-bar,
+    #modal-page-cases .cs-sidebar {
+      display: none;
+    }
+
+    #modal-page-cases .cs-detail-layout {
+      display: block;
+      min-height: 0;
+      overflow: hidden;
+    }
+
+    #modal-page-cases .cs-main-content {
+      height: 100%;
+      padding: 100px 0 120px;
+      overflow-x: hidden;
+      overflow-y: auto;
+      scrollbar-width: none;
+    }
+
+    #modal-page-cases .cs-main-content::-webkit-scrollbar { display: none; }
+
+    #modal-page-cases .cs-pane {
+      width: 100%;
+      overflow: hidden;
+    }
+
+    #modal-page-cases .cs-category-label {
+      margin: 0 32px 24px;
+      font-size: 20px;
+      line-height: 1.05;
+      color: #92918f;
+    }
+
+    #modal-page-cases .cs-brand-name { display: none; }
+
+    #modal-page-cases .cs-headline {
+      margin: 0 32px 42px;
+      font-size: clamp(34px, 5.8vw, 44px);
+      line-height: 0.98;
+      letter-spacing: -0.045em;
+    }
+
+    #modal-page-cases .cs-cards-grid {
+      display: block;
+      width: 100%;
+      min-width: 0;
+    }
+
+    #modal-page-cases .cs-story-cards {
+      display: flex;
+      gap: 30px;
+      width: 100%;
+      padding: 0 36px;
+      overflow-x: scroll;
+      overflow-y: hidden;
+      scrollbar-width: none;
+      scroll-snap-type: x mandatory;
+      scroll-padding-inline: 36px;
+      -webkit-overflow-scrolling: touch;
+      touch-action: pan-x;
+    }
+
+    #modal-page-cases .cs-story-cards::-webkit-scrollbar { display: none; }
+
+    #modal-page-cases .cs-info-card {
+      flex: 0 0 72vw;
+      min-height: 0;
+      padding: 36px 30px;
+      border: 0;
+      border-radius: 64px;
+      background: #f7f3ed;
+      box-shadow: none;
+      scroll-snap-align: start;
+    }
+
+    #modal-page-cases .cs-info-card h4 {
+      margin-bottom: 44px;
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+    #modal-page-cases .cs-info-card p {
+      font-size: 18px;
+      line-height: 1.35;
+      color: #92918f;
+    }
+
+    #modal-page-cases .cs-stat-block {
+      padding: 72px 16px 0;
+      width: 72vw;
+    }
+
+    #modal-page-cases .cs-stat-block h4 { display: none; }
+
+    #modal-page-cases .cs-big-number {
+      margin-bottom: 24px;
+      font-size: clamp(76px, 15vw, 120px);
+      font-weight: 400;
+      line-height: 0.9;
+    }
+
+    #modal-page-cases .cs-stat-block p {
+      font-size: clamp(20px, 3.8vw, 30px);
+      line-height: 1.35;
+      color: #92918f;
+    }
+
     #modal-page-principle .ppl-stage.is-unlocked .ppl-content {
       gap: 20px;
       padding: 0 18px;
@@ -2669,6 +2859,23 @@
     @media (min-width: 901px) {
       .mobile-modal-nav {
         display: none !important;
+      }
+
+      /* Desktop framework cards stay beside the sidebar at one shared top position. */
+      #modal-page-framework .fw-popover-card {
+        top: 30px;
+        left: 140px;
+        transform: scale(0.95);
+        transform-origin: left top;
+      }
+
+      #modal-page-framework .fw-popover-card.is-active {
+        transform: scale(1);
+      }
+
+      #modal-page-framework .fw-popover-arrow {
+        top: var(--fw-arrow-top, 40px);
+        transform: translateY(-50%) rotate(45deg);
       }
     }
 </style>
