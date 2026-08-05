@@ -46,6 +46,7 @@ import IndividualPageModals from '../components/IndividualPageModals.astro';
 
 			let isDragging = false;
 			let startX = 0, startY = 0, initialLeft = 0, initialTop = 0;
+			let maxLeft = 0, maxTop = 0;
 
 			const bringToFront = () => {
 				activeZIndex++;
@@ -67,14 +68,16 @@ import IndividualPageModals from '../components/IndividualPageModals.astro';
 				const cs = window.getComputedStyle(win);
 				initialLeft = parseInt(cs.left, 10) || 0;
 				initialTop = parseInt(cs.top, 10) || 0;
+				maxLeft = window.innerWidth - win.offsetWidth - 10;
+				maxTop = window.innerHeight - win.offsetHeight - 70;
 			});
 
 			header.addEventListener('pointermove', (e: PointerEvent) => {
 				if (!isDragging) return;
 				let newLeft = initialLeft + (e.clientX - startX);
 				let newTop = initialTop + (e.clientY - startY);
-				newLeft = Math.max(10, Math.min(newLeft, window.innerWidth - win.offsetWidth - 10));
-				newTop = Math.max(50, Math.min(newTop, window.innerHeight - win.offsetHeight - 70));
+				newLeft = Math.max(10, Math.min(newLeft, maxLeft));
+				newTop = Math.max(50, Math.min(newTop, maxTop));
 				win.style.left = `${newLeft}px`;
 				win.style.top = `${newTop}px`;
 			});
