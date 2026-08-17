@@ -1,3 +1,35 @@
+/* ─── Local Fonts ──────────────────────────────────────────────── */
+@font-face {
+  font-family: 'Archivo';
+  src: url('/fonts/Archivo-VariableFont_wdth,wght.ttf') format('truetype-variations');
+  font-weight: 100 900;
+  font-stretch: 62% 125%;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ─── Google Fonts – Instrument Serif (selective use only) ──────── */
+@font-face {
+  font-family: 'Instrument Serif';
+  src: url('/fonts/InstrumentSerif-Regular.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Instrument Serif';
+  src: url('/fonts/InstrumentSerif-Italic.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* ─── Utility: apply Instrument Serif to specific elements ──────── */
+.instrument-serif {
+  font-family: 'Instrument Serif', 'Georgia', 'Times New Roman', serif;
+}
+
 :root {
   /* Color Palette */
   --bg-desktop: #ffffff;
@@ -12,32 +44,39 @@
   --folder-red: #e62e2d;
   --folder-cream: #eadecc;
   --folder-border: #d4c7b2;
-  
+
   /* Glassmorphism Tokens */
   --glass-bg: rgba(255, 255, 255, 0.72);
   --glass-bg-hover: rgba(255, 255, 255, 0.85);
   --glass-border: rgba(255, 255, 255, 0.8);
   --glass-shadow: 0 20px 45px -15px rgba(0, 0, 0, 0.09), 0 0 1px 1px rgba(255, 255, 255, 0.6);
   --glass-shadow-active: 0 30px 65px -12px rgba(0, 0, 0, 0.15), 0 0 1px 1px rgba(255, 255, 255, 0.9);
-  
+
   /* Typography */
-  --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-heading: 'Archivo', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-body: 'Archivo', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-display: 'Instrument Serif', 'Georgia', 'Times New Roman', serif;
 
   /* Transitions */
   --transition-fast: 0.15s cubic-bezier(0.16, 1, 0.3, 1);
   --transition-smooth: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   --transition-bounce: 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* Default site font — inherited by every element unless overridden */
+  font-family: var(--font-body);
 }
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
   user-select: none;
 }
 
-html, body {
+html,
+body {
   width: 100%;
   height: 100vh;
   overflow: hidden;
@@ -45,6 +84,15 @@ html, body {
   background-color: var(--bg-desktop);
   color: var(--text-primary);
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Form controls do not inherit font-family by default — force site-wide Archivo */
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
 }
 
 /* Full Screen Desktop Canvas */
@@ -52,7 +100,7 @@ html, body {
   position: relative;
   width: 100%;
   height: 100vh;
-  background: 
+  background:
     radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.85) 0%, transparent 65%),
     radial-gradient(circle at 90% 90%, rgba(230, 46, 45, 0.04) 0%, transparent 45%),
     var(--bg-desktop);
@@ -171,13 +219,16 @@ html, body {
 ::-webkit-scrollbar {
   width: 6px;
 }
+
 ::-webkit-scrollbar-track {
   background: transparent;
 }
+
 ::-webkit-scrollbar-thumb {
   background: rgba(0, 0, 0, 0.15);
   border-radius: 4px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(0, 0, 0, 0.3);
 }
@@ -189,7 +240,8 @@ html, body {
 
 /* Stage fills the full window body height */
 #modal-page-principle .ppl-stage {
-  position: relative;  /* anchor for absolute toggle */
+  position: relative;
+  /* anchor for absolute toggle */
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -212,8 +264,8 @@ html, body {
   opacity: 0;
   transform: translateY(28px);
   pointer-events: none;
-  transition: opacity 0.5s cubic-bezier(0.16,1,0.3,1),
-              transform 0.5s cubic-bezier(0.16,1,0.3,1);
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 #modal-page-principle .ppl-stage.is-unlocked .ppl-content {
@@ -230,7 +282,7 @@ html, body {
   font-weight: 500;
   letter-spacing: -0.04em;
   line-height: 1;
-  color: rgba(23,23,23,0.18);
+  color: rgba(23, 23, 23, 0.18);
   text-align: center;
   margin: 0;
   user-select: none;
@@ -250,7 +302,7 @@ html, body {
   position: absolute;
   width: 300px;
   height: 200px;
-  background: radial-gradient(ellipse at center, rgba(180,170,210,0.22) 0%, transparent 70%);
+  background: radial-gradient(ellipse at center, rgba(180, 170, 210, 0.22) 0%, transparent 70%);
   border-radius: 50%;
   top: 50%;
   left: 50%;
@@ -268,10 +320,11 @@ html, body {
 
 #modal-page-principle .ppl-card {
   position: absolute;
-  inset: 20px;  /* inset to leave rotation breathing room */
+  inset: 20px;
+  /* inset to leave rotation breathing room */
   border-radius: 22px;
   overflow: hidden;
-  box-shadow: 0 16px 36px rgba(0,0,0,0.15);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.15);
 }
 
 #modal-page-principle .ppl-card-face {
@@ -281,9 +334,17 @@ html, body {
   opacity: 0.92;
 }
 
-#modal-page-principle .ppl-card-a { transform: rotate(-20deg) translateX(-24px); }
-#modal-page-principle .ppl-card-b { transform: rotate(-6deg)  translateX(0px);   }
-#modal-page-principle .ppl-card-c { transform: rotate(12deg)  translateX(20px);  }
+#modal-page-principle .ppl-card-a {
+  transform: rotate(-20deg) translateX(-24px);
+}
+
+#modal-page-principle .ppl-card-b {
+  transform: rotate(-6deg) translateX(0px);
+}
+
+#modal-page-principle .ppl-card-c {
+  transform: rotate(12deg) translateX(20px);
+}
 
 /* Expand button — below the cards with proper spacing */
 #modal-page-principle .ppl-expand-btn {
@@ -298,11 +359,15 @@ html, body {
   font-size: 14px;
   font-weight: 600;
   letter-spacing: 0.01em;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.22);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.22);
   flex-shrink: 0;
   transition: background 0.2s, transform 0.2s;
 }
-#modal-page-principle .ppl-expand-btn:hover { background: #333; transform: scale(1.05); }
+
+#modal-page-principle .ppl-expand-btn:hover {
+  background: #333;
+  transform: scale(1.05);
+}
 
 /* ── Toggle row — absolutely at center (locked) → bottom (unlocked) ── */
 #modal-page-principle .ppl-toggle-row {
@@ -314,8 +379,8 @@ html, body {
   display: flex;
   align-items: center;
   gap: 12px;
-  transition: top 0.55s cubic-bezier(0.16,1,0.3,1),
-              transform 0.55s cubic-bezier(0.16,1,0.3,1);
+  transition: top 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
   z-index: 5;
 }
 
@@ -330,16 +395,30 @@ html, body {
   font-family: var(--font-body);
   font-size: 24px;
   font-weight: 500;
-  color: rgba(23,23,23,0.65);
+  color: rgba(23, 23, 23, 0.65);
 }
 
-#modal-page-principle .ppl-copy strong { color: #ef3b2d; font-weight: 700; }
+#modal-page-principle .ppl-copy strong {
+  color: #ef3b2d;
+  font-weight: 700;
+}
 
 /* Show/hide labels based on state */
-#modal-page-principle .ppl-copy--locked   { display: inline; }
-#modal-page-principle .ppl-copy--unlocked { display: none; }
-#modal-page-principle .ppl-stage.is-unlocked .ppl-copy--locked   { display: none; }
-#modal-page-principle .ppl-stage.is-unlocked .ppl-copy--unlocked { display: inline; }
+#modal-page-principle .ppl-copy--locked {
+  display: inline;
+}
+
+#modal-page-principle .ppl-copy--unlocked {
+  display: none;
+}
+
+#modal-page-principle .ppl-stage.is-unlocked .ppl-copy--locked {
+  display: none;
+}
+
+#modal-page-principle .ppl-stage.is-unlocked .ppl-copy--unlocked {
+  display: inline;
+}
 
 /* ── Toggle switch ── */
 #modal-page-principle .ppl-switch {
@@ -348,57 +427,78 @@ html, body {
   height: 38px;
   flex: 0 0 auto;
 }
-#modal-page-principle .ppl-switch input { width: 0; height: 0; opacity: 0; }
+
+#modal-page-principle .ppl-switch input {
+  width: 0;
+  height: 0;
+  opacity: 0;
+}
 
 #modal-page-principle .ppl-slider {
   position: absolute;
   inset: 0;
   border-radius: 999px;
   background: #d5d1cb;
-  box-shadow: inset 0 2px 3px rgba(0,0,0,0.16), 0 1px 1px rgba(0,0,0,0.12);
+  box-shadow: inset 0 2px 3px rgba(0, 0, 0, 0.16), 0 1px 1px rgba(0, 0, 0, 0.12);
   cursor: pointer;
   transition: background 0.25s ease;
 }
+
 #modal-page-principle .ppl-slider::before {
   content: '';
   position: absolute;
-  top: 3px; left: 3px;
-  width: 32px; height: 32px;
+  top: 3px;
+  left: 3px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   background: #fff;
   background: #f5f1e9;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.3), inset 0 1px 1px rgba(255,255,255,0.8);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3), inset 0 1px 1px rgba(255, 255, 255, 0.8);
   transition: transform 0.25s ease;
 }
+
 #modal-page-principle .ppl-slider::after {
-    content: '';
-    position: absolute;
-    top: 13px;
-    right: 13px;
-    width: 15px;
-    height: 15px;
-    border: 3px solid #fff;
-    border-radius: 50%;
+  content: '';
+  position: absolute;
+  top: 13px;
+  right: 13px;
+  width: 15px;
+  height: 15px;
+  border: 3px solid #fff;
+  border-radius: 50%;
 }
-#modal-page-principle .ppl-switch input:checked + .ppl-slider {
+
+#modal-page-principle .ppl-switch input:checked+.ppl-slider {
   background: #fff;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.16), inset 0 1px 2px rgba(0,0,0,0.06);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.16), inset 0 1px 2px rgba(0, 0, 0, 0.06);
 }
-#modal-page-principle .ppl-switch input:checked + .ppl-slider::before {
+
+#modal-page-principle .ppl-switch input:checked+.ppl-slider::before {
   background: #10e7a0;
   transform: translateX(34px);
-  box-shadow: 0 3px 6px rgba(0,0,0,0.3), inset 0 1px 1px rgba(255,255,255,0.7);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3), inset 0 1px 1px rgba(255, 255, 255, 0.7);
 }
-#modal-page-principle .ppl-switch input:checked + .ppl-slider::after {
+
+#modal-page-principle .ppl-switch input:checked+.ppl-slider::after {
   left: 13px;
   right: auto;
   border-color: #f00;
 }
 
 @media (max-width: 900px) {
-  #modal-page-principle .ppl-stage { padding-top: 72px; }
-  #modal-page-principle .ppl-watermark { font-size: clamp(20px, 7vw, 32px); }
-  #modal-page-principle .ppl-cards { width: 190px; height: 140px; }
+  #modal-page-principle .ppl-stage {
+    padding-top: 72px;
+  }
+
+  #modal-page-principle .ppl-watermark {
+    font-size: clamp(20px, 7vw, 32px);
+  }
+
+  #modal-page-principle .ppl-cards {
+    width: 190px;
+    height: 140px;
+  }
 }
 
 /* ── Expanded view (shown when Expand is clicked) ── */
@@ -409,13 +509,14 @@ html, body {
   flex-direction: column;
   align-items: center;
   gap: 32px;
-  padding: 44px 48px 80px; /* bottom padding leaves room for toggle */
+  padding: 44px 48px 80px;
+  /* bottom padding leaves room for toggle */
   width: 100%;
   overflow-y: auto;
   /* Start invisible */
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.4s cubic-bezier(0.16,1,0.3,1);
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* When expanded: show expanded view, hide visual content */
@@ -424,6 +525,7 @@ html, body {
   pointer-events: auto;
   transition-delay: 0.1s;
 }
+
 #modal-page-principle .ppl-stage.is-expanded .ppl-content {
   display: none;
 }
@@ -449,7 +551,7 @@ html, body {
   font-family: var(--font-body);
   font-size: 17px;
   line-height: 1.5;
-  color: rgba(23,23,23,0.55);
+  color: rgba(23, 23, 23, 0.55);
   text-align: center;
 }
 
@@ -465,16 +567,16 @@ html, body {
 #modal-page-principle .ppl-exp-card {
   padding: 22px 20px;
   border-radius: 22px;
-  background: rgba(249,244,235,0.85);
-  border: 1px solid rgba(190,181,167,0.25);
-  box-shadow: 0 6px 20px rgba(67,53,32,0.05);
+  background: rgba(249, 244, 235, 0.85);
+  border: 1px solid rgba(190, 181, 167, 0.25);
+  box-shadow: 0 6px 20px rgba(67, 53, 32, 0.05);
   min-height: 180px;
 }
 
 /* First card has a blue highlight border */
 #modal-page-principle .ppl-exp-card--active {
   border: 2px solid #4f9cf9;
-  background: rgba(249,252,255,0.9);
+  background: rgba(249, 252, 255, 0.9);
 }
 
 #modal-page-principle .ppl-exp-percent {
@@ -491,7 +593,7 @@ html, body {
   font-family: var(--font-body);
   font-size: 14px;
   line-height: 1.5;
-  color: rgba(23,23,23,0.6);
+  color: rgba(23, 23, 23, 0.6);
   margin: 0;
 }
 
@@ -499,17 +601,25 @@ html, body {
 #modal-page-principle .ppl-exp-footer {
   font-family: var(--font-body);
   font-size: 15px;
-  color: rgba(23,23,23,0.5);
+  color: rgba(23, 23, 23, 0.5);
   text-align: center;
   margin: 0;
 }
 
 @media (max-width: 900px) {
-  #modal-page-principle .ppl-exp-grid { grid-template-columns: repeat(2, 1fr); }
+  #modal-page-principle .ppl-exp-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
+
 @media (max-width: 560px) {
-  #modal-page-principle .ppl-exp-grid { grid-template-columns: 1fr; }
-  #modal-page-principle .ppl-expanded-view { padding: 32px 20px 80px; }
+  #modal-page-principle .ppl-exp-grid {
+    grid-template-columns: 1fr;
+  }
+
+  #modal-page-principle .ppl-expanded-view {
+    padding: 32px 20px 80px;
+  }
 }
 
 /* Large Screen Container Wrapper */
@@ -517,6 +627,7 @@ html, body {
   body {
     background-color: #ffffff;
   }
+
   #desktop-canvas {
     width: 80%;
     margin: 0 auto;
@@ -526,7 +637,7 @@ html, body {
 /* The phone home screen uses the dedicated composition in FolderGrid.astro.
    Keep the draggable desktop workspace out of the mobile stacking context. */
 @media (max-width: 900px) {
-  .desktop-stage > .mac-window {
+  .desktop-stage>.mac-window {
     display: none !important;
   }
 
