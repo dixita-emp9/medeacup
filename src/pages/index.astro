@@ -45,6 +45,8 @@ import IndividualPageModals from '../components/IndividualPageModals.astro';
 			if (!header) return;
 
 			let isDragging = false;
+			let didDrag = false;
+			let suppressNextClick = false;
 			let startX = 0, startY = 0, initialLeft = 0, initialTop = 0;
 			let maxLeft = 0, maxTop = 0;
 
@@ -60,6 +62,7 @@ import IndividualPageModals from '../components/IndividualPageModals.astro';
 			header.addEventListener('pointerdown', (e: PointerEvent) => {
 				if ((e.target as HTMLElement).classList.contains('dot-btn')) return;
 				isDragging = true;
+				didDrag = false;
 				bringToFront();
 				win.classList.add('is-dragging');
 				header.setPointerCapture(e.pointerId);
@@ -74,6 +77,7 @@ import IndividualPageModals from '../components/IndividualPageModals.astro';
 
 			header.addEventListener('pointermove', (e: PointerEvent) => {
 				if (!isDragging) return;
+				if (Math.hypot(e.clientX - startX, e.clientY - startY) > 5) didDrag = true;
 				let newLeft = initialLeft + (e.clientX - startX);
 				let newTop = initialTop + (e.clientY - startY);
 				newLeft = Math.max(10, Math.min(newLeft, maxLeft));
@@ -85,11 +89,19 @@ import IndividualPageModals from '../components/IndividualPageModals.astro';
 			const stopDrag = (e: PointerEvent) => {
 				if (!isDragging) return;
 				isDragging = false;
+				if (didDrag) suppressNextClick = true;
 				win.classList.remove('is-dragging');
 				try { header.releasePointerCapture(e.pointerId); } catch {}
 			};
 			header.addEventListener('pointerup', stopDrag);
 			header.addEventListener('pointercancel', stopDrag);
+
+			// A drag emits a click on pointer release; swallow only that synthetic click.
+			win.addEventListener('click', (e) => {
+				if (!suppressNextClick) return;
+				e.stopPropagation();
+				suppressNextClick = false;
+			}, true);
 
 			const dotRed = win.querySelector<HTMLElement>('.dot-red');
 			const dotBlack = win.querySelector<HTMLElement>('.dot-black');
@@ -699,6 +711,9 @@ import IndividualPageModals from '../components/IndividualPageModals.astro';
 				}
 			});
 		});
+
+		// Match the reference composition on first open: the middle framework card is featured.
+		requestAnimationFrame(() => alignFrameworkPointer('uncommon'));
 
 		// Close pop-over via X button
 		document.querySelectorAll<HTMLElement>('.fw-pop-close').forEach(btn => {

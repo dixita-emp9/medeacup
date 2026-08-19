@@ -21,13 +21,6 @@
         <input class="contact-input contact-input--phone" type="tel" placeholder="Email" autocomplete="tel" />
       </div>
 
-      <!-- Checkbox -->
-      <label class="contact-checkbox-label">
-        <input type="checkbox" class="contact-checkbox" checked />
-        <span class="contact-checkbox-custom"></span>
-        <span>Download Medeacup Manifesto</span>
-      </label>
-
       <!-- Submit -->
       <button class="contact-submit" type="submit">Email</button>
 
@@ -139,50 +132,6 @@
   }
 
 
-
-  /* ── Checkbox ── */
-  .contact-checkbox-label {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    font-family: var(--font-body);
-    font-size: 15px;
-    color: rgba(100, 95, 90, 0.9);
-    cursor: pointer;
-    user-select: none;
-    margin-top: 4px;
-    margin-bottom: 4px;
-  }
-
-  .contact-checkbox { display: none; }
-
-  .contact-checkbox-custom {
-    width: 20px;
-    height: 20px;
-    border-radius: 6px;
-    border: 1.5px solid rgba(0,0,0,0.8);
-    background: transparent;
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.2s, border-color 0.2s;
-  }
-
-  .contact-checkbox:checked + .contact-checkbox-custom {
-    background: #000;
-    border-color: #000;
-  }
-
-  .contact-checkbox:checked + .contact-checkbox-custom::after {
-    content: '';
-    width: 10px;
-    height: 5px;
-    border-left: 2px solid #fff;
-    border-bottom: 2px solid #fff;
-    transform: rotate(-45deg) translateY(-1px);
-    display: block;
-  }
 
   /* ── Submit button ── */
   .contact-submit {

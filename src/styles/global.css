@@ -66,6 +66,70 @@
   font-family: var(--font-body);
 }
 
+/* Cup cursor: red on light surfaces, off-white on dark/red surfaces. */
+#cup-cursor {
+  position: fixed;
+  z-index: 9999;
+  width: 34px;
+  height: 40px;
+  pointer-events: none;
+  opacity: 0;
+  transform: translate(-30%, -15%);
+  transition: transform 180ms cubic-bezier(0.34, 1.56, 0.64, 1), opacity 120ms ease;
+}
+
+#cup-cursor.is-visible { opacity: 1; }
+#cup-cursor svg { width: 100%; height: 100%; overflow: visible; }
+
+.cup-cursor-fill,
+.cup-cursor-rim,
+.cup-cursor-handle,
+.cup-cursor-steam {
+  fill: none;
+  stroke: var(--brand-red);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: fill 180ms ease, stroke 180ms ease;
+}
+
+.cup-cursor-fill { stroke-width: 2.2; }
+.cup-cursor-rim { stroke-width: 2.2; }
+.cup-cursor-handle { stroke-width: 2; }
+.cup-cursor-steam {
+  stroke-width: 1.8;
+  animation: cup-cursor-steam 850ms ease-in-out infinite alternate;
+}
+.cup-cursor-steam:nth-child(2) { animation-delay: 280ms; }
+.cup-cursor-steam:nth-child(3) { animation-delay: 560ms; }
+
+@keyframes cup-cursor-steam {
+  from { opacity: 0.2; transform: translateY(0); }
+  to { opacity: 0.75; transform: translateY(-3px); }
+}
+
+body.has-cup-cursor,
+body.has-cup-cursor * { cursor: none !important; }
+
+body.has-cup-cursor.cup-cursor-hover #cup-cursor {
+  transform: translate(-30%, -15%) scale(1.6);
+}
+body.has-cup-cursor.cup-cursor-pressed #cup-cursor {
+  transform: translate(-30%, -15%) scale(0.75);
+}
+body.has-cup-cursor.cup-cursor-dark .cup-cursor-fill,
+body.has-cup-cursor.cup-cursor-dark .cup-cursor-rim,
+body.has-cup-cursor.cup-cursor-dark .cup-cursor-handle { stroke: rgba(255, 255, 255, 0.88); }
+body.has-cup-cursor.cup-cursor-dark .cup-cursor-steam { stroke: rgba(255, 255, 255, 0.72); }
+body.has-cup-cursor.cup-cursor-hover .cup-cursor-fill { fill: var(--brand-red); }
+body.has-cup-cursor.cup-cursor-dark.cup-cursor-hover .cup-cursor-fill {
+  fill: rgba(255, 255, 255, 0.9);
+  stroke: rgba(255, 255, 255, 0.9);
+}
+
+@media (hover: none), (pointer: coarse) {
+  #cup-cursor { display: none; }
+}
+
 *,
 *::before,
 *::after {
@@ -183,12 +247,22 @@ textarea {
 }
 
 .dot-btn {
-  width: 12px;
-  height: 12px;
+  /* Keep the visual dot small, but give the close/minimize controls a forgiving hit area. */
+  position: relative;
+  width: 24px;
+  height: 24px;
   border-radius: 50%;
   border: none;
   cursor: pointer;
   transition: transform var(--transition-fast);
+}
+
+.dot-btn::after {
+  content: '';
+  position: absolute;
+  inset: 6px;
+  border-radius: 50%;
+  background: currentColor;
 }
 
 .dot-btn:hover {
@@ -196,15 +270,18 @@ textarea {
 }
 
 .dot-red {
-  background-color: var(--brand-red);
+  background: transparent;
+  color: var(--brand-red);
 }
 
 .dot-black {
-  background-color: #18181b;
+  background: transparent;
+  color: #18181b;
 }
 
 .dot-cream {
-  background-color: #e4dec3;
+  background: transparent;
+  color: #e4dec3;
 }
 
 .window-title-tag {
@@ -498,6 +575,353 @@ textarea {
   #modal-page-principle .ppl-cards {
     width: 190px;
     height: 140px;
+  }
+}
+
+/* ───────────────────────────────────────────────────────────────
+   Translucent Mac-inspired window system
+   ─────────────────────────────────────────────────────────────── */
+html,
+body {
+  background-color: var(--bg-desktop);
+}
+
+#desktop-canvas {
+  background:
+    radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.85) 0%, transparent 65%),
+    radial-gradient(circle at 90% 90%, rgba(230, 46, 45, 0.04) 0%, transparent 45%),
+    var(--bg-desktop);
+}
+
+.modal-window,
+.folder-dialog,
+.fullscreen-mac-window {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.72), rgba(246, 242, 236, 0.48)) !important;
+  border: 1px solid rgba(255, 255, 255, 0.78) !important;
+  box-shadow: 0 24px 70px rgba(71, 63, 52, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.85) !important;
+  backdrop-filter: blur(28px) saturate(120%);
+  -webkit-backdrop-filter: blur(28px) saturate(120%);
+}
+
+/* Keep the surrounding backdrop airy and warm; avoid a dark modal veil. */
+.modal-overlay {
+  background: rgba(255, 255, 255, 0.3) !important;
+  backdrop-filter: blur(20px) saturate(115%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(115%) !important;
+}
+
+.fullscreen-window-header,
+.modal-window .modal-header,
+.folder-dialog .modal-header {
+  background: rgba(255, 255, 255, 0.38) !important;
+  border-bottom: 1px solid rgba(115, 104, 91, 0.12) !important;
+  backdrop-filter: blur(18px) saturate(130%);
+  -webkit-backdrop-filter: blur(18px) saturate(130%);
+}
+
+.fullscreen-window-header {
+  padding: 14px 20px 0 !important;
+  align-items: flex-end !important;
+}
+
+.fullscreen-window-header .window-title-meta {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 5px 10px !important;
+  border: 1px solid rgba(115, 104, 91, 0.14);
+  border-bottom-color: transparent;
+  border-radius: 10px 10px 0 0;
+  background: rgba(255, 255, 255, 0.68) !important;
+  color: var(--text-primary) !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  position: relative;
+}
+
+.fullscreen-window-header .window-title-meta::before {
+  content: '';
+  width: 9px;
+  height: 9px;
+  margin-right: 6px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: inset 0 0 0 1px rgba(115, 104, 91, 0.1);
+}
+
+.fullscreen-window-header .window-title-meta::after {
+  content: '×';
+  margin-left: 12px;
+  color: rgba(82, 75, 68, 0.55);
+  font-size: 13px;
+  line-height: 1;
+}
+
+.fullscreen-window-header .fullscreen-window-controls {
+  padding-bottom: 8px !important;
+}
+
+.browser-tab-strip {
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  min-height: 28px;
+}
+
+.browser-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 28px;
+  padding: 5px 11px !important;
+  border: 1px solid rgba(115, 104, 91, 0.14) !important;
+  border-bottom: 0 !important;
+  border-radius: 11px 11px 0 0 !important;
+  background: rgba(232, 228, 221, 0.36) !important;
+  color: rgba(82, 75, 68, 0.7) !important;
+  font: 500 12px/1 var(--font-body) !important;
+  white-space: nowrap;
+}
+
+.browser-tab::before {
+  content: '';
+  width: 9px;
+  height: 9px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: inset 0 0 0 1px rgba(115, 104, 91, 0.1);
+}
+
+.browser-tab.is-active {
+  background: rgba(255, 255, 255, 0.72) !important;
+  color: var(--text-primary) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.browser-tab span {
+  color: rgba(82, 75, 68, 0.55);
+  font-size: 13px;
+}
+
+/* When a browser-style page is open, keep the outer brand chrome visible above it. */
+body:has(.modal-overlay.is-open) .desktop-header {
+  z-index: 2105;
+  top: 18px;
+  height: 52px;
+  padding: 0 46px;
+}
+
+body:has(.modal-overlay.is-open) .desktop-header .logo-text {
+  font-size: 24px;
+  letter-spacing: -0.045em;
+  filter: none;
+}
+
+body:has(.modal-overlay.is-open) .desktop-header .status-circle {
+  width: 32px;
+  height: 32px;
+}
+
+body:has(.modal-overlay.is-open) .fullscreen-mac-window {
+  width: 88vw;
+  height: 72vh !important;
+  border-radius: 26px !important;
+  overflow: hidden !important;
+  isolation: isolate;
+}
+
+body:has(.modal-overlay.is-open) .fullscreen-window-header {
+  border-radius: 26px 26px 0 0;
+}
+
+body:has(.modal-overlay.is-open) .fullscreen-window-body {
+  border-radius: 0 0 26px 26px;
+}
+
+body:has(.modal-overlay.is-open) .modal-overlay {
+  padding: 0 0 1vh;
+}
+
+/* The second-level case tabs use the same quiet, Mac-like chrome. */
+.cs-subtab-bar {
+  gap: 2px !important;
+  padding: 0 28px !important;
+  background: rgba(255, 255, 255, 0.26) !important;
+  border-bottom: 1px solid rgba(115, 104, 91, 0.1) !important;
+}
+
+.cs-subtab {
+  padding: 10px 18px !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  color: rgba(82, 75, 68, 0.72) !important;
+}
+
+.cs-subtab.is-active {
+  color: var(--text-primary) !important;
+  border-bottom-color: var(--brand-red) !important;
+  font-weight: 700 !important;
+}
+
+/* Shared small cup mark used in editorial lists and practice bullets. */
+.bullet-cup-icon,
+.fw-pop-list li::before {
+  content: '';
+  display: inline-block;
+  flex: 0 0 16px;
+  width: 16px;
+  height: 18px;
+  font-size: 0 !important;
+  color: transparent !important;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 48'%3E%3Cg fill='none' stroke='%23e62e2d' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 11h28l-3 29q-.4 3-4 3H13q-4 0-4-3L6 11Z'/%3E%3Cpath d='M31 19h3.5a7 7 0 0 1 0 14H30'/%3E%3Cpath d='M13 7V2M20 5V0M27 7V2M4 11h32'/%3E%3C/g%3E%3C/svg%3E") center / contain no-repeat;
+  vertical-align: middle;
+}
+
+.fw-pop-list li {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+/* Framework page typography follows the quiet, oversized reference watermark. */
+.fw-watermark {
+  right: 40px !important;
+  bottom: 38px !important;
+}
+
+.fw-bulb {
+  font-size: 40px !important;
+  margin-bottom: 12px !important;
+}
+
+.fw-watermark-text {
+  max-width: 330px;
+  font-size: 32px !important;
+  font-weight: 500 !important;
+  line-height: 1.02 !important;
+  color: rgba(93, 82, 69, 0.16) !important;
+  text-align: right !important;
+}
+
+/* About page reference proportions: compact editorial panel and quieter copy. */
+#modal-page-about .fullscreen-mac-window {
+  height: 72vh !important;
+}
+
+#modal-page-cases .cs-info-card {
+  border-radius: 18px !important;
+}
+
+#modal-page-cases .cs-cards-grid {
+  gap: 18px !important;
+}
+
+#modal-page-about .about-window-body {
+  grid-template-columns: minmax(250px, 30%) minmax(0, 1fr) !important;
+  gap: clamp(28px, 4vw, 54px) !important;
+  padding: 18px 24px 72px !important;
+  background: rgba(246, 241, 232, 0.72) !important;
+}
+
+#modal-page-about .about-story-panel {
+  padding: 22px 18px 24px !important;
+  border-radius: 18px !important;
+  background: rgba(247, 242, 233, 0.84) !important;
+}
+
+#modal-page-about .about-story-title {
+  margin-bottom: 20px !important;
+  font-size: clamp(34px, 3vw, 48px) !important;
+}
+
+#modal-page-about .about-story-label {
+  min-height: 38px !important;
+  margin-bottom: 10px !important;
+  padding: 0 12px !important;
+  border-radius: 11px !important;
+  gap: 10px !important;
+  font-size: clamp(14px, 1.1vw, 18px) !important;
+}
+
+#modal-page-about .about-story-label svg {
+  width: 17px;
+  height: 19px;
+}
+
+#modal-page-about .about-showreel {
+  margin-bottom: 16px !important;
+  border-width: 6px !important;
+  border-radius: 20px !important;
+}
+
+#modal-page-about .about-play-button {
+  width: 52px;
+  height: 52px;
+}
+
+#modal-page-about .about-showreel-word {
+  font-size: clamp(18px, 2vw, 30px) !important;
+}
+
+#modal-page-about .about-belief {
+  margin: 22px 4px 0 !important;
+  font-size: clamp(24px, 2.1vw, 34px) !important;
+}
+
+#modal-page-about .about-copy-column {
+  padding: clamp(34px, 5vw, 70px) 24px 20px 0 !important;
+}
+
+#modal-page-about .about-copy-column p {
+  margin-bottom: 20px !important;
+  font-size: clamp(13px, 0.9vw, 16px) !important;
+  line-height: 1.35 !important;
+}
+
+.tabs-container {
+  gap: 6px !important;
+  scrollbar-width: none;
+}
+
+.tabs-container::-webkit-scrollbar { display: none; }
+
+.tab-btn {
+  min-height: 38px;
+  padding: 9px 18px !important;
+  border: 1px solid rgba(115, 104, 91, 0.14) !important;
+  border-bottom: 0 !important;
+  border-radius: 14px 14px 0 0 !important;
+  background: rgba(232, 228, 221, 0.42) !important;
+  color: rgba(82, 75, 68, 0.75) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.62);
+}
+
+.tab-btn:hover,
+.tab-btn.is-active {
+  background: rgba(255, 255, 255, 0.62) !important;
+  color: var(--text-primary) !important;
+}
+
+.tab-btn.is-active {
+  box-shadow:
+    inset 0 -2px 0 var(--brand-red),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    0 -1px 0 rgba(255, 255, 255, 0.55);
+}
+
+.fullscreen-mac-window .fullscreen-window-body,
+.modal-window .modal-body,
+.folder-dialog .folder-modal-body {
+  background: rgba(246, 242, 236, 0.2) !important;
+}
+
+@media (max-width: 900px) {
+  .modal-window,
+  .folder-dialog,
+  .fullscreen-mac-window {
+    backdrop-filter: blur(18px) saturate(125%);
+    -webkit-backdrop-filter: blur(18px) saturate(125%);
   }
 }
 
