@@ -916,12 +916,37 @@ body:has(.modal-overlay.is-open:not(#quiz-modal)) .modal-overlay {
   background: rgba(246, 242, 236, 0.2) !important;
 }
 
+/* Keep every desktop popup on the same generous Mac-window canvas. */
+.folder-modal .folder-dialog,
+#quiz-modal .quiz-dialog,
+#video-modal .modal-window,
+.fullscreen-mac-window {
+  width: min(92vw, 1320px) !important;
+  height: min(82vh, 780px) !important;
+  max-width: none !important;
+  max-height: none !important;
+}
+
+#quiz-modal .quiz-dialog-body,
+.folder-modal .folder-modal-body {
+  max-height: none !important;
+  height: calc(100% - 66px);
+}
+
 @media (max-width: 900px) {
   .modal-window,
   .folder-dialog,
   .fullscreen-mac-window {
     backdrop-filter: blur(18px) saturate(125%);
     -webkit-backdrop-filter: blur(18px) saturate(125%);
+  }
+
+  .folder-modal .folder-dialog,
+  #quiz-modal .quiz-dialog,
+  #video-modal .modal-window,
+  .fullscreen-mac-window {
+    width: 94vw !important;
+    height: 82vh !important;
   }
 }
 

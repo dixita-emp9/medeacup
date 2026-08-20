@@ -5,12 +5,14 @@ import FolderGrid from '../components/FolderGrid.astro';
 import WindowMission from '../components/WindowMission.astro';
 import WindowProjects from '../components/WindowProjects.astro';
 import WindowQuiz from '../components/WindowQuiz.astro';
+import WindowVideo from '../components/WindowVideo.astro';
 import WindowPrinciple from '../components/WindowPrinciple.astro';
 import BottomDock from '../components/BottomDock.astro';
 import ContactPanel from '../components/ContactPanel.astro';
 import VideoModal from '../components/VideoModal.astro';
 import QuizModal from '../components/QuizModal.astro';
 import IndividualPageModals from '../components/IndividualPageModals.astro';
+import ExperienceModal from '../components/ExperienceModal.astro';
 ---
 
 <Layout title="MEDIACUP - Web OS Workspace">
@@ -21,6 +23,7 @@ import IndividualPageModals from '../components/IndividualPageModals.astro';
 			<WindowMission />
 			<WindowProjects />
 			<WindowQuiz />
+			<WindowVideo />
 			<WindowPrinciple />
 			<BottomDock />
 			<ContactPanel />
@@ -29,6 +32,7 @@ import IndividualPageModals from '../components/IndividualPageModals.astro';
 		<VideoModal />
 		<QuizModal />
 		<IndividualPageModals />
+		<ExperienceModal />
 	</main>
 </Layout>
 
@@ -66,13 +70,28 @@ import IndividualPageModals from '../components/IndividualPageModals.astro';
 				bringToFront();
 				win.classList.add('is-dragging');
 				header.setPointerCapture(e.pointerId);
+				header.style.touchAction = 'none';
 				startX = e.clientX;
 				startY = e.clientY;
-				const cs = window.getComputedStyle(win);
-				initialLeft = parseInt(cs.left, 10) || 0;
-				initialTop = parseInt(cs.top, 10) || 0;
-				maxLeft = window.innerWidth - win.offsetWidth - 10;
-				maxTop = window.innerHeight - win.offsetHeight - 70;
+				const rect = win.getBoundingClientRect();
+				const parentRect = (win.offsetParent as HTMLElement | null)?.getBoundingClientRect() ?? new DOMRect(0, 0, 0, 0);
+				// Always start from the rendered position. This is important for
+				// windows initially anchored with right/bottom rather than left/top.
+				// Coordinates must be relative to the desktop canvas, not the viewport.
+				initialLeft = rect.left - parentRect.left;
+				initialTop = rect.top - parentRect.top;
+				// Once a bottom/right-positioned window is dragged, switch it to the
+				// same pixel-based coordinates used by the other desktop windows.
+				win.style.right = 'auto';
+				win.style.bottom = 'auto';
+				win.style.left = `${initialLeft}px`;
+				win.style.top = `${initialTop}px`;
+				maxLeft = (win.offsetParent as HTMLElement | null)?.clientWidth
+					? (win.offsetParent as HTMLElement).clientWidth - win.offsetWidth - 10
+					: window.innerWidth - win.offsetWidth - 10;
+				maxTop = (win.offsetParent as HTMLElement | null)?.clientHeight
+					? (win.offsetParent as HTMLElement).clientHeight - win.offsetHeight - 70
+					: window.innerHeight - win.offsetHeight - 70;
 			});
 
 			header.addEventListener('pointermove', (e: PointerEvent) => {
@@ -275,6 +294,7 @@ import IndividualPageModals from '../components/IndividualPageModals.astro';
 		const folderModalMap: Record<string, string> = {
 			principle: 'modal-page-principle',
 			cases: 'modal-page-cases',
+			experience: 'modal-page-experience',
 			framework: 'modal-page-framework',
 			capabilities: 'modal-page-capabilities',
 			about: 'modal-page-about',
@@ -285,6 +305,10 @@ import IndividualPageModals from '../components/IndividualPageModals.astro';
 			folder.addEventListener('click', () => {
 				const id = folder.getAttribute('data-folder-id');
 				if (id && folderModalMap[id]) {
+					if (id === 'experience') {
+						document.getElementById('experience-view-grid')?.removeAttribute('hidden');
+						document.getElementById('experience-view-detail')?.setAttribute('hidden', 'true');
+					}
 					const targetOverlay = document.getElementById(folderModalMap[id]);
 					if (targetOverlay) openModalWithGenie(targetOverlay, folder);
 				}
@@ -305,6 +329,27 @@ import IndividualPageModals from '../components/IndividualPageModals.astro';
 				if (targetOverlay) openModalWithGenie(targetOverlay, e.currentTarget as HTMLElement);
 			});
 		});
+
+		const experienceGrid = document.getElementById('experience-view-grid');
+		const experienceDetail = document.getElementById('experience-view-detail');
+		const experienceDetailTitle = document.getElementById('experience-detail-title');
+		const experienceDetailTab = document.getElementById('experience-detail-tab');
+		const openExperienceDetail = (item: HTMLElement) => {
+			const name = item.getAttribute('data-experience-id') || 'Experience Design';
+			if (experienceGrid) experienceGrid.hidden = true;
+			if (experienceDetail) experienceDetail.hidden = false;
+			if (experienceDetailTitle) experienceDetailTitle.textContent = name;
+			if (experienceDetailTab) experienceDetailTab.textContent = name;
+		};
+		experienceGrid?.addEventListener('click', (e) => {
+			const item = (e.target as HTMLElement).closest<HTMLElement>('[data-experience-id]');
+			if (item) openExperienceDetail(item);
+		});
+		document.getElementById('experience-back-to-grid')?.addEventListener('click', () => {
+			if (experienceDetail) experienceDetail.hidden = true;
+			if (experienceGrid) experienceGrid.hidden = false;
+		});
+		document.getElementById('experience-play-video')?.addEventListener('click', openVideoModal);
 
 		// ──────────────────────────────────────────────────
 		// 5. Cup Cases: Grid ↔ Detail View Switching
@@ -561,7 +606,7 @@ import IndividualPageModals from '../components/IndividualPageModals.astro';
 		// ──────────────────────────────────────────────────
 		const quizModal = document.getElementById('quiz-modal');
 		const videoModal = document.getElementById('video-modal');
-		const videoSource = 'https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?autoplay=1';
+		const videoSource = 'https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?autoplay=1&playsinline=1';
 
 		function openVideoModal() {
 			if (!videoModal) return;
@@ -577,6 +622,13 @@ import IndividualPageModals from '../components/IndividualPageModals.astro';
 			videoModal.classList.add('is-open');
 		}
 
+		function closeVideoModal() {
+			if (!videoModal) return;
+			videoModal.classList.remove('is-open');
+			const container = videoModal.querySelector<HTMLElement>('.video-container');
+			if (container) container.replaceChildren();
+		}
+
 		document.getElementById('btn-take-quiz')?.addEventListener('click', () => {
 			quizModal?.classList.add('is-open');
 		});
@@ -587,15 +639,13 @@ import IndividualPageModals from '../components/IndividualPageModals.astro';
 		document.getElementById('btn-close-quiz-dot')?.addEventListener('click', () => quizModal?.classList.remove('is-open'));
 		quizModal?.addEventListener('click', (e) => { if (e.target === quizModal) quizModal.classList.remove('is-open'); });
 
-		document.getElementById('video-file-btn')?.addEventListener('click', () => {
-			openVideoModal();
-		});
+		document.getElementById('video-window-preview')?.addEventListener('click', openVideoModal);
 		document.getElementById('about-showreel-btn')?.addEventListener('click', () => {
 			openVideoModal();
 		});
 		document.getElementById('video-play-button')?.addEventListener('click', openVideoModal);
-		document.getElementById('close-video-modal')?.addEventListener('click', () => videoModal?.classList.remove('is-open'));
-		videoModal?.addEventListener('click', (e) => { if (e.target === videoModal) videoModal.classList.remove('is-open'); });
+		document.getElementById('close-video-modal')?.addEventListener('click', closeVideoModal);
+		videoModal?.addEventListener('click', (e) => { if (e.target === videoModal) closeVideoModal(); });
 
 		// ──────────────────────────────────────────────────
 		// 8. Bottom Dock Controls
@@ -639,7 +689,8 @@ import IndividualPageModals from '../components/IndividualPageModals.astro';
 						return;
 					}
 					if (dockId === 'dock-bulb') {
-						openMobilePage('modal-page-framework', btn);
+						const quizModal = document.getElementById('quiz-modal');
+						quizModal?.classList.add('is-open');
 						return;
 					}
 				}
@@ -650,7 +701,11 @@ import IndividualPageModals from '../components/IndividualPageModals.astro';
 					return;
 				}
 				else if (dockId === 'dock-folder') targetWinId = 'win-projects';
-				else if (dockId === 'dock-bulb') targetWinId = 'win-quiz';
+				else if (dockId === 'dock-bulb') {
+					const quizModal = document.getElementById('quiz-modal');
+					quizModal?.classList.add('is-open');
+					return;
+				}
 				else if (dockId === 'dock-mail') {
 					const contactPanel = document.getElementById('contact-panel');
 					const isOpen = contactPanel?.classList.contains('is-open');

@@ -1,0 +1,19 @@
+<div class="mac-window glass-window window-video" id="win-video" style="top: auto; left: auto; right: 4%; bottom: 100px; width: 280px;">
+  <div class="window-header">
+    <span class="window-title-tag">Brand Video</span>
+  </div>
+  <button class="video-window-preview" id="video-window-preview" type="button" aria-label="Play Experience Design video">
+    <img src="/projects/project-3.jpg" alt="Brand video preview" draggable="false" />
+    <span class="video-window-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg></span>
+  </button>
+</div>
+
+<style>
+  .window-video { overflow: hidden; border-radius: 22px; }
+  .window-video .window-header { padding: 12px 16px 8px; }
+  .video-window-preview { position: relative; display: block; width: 100%; height: 170px; padding: 0; border: 0; overflow: hidden; background: #111; cursor: pointer; }
+  .video-window-preview img { display: block; width: 100%; height: 100%; object-fit: cover; user-select: none; -webkit-user-drag: none; pointer-events: none; }
+  .video-window-play { position: absolute; inset: 50% auto auto 50%; display: grid; place-items: center; width: 48px; height: 48px; border-radius: 50%; background: rgba(0,0,0,.68); color: #fff; transform: translate(-50%, -50%); transition: transform .18s ease, background .18s ease; }
+  .video-window-play svg { width: 22px; height: 22px; margin-left: 2px; }
+  .video-window-preview:hover .video-window-play { background: var(--brand-red); transform: translate(-50%, -50%) scale(1.08); }
+</style>
