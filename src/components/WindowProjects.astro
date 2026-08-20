@@ -2,52 +2,65 @@
 const projects = [
   {
     id: 1,
-    title: 'We find the structural 1% that is being .....',
-    badge: 'New Project',
-    gradient: 'linear-gradient(135deg, #f39c12 0%, #d35400 100%)',
-    bgImg: '/projects/project-1.jpg'
+    title: "We find the structural 1% that is being .....",
+    badge: "New Project",
+    gradient: "linear-gradient(135deg, #f39c12 0%, #d35400 100%)",
+    bgImg: "/projects/project-1.jpg",
   },
   {
     id: 2,
-    title: 'We find the structural 1% that is being .....',
-    badge: 'New Project',
-    gradient: 'linear-gradient(135deg, #2980b9 0%, #8e44ad 100%)',
-    bgImg: '/projects/project-2.jpg'
+    title: "We find the structural 1% that is being .....",
+    badge: "New Project",
+    gradient: "linear-gradient(135deg, #2980b9 0%, #8e44ad 100%)",
+    bgImg: "/projects/project-2.jpg",
   },
   {
     id: 3,
-    title: 'We find the structural 1% that is being .....',
-    badge: 'New Project',
-    gradient: 'linear-gradient(135deg, #27ae60 0%, #16a085 100%)',
-    bgImg: '/projects/project-3.jpg'
-  }
+    title: "We find the structural 1% that is being .....",
+    badge: "New Project",
+    gradient: "linear-gradient(135deg, #27ae60 0%, #16a085 100%)",
+    bgImg: "/projects/project-3.jpg",
+  },
 ];
 ---
 
-<div class="mac-window window-projects" id="win-projects" style="top: 120px; right: 48px; width: 28vw; min-width: 360px; max-width: 480px;">
+<div
+  class="mac-window window-projects"
+  id="win-projects"
+  style="top: 120px; right: 48px; width: 28vw; min-width: 360px; max-width: 420px;"
+>
   <div class="window-header">
     <span class="window-title-tag">Recent Projects</span>
   </div>
 
   <div class="projects-list">
-    {projects.map(proj => (
-      <div class="project-card-item">
-        <div class="project-thumb">
-          <img src={proj.bgImg} alt="" width="76" height="76" loading="lazy" decoding="async" />
+    {
+      projects.map((proj) => (
+        <div class="project-card-item">
+          <div class="project-thumb">
+            <img
+              src={proj.bgImg}
+              alt=""
+              width="76"
+              height="76"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <div class="project-info">
+            <span class="project-badge">{proj.badge}</span>
+            <p class="project-desc">{proj.title}</p>
+          </div>
         </div>
-        <div class="project-info">
-          <span class="project-badge">{proj.badge}</span>
-          <p class="project-desc">{proj.title}</p>
-        </div>
-      </div>
-    ))}
+      ))
+    }
   </div>
 </div>
 
 <style>
   .window-projects {
-    height: 560px;
-    background: #F6F2EC;
+    height: 500px;
+    background: #f6f2ec;
     border-radius: 28px;
   }
 
@@ -59,7 +72,7 @@ const projects = [
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
   }
 
   .orange-dot {
@@ -86,14 +99,16 @@ const projects = [
     border-radius: 20px;
     background: rgba(255, 255, 255, 0.78);
     border: 1px solid rgba(255, 255, 255, 0.9);
-    transition: transform var(--transition-fast), background-color var(--transition-fast);
+    transition:
+      transform var(--transition-fast),
+      background-color var(--transition-fast);
     cursor: pointer;
   }
 
   .project-card-item:hover {
     transform: translateY(-3px);
     background: #ffffff;
-    box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
   }
 
   .project-thumb {

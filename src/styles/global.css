@@ -739,6 +739,25 @@ body:has(.modal-overlay.is-open:not(#quiz-modal)) .fullscreen-window-body {
   border-radius: 0 0 26px 26px;
 }
 
+/* Keep the outer brand chrome visible above the quiz overlay as well. */
+body:has(#quiz-modal.is-open) .desktop-header {
+  z-index: 2400;
+  top: 18px;
+  height: 52px;
+  padding: 0 46px;
+}
+
+body:has(#quiz-modal.is-open) .desktop-header .logo-text {
+  font-size: 24px;
+  letter-spacing: -0.045em;
+  filter: none;
+}
+
+body:has(#quiz-modal.is-open) .desktop-header .status-circle {
+  width: 32px;
+  height: 32px;
+}
+
 body:has(.modal-overlay.is-open:not(#quiz-modal)) .modal-overlay {
   padding: 0 0 1vh;
 }
