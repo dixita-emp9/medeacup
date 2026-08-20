@@ -325,8 +325,37 @@ import ExperienceModal from '../components/ExperienceModal.astro';
 
 		document.querySelectorAll<HTMLElement>('.project-card-item').forEach(card => {
 			card.addEventListener('click', (e) => {
-				const targetOverlay = document.getElementById('modal-page-cases');
-				if (targetOverlay) openModalWithGenie(targetOverlay, e.currentTarget as HTMLElement);
+				const targetId = card.getAttribute('data-project-target') || 'modal-page-cases';
+				const targetOverlay = document.getElementById(targetId);
+				if (targetOverlay) {
+					if (targetId === 'modal-page-experience') {
+						document.getElementById('experience-view-grid')?.removeAttribute('hidden');
+						document.getElementById('experience-view-detail')?.setAttribute('hidden', 'true');
+					}
+					openModalWithGenie(targetOverlay, e.currentTarget as HTMLElement);
+					const detail = card.getAttribute('data-project-detail');
+					if (targetId === 'modal-page-experience' && detail) {
+						window.setTimeout(() => document.querySelector<HTMLElement>(`[data-experience-id="${detail}"]`)?.click(), 80);
+					}
+				}
+			});
+		});
+		document.querySelectorAll<HTMLElement>('.project-action').forEach(action => {
+			action.addEventListener('click', (e) => {
+				e.stopPropagation();
+				const targetId = action.getAttribute('data-project-target') || 'modal-page-experience';
+				const targetOverlay = document.getElementById(targetId);
+				if (targetOverlay) {
+					if (targetId === 'modal-page-experience') {
+						document.getElementById('experience-view-grid')?.removeAttribute('hidden');
+						document.getElementById('experience-view-detail')?.setAttribute('hidden', 'true');
+					}
+					openModalWithGenie(targetOverlay, action);
+					const detail = action.getAttribute('data-project-detail');
+					if (targetId === 'modal-page-experience' && detail) {
+						window.setTimeout(() => document.querySelector<HTMLElement>(`[data-experience-id="${detail}"]`)?.click(), 80);
+					}
+				}
 			});
 		});
 
