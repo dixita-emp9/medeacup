@@ -31,11 +31,13 @@ const folders = [
     <span class="desktop-label">Brand_Video.avi</span>
   </div>
 
-  <!-- Compass / Clock Widget -->
-  <div class="desktop-item widget-item" id="compass-widget-btn" tabindex="0">
-    <div class="compass-box">
-      <div class="compass-dial">
-        <div class="needle"></div>
+  <!-- Live Clock Widget -->
+  <div class="desktop-item widget-item" id="clock-widget-btn" tabindex="0" aria-label="Current time">
+    <div class="compass-box clock-box">
+      <div class="compass-dial clock-dial" aria-hidden="true">
+        <div class="clock-hand clock-hour"></div>
+        <div class="clock-hand clock-minute"></div>
+        <div class="clock-center"></div>
       </div>
     </div>
   </div>
@@ -177,7 +179,7 @@ const folders = [
     padding-left: 2px;
   }
 
-  /* Compass Clock Widget */
+  /* Live Clock Widget */
   .compass-box {
     width: 110px;
     height: 110px;
@@ -201,17 +203,36 @@ const folders = [
     justify-content: center;
   }
 
-  .needle {
-    width: 4px;
-    height: 42px;
-    background: linear-gradient(to bottom, #e62e2d 50%, #18181b 50%);
-    border-radius: 2px;
-    transform: rotate(45deg);
-    transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  .clock-hand {
+    position: absolute;
+    left: 50%;
+    bottom: 50%;
+    width: 3px;
+    border-radius: 999px;
+    transform-origin: 50% 100%;
+    transform: translateX(-50%) rotate(0deg);
   }
 
-  .compass-box:hover .needle {
-    transform: rotate(225deg);
+  .clock-hour {
+    height: 20px;
+    background: #18181b;
+  }
+
+  .clock-minute {
+    height: 28px;
+    width: 2.5px;
+    background: var(--brand-red);
+  }
+
+  .clock-center {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--brand-red);
+    transform: translate(-50%, -50%);
   }
 
   .mobile-home-content { display: none; }
@@ -311,3 +332,17 @@ const folders = [
     50% { transform: translateY(-8px); }
   }
 </style>
+
+<script>
+  const updateClock = () => {
+    const now = new Date();
+    const minutes = now.getMinutes() + now.getSeconds() / 60;
+    const hours = (now.getHours() % 12) + minutes / 60;
+
+    document.querySelector<HTMLElement>('.clock-hour')?.style.setProperty('transform', `translateX(-50%) rotate(${hours * 30}deg)`);
+    document.querySelector<HTMLElement>('.clock-minute')?.style.setProperty('transform', `translateX(-50%) rotate(${minutes * 6}deg)`);
+  };
+
+  updateClock();
+  window.setInterval(updateClock, 1000);
+</script>

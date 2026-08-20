@@ -705,25 +705,25 @@ body {
 }
 
 /* When a browser-style page is open, keep the outer brand chrome visible above it. */
-body:has(.modal-overlay.is-open) .desktop-header {
+body:has(.modal-overlay.is-open:not(#quiz-modal)) .desktop-header {
   z-index: 2105;
   top: 18px;
   height: 52px;
   padding: 0 46px;
 }
 
-body:has(.modal-overlay.is-open) .desktop-header .logo-text {
+body:has(.modal-overlay.is-open:not(#quiz-modal)) .desktop-header .logo-text {
   font-size: 24px;
   letter-spacing: -0.045em;
   filter: none;
 }
 
-body:has(.modal-overlay.is-open) .desktop-header .status-circle {
+body:has(.modal-overlay.is-open:not(#quiz-modal)) .desktop-header .status-circle {
   width: 32px;
   height: 32px;
 }
 
-body:has(.modal-overlay.is-open) .fullscreen-mac-window {
+body:has(.modal-overlay.is-open:not(#quiz-modal)) .fullscreen-mac-window {
   width: 88vw;
   height: 72vh !important;
   border-radius: 26px !important;
@@ -731,15 +731,15 @@ body:has(.modal-overlay.is-open) .fullscreen-mac-window {
   isolation: isolate;
 }
 
-body:has(.modal-overlay.is-open) .fullscreen-window-header {
+body:has(.modal-overlay.is-open:not(#quiz-modal)) .fullscreen-window-header {
   border-radius: 26px 26px 0 0;
 }
 
-body:has(.modal-overlay.is-open) .fullscreen-window-body {
+body:has(.modal-overlay.is-open:not(#quiz-modal)) .fullscreen-window-body {
   border-radius: 0 0 26px 26px;
 }
 
-body:has(.modal-overlay.is-open) .modal-overlay {
+body:has(.modal-overlay.is-open:not(#quiz-modal)) .modal-overlay {
   padding: 0 0 1vh;
 }
 

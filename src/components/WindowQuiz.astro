@@ -1,18 +1,24 @@
 ---
+
 ---
 
-<div class="mac-window glass-window window-quiz" id="win-quiz" style="top: 420px; left: 24%; width: 24vw; min-width: 320px; max-width: 380px;">
+<div
+  class="mac-window glass-window window-quiz"
+  id="win-quiz"
+  style="top: 420px; left: 24%; width: 24vw; min-width: 320px; max-width: 380px;"
+>
   <div class="window-header">
     <span class="window-title-tag">Are we compatible?</span>
   </div>
 
   <div class="quiz-content">
     <div class="brain-grid-visual">
-      <img 
-        src="https://images.unsplash.com/photo-1541701494587-cb58502866ab?auto=format&fit=crop&w=500&q=80" 
+      <img
+        src="/quiz-img.png"
         alt="Compatibility Quiz Graphics"
-        width="500"
-        height="270"
+        width="665"
+        height="781"
+        draggable="false"
         loading="lazy"
         decoding="async"
         class="quiz-img"
@@ -20,9 +26,7 @@
     </div>
 
     <div class="quiz-footer">
-      <button class="quiz-btn" id="btn-take-quiz">
-        Take the quiz
-      </button>
+      <button class="quiz-btn" id="btn-take-quiz"> Take the quiz </button>
 
       <div class="preview-text-lines">
         <span></span>
@@ -66,6 +70,9 @@
     height: 100%;
     object-fit: cover;
     filter: brightness(0.96) contrast(1.06);
+    user-select: none;
+    -webkit-user-drag: none;
+    pointer-events: none;
   }
 
   .quiz-footer {
@@ -87,7 +94,9 @@
     border: none;
     cursor: pointer;
     white-space: nowrap;
-    transition: transform var(--transition-fast), background-color var(--transition-fast);
+    transition:
+      transform var(--transition-fast),
+      background-color var(--transition-fast);
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
   }
 
@@ -113,7 +122,13 @@
     border-radius: 2px;
   }
 
-  .preview-text-lines span:nth-child(1) { width: 100%; }
-  .preview-text-lines span:nth-child(2) { width: 85%; }
-  .preview-text-lines span:nth-child(3) { width: 60%; }
+  .preview-text-lines span:nth-child(1) {
+    width: 100%;
+  }
+  .preview-text-lines span:nth-child(2) {
+    width: 85%;
+  }
+  .preview-text-lines span:nth-child(3) {
+    width: 60%;
+  }
 </style>
