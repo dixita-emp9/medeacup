@@ -176,10 +176,52 @@ import ExperienceModal from '../components/ExperienceModal.astro';
 			return `polygon(${all.map(p => `${p.x.toFixed(2)}% ${p.y.toFixed(2)}%`).join(', ')})`;
 		}
 
+		function resetPrincipleExperience(overlayEl: HTMLElement) {
+			if (overlayEl.id !== 'modal-page-principle') return;
+
+			const checkbox = overlayEl.querySelector<HTMLInputElement>('#ppl-checkbox');
+			const stage = overlayEl.querySelector<HTMLElement>('#ppl-stage');
+			if (checkbox) checkbox.checked = false;
+			stage?.classList.remove('is-unlocked', 'is-selecting', 'is-expanded', 'is-info');
+			overlayEl.querySelectorAll<HTMLElement>('[data-principle-pane]').forEach((pane) => pane.classList.remove('is-active'));
+			overlayEl.querySelectorAll<HTMLElement>('[data-principle-tab]').forEach((tab) => {
+				const isPrincipleTab = tab.dataset.principleTab === 'principle';
+				tab.classList.toggle('is-active', isPrincipleTab);
+				tab.setAttribute('aria-selected', String(isPrincipleTab));
+			});
+		}
+
+		function resetHomePrincipleToggle() {
+			const homeToggle = document.getElementById('toggle-unlock-1percent') as HTMLInputElement | null;
+			if (homeToggle) homeToggle.checked = false;
+		}
+
+		// Reset before any 1% launch control opens the modal. This also covers
+		// alternate launch paths that do not use the shared modal opener.
+		document.addEventListener('click', (event) => {
+			const target = event.target as Element | null;
+			if (!target?.closest('[data-folder-id="principle"], [data-dock-id="dock-percent"]')) return;
+
+			const principleOverlay = document.getElementById('modal-page-principle');
+			if (principleOverlay) resetPrincipleExperience(principleOverlay);
+		});
+
 		/**
 		 * Open any modal overlay with Genie animation from sourceEl
 		 */
 		function openModalWithGenie(overlayEl: HTMLElement, sourceEl: HTMLElement | null, isHistoryEvent = false) {
+			resetPrincipleExperience(overlayEl);
+			if (overlayEl.id === 'modal-page-framework') {
+				overlayEl.classList.remove('is-experience-tab');
+				overlayEl.querySelector<HTMLElement>('#fw-desktop-canvas')?.removeAttribute('hidden');
+				const experiencePanel = overlayEl.querySelector<HTMLElement>('#fw-experience-panel');
+				if (experiencePanel) experiencePanel.hidden = true;
+				overlayEl.querySelectorAll<HTMLElement>('[data-framework-tab]').forEach((tab) => {
+					const isFrameworkTab = tab.dataset.frameworkTab === 'framework';
+					tab.classList.toggle('is-active', isFrameworkTab);
+				});
+			}
+
 			if (!isHistoryEvent) {
 				history.pushState({ modal: overlayEl.id }, "", "#" + overlayEl.id);
 			}
@@ -280,6 +322,8 @@ import ExperienceModal from '../components/ExperienceModal.astro';
 				overlayEl.classList.remove('is-open');
 				overlayEl.style.opacity = '';
 				macWin.style.clipPath = '';
+				resetPrincipleExperience(overlayEl);
+				if (overlayEl.id === 'modal-page-principle') resetHomePrincipleToggle();
 
 				if (window.matchMedia('(max-width: 900px)').matches) {
 					document.querySelectorAll('.dock-btn').forEach(btn => btn.classList.remove('is-active', 'is-active-home'));
@@ -525,6 +569,29 @@ import ExperienceModal from '../components/ExperienceModal.astro';
 			}
 		}
 
+		const frameworkTabs = document.querySelectorAll<HTMLElement>('[data-framework-tab]');
+		const frameworkExperiencePanel = document.getElementById('fw-experience-panel');
+
+		frameworkTabs.forEach((tab) => {
+			tab.addEventListener('click', () => {
+				const showFramework = tab.dataset.frameworkTab === 'framework';
+				document.getElementById('modal-page-framework')?.classList.toggle('is-experience-tab', !showFramework);
+				frameworkTabs.forEach((item) => item.classList.toggle('is-active', item === tab));
+				if (fwDesktopCanvas) fwDesktopCanvas.hidden = !showFramework;
+				if (frameworkExperiencePanel) frameworkExperiencePanel.hidden = showFramework;
+			});
+		});
+
+		document.querySelector<HTMLElement>('[data-open-experience]')?.addEventListener('click', (event) => {
+			const frameworkModal = document.getElementById('modal-page-framework');
+			const experienceModal = document.getElementById('modal-page-experience');
+			if (!experienceModal) return;
+
+			frameworkModal?.classList.remove('is-open');
+			history.replaceState({ modal: 'modal-page-experience' }, '', '#modal-page-experience');
+			openModalWithGenie(experienceModal, event.currentTarget as HTMLElement, true);
+		});
+
 		
 		// Framework explicit back button logic
 		// Mobile grid document click
@@ -541,6 +608,16 @@ import ExperienceModal from '../components/ExperienceModal.astro';
 			btn.addEventListener('click', (e) => {
 				e.preventDefault();
 				const targetId = btn.getAttribute('data-close-target');
+				if (targetId === 'modal-page-principle') {
+					const principleOverlay = document.getElementById(targetId);
+					if (principleOverlay) {
+						resetPrincipleExperience(principleOverlay);
+						resetHomePrincipleToggle();
+						history.replaceState(null, '', window.location.pathname + window.location.search);
+						closeModalWithGenie(principleOverlay);
+					}
+					return;
+				}
 				if (targetId === "modal-page-cases" && casesDetailView && casesDetailView.style.display !== "none") {
 					returnToCasesGridFromDetail();
 					return;
@@ -874,6 +951,10 @@ import ExperienceModal from '../components/ExperienceModal.astro';
 		const pplStage     = document.getElementById('ppl-stage');
 		const pplCheckbox  = document.getElementById('ppl-checkbox') as HTMLInputElement | null;
 		const pplExpandBtn = document.getElementById('ppl-expand-btn');
+		const pplCards = document.querySelectorAll<HTMLElement>('[data-principle-card]');
+		const pplInsightCards = document.querySelectorAll<HTMLElement>('#modal-page-principle .ppl-exp-card');
+		const principleTabs = document.querySelectorAll<HTMLElement>('[data-principle-tab]');
+		const principleInfoPanes = document.querySelectorAll<HTMLElement>('[data-principle-pane]');
 
 		// Toggle unlock
 		if (pplCheckbox && pplStage) {
@@ -882,23 +963,43 @@ import ExperienceModal from '../components/ExperienceModal.astro';
 					pplStage.classList.add('is-unlocked');
 				} else {
 					// Locking again also collapses expanded view
-					pplStage.classList.remove('is-unlocked', 'is-expanded');
+					pplStage.classList.remove('is-unlocked', 'is-selecting', 'is-expanded', 'is-info');
 				}
 			});
 		}
 
 		// Expand button
 		pplExpandBtn?.addEventListener('click', () => {
-			pplStage?.classList.add('is-expanded');
+			pplStage?.classList.add('is-selecting');
 		});
 
-		// Reset everything when modal is closed
-		const principleModal = document.getElementById('modal-page-principle');
-		principleModal?.querySelector('.close-modal-btn')?.addEventListener('click', () => {
-			if (pplCheckbox) pplCheckbox.checked = false;
-			pplStage?.classList.remove('is-unlocked', 'is-expanded');
+		// Choose an icon card to open its matching highlighted insight.
+		pplCards.forEach((card) => {
+			card.addEventListener('click', () => {
+				const selectedIndex = Number(card.dataset.principleCard);
+				pplInsightCards.forEach((insightCard, index) => {
+					insightCard.classList.toggle('ppl-exp-card--active', index === selectedIndex);
+				});
+				pplStage?.classList.remove('is-selecting');
+				pplStage?.classList.add('is-expanded');
+			});
 		});
 
+		principleTabs.forEach((tab) => {
+			tab.addEventListener('click', () => {
+				const selectedTab = tab.dataset.principleTab ?? 'principle';
+				const isInfoTab = selectedTab !== 'principle';
+				principleTabs.forEach((item) => {
+					const isActive = item === tab;
+					item.classList.toggle('is-active', isActive);
+					item.setAttribute('aria-selected', String(isActive));
+				});
+				principleInfoPanes.forEach((pane) => {
+					pane.classList.toggle('is-active', pane.dataset.principlePane === selectedTab);
+				});
+				pplStage?.classList.toggle('is-info', isInfoTab);
+			});
+		});
 
 		// ──────────────────────────────────────────────────
 		// 10. MacOS Dock Stack Interactions

@@ -1,11 +1,20 @@
 ---
+
 ---
 
 <div class="modal-overlay" id="quiz-modal">
   <div class="modal-window quiz-dialog">
     <div class="modal-header">
-      <div class="header-left"><span class="dot-btn dot-red" id="btn-close-quiz-dot"></span><span class="modal-title">MEDIACUP - Compatibility Quiz</span></div>
-      <button class="close-modal-btn" id="close-quiz-modal" aria-label="Close quiz">&times;</button>
+      <div class="header-left">
+        <span class="dot-btn dot-red" id="btn-close-quiz-dot"></span><span
+          class="modal-title">MEDIACUP - Compatibility Quiz</span
+        >
+      </div>
+      <button
+        class="close-modal-btn"
+        id="close-quiz-modal"
+        aria-label="Close quiz">&times;</button
+      >
     </div>
     <div class="quiz-dialog-body" id="quiz-dialog-body"></div>
   </div>
@@ -25,10 +34,21 @@
     -webkit-backdrop-filter: blur(16px) saturate(115%);
     opacity: 0;
     pointer-events: none;
-    transition: opacity .25s ease;
+    transition: opacity 0.25s ease;
   }
 
-  .modal-overlay#quiz-modal.is-open { opacity: 1; pointer-events: auto; }
+  .modal-overlay#quiz-modal.is-open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .modal-overlay#quiz-modal .quiz-dialog {
+    isolation: isolate;
+    /* background: #f6f2ec !important;
+    background-image: linear-gradient(135deg, rgba(255,255,255,.98), rgba(246,242,236,.98)) !important; */
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
 
   .modal-overlay#quiz-modal .modal-header {
     display: flex;
@@ -48,73 +68,338 @@
     cursor: pointer;
   }
 
-  .quiz-dialog { width: min(92vw, 560px); max-height: 88vh; overflow: hidden; background: #f6f2ec; border-radius: 28px; }
-  .quiz-dialog-body { max-height: calc(88vh - 66px); overflow-y: auto; padding: 28px 26px 30px; }
-  .header-left { display: flex; align-items: center; gap: 10px; }
-  .modal-title { font-size: 14px; font-weight: 600; color: var(--text-primary); }
-  .quiz-intro h2 { margin: 0 0 8px; font-family: var(--font-display); font-size: 32px; font-weight: 500; line-height: 1.05; }
-  .quiz-intro p, .quiz-form-copy { margin: 0 0 22px; color: var(--text-secondary); font-size: 14px; line-height: 1.5; }
-  .quiz-progress { display: flex; gap: 6px; margin-bottom: 24px; }
-  .quiz-progress i { flex: 1; height: 4px; border-radius: 99px; background: rgba(24,24,27,.12); }
-  .quiz-progress i.is-active, .quiz-progress i.is-done { background: var(--brand-red); }
-  .quiz-step-label { margin-bottom: 10px; color: var(--brand-red); font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
-  .quiz-question { margin: 0 0 20px; font-size: 21px; line-height: 1.28; }
-  .quiz-options { display: grid; gap: 10px; }
-  .quiz-option-btn { display: flex; align-items: flex-start; gap: 12px; width: 100%; padding: 14px 15px; border: 1px solid rgba(24,24,27,.12); border-radius: 15px; background: rgba(255,255,255,.68); color: var(--text-primary); text-align: left; cursor: pointer; transition: border-color .18s, background .18s, transform .18s; }
-  .quiz-option-btn:hover { transform: translateY(-1px); border-color: var(--brand-red); }
-  .quiz-option-btn.is-selected { border-color: var(--brand-red); background: rgba(230,46,45,.08); }
-  .opt-num { flex: 0 0 25px; font-size: 12px; font-weight: 700; color: var(--brand-red); }
-  .opt-text { font-size: 14px; line-height: 1.45; }
-  .quiz-nav { display: flex; justify-content: space-between; gap: 12px; margin-top: 24px; }
-  .quiz-btn { padding: 12px 20px; border: 0; border-radius: 999px; background: #111; color: #fff; font: 600 14px var(--font-body); cursor: pointer; }
-  .quiz-btn.secondary { background: transparent; border: 1px solid rgba(24,24,27,.16); color: var(--text-primary); }
-  .quiz-btn:disabled { opacity: .35; cursor: not-allowed; }
-  .quiz-form { display: grid; gap: 14px; }
-  .quiz-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-  .quiz-input, .quiz-country-code { width: 100%; min-height: 50px; padding: 0 16px; border: 1px solid rgba(115, 104, 91, 0.16); border-radius: 16px; background: rgba(255, 255, 255, 0.24); color: var(--text-primary); font: 15px var(--font-body); outline: none; box-shadow: inset 0 1px 0 rgba(255,255,255,.58); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
-  .quiz-country-code { display: flex; align-items: center; justify-content: center; width: 58px; color: rgba(100,95,90,.8); }
-  .quiz-phone-row { display: grid; grid-template-columns: 58px 1fr; gap: 12px; }
-  .quiz-input:focus { box-shadow: inset 0 0 0 2px rgba(230,46,45,.35); }
-  .quiz-success { text-align: center; padding: 30px 10px; }
-  .quiz-success h2 { margin-bottom: 8px; font-family: var(--font-display); font-size: 36px; font-weight: 500; }
-  .quiz-success p { color: var(--text-secondary); }
-  @media (max-width: 600px) { .quiz-dialog-body { padding: 22px 18px 24px; } .quiz-form-row { grid-template-columns: 1fr; } }
+  .quiz-dialog {
+    width: min(92vw, 560px);
+    max-height: 88vh;
+    overflow: hidden;
+    background: #f6f2ec;
+    border-radius: 28px;
+  }
+  .quiz-dialog-body {
+    max-height: calc(88vh - 66px);
+    overflow-y: auto;
+    padding: 28px 26px 30px;
+    /* background: #f6f2ec !important; */
+  }
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .modal-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+  .quiz-intro h2 {
+    margin: 0 0 8px;
+    font-family: var(--font-display);
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 1.05;
+  }
+  .quiz-intro p,
+  .quiz-form-copy {
+    margin: 0 0 22px;
+    color: var(--text-secondary);
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  .quiz-progress {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 24px;
+  }
+  .quiz-progress i {
+    flex: 1;
+    height: 4px;
+    border-radius: 99px;
+    background: rgba(24, 24, 27, 0.12);
+  }
+  .quiz-progress i.is-active,
+  .quiz-progress i.is-done {
+    background: var(--brand-red);
+  }
+  .quiz-step-label {
+    margin-bottom: 10px;
+    color: var(--brand-red);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .quiz-question {
+    margin: 0 0 20px;
+    font-size: 21px;
+    line-height: 1.28;
+  }
+  .quiz-options {
+    display: grid;
+    gap: 10px;
+  }
+  .quiz-option-btn {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    width: 100%;
+    padding: 14px 15px;
+    border: 1px solid rgba(24, 24, 27, 0.12);
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.68);
+    color: var(--text-primary);
+    text-align: left;
+    cursor: pointer;
+    transition:
+      border-color 0.18s,
+      background 0.18s,
+      transform 0.18s;
+  }
+  .quiz-option-btn:hover {
+    transform: translateY(-1px);
+    border-color: var(--brand-red);
+  }
+  .quiz-option-btn.is-selected {
+    border-color: var(--brand-red);
+    background: rgba(230, 46, 45, 0.08);
+  }
+  .opt-num {
+    flex: 0 0 25px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--brand-red);
+  }
+  .opt-text {
+    font-size: 14px;
+    line-height: 1.45;
+  }
+  .quiz-nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 24px;
+  }
+  .quiz-btn {
+    padding: 12px 20px;
+    border: 0;
+    border-radius: 999px;
+    background: #111;
+    color: #fff;
+    font: 600 14px var(--font-body);
+    cursor: pointer;
+  }
+  .quiz-btn.secondary {
+    background: transparent;
+    border: 1px solid rgba(24, 24, 27, 0.16);
+    color: var(--text-primary);
+  }
+  .quiz-btn:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+  }
+  .quiz-form {
+    display: grid;
+    gap: 14px;
+  }
+  .quiz-form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .quiz-input,
+  .quiz-country-code {
+    width: 100%;
+    min-height: 50px;
+    padding: 0 16px;
+    border: 1px solid rgba(115, 104, 91, 0.16);
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.24);
+    color: var(--text-primary);
+    font: 15px var(--font-body);
+    outline: none;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.58);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+  .quiz-country-code {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 58px;
+    color: rgba(100, 95, 90, 0.8);
+  }
+  .quiz-phone-row {
+    display: grid;
+    grid-template-columns: 58px 1fr;
+    gap: 12px;
+  }
+  .quiz-input:focus {
+    box-shadow: inset 0 0 0 2px rgba(230, 46, 45, 0.35);
+  }
+  .quiz-success {
+    text-align: center;
+    padding: 30px 10px;
+  }
+  .quiz-success h2 {
+    margin-bottom: 8px;
+    font-family: var(--font-display);
+    font-size: 36px;
+    font-weight: 500;
+  }
+  .quiz-success p {
+    color: var(--text-secondary);
+  }
+  @media (max-width: 600px) {
+    .quiz-dialog-body {
+      padding: 22px 18px 24px;
+    }
+    .quiz-form-row {
+      grid-template-columns: 1fr;
+    }
+  }
 </style>
 
 <script>
   const quizQuestions = [
-    { section: 'First, the context.', question: 'What is the most honest description of where your brand is today?', options: ["We have a product that sells. We don't fully understand why.", "We're scaling. Our positioning hasn't kept up.", "We're early. Still finding our footing in the market.", "We're established. We want execution, not interrogation."] },
-    { section: "Now, what's actually broken.", question: 'What was the last thing that made you question your positioning?', options: ['Never formally questioned. It evolved by accident.', 'A bad quarter or a lost pitch.', 'We did a brand exercise. It produced a deck nobody uses.', 'A specific conversation with a buyer that changed how we saw ourselves.'] },
-    { section: "Now, what's actually broken.", question: 'Your three best customers are asked why they chose you. What do they say?', options: ["We genuinely don't know. We've never asked.", "We have a theory. It's never been tested.", 'Price, probably. Or familiarity.', "We know. It's documented and it drives every brief."] },
-    { section: "Finally, what you're here for.", question: 'A campaign underperforms. What happens next inside your organisation?', options: ['We change the creative.', 'We change the channel.', 'We change the agency.', 'We go back to the brief and question the assumption.'] },
-    { section: "Finally, what you're here for.", question: 'If this engagement works, what problem disappears?', options: ["We stop guessing why we're not growing the way we should be.", 'We have a positioning we can hand to our team and finally move forward.', 'Leadership stops second-guessing every brief.', 'Honestly, we want more output. Content, campaigns, leads.'] },
-    { section: "Finally, what you're here for.", question: 'What would have to be true twelve months from now for you to call this a success?', options: ['We understand our buyer better than any competitor does.', 'Our conversion rate is up and we know exactly why.', "The team is aligned. We're not revisiting the same questions.", "I'd know it when I see it."] }
+    {
+      section: "First, the context.",
+      question:
+        "What is the most honest description of where your brand is today?",
+      options: [
+        "We have a product that sells. We don't fully understand why.",
+        "We're scaling. Our positioning hasn't kept up.",
+        "We're early. Still finding our footing in the market.",
+        "We're established. We want execution, not interrogation.",
+      ],
+    },
+    {
+      section: "Now, what's actually broken.",
+      question:
+        "What was the last thing that made you question your positioning?",
+      options: [
+        "Never formally questioned. It evolved by accident.",
+        "A bad quarter or a lost pitch.",
+        "We did a brand exercise. It produced a deck nobody uses.",
+        "A specific conversation with a buyer that changed how we saw ourselves.",
+      ],
+    },
+    {
+      section: "Now, what's actually broken.",
+      question:
+        "Your three best customers are asked why they chose you. What do they say?",
+      options: [
+        "We genuinely don't know. We've never asked.",
+        "We have a theory. It's never been tested.",
+        "Price, probably. Or familiarity.",
+        "We know. It's documented and it drives every brief.",
+      ],
+    },
+    {
+      section: "Finally, what you're here for.",
+      question:
+        "A campaign underperforms. What happens next inside your organisation?",
+      options: [
+        "We change the creative.",
+        "We change the channel.",
+        "We change the agency.",
+        "We go back to the brief and question the assumption.",
+      ],
+    },
+    {
+      section: "Finally, what you're here for.",
+      question: "If this engagement works, what problem disappears?",
+      options: [
+        "We stop guessing why we're not growing the way we should be.",
+        "We have a positioning we can hand to our team and finally move forward.",
+        "Leadership stops second-guessing every brief.",
+        "Honestly, we want more output. Content, campaigns, leads.",
+      ],
+    },
+    {
+      section: "Finally, what you're here for.",
+      question:
+        "What would have to be true twelve months from now for you to call this a success?",
+      options: [
+        "We understand our buyer better than any competitor does.",
+        "Our conversion rate is up and we know exactly why.",
+        "The team is aligned. We're not revisiting the same questions.",
+        "I'd know it when I see it.",
+      ],
+    },
   ];
 
-  const quizBody = document.getElementById('quiz-dialog-body');
+  const quizBody = document.getElementById("quiz-dialog-body");
   let quizStep = 0;
   const quizAnswers = Array(quizQuestions.length).fill(null);
 
   const renderQuizStep = () => {
     if (!quizBody) return;
     const q = quizQuestions[quizStep];
-    const pips = quizQuestions.map((_, index) => `<i class="${index < quizStep ? 'is-done' : index === quizStep ? 'is-active' : ''}"></i>`).join('');
-    const options = q.options.map((option, index) => `<button type="button" class="quiz-option-btn ${quizAnswers[quizStep] === index ? 'is-selected' : ''}" data-option="${index}"><span class="opt-num">${String.fromCharCode(65 + index)}</span><span class="opt-text">${option}</span></button>`).join('');
-    quizBody.innerHTML = `<div class="quiz-intro"><h2>Before we talk, we read the room.</h2><p>This takes a few minutes. It tells us both something useful.</p></div><div class="quiz-progress">${pips}</div><div class="quiz-step-label">Question ${quizStep + 1} of 6 · ${q.section}</div><h3 class="quiz-question">${q.question}</h3><div class="quiz-options">${options}</div><div class="quiz-nav"><button type="button" class="quiz-btn secondary" id="quiz-back" ${quizStep === 0 ? 'disabled' : ''}>Back</button><button type="button" class="quiz-btn" id="quiz-next" ${quizAnswers[quizStep] === null ? 'disabled' : ''}>${quizStep === 5 ? 'Continue to your details' : 'Continue'}</button></div>`;
-    quizBody.querySelectorAll<HTMLButtonElement>('[data-option]').forEach(button => button.addEventListener('click', () => { quizAnswers[quizStep] = Number(button.dataset.option); renderQuizStep(); }));
-    quizBody.querySelector('#quiz-back')?.addEventListener('click', () => { if (quizStep > 0) { quizStep -= 1; renderQuizStep(); } });
-    quizBody.querySelector('#quiz-next')?.addEventListener('click', () => { if (quizAnswers[quizStep] === null) return; if (quizStep === 5) renderQuizForm(); else { quizStep += 1; renderQuizStep(); } });
+    const pips = quizQuestions
+      .map(
+        (_, index) =>
+          `<i class="${index < quizStep ? "is-done" : index === quizStep ? "is-active" : ""}"></i>`,
+      )
+      .join("");
+    const options = q.options
+      .map(
+        (option, index) =>
+          `<button type="button" class="quiz-option-btn ${quizAnswers[quizStep] === index ? "is-selected" : ""}" data-option="${index}"><span class="opt-num">${String.fromCharCode(65 + index)}</span><span class="opt-text">${option}</span></button>`,
+      )
+      .join("");
+    quizBody.innerHTML = `<div class="quiz-intro"><h2>Before we talk, we read the room.</h2><p>This takes a few minutes. It tells us both something useful.</p></div><div class="quiz-progress">${pips}</div><div class="quiz-step-label">Question ${quizStep + 1} of 6 · ${q.section}</div><h3 class="quiz-question">${q.question}</h3><div class="quiz-options">${options}</div><div class="quiz-nav"><button type="button" class="quiz-btn secondary" id="quiz-back" ${quizStep === 0 ? "disabled" : ""}>Back</button><button type="button" class="quiz-btn" id="quiz-next" ${quizAnswers[quizStep] === null ? "disabled" : ""}>${quizStep === 5 ? "Continue to your details" : "Continue"}</button></div>`;
+    quizBody
+      .querySelectorAll<HTMLButtonElement>("[data-option]")
+      .forEach((button) =>
+        button.addEventListener("click", () => {
+          quizAnswers[quizStep] = Number(button.dataset.option);
+          renderQuizStep();
+        }),
+      );
+    quizBody.querySelector("#quiz-back")?.addEventListener("click", () => {
+      if (quizStep > 0) {
+        quizStep -= 1;
+        renderQuizStep();
+      }
+    });
+    quizBody.querySelector("#quiz-next")?.addEventListener("click", () => {
+      if (quizAnswers[quizStep] === null) return;
+      if (quizStep === 5) renderQuizForm();
+      else {
+        quizStep += 1;
+        renderQuizStep();
+      }
+    });
   };
 
   const renderQuizForm = () => {
     if (!quizBody) return;
     quizBody.innerHTML = `<div class="quiz-intro"><h2>One last thing.</h2><p class="quiz-form-copy">Leave your details and we’ll come back to you with a specific point of view on what we found.</p></div><form class="quiz-form" id="quiz-lead-form"><div class="quiz-form-row"><input class="quiz-input" id="quiz-first-name" placeholder="First Name" autocomplete="given-name" required><input class="quiz-input" id="quiz-last-name" placeholder="Last Name" autocomplete="family-name" required></div><input class="quiz-input" id="quiz-email" type="email" placeholder="Email" autocomplete="email" required><div class="quiz-phone-row"><div class="quiz-country-code">91</div><input class="quiz-input" id="quiz-phone" type="tel" placeholder="Phone" autocomplete="tel"></div><div class="quiz-nav"><button type="button" class="quiz-btn secondary" id="quiz-form-back">Back</button><button class="quiz-btn" type="submit">Email</button></div></form>`;
-    quizBody.querySelector('#quiz-form-back')?.addEventListener('click', () => renderQuizStep());
-    quizBody.querySelector('#quiz-lead-form')?.addEventListener('submit', event => { event.preventDefault(); const form = event.currentTarget as HTMLFormElement; if (!form.reportValidity()) return; quizBody.innerHTML = `<div class="quiz-success"><h2>Noted.</h2><p>We’ll be in touch within 24 hours.</p></div>`; });
+    quizBody
+      .querySelector("#quiz-form-back")
+      ?.addEventListener("click", () => renderQuizStep());
+    quizBody
+      .querySelector("#quiz-lead-form")
+      ?.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const form = event.currentTarget as HTMLFormElement;
+        if (!form.reportValidity()) return;
+        quizBody.innerHTML = `<div class="quiz-success"><h2>Noted.</h2><p>We’ll be in touch within 24 hours.</p></div>`;
+      });
   };
 
   renderQuizStep();
-  document.getElementById('close-quiz-modal')?.addEventListener('click', () => document.getElementById('quiz-modal')?.classList.remove('is-open'));
-  document.getElementById('btn-close-quiz-dot')?.addEventListener('click', () => document.getElementById('quiz-modal')?.classList.remove('is-open'));
-  document.getElementById('quiz-modal')?.addEventListener('click', event => { if (event.target === document.getElementById('quiz-modal')) (event.currentTarget as HTMLElement).classList.remove('is-open'); });
+  document
+    .getElementById("close-quiz-modal")
+    ?.addEventListener("click", () =>
+      document.getElementById("quiz-modal")?.classList.remove("is-open"),
+    );
+  document
+    .getElementById("btn-close-quiz-dot")
+    ?.addEventListener("click", () =>
+      document.getElementById("quiz-modal")?.classList.remove("is-open"),
+    );
+  document.getElementById("quiz-modal")?.addEventListener("click", (event) => {
+    if (event.target === document.getElementById("quiz-modal"))
+      (event.currentTarget as HTMLElement).classList.remove("is-open");
+  });
 </script>
