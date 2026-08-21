@@ -1380,44 +1380,76 @@
         </p>
       </aside>
 
-      <section class="about-copy-column">
+      <article class="about-editorial-content">
+        <h1>
+          Medeacup is a creative intelligence company built around one idea:
+          find what changes the economics.
+        </h1>
         <p>
-          In 2019, we took a diaper brand in Dubai that nobody had heard of. We
-          did not start with ads. We started with free trials in Facebook mother
-          groups. 400 leads. 60% conversion. The product sold before the brand
-          existed.
+          We work where strategy, creativity and commercial execution meet. The
+          problem might be a buyer nobody has properly understood, a position
+          the market has not claimed, a message that does not move
+          consideration, a growth system that is leaking value, or an experience
+          that is failing to create preference. We find the leverage point,
+          develop the response and stay close to the outcome.
         </p>
-        <p>
-          That taught us something most marketing firms never learn: <strong
-            >growth does not start with campaigns. It starts with understanding
-            who is already buying and why.</strong
+
+        <section>
+          <h2>Why Medeacup</h2>
+          <em>The work has always come before the agency story.</em>
+          <p>
+            In 2019, an unknown diaper brand in Dubai needed customers before it
+            had a real market presence. We did not start with ads. We started
+            with free trials in Facebook mother groups. 400 leads. 60%
+            conversion. The product sold before the brand existed.
+          </p>
+          <p>
+            Later, a US sneaker brand had crossed $1M in sales but could not
+            clearly identify its buyer. Understanding the buyer moved monitored
+            sales from $500 to $3,000 a month in 40 days.
+          </p>
+          <p>
+            The lesson was consistent: find what actually matters, then build
+            around it.
+          </p>
+        </section>
+
+        <section>
+          <h2>How we work</h2>
+          <em
+            >Close to the problem. Close to the team. Accountable to outcomes.</em
           >
-        </p>
-        <p>
-          A few years later, a sneaker brand in the US came to us after crossing
-          $1M in sales. They could not tell us who their buyer was. We stopped
-          guessing and started asking. The answer changed everything. $500 in
-          monitored sales became $3,000 a month in under 40 days. Not from more
-          spend. From understanding.
-        </p>
-        <p>
-          That is what Mediacup does. We find the insight that changes the
-          economics, then we build the system that compounds it.
-        </p>
-        <p>
-          We are not a large firm. That is intentional. Every engagement begins
-          with a direct conversation with the Founding Partner. The person who
-          diagnoses the problem is the same person who designs the solution. We
-          operate embedded within the business, not advising from the outside.
-          Close to the problem. Close to the team. Accountable to outcomes.
-        </p>
-        <p>
-          We work across D2C, retail, real estate, education, and hospitality in
-          India, the UK, the UAE, the USA, and Belgium. Our clients include
-          Godrej, FabIndia, Hirandani, DY Patil, Fern Hotels, Best Western, and
-          FCTRYLAB.
-        </p>
-      </section>
+          <p>
+            The people thinking about the problem stay close to the people
+            solving it. Strategy, creativity and execution are connected rather
+            than passed through disconnected layers. Every engagement starts
+            with a question, creates a Thinking Document, agrees on a metric and
+            is judged by whether that number moves.
+          </p>
+        </section>
+
+        <section>
+          <h2>Our standard</h2>
+          <em
+            >Senior thinking. Direct involvement. Commercial accountability.</em
+          >
+          <p>
+            The client should know who is thinking, who is making and what the
+            work is expected to change. Every engagement begins with a direct
+            conversation with the Founding Partner. The person who diagnoses the
+            problem is the same person who designs the solution.
+          </p>
+        </section>
+
+        <section>
+          <h2>The belief</h2>
+          <p>
+            The best work should make the business smarter than it was before we
+            arrived. That means leaving behind better decisions, better systems
+            and a clearer understanding of what moves the market.
+          </p>
+        </section>
+      </article>
     </div>
   </div>
 </div>
@@ -4285,5 +4317,91 @@
 
   #modal-page-framework.is-experience-tab .fw-experience-panel {
     display: grid !important;
+  }
+
+  /* About Us — quiet editorial content on the shared translucent surface. */
+  #modal-page-about .about-window-body {
+    display: grid;
+    grid-template-columns: minmax(250px, 30%) minmax(0, 1fr);
+    gap: clamp(28px, 4vw, 54px);
+    padding: 18px 24px 72px;
+    overflow-y: auto;
+    background:
+      radial-gradient(
+        circle at 14% 82%,
+        rgba(194, 220, 205, 0.28),
+        transparent 26%
+      ),
+      radial-gradient(
+        circle at 87% 22%,
+        rgba(235, 211, 197, 0.3),
+        transparent 26%
+      ),
+      rgba(250, 248, 243, 0.38) !important;
+  }
+
+  #modal-page-about .about-editorial-content {
+    width: 100%;
+    align-self: start;
+    padding: clamp(34px, 5vw, 70px) 24px 28px 0;
+  }
+
+  #modal-page-about .about-editorial-content h1 {
+    margin: 0 0 14px;
+    color: var(--text-primary);
+    font-family: var(--font-display);
+    font-size: clamp(28px, 3vw, 46px);
+    font-weight: 500;
+    letter-spacing: -0.05em;
+    line-height: 1.03;
+  }
+
+  #modal-page-about .about-editorial-content p {
+    margin: 0;
+    color: rgba(33, 33, 31, 0.76);
+    font-family: var(--font-body);
+    font-size: clamp(14px, 1.1vw, 16px);
+    line-height: 1.65;
+  }
+
+  #modal-page-about .about-editorial-content > p {
+    margin-bottom: 30px;
+  }
+
+  #modal-page-about .about-editorial-content section {
+    margin-top: 28px;
+  }
+
+  #modal-page-about .about-editorial-content h2 {
+    margin: 0 0 8px;
+    color: var(--brand-red);
+    font-family: var(--font-body);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  #modal-page-about .about-editorial-content em {
+    display: block;
+    margin-bottom: 16px;
+    color: rgba(40, 40, 38, 0.48);
+    font-family: var(--font-display);
+    font-size: 14px;
+  }
+
+  #modal-page-about .about-editorial-content section p + p {
+    margin-top: 14px;
+  }
+
+  @media (max-width: 700px) {
+    #modal-page-about .about-window-body {
+      grid-template-columns: 1fr;
+      padding: 18px 14px 88px;
+    }
+
+    #modal-page-about .about-editorial-content {
+      padding: 10px 8px 0;
+    }
   }
 </style>
