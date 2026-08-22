@@ -405,14 +405,25 @@ import ExperienceModal from '../components/ExperienceModal.astro';
 
 		const experienceGrid = document.getElementById('experience-view-grid');
 		const experienceDetail = document.getElementById('experience-view-detail');
+		const experienceDetailContent = document.querySelector<HTMLElement>('.experience-detail-content');
 		const experienceDetailTitle = document.getElementById('experience-detail-title');
-		const experienceDetailTab = document.getElementById('experience-detail-tab');
-		const openExperienceDetail = (item: HTMLElement) => {
-			const name = item.getAttribute('data-experience-id') || 'Experience Design';
+		const experienceContentPanels = document.querySelectorAll<HTMLElement>('[data-experience-content]');
+		const experienceTabs = document.querySelectorAll<HTMLButtonElement>('[data-experience-tab]');
+		const showExperienceDetail = (name: string) => {
 			if (experienceGrid) experienceGrid.hidden = true;
 			if (experienceDetail) experienceDetail.hidden = false;
 			if (experienceDetailTitle) experienceDetailTitle.textContent = name;
-			if (experienceDetailTab) experienceDetailTab.textContent = name;
+			const isContentTab = Array.from(experienceContentPanels).some((panel) => panel.dataset.experienceContent === name);
+			experienceContentPanels.forEach((panel) => {
+				panel.hidden = panel.dataset.experienceContent !== name;
+			});
+			experienceDetailContent?.classList.toggle('is-idea', isContentTab);
+			experienceTabs.forEach((tab) => {
+				tab.classList.toggle('is-active', tab.dataset.experienceTab === name);
+			});
+		};
+		const openExperienceDetail = (item: HTMLElement) => {
+			showExperienceDetail(item.getAttribute('data-experience-id') || 'The Idea');
 		};
 		experienceGrid?.addEventListener('click', (e) => {
 			const item = (e.target as HTMLElement).closest<HTMLElement>('[data-experience-id]');
@@ -422,6 +433,17 @@ import ExperienceModal from '../components/ExperienceModal.astro';
 			if (experienceDetail) experienceDetail.hidden = true;
 			if (experienceGrid) experienceGrid.hidden = false;
 		});
+		experienceTabs.forEach((tab) => {
+			tab.addEventListener('click', () => showExperienceDetail(tab.dataset.experienceTab || 'The Idea'));
+		});
+		document.querySelectorAll<HTMLElement>('.experience-contact-action').forEach((action) => action.addEventListener('click', (event) => {
+			event.stopPropagation();
+			const contactPanel = document.getElementById('contact-panel');
+			const dockMailBtn = document.querySelector<HTMLElement>('[data-dock-id="dock-mail"]');
+			contactPanel?.classList.add('is-open');
+			contactPanel?.setAttribute('aria-hidden', 'false');
+			dockMailBtn?.classList.add('is-active');
+		}));
 		document.getElementById('experience-play-video')?.addEventListener('click', openVideoModal);
 
 		// ──────────────────────────────────────────────────
