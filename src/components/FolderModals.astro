@@ -1,12 +1,12 @@
 ---
 const folderData = [
   {
-    id: 'modal-principle',
-    title: 'The 1% Principle',
-    subtitle: 'Strategic Market Whitespace Identification',
-    tag: 'Core Methodology',
+    id: "modal-principle",
+    title: "The 1% Principle",
+    subtitle: "Strategic Market Whitespace Identification",
+    tag: "Core Methodology",
     content: `
-      <p>The <strong>1% Principle</strong> is Mediacup's proprietary framework for uncovering the highest-value structural gap in your industry.</p>
+      <p>The <strong>1% Principle</strong> is MEDEACUP's proprietary framework for uncovering the highest-value structural gap in your industry.</p>
       <div class="modal-stats-grid">
         <div class="mstat-box">
           <span class="mstat-num">99%</span>
@@ -22,13 +22,13 @@ const folderData = [
         </div>
       </div>
       <p style="margin-top: 16px;">We help brands avoid red-ocean competition by positioning directly where unsatisfied high-margin demand accumulates.</p>
-    `
+    `,
   },
   {
-    id: 'modal-cases',
-    title: 'Cup Cases & Portfolio',
-    subtitle: 'Selected Client Success Stories',
-    tag: 'Case Studies',
+    id: "modal-cases",
+    title: "Cup Cases & Portfolio",
+    subtitle: "Selected Client Success Stories",
+    tag: "Case Studies",
     content: `
       <div class="cases-modal-list">
         <div class="case-modal-card">
@@ -47,13 +47,13 @@ const folderData = [
           <p>Created bespoke market narrative scaling D2C sales by 240% YoY.</p>
         </div>
       </div>
-    `
+    `,
   },
   {
-    id: 'modal-framework',
-    title: 'Cup Framework',
-    subtitle: 'The 4-Step Structural Execution Blueprint',
-    tag: 'Execution Model',
+    id: "modal-framework",
+    title: "Cup Framework",
+    subtitle: "The 4-Step Structural Execution Blueprint",
+    tag: "Execution Model",
     content: `
       <div class="framework-steps">
         <div class="fstep-item">
@@ -85,13 +85,13 @@ const folderData = [
           </div>
         </div>
       </div>
-    `
+    `,
   },
   {
-    id: 'modal-capabilities',
-    title: 'What we build',
-    subtitle: 'End-to-End Strategic & Digital Excellence',
-    tag: 'Capabilities',
+    id: "modal-capabilities",
+    title: "What we build",
+    subtitle: "End-to-End Strategic & Digital Excellence",
+    tag: "Capabilities",
     content: `
       <div class="cap-grid">
         <div class="cap-card">
@@ -115,26 +115,26 @@ const folderData = [
           <p>World-class visual aesthetics, motion design, and brand identity systems.</p>
         </div>
       </div>
-    `
+    `,
   },
   {
-    id: 'modal-about',
-    title: 'About Mediacup',
-    subtitle: 'Our Philosophy & Mission',
-    tag: 'Company Overview',
+    id: "modal-about",
+    title: "About MEDEACUP",
+    subtitle: "Our Philosophy & Mission",
+    tag: "Company Overview",
     content: `
-      <p>Mediacup is a premier strategic design and market acceleration agency. We believe that true market dominance does not come from doing 100 things slightly better, but from mastering the <strong>1% structural opportunity</strong> that changes everything.</p>
+      <p>MEDEACUP is a premier strategic design and market acceleration agency. We believe that true market dominance does not come from doing 100 things slightly better, but from mastering the <strong>1% structural opportunity</strong> that changes everything.</p>
       <div class="about-quote-box">
         "We don't build standard websites; we engineer high-impact digital ecosystems."
       </div>
       <p style="margin-top: 16px;">Our team of strategists, designers, and engineers partner with visionary leaders to create category-defining products.</p>
-    `
+    `,
   },
   {
-    id: 'modal-where',
-    title: 'Where We Work',
-    subtitle: 'Global Operations & Office Hubs',
-    tag: 'Locations',
+    id: "modal-where",
+    title: "Where We Work",
+    subtitle: "Global Operations & Office Hubs",
+    tag: "Locations",
     content: `
       <div class="locations-grid">
         <div class="location-card">
@@ -158,29 +158,31 @@ const folderData = [
           <p>Marina Bay Financial Tower 2</p>
         </div>
       </div>
-    `
-  }
+    `,
+  },
 ];
 ---
 
-{folderData.map(folder => (
-  <div class="modal-overlay folder-modal" id={folder.id}>
-    <div class="modal-window folder-dialog">
-      <div class="modal-header">
-        <div class="header-left">
-          <span class="dot-btn dot-red close-folder-modal-btn"></span>
-          <span class="modal-title">{folder.title}</span>
+{
+  folderData.map((folder) => (
+    <div class="modal-overlay folder-modal" id={folder.id}>
+      <div class="modal-window folder-dialog">
+        <div class="modal-header">
+          <div class="header-left">
+            <span class="dot-btn dot-red close-folder-modal-btn" />
+            <span class="modal-title">{folder.title}</span>
+          </div>
+          <span class="folder-tag-badge">{folder.tag}</span>
         </div>
-        <span class="folder-tag-badge">{folder.tag}</span>
-      </div>
 
-      <div class="folder-modal-body">
-        <h3 class="folder-subtitle">{folder.subtitle}</h3>
-        <div class="folder-main-html" set:html={folder.content} />
+        <div class="folder-modal-body">
+          <h3 class="folder-subtitle">{folder.subtitle}</h3>
+          <div class="folder-main-html" set:html={folder.content} />
+        </div>
       </div>
     </div>
-  </div>
-))}
+  ))
+}
 
 <style>
   .modal-overlay {
@@ -277,7 +279,7 @@ const folderData = [
     border-radius: 18px;
     border: 1px solid rgba(0, 0, 0, 0.06);
     text-align: center;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
   }
 
   :global(.mstat-num) {
@@ -307,7 +309,7 @@ const folderData = [
     padding: 16px 18px;
     border-radius: 20px;
     border: 1px solid rgba(0, 0, 0, 0.06);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
   }
 
   :global(.case-badge) {
@@ -386,7 +388,7 @@ const folderData = [
     background: #ffffff;
     padding: 16px;
     border-radius: 18px;
-    border: 1px solid rgba(0,0,0,0.06);
+    border: 1px solid rgba(0, 0, 0, 0.06);
   }
 
   :global(.cap-icon) {
@@ -429,7 +431,7 @@ const folderData = [
     background: #ffffff;
     padding: 16px;
     border-radius: 18px;
-    border: 1px solid rgba(0,0,0,0.06);
+    border: 1px solid rgba(0, 0, 0, 0.06);
   }
 
   :global(.loc-flag) {

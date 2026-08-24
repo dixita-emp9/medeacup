@@ -872,7 +872,7 @@ body:has(.modal-overlay.is-open:not(#quiz-modal)) .desktop-header .status-circle
 
 body:has(.modal-overlay.is-open:not(#quiz-modal)) .fullscreen-mac-window {
   width: 88vw;
-  height: 72vh !important;
+  height: 80vh !important;
   border-radius: 26px !important;
   overflow: hidden !important;
   isolation: isolate;
@@ -962,7 +962,7 @@ body:has(.modal-overlay.is-open:not(#quiz-modal)) .modal-overlay {
 }
 
 .fw-watermark-text {
-  max-width: 290px;
+  max-width: 410px;
   font-size: 42px !important;
   font-weight: 500 !important;
   line-height: 1.02 !important;

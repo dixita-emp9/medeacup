@@ -1,12 +1,12 @@
 ---
 const tabs = [
-  { id: 'tab-mission', name: 'Our Mission' },
-  { id: 'tab-cases', name: 'Cup Cases' },
-  { id: 'tab-framework', name: 'Cup Framework' },
-  { id: 'tab-capabilities', name: 'What we build' },
-  { id: 'tab-about', name: 'About Us' },
-  { id: 'tab-where', name: 'Where We Work' },
-  { id: 'tab-principle', name: 'The 1% Principle' },
+  { id: "tab-mission", name: "Our Mission" },
+  { id: "tab-cases", name: "Cup Cases" },
+  { id: "tab-framework", name: "Cup Framework" },
+  { id: "tab-capabilities", name: "What we build" },
+  { id: "tab-about", name: "About Us" },
+  { id: "tab-where", name: "Where We Work" },
+  { id: "tab-principle", name: "The 1% Principle" },
 ];
 ---
 
@@ -15,12 +15,19 @@ const tabs = [
     <!-- Top Tab Bar & Window Header -->
     <div class="fullscreen-window-header">
       <div class="tabs-container">
-        {tabs.map((tab, idx) => (
-          <button class={`tab-btn ${idx === 0 ? 'is-active' : ''}`} data-tab-id={tab.id}>
-            <span class="tab-title">{tab.name}</span>
-            <span class="tab-close-icon" title="Close tab">&times;</span>
-          </button>
-        ))}
+        {
+          tabs.map((tab, idx) => (
+            <button
+              class={`tab-btn ${idx === 0 ? "is-active" : ""}`}
+              data-tab-id={tab.id}
+            >
+              <span class="tab-title">{tab.name}</span>
+              <span class="tab-close-icon" title="Close tab">
+                &times;
+              </span>
+            </button>
+          ))
+        }
       </div>
 
       <div class="fullscreen-window-controls">
@@ -32,7 +39,6 @@ const tabs = [
 
     <!-- Window Body Content -->
     <div class="fullscreen-window-body">
-      
       <!-- TAB 1: OUR MISSION (Exact Layout from Screenshot MacBook Air - 10) -->
       <div class="tab-pane active" id="pane-tab-mission">
         <div class="mission-full-content">
@@ -43,11 +49,13 @@ const tabs = [
             </h1>
 
             <p class="mission-lead-p">
-              Most brands spread effort across everything. We find the one thing that changes the economics.
+              Most brands spread effort across everything. We find the one thing
+              that changes the economics.
             </p>
 
             <p class="mission-secondary-p">
-              One buyer insight. One positioning shift. One structural fix. Then we build the system that makes it compound.
+              One buyer insight. One positioning shift. One structural fix. Then
+              we build the system that makes it compound.
             </p>
 
             <!-- In Practice Badge Section -->
@@ -57,7 +65,10 @@ const tabs = [
               <ul class="practice-bullets">
                 <li>
                   <span class="bullet-cup-icon">☕</span>
-                  <span>Every engagement starts with one question: who is actually buying, and why?</span>
+                  <span
+                    >Every engagement starts with one question: who is actually
+                    buying, and why?</span
+                  >
                 </li>
                 <li>
                   <span class="bullet-cup-icon">☕</span>
@@ -65,11 +76,15 @@ const tabs = [
                 </li>
                 <li>
                   <span class="bullet-cup-icon">☕</span>
-                  <span>Every engagement agrees on one metric before work begins.</span>
+                  <span
+                    >Every engagement agrees on one metric before work begins.</span
+                  >
                 </li>
                 <li>
                   <span class="bullet-cup-icon">☕</span>
-                  <span>Every engagement is measured by whether that number moves.</span>
+                  <span
+                    >Every engagement is measured by whether that number moves.</span
+                  >
                 </li>
               </ul>
             </div>
@@ -83,9 +98,12 @@ const tabs = [
             </div>
 
             <div class="watermark-typography">
-              <span>Creative</span> <br />
-              <span>Intelligence for</span> <br />
-              <span>Measurable Market</span> <br />
+              <span>Creative</span>
+              <br />
+              <span>Intelligence for</span>
+              <br />
+              <span>Measurable Market</span>
+              <br />
               <span>Power.</span>
             </div>
           </div>
@@ -99,17 +117,25 @@ const tabs = [
           <div class="pane-case-card">
             <span class="pcase-badge">FinTech</span>
             <h3>NexaPay Global Scaling</h3>
-            <p>Captured 14% market share in 8 months through targeted structural positioning.</p>
+            <p>
+              Captured 14% market share in 8 months through targeted structural
+              positioning.
+            </p>
           </div>
           <div class="pane-case-card">
             <span class="pcase-badge">SaaS</span>
             <h3>CloudScale Enterprise</h3>
-            <p>Repositioned enterprise messaging resulting in 3.2x expansion in ARR.</p>
+            <p>
+              Repositioned enterprise messaging resulting in 3.2x expansion in
+              ARR.
+            </p>
           </div>
           <div class="pane-case-card">
             <span class="pcase-badge">Consumer</span>
             <h3>LuxeAura Transformation</h3>
-            <p>Created bespoke market narrative scaling D2C sales by 240% YoY.</p>
+            <p>
+              Created bespoke market narrative scaling D2C sales by 240% YoY.
+            </p>
           </div>
         </div>
       </div>
@@ -126,17 +152,25 @@ const tabs = [
           <div class="pf-card">
             <span class="pf-num">02</span>
             <h3>Structuralization</h3>
-            <p>Drafting the 1% positioning strategy and core narrative architecture.</p>
+            <p>
+              Drafting the 1% positioning strategy and core narrative
+              architecture.
+            </p>
           </div>
           <div class="pf-card">
             <span class="pf-num">03</span>
             <h3>Optimization</h3>
-            <p>Deploying digital assets, campaigns, and UX design touchpoints.</p>
+            <p>
+              Deploying digital assets, campaigns, and UX design touchpoints.
+            </p>
           </div>
           <div class="pf-card">
             <span class="pf-num">04</span>
             <h3>Scaling</h3>
-            <p>Continuous measurement, feedback loops, and market capture expansion.</p>
+            <p>
+              Continuous measurement, feedback loops, and market capture
+              expansion.
+            </p>
           </div>
         </div>
       </div>
@@ -148,32 +182,46 @@ const tabs = [
           <div class="pcap-card">
             <span class="pcap-emoji">🎯</span>
             <h3>Brand Positioning</h3>
-            <p>Disruptive messaging architectures designed to win top-tier markets.</p>
+            <p>
+              Disruptive messaging architectures designed to win top-tier
+              markets.
+            </p>
           </div>
           <div class="pcap-card">
             <span class="pcap-emoji">⚡</span>
             <h3>Digital Experience</h3>
-            <p>State-of-the-art web apps, interactive OS interfaces, and dynamic UX.</p>
+            <p>
+              State-of-the-art web apps, interactive OS interfaces, and dynamic
+              UX.
+            </p>
           </div>
           <div class="pcap-card">
             <span class="pcap-emoji">📊</span>
             <h3>Growth Engineering</h3>
-            <p>Data-driven acquisition engines built for long-term scalability.</p>
+            <p>
+              Data-driven acquisition engines built for long-term scalability.
+            </p>
           </div>
           <div class="pcap-card">
             <span class="pcap-emoji">💎</span>
             <h3>Creative Direction</h3>
-            <p>World-class visual aesthetics, motion design, and brand identity systems.</p>
+            <p>
+              World-class visual aesthetics, motion design, and brand identity
+              systems.
+            </p>
           </div>
         </div>
       </div>
 
       <!-- TAB 5: ABOUT US -->
       <div class="tab-pane" id="pane-tab-about">
-        <h2 class="pane-title">About Mediacup</h2>
-        <p class="pane-lead">Mediacup is a premier strategic design and market acceleration agency.</p>
+        <h2 class="pane-title">About MEDEACUP</h2>
+        <p class="pane-lead">
+          MEDEACUP is a premier strategic design and market acceleration agency.
+        </p>
         <div class="pane-quote">
-          "We don't build standard websites; we engineer high-impact digital ecosystems."
+          "We don't build standard websites; we engineer high-impact digital
+          ecosystems."
         </div>
       </div>
 
@@ -222,7 +270,6 @@ const tabs = [
           </div>
         </div>
       </div>
-
     </div>
   </div>
 </div>
@@ -294,7 +341,9 @@ const tabs = [
     font-weight: 600;
     color: var(--text-secondary);
     cursor: pointer;
-    transition: background-color var(--transition-fast), color var(--transition-fast);
+    transition:
+      background-color var(--transition-fast),
+      color var(--transition-fast);
   }
 
   .tab-btn:hover {
@@ -318,7 +367,9 @@ const tabs = [
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background-color 0.2s, color 0.2s;
+    transition:
+      background-color 0.2s,
+      color 0.2s;
   }
 
   .tab-close-icon:hover {
@@ -352,8 +403,14 @@ const tabs = [
   }
 
   @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(6px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
   /* OUR MISSION LAYOUT (MacBook Air - 10) */
@@ -451,7 +508,11 @@ const tabs = [
   .bulb-glow {
     position: absolute;
     inset: -10px;
-    background: radial-gradient(circle, rgba(255, 200, 50, 0.5) 0%, transparent 70%);
+    background: radial-gradient(
+      circle,
+      rgba(255, 200, 50, 0.5) 0%,
+      transparent 70%
+    );
     border-radius: 50%;
   }
 
@@ -479,18 +540,24 @@ const tabs = [
     margin-bottom: 28px;
   }
 
-  .pane-cases-grid, .pane-framework-grid, .pane-cap-grid, .pane-loc-grid {
+  .pane-cases-grid,
+  .pane-framework-grid,
+  .pane-cap-grid,
+  .pane-loc-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
   }
 
-  .pane-case-card, .pf-card, .pcap-card, .ploc-card {
+  .pane-case-card,
+  .pf-card,
+  .pcap-card,
+  .ploc-card {
     background: #ffffff;
     padding: 24px;
     border-radius: 24px;
-    border: 1px solid rgba(0,0,0,0.06);
-    box-shadow: 0 6px 18px rgba(0,0,0,0.04);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.04);
   }
 
   .pcase-badge {
@@ -504,14 +571,20 @@ const tabs = [
     margin-bottom: 10px;
   }
 
-  .pane-case-card h3, .pf-card h3, .pcap-card h3, .ploc-card h3 {
+  .pane-case-card h3,
+  .pf-card h3,
+  .pcap-card h3,
+  .ploc-card h3 {
     font-size: 18px;
     font-weight: 700;
     color: #18181b;
     margin-bottom: 8px;
   }
 
-  .pane-case-card p, .pf-card p, .pcap-card p, .ploc-card p {
+  .pane-case-card p,
+  .pf-card p,
+  .pcap-card p,
+  .ploc-card p {
     font-size: 14px;
     color: var(--text-secondary);
     line-height: 1.4;
@@ -526,7 +599,8 @@ const tabs = [
     margin-bottom: 8px;
   }
 
-  .pcap-emoji, .ploc-flag {
+  .pcap-emoji,
+  .ploc-flag {
     font-size: 32px;
     display: block;
     margin-bottom: 10px;
@@ -561,8 +635,8 @@ const tabs = [
     padding: 32px 24px;
     border-radius: 24px;
     text-align: center;
-    border: 1px solid rgba(0,0,0,0.06);
-    box-shadow: 0 6px 18px rgba(0,0,0,0.04);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.04);
   }
 
   .ps-num {

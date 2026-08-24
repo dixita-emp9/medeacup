@@ -1,21 +1,21 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import DesktopHeader from '../components/DesktopHeader.astro';
-import FolderGrid from '../components/FolderGrid.astro';
-import WindowMission from '../components/WindowMission.astro';
-import WindowProjects from '../components/WindowProjects.astro';
-import WindowQuiz from '../components/WindowQuiz.astro';
-import WindowVideo from '../components/WindowVideo.astro';
-import WindowPrinciple from '../components/WindowPrinciple.astro';
-import BottomDock from '../components/BottomDock.astro';
-import ContactPanel from '../components/ContactPanel.astro';
-import VideoModal from '../components/VideoModal.astro';
-import QuizModal from '../components/QuizModal.astro';
-import IndividualPageModals from '../components/IndividualPageModals.astro';
-import ExperienceModal from '../components/ExperienceModal.astro';
+import Layout from "../layouts/Layout.astro";
+import DesktopHeader from "../components/DesktopHeader.astro";
+import FolderGrid from "../components/FolderGrid.astro";
+import WindowMission from "../components/WindowMission.astro";
+import WindowProjects from "../components/WindowProjects.astro";
+import WindowQuiz from "../components/WindowQuiz.astro";
+import WindowVideo from "../components/WindowVideo.astro";
+import WindowPrinciple from "../components/WindowPrinciple.astro";
+import BottomDock from "../components/BottomDock.astro";
+import ContactPanel from "../components/ContactPanel.astro";
+import VideoModal from "../components/VideoModal.astro";
+import QuizModal from "../components/QuizModal.astro";
+import IndividualPageModals from "../components/IndividualPageModals.astro";
+import ExperienceModal from "../components/ExperienceModal.astro";
 ---
 
-<Layout title="MEDIACUP - Web OS Workspace">
+<Layout title="MEDEACUP - Web OS Workspace">
 	<main id="desktop-canvas">
 		<div class="desktop-stage">
 			<DesktopHeader />
@@ -37,44 +37,52 @@ import ExperienceModal from '../components/ExperienceModal.astro';
 </Layout>
 
 <script>
-	document.addEventListener('DOMContentLoaded', () => {
-		const windows = document.querySelectorAll<HTMLElement>('.mac-window');
+	document.addEventListener("DOMContentLoaded", () => {
+		const windows = document.querySelectorAll<HTMLElement>(".mac-window");
 		let activeZIndex = 100;
 
 		// ──────────────────────────────────────────────────
 		// 1. Drag-and-Drop Window Manager
 		// ──────────────────────────────────────────────────
 		windows.forEach((win) => {
-			const header = win.querySelector<HTMLElement>('.window-header');
+			const header = win.querySelector<HTMLElement>(".window-header");
 			if (!header) return;
 
 			let isDragging = false;
 			let didDrag = false;
 			let suppressNextClick = false;
-			let startX = 0, startY = 0, initialLeft = 0, initialTop = 0;
-			let maxLeft = 0, maxTop = 0;
+			let startX = 0,
+				startY = 0,
+				initialLeft = 0,
+				initialTop = 0;
+			let maxLeft = 0,
+				maxTop = 0;
 
 			const bringToFront = () => {
 				activeZIndex++;
 				win.style.zIndex = String(activeZIndex);
-				windows.forEach((w) => w.classList.remove('is-active'));
-				win.classList.add('is-active');
+				windows.forEach((w) => w.classList.remove("is-active"));
+				win.classList.add("is-active");
 			};
 
-			win.addEventListener('pointerdown', bringToFront);
+			win.addEventListener("pointerdown", bringToFront);
 
-			header.addEventListener('pointerdown', (e: PointerEvent) => {
-				if ((e.target as HTMLElement).classList.contains('dot-btn')) return;
+			header.addEventListener("pointerdown", (e: PointerEvent) => {
+				if ((e.target as HTMLElement).classList.contains("dot-btn"))
+					return;
 				isDragging = true;
 				didDrag = false;
 				bringToFront();
-				win.classList.add('is-dragging');
+				win.classList.add("is-dragging");
 				header.setPointerCapture(e.pointerId);
-				header.style.touchAction = 'none';
+				header.style.touchAction = "none";
 				startX = e.clientX;
 				startY = e.clientY;
 				const rect = win.getBoundingClientRect();
-				const parentRect = (win.offsetParent as HTMLElement | null)?.getBoundingClientRect() ?? new DOMRect(0, 0, 0, 0);
+				const parentRect =
+					(
+						win.offsetParent as HTMLElement | null
+					)?.getBoundingClientRect() ?? new DOMRect(0, 0, 0, 0);
 				// Always start from the rendered position. This is important for
 				// windows initially anchored with right/bottom rather than left/top.
 				// Coordinates must be relative to the desktop canvas, not the viewport.
@@ -82,21 +90,26 @@ import ExperienceModal from '../components/ExperienceModal.astro';
 				initialTop = rect.top - parentRect.top;
 				// Once a bottom/right-positioned window is dragged, switch it to the
 				// same pixel-based coordinates used by the other desktop windows.
-				win.style.right = 'auto';
-				win.style.bottom = 'auto';
+				win.style.right = "auto";
+				win.style.bottom = "auto";
 				win.style.left = `${initialLeft}px`;
 				win.style.top = `${initialTop}px`;
 				maxLeft = (win.offsetParent as HTMLElement | null)?.clientWidth
-					? (win.offsetParent as HTMLElement).clientWidth - win.offsetWidth - 10
+					? (win.offsetParent as HTMLElement).clientWidth -
+						win.offsetWidth -
+						10
 					: window.innerWidth - win.offsetWidth - 10;
 				maxTop = (win.offsetParent as HTMLElement | null)?.clientHeight
-					? (win.offsetParent as HTMLElement).clientHeight - win.offsetHeight - 70
+					? (win.offsetParent as HTMLElement).clientHeight -
+						win.offsetHeight -
+						70
 					: window.innerHeight - win.offsetHeight - 70;
 			});
 
-			header.addEventListener('pointermove', (e: PointerEvent) => {
+			header.addEventListener("pointermove", (e: PointerEvent) => {
 				if (!isDragging) return;
-				if (Math.hypot(e.clientX - startX, e.clientY - startY) > 5) didDrag = true;
+				if (Math.hypot(e.clientX - startX, e.clientY - startY) > 5)
+					didDrag = true;
 				let newLeft = initialLeft + (e.clientX - startX);
 				let newTop = initialTop + (e.clientY - startY);
 				newLeft = Math.max(10, Math.min(newLeft, maxLeft));
@@ -109,23 +122,35 @@ import ExperienceModal from '../components/ExperienceModal.astro';
 				if (!isDragging) return;
 				isDragging = false;
 				if (didDrag) suppressNextClick = true;
-				win.classList.remove('is-dragging');
-				try { header.releasePointerCapture(e.pointerId); } catch {}
+				win.classList.remove("is-dragging");
+				try {
+					header.releasePointerCapture(e.pointerId);
+				} catch {}
 			};
-			header.addEventListener('pointerup', stopDrag);
-			header.addEventListener('pointercancel', stopDrag);
+			header.addEventListener("pointerup", stopDrag);
+			header.addEventListener("pointercancel", stopDrag);
 
 			// A drag emits a click on pointer release; swallow only that synthetic click.
-			win.addEventListener('click', (e) => {
-				if (!suppressNextClick) return;
-				e.stopPropagation();
-				suppressNextClick = false;
-			}, true);
+			win.addEventListener(
+				"click",
+				(e) => {
+					if (!suppressNextClick) return;
+					e.stopPropagation();
+					suppressNextClick = false;
+				},
+				true,
+			);
 
-			const dotRed = win.querySelector<HTMLElement>('.dot-red');
-			const dotBlack = win.querySelector<HTMLElement>('.dot-black');
-			dotRed?.addEventListener('click', (e) => { e.stopPropagation(); win.classList.add('is-minimized'); });
-			dotBlack?.addEventListener('click', (e) => { e.stopPropagation(); win.classList.toggle('is-minimized'); });
+			const dotRed = win.querySelector<HTMLElement>(".dot-red");
+			const dotBlack = win.querySelector<HTMLElement>(".dot-black");
+			dotRed?.addEventListener("click", (e) => {
+				e.stopPropagation();
+				win.classList.add("is-minimized");
+			});
+			dotBlack?.addEventListener("click", (e) => {
+				e.stopPropagation();
+				win.classList.toggle("is-minimized");
+			});
 		});
 
 		// ──────────────────────────────────────────────────
@@ -137,16 +162,18 @@ import ExperienceModal from '../components/ExperienceModal.astro';
 
 		function geniePolygon(sx: number, sy: number, t: number): string {
 			const corners = [
-				{ x: 0,   y: 0 },
+				{ x: 0, y: 0 },
 				{ x: 100, y: 0 },
 				{ x: 100, y: 100 },
-				{ x: 0,   y: 100 },
+				{ x: 0, y: 100 },
 			];
 
 			const maxDist = 141.42;
-			const dists = corners.map(c => Math.sqrt((c.x - sx) ** 2 + (c.y - sy) ** 2) / maxDist);
+			const dists = corners.map(
+				(c) => Math.sqrt((c.x - sx) ** 2 + (c.y - sy) ** 2) / maxDist,
+			);
 
-			const cProg = dists.map(d => {
+			const cProg = dists.map((d) => {
 				const speed = 0.35 + d * 1.4;
 				const raw = Math.min(1, t * speed);
 				return 1 - Math.pow(1 - raw, 2.5);
@@ -157,7 +184,12 @@ import ExperienceModal from '../components/ExperienceModal.astro';
 				y: sy + (c.y - sy) * cProg[i],
 			}));
 
-			function midBelly(a: {x:number;y:number}, b: {x:number;y:number}, edgeT: number, outwardDir: {x:number;y:number}) {
+			function midBelly(
+				a: { x: number; y: number },
+				b: { x: number; y: number },
+				edgeT: number,
+				outwardDir: { x: number; y: number },
+			) {
 				const mx = (a.x + b.x) / 2;
 				const my = (a.y + b.y) / 2;
 				const bellyAmt = Math.sin(edgeT * Math.PI) * (1 - edgeT) * 22;
@@ -167,83 +199,159 @@ import ExperienceModal from '../components/ExperienceModal.astro';
 				};
 			}
 
-			const topMid = midBelly(pts[0], pts[1], (cProg[0]+cProg[1])/2, {x:0,y:-1});
-			const rightMid = midBelly(pts[1], pts[2], (cProg[1]+cProg[2])/2, {x:1,y:0});
-			const botMid = midBelly(pts[2], pts[3], (cProg[2]+cProg[3])/2, {x:0,y:1});
-			const leftMid = midBelly(pts[3], pts[0], (cProg[3]+cProg[0])/2, {x:-1,y:0});
+			const topMid = midBelly(pts[0], pts[1], (cProg[0] + cProg[1]) / 2, {
+				x: 0,
+				y: -1,
+			});
+			const rightMid = midBelly(
+				pts[1],
+				pts[2],
+				(cProg[1] + cProg[2]) / 2,
+				{ x: 1, y: 0 },
+			);
+			const botMid = midBelly(pts[2], pts[3], (cProg[2] + cProg[3]) / 2, {
+				x: 0,
+				y: 1,
+			});
+			const leftMid = midBelly(
+				pts[3],
+				pts[0],
+				(cProg[3] + cProg[0]) / 2,
+				{ x: -1, y: 0 },
+			);
 
-			const all = [pts[0], topMid, pts[1], rightMid, pts[2], botMid, pts[3], leftMid];
-			return `polygon(${all.map(p => `${p.x.toFixed(2)}% ${p.y.toFixed(2)}%`).join(', ')})`;
+			const all = [
+				pts[0],
+				topMid,
+				pts[1],
+				rightMid,
+				pts[2],
+				botMid,
+				pts[3],
+				leftMid,
+			];
+			return `polygon(${all.map((p) => `${p.x.toFixed(2)}% ${p.y.toFixed(2)}%`).join(", ")})`;
 		}
 
 		function resetPrincipleExperience(overlayEl: HTMLElement) {
-			if (overlayEl.id !== 'modal-page-principle') return;
+			if (overlayEl.id !== "modal-page-principle") return;
 
-			const checkbox = overlayEl.querySelector<HTMLInputElement>('#ppl-checkbox');
-			const stage = overlayEl.querySelector<HTMLElement>('#ppl-stage');
+			const checkbox =
+				overlayEl.querySelector<HTMLInputElement>("#ppl-checkbox");
+			const stage = overlayEl.querySelector<HTMLElement>("#ppl-stage");
 			if (checkbox) checkbox.checked = false;
-			stage?.classList.remove('is-unlocked', 'is-selecting', 'is-expanded', 'is-info');
-			overlayEl.querySelectorAll<HTMLElement>('[data-principle-pane]').forEach((pane) => pane.classList.remove('is-active'));
-			overlayEl.querySelectorAll<HTMLElement>('[data-principle-tab]').forEach((tab) => {
-				const isPrincipleTab = tab.dataset.principleTab === 'principle';
-				tab.classList.toggle('is-active', isPrincipleTab);
-				tab.setAttribute('aria-selected', String(isPrincipleTab));
-			});
+			stage?.classList.remove(
+				"is-unlocked",
+				"is-selecting",
+				"is-expanded",
+				"is-info",
+			);
+			overlayEl
+				.querySelectorAll<HTMLElement>("[data-principle-pane]")
+				.forEach((pane) => pane.classList.remove("is-active"));
+			overlayEl
+				.querySelectorAll<HTMLElement>("[data-principle-tab]")
+				.forEach((tab) => {
+					const isPrincipleTab =
+						tab.dataset.principleTab === "principle";
+					tab.classList.toggle("is-active", isPrincipleTab);
+					tab.setAttribute("aria-selected", String(isPrincipleTab));
+				});
 		}
 
 		function resetHomePrincipleToggle() {
-			const homeToggle = document.getElementById('toggle-unlock-1percent') as HTMLInputElement | null;
+			const homeToggle = document.getElementById(
+				"toggle-unlock-1percent",
+			) as HTMLInputElement | null;
 			if (homeToggle) homeToggle.checked = false;
 		}
 
 		// Reset before any 1% launch control opens the modal. This also covers
 		// alternate launch paths that do not use the shared modal opener.
-		document.addEventListener('click', (event) => {
+		document.addEventListener("click", (event) => {
 			const target = event.target as Element | null;
-			if (!target?.closest('[data-folder-id="principle"], [data-dock-id="dock-percent"]')) return;
+			if (
+				!target?.closest(
+					'[data-folder-id="principle"], [data-dock-id="dock-percent"]',
+				)
+			)
+				return;
 
-			const principleOverlay = document.getElementById('modal-page-principle');
+			const principleOverlay = document.getElementById(
+				"modal-page-principle",
+			);
 			if (principleOverlay) resetPrincipleExperience(principleOverlay);
 		});
 
 		/**
 		 * Open any modal overlay with Genie animation from sourceEl
 		 */
-		function openModalWithGenie(overlayEl: HTMLElement, sourceEl: HTMLElement | null, isHistoryEvent = false) {
+		function openModalWithGenie(
+			overlayEl: HTMLElement,
+			sourceEl: HTMLElement | null,
+			isHistoryEvent = false,
+		) {
 			resetPrincipleExperience(overlayEl);
-			if (overlayEl.id === 'modal-page-framework') {
-				overlayEl.classList.remove('is-experience-tab');
-				overlayEl.querySelector<HTMLElement>('#fw-desktop-canvas')?.removeAttribute('hidden');
-				const experiencePanel = overlayEl.querySelector<HTMLElement>('#fw-experience-panel');
+			if (overlayEl.id === "modal-page-framework") {
+				overlayEl.classList.remove("is-experience-tab");
+				overlayEl
+					.querySelector<HTMLElement>("#fw-desktop-canvas")
+					?.removeAttribute("hidden");
+				const experiencePanel = overlayEl.querySelector<HTMLElement>(
+					"#fw-experience-panel",
+				);
 				if (experiencePanel) experiencePanel.hidden = true;
-				overlayEl.querySelectorAll<HTMLElement>('[data-framework-tab]').forEach((tab) => {
-					const isFrameworkTab = tab.dataset.frameworkTab === 'framework';
-					tab.classList.toggle('is-active', isFrameworkTab);
-				});
+				overlayEl
+					.querySelectorAll<HTMLElement>("[data-framework-tab]")
+					.forEach((tab) => {
+						const isFrameworkTab =
+							tab.dataset.frameworkTab === "framework";
+						tab.classList.toggle("is-active", isFrameworkTab);
+					});
 			}
 
 			if (!isHistoryEvent) {
-				history.pushState({ modal: overlayEl.id }, "", "#" + overlayEl.id);
+				history.pushState(
+					{ modal: overlayEl.id },
+					"",
+					"#" + overlayEl.id,
+				);
 			}
-			const macWin = overlayEl.querySelector('.fullscreen-mac-window, .case-study-mac-window') as HTMLElement;
+			const macWin = overlayEl.querySelector(
+				".fullscreen-mac-window, .case-study-mac-window",
+			) as HTMLElement;
 			if (!macWin) return;
 
-			const srcRect = sourceEl ? sourceEl.getBoundingClientRect() : new DOMRect(window.innerWidth / 2 - 30, window.innerHeight - 60, 60, 60);
+			const srcRect = sourceEl
+				? sourceEl.getBoundingClientRect()
+				: new DOMRect(
+						window.innerWidth / 2 - 30,
+						window.innerHeight - 60,
+						60,
+						60,
+					);
 			modalSourceMap.set(overlayEl, srcRect);
 
-			overlayEl.classList.add('is-open');
-			overlayEl.style.opacity = '0';
+			overlayEl.classList.add("is-open");
+			overlayEl.style.opacity = "0";
 
 			requestAnimationFrame(() => {
 				const winRect = macWin.getBoundingClientRect();
 
-				const sx = ((srcRect.left + srcRect.width / 2 - winRect.left) / winRect.width) * 100;
-				const sy = ((srcRect.top + srcRect.height / 2 - winRect.top) / winRect.height) * 100;
+				const sx =
+					((srcRect.left + srcRect.width / 2 - winRect.left) /
+						winRect.width) *
+					100;
+				const sy =
+					((srcRect.top + srcRect.height / 2 - winRect.top) /
+						winRect.height) *
+					100;
 
-				overlayEl.animate(
-					[{ opacity: 0 }, { opacity: 1 }],
-					{ duration: 400, fill: 'forwards', easing: 'ease-out' }
-				);
+				overlayEl.animate([{ opacity: 0 }, { opacity: 1 }], {
+					duration: 400,
+					fill: "forwards",
+					easing: "ease-out",
+				});
 
 				const steps = 10;
 				const keyframes: Keyframe[] = [];
@@ -257,19 +365,20 @@ import ExperienceModal from '../components/ExperienceModal.astro';
 					});
 				}
 				keyframes[keyframes.length - 1] = {
-					clipPath: 'polygon(0% 0%, 50% 0%, 100% 0%, 100% 50%, 100% 100%, 50% 100%, 0% 100%, 0% 50%)',
+					clipPath:
+						"polygon(0% 0%, 50% 0%, 100% 0%, 100% 50%, 100% 100%, 50% 100%, 0% 100%, 0% 50%)",
 					opacity: 1,
 					offset: 1,
 				};
 
 				const anim = macWin.animate(keyframes, {
 					duration: 520,
-					easing: 'cubic-bezier(0.16, 1, 0.3, 1)',
-					fill: 'forwards',
+					easing: "cubic-bezier(0.16, 1, 0.3, 1)",
+					fill: "forwards",
 				});
 
 				anim.onfinish = () => {
-					macWin.style.clipPath = '';
+					macWin.style.clipPath = "";
 				};
 			});
 		}
@@ -277,22 +386,39 @@ import ExperienceModal from '../components/ExperienceModal.astro';
 		/**
 		 * Close any modal overlay with reverse Genie animation
 		 */
-		function closeModalWithGenie(overlayEl: HTMLElement, isHistoryEvent = false) {
-			const macWin = overlayEl.querySelector('.fullscreen-mac-window, .case-study-mac-window') as HTMLElement;
-			if (!macWin || !overlayEl.classList.contains('is-open')) return;
+		function closeModalWithGenie(
+			overlayEl: HTMLElement,
+			isHistoryEvent = false,
+		) {
+			const macWin = overlayEl.querySelector(
+				".fullscreen-mac-window, .case-study-mac-window",
+			) as HTMLElement;
+			if (!macWin || !overlayEl.classList.contains("is-open")) return;
 
 			const winRect = macWin.getBoundingClientRect();
-			const srcRect = modalSourceMap.get(overlayEl) || new DOMRect(
-				window.innerWidth / 2 - 30, window.innerHeight - 60, 60, 60
-			);
+			const srcRect =
+				modalSourceMap.get(overlayEl) ||
+				new DOMRect(
+					window.innerWidth / 2 - 30,
+					window.innerHeight - 60,
+					60,
+					60,
+				);
 
-			const sx = ((srcRect.left + srcRect.width / 2 - winRect.left) / winRect.width) * 100;
-			const sy = ((srcRect.top + srcRect.height / 2 - winRect.top) / winRect.height) * 100;
+			const sx =
+				((srcRect.left + srcRect.width / 2 - winRect.left) /
+					winRect.width) *
+				100;
+			const sy =
+				((srcRect.top + srcRect.height / 2 - winRect.top) /
+					winRect.height) *
+				100;
 
-			overlayEl.animate(
-				[{ opacity: 1 }, { opacity: 0 }],
-				{ duration: 380, fill: 'forwards', easing: 'ease-in' }
-			);
+			overlayEl.animate([{ opacity: 1 }, { opacity: 0 }], {
+				duration: 380,
+				fill: "forwards",
+				easing: "ease-in",
+			});
 
 			const steps = 10;
 			const keyframes: Keyframe[] = [];
@@ -307,27 +433,35 @@ import ExperienceModal from '../components/ExperienceModal.astro';
 				});
 			}
 			keyframes[0] = {
-				clipPath: 'polygon(0% 0%, 50% 0%, 100% 0%, 100% 50%, 100% 100%, 50% 100%, 0% 100%, 0% 50%)',
+				clipPath:
+					"polygon(0% 0%, 50% 0%, 100% 0%, 100% 50%, 100% 100%, 50% 100%, 0% 100%, 0% 50%)",
 				opacity: 1,
 				offset: 0,
 			};
 
 			const anim = macWin.animate(keyframes, {
 				duration: 420,
-				easing: 'cubic-bezier(0.55, 0, 1, 0.45)',
-				fill: 'forwards',
+				easing: "cubic-bezier(0.55, 0, 1, 0.45)",
+				fill: "forwards",
 			});
 
 			anim.onfinish = () => {
-				overlayEl.classList.remove('is-open');
-				overlayEl.style.opacity = '';
-				macWin.style.clipPath = '';
+				overlayEl.classList.remove("is-open");
+				overlayEl.style.opacity = "";
+				macWin.style.clipPath = "";
 				resetPrincipleExperience(overlayEl);
-				if (overlayEl.id === 'modal-page-principle') resetHomePrincipleToggle();
+				if (overlayEl.id === "modal-page-principle")
+					resetHomePrincipleToggle();
 
-				if (window.matchMedia('(max-width: 900px)').matches) {
-					document.querySelectorAll('.dock-btn').forEach(btn => btn.classList.remove('is-active', 'is-active-home'));
-					document.querySelector('[data-dock-id="dock-home"]')?.classList.add('is-active', 'is-active-home');
+				if (window.matchMedia("(max-width: 900px)").matches) {
+					document
+						.querySelectorAll(".dock-btn")
+						.forEach((btn) =>
+							btn.classList.remove("is-active", "is-active-home"),
+						);
+					document
+						.querySelector('[data-dock-id="dock-home"]')
+						?.classList.add("is-active", "is-active-home");
 				}
 			};
 		}
@@ -336,352 +470,566 @@ import ExperienceModal from '../components/ExperienceModal.astro';
 		// 3. Folder Click → Open Individual Modal
 		// ──────────────────────────────────────────────────
 		const folderModalMap: Record<string, string> = {
-			principle: 'modal-page-principle',
-			cases: 'modal-page-cases',
-			experience: 'modal-page-experience',
-			framework: 'modal-page-framework',
-			capabilities: 'modal-page-capabilities',
-			about: 'modal-page-about',
-			where: 'modal-page-where',
+			principle: "modal-page-principle",
+			cases: "modal-page-cases",
+			experience: "modal-page-experience",
+			framework: "modal-page-framework",
+			capabilities: "modal-page-capabilities",
+			about: "modal-page-about",
+			where: "modal-page-where",
 		};
 
-		document.querySelectorAll<HTMLElement>('.folder-item, .mobile-folder-item, .mobile-principle-card, #win-principle').forEach(folder => {
-			folder.addEventListener('click', () => {
-				const id = folder.getAttribute('data-folder-id');
-				if (id && folderModalMap[id]) {
-					if (id === 'experience') {
-						document.getElementById('experience-view-grid')?.removeAttribute('hidden');
-						document.getElementById('experience-view-detail')?.setAttribute('hidden', 'true');
+		document
+			.querySelectorAll<HTMLElement>(
+				".folder-item, .mobile-folder-item, .mobile-principle-card, #win-principle",
+			)
+			.forEach((folder) => {
+				folder.addEventListener("click", () => {
+					const id = folder.getAttribute("data-folder-id");
+					if (id && folderModalMap[id]) {
+						if (id === "experience") {
+							document
+								.getElementById("experience-view-grid")
+								?.removeAttribute("hidden");
+							document
+								.getElementById("experience-view-detail")
+								?.setAttribute("hidden", "true");
+						}
+						const targetOverlay = document.getElementById(
+							folderModalMap[id],
+						);
+						if (targetOverlay)
+							openModalWithGenie(targetOverlay, folder);
 					}
-					const targetOverlay = document.getElementById(folderModalMap[id]);
-					if (targetOverlay) openModalWithGenie(targetOverlay, folder);
-				}
+				});
 			});
-		});
 
 		// ──────────────────────────────────────────────────
 		// 4. Card Action Links → Open Individual Modal
 		// ──────────────────────────────────────────────────
-		document.getElementById('btn-learn-more')?.addEventListener('click', (e) => {
-			const targetOverlay = document.getElementById('modal-page-mission');
-			if (targetOverlay) openModalWithGenie(targetOverlay, e.currentTarget as HTMLElement);
-		});
-
-		document.querySelectorAll<HTMLElement>('.project-card-item').forEach(card => {
-			card.addEventListener('click', (e) => {
-				const targetId = card.getAttribute('data-project-target') || 'modal-page-cases';
-				const targetOverlay = document.getElementById(targetId);
-				if (targetOverlay) {
-					if (targetId === 'modal-page-experience') {
-						document.getElementById('experience-view-grid')?.removeAttribute('hidden');
-						document.getElementById('experience-view-detail')?.setAttribute('hidden', 'true');
-					}
-					openModalWithGenie(targetOverlay, e.currentTarget as HTMLElement);
-					const detail = card.getAttribute('data-project-detail');
-					if (targetId === 'modal-page-experience' && detail) {
-						window.setTimeout(() => document.querySelector<HTMLElement>(`[data-experience-id="${detail}"]`)?.click(), 80);
-					}
-				}
+		document
+			.getElementById("btn-learn-more")
+			?.addEventListener("click", (e) => {
+				const targetOverlay =
+					document.getElementById("modal-page-mission");
+				if (targetOverlay)
+					openModalWithGenie(
+						targetOverlay,
+						e.currentTarget as HTMLElement,
+					);
 			});
-		});
-		document.querySelectorAll<HTMLElement>('.project-action').forEach(action => {
-			action.addEventListener('click', (e) => {
-				e.stopPropagation();
-				const targetId = action.getAttribute('data-project-target') || 'modal-page-experience';
-				const targetOverlay = document.getElementById(targetId);
-				if (targetOverlay) {
-					if (targetId === 'modal-page-experience') {
-						document.getElementById('experience-view-grid')?.removeAttribute('hidden');
-						document.getElementById('experience-view-detail')?.setAttribute('hidden', 'true');
-					}
-					openModalWithGenie(targetOverlay, action);
-					const detail = action.getAttribute('data-project-detail');
-					if (targetId === 'modal-page-experience' && detail) {
-						window.setTimeout(() => document.querySelector<HTMLElement>(`[data-experience-id="${detail}"]`)?.click(), 80);
-					}
-				}
-			});
-		});
 
-		const experienceGrid = document.getElementById('experience-view-grid');
-		const experienceDetail = document.getElementById('experience-view-detail');
-		const experienceDetailContent = document.querySelector<HTMLElement>('.experience-detail-content');
-		const experienceDetailTitle = document.getElementById('experience-detail-title');
-		const experienceContentPanels = document.querySelectorAll<HTMLElement>('[data-experience-content]');
-		const experienceTabs = document.querySelectorAll<HTMLButtonElement>('[data-experience-tab]');
+		document
+			.querySelectorAll<HTMLElement>(".project-card-item")
+			.forEach((card) => {
+				card.addEventListener("click", (e) => {
+					const targetId =
+						card.getAttribute("data-project-target") ||
+						"modal-page-cases";
+					const targetOverlay = document.getElementById(targetId);
+					if (targetOverlay) {
+						if (targetId === "modal-page-experience") {
+							document
+								.getElementById("experience-view-grid")
+								?.removeAttribute("hidden");
+							document
+								.getElementById("experience-view-detail")
+								?.setAttribute("hidden", "true");
+						}
+						openModalWithGenie(
+							targetOverlay,
+							e.currentTarget as HTMLElement,
+						);
+						const detail = card.getAttribute("data-project-detail");
+						if (targetId === "modal-page-experience" && detail) {
+							window.setTimeout(
+								() =>
+									document
+										.querySelector<HTMLElement>(
+											`[data-experience-id="${detail}"]`,
+										)
+										?.click(),
+								80,
+							);
+						}
+					}
+				});
+			});
+		document
+			.querySelectorAll<HTMLElement>(".project-action")
+			.forEach((action) => {
+				action.addEventListener("click", (e) => {
+					e.stopPropagation();
+					const targetId =
+						action.getAttribute("data-project-target") ||
+						"modal-page-experience";
+					const targetOverlay = document.getElementById(targetId);
+					if (targetOverlay) {
+						if (targetId === "modal-page-experience") {
+							document
+								.getElementById("experience-view-grid")
+								?.removeAttribute("hidden");
+							document
+								.getElementById("experience-view-detail")
+								?.setAttribute("hidden", "true");
+						}
+						openModalWithGenie(targetOverlay, action);
+						const detail = action.getAttribute(
+							"data-project-detail",
+						);
+						if (targetId === "modal-page-experience" && detail) {
+							window.setTimeout(
+								() =>
+									document
+										.querySelector<HTMLElement>(
+											`[data-experience-id="${detail}"]`,
+										)
+										?.click(),
+								80,
+							);
+						}
+					}
+				});
+			});
+
+		const experienceGrid = document.getElementById("experience-view-grid");
+		const experienceDetail = document.getElementById(
+			"experience-view-detail",
+		);
+		const experienceDetailContent = document.querySelector<HTMLElement>(
+			".experience-detail-content",
+		);
+		const experienceDetailTitle = document.getElementById(
+			"experience-detail-title",
+		);
+		const experienceContentPanels = document.querySelectorAll<HTMLElement>(
+			"[data-experience-content]",
+		);
+		const experienceTabs = document.querySelectorAll<HTMLButtonElement>(
+			"[data-experience-tab]",
+		);
 		const showExperienceDetail = (name: string) => {
 			if (experienceGrid) experienceGrid.hidden = true;
 			if (experienceDetail) experienceDetail.hidden = false;
 			if (experienceDetailTitle) experienceDetailTitle.textContent = name;
-			const isContentTab = Array.from(experienceContentPanels).some((panel) => panel.dataset.experienceContent === name);
+			const isContentTab = Array.from(experienceContentPanels).some(
+				(panel) => panel.dataset.experienceContent === name,
+			);
 			experienceContentPanels.forEach((panel) => {
 				panel.hidden = panel.dataset.experienceContent !== name;
 			});
-			experienceDetailContent?.classList.toggle('is-idea', isContentTab);
+			experienceDetailContent?.classList.toggle("is-idea", isContentTab);
 			experienceTabs.forEach((tab) => {
-				tab.classList.toggle('is-active', tab.dataset.experienceTab === name);
+				tab.classList.toggle(
+					"is-active",
+					tab.dataset.experienceTab === name,
+				);
 			});
 		};
 		const openExperienceDetail = (item: HTMLElement) => {
-			showExperienceDetail(item.getAttribute('data-experience-id') || 'The Idea');
+			showExperienceDetail(
+				item.getAttribute("data-experience-id") || "The Idea",
+			);
 		};
-		experienceGrid?.addEventListener('click', (e) => {
-			const item = (e.target as HTMLElement).closest<HTMLElement>('[data-experience-id]');
+		experienceGrid?.addEventListener("click", (e) => {
+			const item = (e.target as HTMLElement).closest<HTMLElement>(
+				"[data-experience-id]",
+			);
 			if (item) openExperienceDetail(item);
 		});
-		document.getElementById('experience-back-to-grid')?.addEventListener('click', () => {
-			if (experienceDetail) experienceDetail.hidden = true;
-			if (experienceGrid) experienceGrid.hidden = false;
-		});
+		document
+			.getElementById("experience-back-to-grid")
+			?.addEventListener("click", () => {
+				if (experienceDetail) experienceDetail.hidden = true;
+				if (experienceGrid) experienceGrid.hidden = false;
+			});
 		experienceTabs.forEach((tab) => {
-			tab.addEventListener('click', () => showExperienceDetail(tab.dataset.experienceTab || 'The Idea'));
+			tab.addEventListener("click", () =>
+				showExperienceDetail(tab.dataset.experienceTab || "The Idea"),
+			);
 		});
-		document.querySelectorAll<HTMLElement>('.experience-contact-action').forEach((action) => action.addEventListener('click', (event) => {
-			event.stopPropagation();
-			const contactPanel = document.getElementById('contact-panel');
-			const dockMailBtn = document.querySelector<HTMLElement>('[data-dock-id="dock-mail"]');
-			contactPanel?.classList.add('is-open');
-			contactPanel?.setAttribute('aria-hidden', 'false');
-			dockMailBtn?.classList.add('is-active');
-		}));
-		document.getElementById('experience-play-video')?.addEventListener('click', openVideoModal);
+		document
+			.querySelectorAll<HTMLElement>(".experience-contact-action")
+			.forEach((action) =>
+				action.addEventListener("click", (event) => {
+					event.stopPropagation();
+					const contactPanel =
+						document.getElementById("contact-panel");
+					const dockMailBtn = document.querySelector<HTMLElement>(
+						'[data-dock-id="dock-mail"]',
+					);
+					contactPanel?.classList.add("is-open");
+					contactPanel?.setAttribute("aria-hidden", "false");
+					dockMailBtn?.classList.add("is-active");
+				}),
+			);
+		document
+			.getElementById("experience-play-video")
+			?.addEventListener("click", openVideoModal);
 
 		// ──────────────────────────────────────────────────
 		// 5. Cup Cases: Grid ↔ Detail View Switching
 		// ──────────────────────────────────────────────────
-		const casesGridView = document.getElementById('cases-view-grid');
-		const casesDetailView = document.getElementById('cases-view-detail');
-		const csSubtabs = document.querySelectorAll<HTMLElement>('.cs-subtab');
-		const csSidebarItems = document.querySelectorAll<HTMLElement>('.cs-sidebar-item');
-		const csPanes = document.querySelectorAll<HTMLElement>('.cs-pane');
-		const casesSearch = document.querySelector<HTMLInputElement>('[data-cases-search]');
-		const casesMobileTitle = document.querySelector<HTMLElement>('#modal-page-cases .mobile-nav-title');
+		const casesGridView = document.getElementById("cases-view-grid");
+		const casesDetailView = document.getElementById("cases-view-detail");
+		const csSubtabs = document.querySelectorAll<HTMLElement>(".cs-subtab");
+		const csSidebarItems =
+			document.querySelectorAll<HTMLElement>(".cs-sidebar-item");
+		const csPanes = document.querySelectorAll<HTMLElement>(".cs-pane");
+		const casesSearch = document.querySelector<HTMLInputElement>(
+			"[data-cases-search]",
+		);
+		const casesMobileTitle = document.querySelector<HTMLElement>(
+			"#modal-page-cases .mobile-nav-title",
+		);
 		const caseTitleMap: Record<string, string> = {
-			fctrylab: 'FCTRYLAB',
-			fabindia: 'FabIndia',
-			'godrej-interio': 'Godrej Interio',
-			'godrej-properties': 'Godrej Properties',
-			'reverb-asia': 'Reverb Asia',
+			fctrylab: "FCTRYLAB",
+			fabindia: "FabIndia",
+			"godrej-interio": "Godrej Interio",
+			"godrej-properties": "Godrej Properties",
+			"reverb-asia": "Reverb Asia",
 		};
 
 		function activateCaseStudy(caseId: string, isHistoryEvent = false) {
 			if (!isHistoryEvent) {
-				history.pushState({ modal: "modal-page-cases", view: "detail", caseId: caseId }, "", "#modal-page-cases-" + caseId);
+				history.pushState(
+					{
+						modal: "modal-page-cases",
+						view: "detail",
+						caseId: caseId,
+					},
+					"",
+					"#modal-page-cases-" + caseId,
+				);
 			}
 			// Switch to detail view
-			if (casesGridView) casesGridView.style.display = 'none';
-			if (casesDetailView) casesDetailView.style.display = 'flex';
-			document.getElementById('modal-page-cases')?.classList.add('is-detail');
+			if (casesGridView) casesGridView.style.display = "none";
+			if (casesDetailView) casesDetailView.style.display = "flex";
+			document
+				.getElementById("modal-page-cases")
+				?.classList.add("is-detail");
 
 			// Activate sub-tab
-			csSubtabs.forEach(tab => {
-				tab.classList.toggle('is-active', tab.getAttribute('data-case-tab') === caseId);
+			csSubtabs.forEach((tab) => {
+				tab.classList.toggle(
+					"is-active",
+					tab.getAttribute("data-case-tab") === caseId,
+				);
 			});
 
 			// Activate sidebar item
-			csSidebarItems.forEach(item => {
-				item.classList.toggle('is-active', item.getAttribute('data-case-tab') === caseId);
+			csSidebarItems.forEach((item) => {
+				item.classList.toggle(
+					"is-active",
+					item.getAttribute("data-case-tab") === caseId,
+				);
 			});
 
 			// Show active pane
-			csPanes.forEach(pane => {
-				pane.classList.toggle('is-active', pane.id === `cs-pane-${caseId}`);
+			csPanes.forEach((pane) => {
+				pane.classList.toggle(
+					"is-active",
+					pane.id === `cs-pane-${caseId}`,
+				);
 			});
 
 			if (casesMobileTitle) {
-				casesMobileTitle.innerHTML = `${caseTitleMap[caseId] || 'Cup Cases'} <svg class="dropdown-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>`;
+				casesMobileTitle.innerHTML = `${caseTitleMap[caseId] || "Cup Cases"} <svg class="dropdown-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>`;
 			}
 		}
 
 		function returnToGrid() {
-			if (casesGridView) casesGridView.style.display = '';
-			if (casesDetailView) casesDetailView.style.display = 'none';
-			document.getElementById('modal-page-cases')?.classList.remove('is-detail');
+			if (casesGridView) casesGridView.style.display = "";
+			if (casesDetailView) casesDetailView.style.display = "none";
+			document
+				.getElementById("modal-page-cases")
+				?.classList.remove("is-detail");
 			if (casesMobileTitle) {
-				casesMobileTitle.innerHTML = 'Cup Cases <svg class="dropdown-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>';
+				casesMobileTitle.innerHTML =
+					'Cup Cases <svg class="dropdown-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>';
 			}
 		}
 
 		function returnToCasesGridFromDetail() {
 			returnToGrid();
-			history.replaceState({ modal: "modal-page-cases" }, "", "#modal-page-cases");
+			history.replaceState(
+				{ modal: "modal-page-cases" },
+				"",
+				"#modal-page-cases",
+			);
 		}
 
-		casesSearch?.addEventListener('input', () => {
+		casesSearch?.addEventListener("input", () => {
 			const query = casesSearch.value.trim().toLowerCase();
-			document.querySelectorAll<HTMLElement>('#modal-page-cases .case-doc-item').forEach((item) => {
-				item.hidden = Boolean(query) && !item.textContent?.toLowerCase().includes(query);
-			});
+			document
+				.querySelectorAll<HTMLElement>(
+					"#modal-page-cases .case-doc-item",
+				)
+				.forEach((item) => {
+					item.hidden =
+						Boolean(query) &&
+						!item.textContent?.toLowerCase().includes(query);
+				});
 		});
 
 		// Document icon click → switch to detail view
-		document.querySelectorAll<HTMLElement>('.case-doc-item').forEach(item => {
-			item.addEventListener('click', () => {
-				const caseId = item.getAttribute('data-case-id');
-				if (caseId) activateCaseStudy(caseId);
+		document
+			.querySelectorAll<HTMLElement>(".case-doc-item")
+			.forEach((item) => {
+				item.addEventListener("click", () => {
+					const caseId = item.getAttribute("data-case-id");
+					if (caseId) activateCaseStudy(caseId);
+				});
 			});
-		});
 
 		// Back button click → return to grid
-		document.getElementById('cs-back-to-grid')?.addEventListener('click', () => {
-			returnToCasesGridFromDetail();
-		});
+		document
+			.getElementById("cs-back-to-grid")
+			?.addEventListener("click", () => {
+				returnToCasesGridFromDetail();
+			});
 
 		// Sub-tab click → switch case study
-		csSubtabs.forEach(tab => {
-			tab.addEventListener('click', (e) => {
+		csSubtabs.forEach((tab) => {
+			tab.addEventListener("click", (e) => {
 				// If clicking the × close button, return to grid
-				if ((e.target as HTMLElement).classList.contains('subtab-close')) {
+				if (
+					(e.target as HTMLElement).classList.contains("subtab-close")
+				) {
 					returnToCasesGridFromDetail();
 					return;
 				}
-				const caseId = tab.getAttribute('data-case-tab');
+				const caseId = tab.getAttribute("data-case-tab");
 				if (caseId) activateCaseStudy(caseId);
 			});
 		});
 
 		// Sidebar click → switch case study
-		csSidebarItems.forEach(item => {
-			item.addEventListener('click', () => {
-				const caseId = item.getAttribute('data-case-tab');
+		csSidebarItems.forEach((item) => {
+			item.addEventListener("click", () => {
+				const caseId = item.getAttribute("data-case-tab");
 				if (caseId) activateCaseStudy(caseId);
 			});
 		});
 
 		// ──────────────────────────────────────────────────
-		
+
 		// ──────────────────────────────────────────────────
 		// 5.5 Cup Framework: Mobile Grid ↔ Detail View Switching
 		// ──────────────────────────────────────────────────
 		const fwMobileGrid = document.getElementById("fw-mobile-grid");
 		const fwDesktopCanvas = document.getElementById("fw-desktop-canvas");
-		const fwTitle = document.querySelector("#modal-page-framework .mobile-nav-title");
+		const fwTitle = document.querySelector(
+			"#modal-page-framework .mobile-nav-title",
+		);
 
 		function activateFrameworkDetail(caseId, isHistoryEvent = false) {
 			if (!isHistoryEvent) {
-				history.pushState({ modal: "modal-page-framework", view: "detail", caseId: caseId }, "", "#modal-page-framework-" + caseId);
+				history.pushState(
+					{
+						modal: "modal-page-framework",
+						view: "detail",
+						caseId: caseId,
+					},
+					"",
+					"#modal-page-framework-" + caseId,
+				);
 			}
 			// Switch to detail view on mobile
 			const modal = document.getElementById("modal-page-framework");
 			if (modal) modal.classList.add("is-mobile-detail");
 
 			// Activate corresponding popover card
-			document.querySelectorAll("#modal-page-framework .fw-popover-card").forEach(card => {
-				card.classList.toggle("is-active", card.id === "fw-popover-" + caseId);
-			});
+			document
+				.querySelectorAll("#modal-page-framework .fw-popover-card")
+				.forEach((card) => {
+					card.classList.toggle(
+						"is-active",
+						card.id === "fw-popover-" + caseId,
+					);
+				});
 
 			// Update header title
 			if (fwTitle) {
 				const titleMap = {
 					clarity: "Clarity",
 					uncommon: "Uncommon Ideas",
-					power: "Power In Market"
+					power: "Power In Market",
 				};
-				fwTitle.innerHTML = titleMap[caseId] + ' <svg class="dropdown-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>';
+				fwTitle.innerHTML =
+					titleMap[caseId] +
+					' <svg class="dropdown-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>';
 			}
 		}
 
-		
 		function returnToFrameworkGrid() {
 			const modal = document.getElementById("modal-page-framework");
 			if (modal) modal.classList.remove("is-mobile-detail");
-			document.querySelectorAll("#modal-page-framework .fw-popover-card").forEach(card => card.classList.remove("is-active"));
+			document
+				.querySelectorAll("#modal-page-framework .fw-popover-card")
+				.forEach((card) => card.classList.remove("is-active"));
 			if (fwTitle) {
-				fwTitle.innerHTML = 'Cup Framework <svg class="dropdown-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>';
+				fwTitle.innerHTML =
+					'Cup Framework <svg class="dropdown-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>';
 			}
 		}
 
-		const frameworkTabs = document.querySelectorAll<HTMLElement>('[data-framework-tab]');
-		const frameworkExperiencePanel = document.getElementById('fw-experience-panel');
+		const frameworkTabs = document.querySelectorAll<HTMLElement>(
+			"[data-framework-tab]",
+		);
+		const frameworkExperiencePanel = document.getElementById(
+			"fw-experience-panel",
+		);
 
 		frameworkTabs.forEach((tab) => {
-			tab.addEventListener('click', () => {
-				const showFramework = tab.dataset.frameworkTab === 'framework';
-				document.getElementById('modal-page-framework')?.classList.toggle('is-experience-tab', !showFramework);
-				frameworkTabs.forEach((item) => item.classList.toggle('is-active', item === tab));
+			tab.addEventListener("click", () => {
+				const showFramework = tab.dataset.frameworkTab === "framework";
+				document
+					.getElementById("modal-page-framework")
+					?.classList.toggle("is-experience-tab", !showFramework);
+				frameworkTabs.forEach((item) =>
+					item.classList.toggle("is-active", item === tab),
+				);
 				if (fwDesktopCanvas) fwDesktopCanvas.hidden = !showFramework;
-				if (frameworkExperiencePanel) frameworkExperiencePanel.hidden = showFramework;
+				if (frameworkExperiencePanel)
+					frameworkExperiencePanel.hidden = showFramework;
 			});
 		});
 
-		document.querySelector<HTMLElement>('[data-open-experience]')?.addEventListener('click', (event) => {
-			const frameworkModal = document.getElementById('modal-page-framework');
-			const experienceModal = document.getElementById('modal-page-experience');
-			if (!experienceModal) return;
+		document
+			.querySelector<HTMLElement>("[data-open-experience]")
+			?.addEventListener("click", (event) => {
+				const frameworkModal = document.getElementById(
+					"modal-page-framework",
+				);
+				const experienceModal = document.getElementById(
+					"modal-page-experience",
+				);
+				if (!experienceModal) return;
 
-			frameworkModal?.classList.remove('is-open');
-			history.replaceState({ modal: 'modal-page-experience' }, '', '#modal-page-experience');
-			openModalWithGenie(experienceModal, event.currentTarget as HTMLElement, true);
-		});
+				frameworkModal?.classList.remove("is-open");
+				history.replaceState(
+					{ modal: "modal-page-experience" },
+					"",
+					"#modal-page-experience",
+				);
+				openModalWithGenie(
+					experienceModal,
+					event.currentTarget as HTMLElement,
+					true,
+				);
+			});
 
-		
 		// Framework explicit back button logic
 		// Mobile grid document click
-		document.querySelectorAll("#fw-mobile-grid .fw-grid-item").forEach(item => {
-			item.addEventListener("click", () => {
-				const caseId = item.getAttribute("data-fw-target");
-				if (caseId) activateFrameworkDetail(caseId);
+		document
+			.querySelectorAll("#fw-mobile-grid .fw-grid-item")
+			.forEach((item) => {
+				item.addEventListener("click", () => {
+					const caseId = item.getAttribute("data-fw-target");
+					if (caseId) activateFrameworkDetail(caseId);
+				});
 			});
-		});
 
 		// 6. Close Handlers for All Modals
 		// ──────────────────────────────────────────────────
-		document.querySelectorAll<HTMLElement>('.close-modal-btn').forEach(btn => {
-			btn.addEventListener('click', (e) => {
-				e.preventDefault();
-				const targetId = btn.getAttribute('data-close-target');
-				if (targetId === 'modal-page-principle') {
-					const principleOverlay = document.getElementById(targetId);
-					if (principleOverlay) {
-						resetPrincipleExperience(principleOverlay);
-						resetHomePrincipleToggle();
-						history.replaceState(null, '', window.location.pathname + window.location.search);
-						closeModalWithGenie(principleOverlay);
+		document
+			.querySelectorAll<HTMLElement>(".close-modal-btn")
+			.forEach((btn) => {
+				btn.addEventListener("click", (e) => {
+					e.preventDefault();
+					const targetId = btn.getAttribute("data-close-target");
+					if (targetId === "modal-page-principle") {
+						const principleOverlay =
+							document.getElementById(targetId);
+						if (principleOverlay) {
+							resetPrincipleExperience(principleOverlay);
+							resetHomePrincipleToggle();
+							history.replaceState(
+								null,
+								"",
+								window.location.pathname +
+									window.location.search,
+							);
+							closeModalWithGenie(principleOverlay);
+						}
+						return;
 					}
-					return;
-				}
-				if (targetId === "modal-page-cases" && casesDetailView && casesDetailView.style.display !== "none") {
-					returnToCasesGridFromDetail();
-					return;
-				}
-				if (targetId === "modal-page-cases" && casesGridView && casesGridView.style.display !== "none") {
-					const casesOverlay = document.getElementById(targetId);
-					history.replaceState(null, "", window.location.pathname + window.location.search);
-					if (casesOverlay) closeModalWithGenie(casesOverlay);
-					return;
-				}
-				if (window.history.state && window.history.state.modal) {
-					window.history.back();
-				} else {
-					// Fallback
-					if (targetId) {
-						const targetOverlay = document.getElementById(targetId);
-						if (targetOverlay) {
-							if (targetId === "modal-page-cases" && casesGridView && casesGridView.style.display === "none") { returnToGrid(); return; }
-							if (targetId === "modal-page-framework" && targetOverlay.classList.contains("is-mobile-detail")) { returnToFrameworkGrid(); return; }
-							if (targetId === "modal-page-cases") returnToGrid();
-							if (targetId === "modal-page-framework") returnToFrameworkGrid();
-							closeModalWithGenie(targetOverlay);
+					if (
+						targetId === "modal-page-cases" &&
+						casesDetailView &&
+						casesDetailView.style.display !== "none"
+					) {
+						returnToCasesGridFromDetail();
+						return;
+					}
+					if (
+						targetId === "modal-page-cases" &&
+						casesGridView &&
+						casesGridView.style.display !== "none"
+					) {
+						const casesOverlay = document.getElementById(targetId);
+						history.replaceState(
+							null,
+							"",
+							window.location.pathname + window.location.search,
+						);
+						if (casesOverlay) closeModalWithGenie(casesOverlay);
+						return;
+					}
+					if (window.history.state && window.history.state.modal) {
+						window.history.back();
+					} else {
+						// Fallback
+						if (targetId) {
+							const targetOverlay =
+								document.getElementById(targetId);
+							if (targetOverlay) {
+								if (
+									targetId === "modal-page-cases" &&
+									casesGridView &&
+									casesGridView.style.display === "none"
+								) {
+									returnToGrid();
+									return;
+								}
+								if (
+									targetId === "modal-page-framework" &&
+									targetOverlay.classList.contains(
+										"is-mobile-detail",
+									)
+								) {
+									returnToFrameworkGrid();
+									return;
+								}
+								if (targetId === "modal-page-cases")
+									returnToGrid();
+								if (targetId === "modal-page-framework")
+									returnToFrameworkGrid();
+								closeModalWithGenie(targetOverlay);
+							}
 						}
 					}
-				}
+				});
 			});
-		});
 
 		// ──────────────────────────────────────────────────
 		// 7. Popstate Event Listener for Browser History
 		// ──────────────────────────────────────────────────
-		window.addEventListener('popstate', (e) => {
+		window.addEventListener("popstate", (e) => {
 			const state = e.state;
 
 			// If no state, it means we returned to the home page
 			if (!state || !state.modal) {
-				document.querySelectorAll<HTMLElement>('.modal-overlay.is-open').forEach(modal => {
-					// Also reset grids just in case
-					if (modal.id === "modal-page-cases") returnToGrid();
-					if (modal.id === "modal-page-framework") returnToFrameworkGrid();
-					closeModalWithGenie(modal, true);
-				});
+				document
+					.querySelectorAll<HTMLElement>(".modal-overlay.is-open")
+					.forEach((modal) => {
+						// Also reset grids just in case
+						if (modal.id === "modal-page-cases") returnToGrid();
+						if (modal.id === "modal-page-framework")
+							returnToFrameworkGrid();
+						closeModalWithGenie(modal, true);
+					});
 				return;
 			}
 
@@ -689,7 +1037,7 @@ import ExperienceModal from '../components/ExperienceModal.astro';
 			const targetModal = document.getElementById(state.modal);
 			if (targetModal) {
 				// Ensure the modal is open
-				if (!targetModal.classList.contains('is-open')) {
+				if (!targetModal.classList.contains("is-open")) {
 					openModalWithGenie(targetModal, null, true);
 				}
 
@@ -703,154 +1051,221 @@ import ExperienceModal from '../components/ExperienceModal.astro';
 				} else {
 					// It's the grid view, so close any active detail view
 					if (state.modal === "modal-page-cases") returnToGrid();
-					if (state.modal === "modal-page-framework") returnToFrameworkGrid();
+					if (state.modal === "modal-page-framework")
+						returnToFrameworkGrid();
 				}
 			}
 		});
 
 		// Close overlays when clicking outside window body
-		document.querySelectorAll<HTMLElement>('.modal-overlay').forEach(overlay => {
-			overlay.addEventListener('click', (e) => {
-				if (e.target === overlay) {
-					if (overlay.id === "modal-page-cases") returnToGrid();
-					if (overlay.id === "modal-page-framework") returnToFrameworkGrid();
-					if (overlay.id === 'modal-page-principle') {
-						const checkboxes = overlay.querySelectorAll<HTMLInputElement>('[data-principle-checkbox]');
-						const lockedStage = overlay.querySelector<HTMLElement>('[data-principle-stage]');
-						const openStage = overlay.querySelector<HTMLElement>('[data-principle-expanded]');
-						checkboxes.forEach((checkbox) => { checkbox.checked = false; });
-						lockedStage?.classList.remove('is-hidden');
-						openStage?.classList.add('is-hidden');
-						openStage?.setAttribute('hidden', 'true');
+		document
+			.querySelectorAll<HTMLElement>(".modal-overlay")
+			.forEach((overlay) => {
+				overlay.addEventListener("click", (e) => {
+					if (e.target === overlay) {
+						if (overlay.id === "modal-page-cases") returnToGrid();
+						if (overlay.id === "modal-page-framework")
+							returnToFrameworkGrid();
+						if (overlay.id === "modal-page-principle") {
+							const checkboxes =
+								overlay.querySelectorAll<HTMLInputElement>(
+									"[data-principle-checkbox]",
+								);
+							const lockedStage =
+								overlay.querySelector<HTMLElement>(
+									"[data-principle-stage]",
+								);
+							const openStage =
+								overlay.querySelector<HTMLElement>(
+									"[data-principle-expanded]",
+								);
+							checkboxes.forEach((checkbox) => {
+								checkbox.checked = false;
+							});
+							lockedStage?.classList.remove("is-hidden");
+							openStage?.classList.add("is-hidden");
+							openStage?.setAttribute("hidden", "true");
+						}
+						overlay.classList.remove("is-mobile-detail");
+						if (
+							window.history.state &&
+							window.history.state.modal === overlay.id
+						) {
+							window.history.back();
+						} else {
+							closeModalWithGenie(overlay);
+						}
 					}
-					overlay.classList.remove("is-mobile-detail");
-						if (window.history.state && window.history.state.modal === overlay.id) { window.history.back(); } else { closeModalWithGenie(overlay); }
-				}
+				});
 			});
-		});
 
 		// ──────────────────────────────────────────────────
 		// 7. Quiz & Video Modals
 		// ──────────────────────────────────────────────────
-		const quizModal = document.getElementById('quiz-modal');
-		const videoModal = document.getElementById('video-modal');
-		const videoSource = 'https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?autoplay=1&playsinline=1';
+		const quizModal = document.getElementById("quiz-modal");
+		const videoModal = document.getElementById("video-modal");
+		const videoSource =
+			"https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?autoplay=1&playsinline=1";
 
 		function openVideoModal() {
 			if (!videoModal) return;
-			const container = videoModal.querySelector<HTMLElement>('.video-container');
-			if (container && !container.querySelector('iframe')) {
-				const iframe = document.createElement('iframe');
+			const container =
+				videoModal.querySelector<HTMLElement>(".video-container");
+			if (container && !container.querySelector("iframe")) {
+				const iframe = document.createElement("iframe");
 				iframe.src = videoSource;
-				iframe.title = 'MEDIACUP Brand Showcase Video';
-				iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+				iframe.title = "MEDEACUP Brand Showcase Video";
+				iframe.allow =
+					"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
 				iframe.allowFullscreen = true;
 				container.replaceChildren(iframe);
 			}
-			videoModal.classList.add('is-open');
+			videoModal.classList.add("is-open");
 		}
 
 		function closeVideoModal() {
 			if (!videoModal) return;
-			videoModal.classList.remove('is-open');
-			const container = videoModal.querySelector<HTMLElement>('.video-container');
+			videoModal.classList.remove("is-open");
+			const container =
+				videoModal.querySelector<HTMLElement>(".video-container");
 			if (container) container.replaceChildren();
 		}
 
-		document.getElementById('btn-take-quiz')?.addEventListener('click', () => {
-			quizModal?.classList.add('is-open');
+		document
+			.getElementById("btn-take-quiz")
+			?.addEventListener("click", () => {
+				quizModal?.classList.add("is-open");
+			});
+		document
+			.getElementById("mobile-take-quiz")
+			?.addEventListener("click", () => {
+				quizModal?.classList.add("is-open");
+			});
+		document
+			.getElementById("close-quiz-modal")
+			?.addEventListener("click", () =>
+				quizModal?.classList.remove("is-open"),
+			);
+		document
+			.getElementById("btn-close-quiz-dot")
+			?.addEventListener("click", () =>
+				quizModal?.classList.remove("is-open"),
+			);
+		quizModal?.addEventListener("click", (e) => {
+			if (e.target === quizModal) quizModal.classList.remove("is-open");
 		});
-		document.getElementById('mobile-take-quiz')?.addEventListener('click', () => {
-			quizModal?.classList.add('is-open');
-		});
-		document.getElementById('close-quiz-modal')?.addEventListener('click', () => quizModal?.classList.remove('is-open'));
-		document.getElementById('btn-close-quiz-dot')?.addEventListener('click', () => quizModal?.classList.remove('is-open'));
-		quizModal?.addEventListener('click', (e) => { if (e.target === quizModal) quizModal.classList.remove('is-open'); });
 
-		document.getElementById('video-window-preview')?.addEventListener('click', openVideoModal);
-		document.getElementById('about-showreel-btn')?.addEventListener('click', () => {
-			openVideoModal();
+		document
+			.getElementById("video-window-preview")
+			?.addEventListener("click", openVideoModal);
+		document
+			.getElementById("about-showreel-btn")
+			?.addEventListener("click", () => {
+				openVideoModal();
+			});
+		document
+			.getElementById("video-play-button")
+			?.addEventListener("click", openVideoModal);
+		document
+			.getElementById("close-video-modal")
+			?.addEventListener("click", closeVideoModal);
+		videoModal?.addEventListener("click", (e) => {
+			if (e.target === videoModal) closeVideoModal();
 		});
-		document.getElementById('video-play-button')?.addEventListener('click', openVideoModal);
-		document.getElementById('close-video-modal')?.addEventListener('click', closeVideoModal);
-		videoModal?.addEventListener('click', (e) => { if (e.target === videoModal) closeVideoModal(); });
 
 		// ──────────────────────────────────────────────────
 		// 8. Bottom Dock Controls
 		// ──────────────────────────────────────────────────
-		const isMobileViewport = () => window.matchMedia('(max-width: 900px)').matches;
+		const isMobileViewport = () =>
+			window.matchMedia("(max-width: 900px)").matches;
 		const openMobilePage = (id: string, source: HTMLElement) => {
 			const modal = document.getElementById(id);
 			if (modal) openModalWithGenie(modal, source);
 		};
 
-		document.querySelectorAll<HTMLElement>('[data-top-action]').forEach((control) => {
-			const activate = () => {
-				if (!isMobileViewport()) return;
-				if (control.dataset.topAction === 'home') window.scrollTo({ top: 0, behavior: 'smooth' });
-				if (control.dataset.topAction === 'mail') document.querySelector<HTMLElement>('[data-dock-id="dock-mail"]')?.click();
-			};
-			control.addEventListener('click', activate);
-			control.addEventListener('keydown', (event) => {
-				if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); activate(); }
-			});
-		});
-
-		document.querySelectorAll<HTMLElement>('.dock-btn').forEach(btn => {
-			btn.addEventListener('click', () => {
-				const dockId = btn.getAttribute('data-dock-id');
-				document.querySelectorAll<HTMLElement>('.dock-btn').forEach((dockBtn) => {
-					dockBtn.classList.remove('is-active', 'is-active-home');
+		document
+			.querySelectorAll<HTMLElement>("[data-top-action]")
+			.forEach((control) => {
+				const activate = () => {
+					if (!isMobileViewport()) return;
+					if (control.dataset.topAction === "home")
+						window.scrollTo({ top: 0, behavior: "smooth" });
+					if (control.dataset.topAction === "mail")
+						document
+							.querySelector<HTMLElement>(
+								'[data-dock-id="dock-mail"]',
+							)
+							?.click();
+				};
+				control.addEventListener("click", activate);
+				control.addEventListener("keydown", (event) => {
+					if (event.key === "Enter" || event.key === " ") {
+						event.preventDefault();
+						activate();
+					}
 				});
-				btn.classList.add('is-active');
+			});
+
+		document.querySelectorAll<HTMLElement>(".dock-btn").forEach((btn) => {
+			btn.addEventListener("click", () => {
+				const dockId = btn.getAttribute("data-dock-id");
+				document
+					.querySelectorAll<HTMLElement>(".dock-btn")
+					.forEach((dockBtn) => {
+						dockBtn.classList.remove("is-active", "is-active-home");
+					});
+				btn.classList.add("is-active");
 				if (isMobileViewport()) {
-					if (dockId === 'dock-home') {
-						window.scrollTo({ top: 0, behavior: 'smooth' });
-						btn.classList.add('is-active-home');
+					if (dockId === "dock-home") {
+						window.scrollTo({ top: 0, behavior: "smooth" });
+						btn.classList.add("is-active-home");
 						return;
 					}
-					if (dockId === 'dock-folder') {
-						const dockStack = document.querySelector('[data-dock-stack]');
+					if (dockId === "dock-folder") {
+						const dockStack =
+							document.querySelector("[data-dock-stack]");
 						if (dockStack) {
-							dockStack.classList.toggle('is-open');
+							dockStack.classList.toggle("is-open");
 						}
 						return;
 					}
-					if (dockId === 'dock-bulb') {
-						const quizModal = document.getElementById('quiz-modal');
-						quizModal?.classList.add('is-open');
+					if (dockId === "dock-bulb") {
+						const quizModal = document.getElementById("quiz-modal");
+						quizModal?.classList.add("is-open");
 						return;
 					}
 				}
-				let targetWinId = 'win-mission';
-				if (dockId === 'dock-percent') {
-					const principleModal = document.getElementById('modal-page-principle');
+				let targetWinId = "win-mission";
+				if (dockId === "dock-percent") {
+					const principleModal = document.getElementById(
+						"modal-page-principle",
+					);
 					if (principleModal) openModalWithGenie(principleModal, btn);
 					return;
-				}
-				else if (dockId === 'dock-folder') targetWinId = 'win-projects';
-				else if (dockId === 'dock-bulb') {
-					const quizModal = document.getElementById('quiz-modal');
-					quizModal?.classList.add('is-open');
+				} else if (dockId === "dock-folder")
+					targetWinId = "win-projects";
+				else if (dockId === "dock-bulb") {
+					const quizModal = document.getElementById("quiz-modal");
+					quizModal?.classList.add("is-open");
 					return;
-				}
-				else if (dockId === 'dock-mail') {
-					const contactPanel = document.getElementById('contact-panel');
-					const isOpen = contactPanel?.classList.contains('is-open');
+				} else if (dockId === "dock-mail") {
+					const contactPanel =
+						document.getElementById("contact-panel");
+					const isOpen = contactPanel?.classList.contains("is-open");
 					if (isOpen) {
-						contactPanel?.classList.remove('is-open');
-						contactPanel?.setAttribute('aria-hidden', 'true');
-						btn.classList.remove('is-active');
+						contactPanel?.classList.remove("is-open");
+						contactPanel?.setAttribute("aria-hidden", "true");
+						btn.classList.remove("is-active");
 					} else {
-						contactPanel?.classList.add('is-open');
-						contactPanel?.setAttribute('aria-hidden', 'false');
+						contactPanel?.classList.add("is-open");
+						contactPanel?.setAttribute("aria-hidden", "false");
 					}
 					return;
 				}
 
 				const tw = document.getElementById(targetWinId);
 				if (tw) {
-					tw.classList.remove('is-minimized');
+					tw.classList.remove("is-minimized");
 					activeZIndex++;
 					tw.style.zIndex = String(activeZIndex);
 				}
@@ -860,35 +1275,44 @@ import ExperienceModal from '../components/ExperienceModal.astro';
 		// ──────────────────────────────────────────────────
 		// 9. Cup Framework Interactions
 		// ──────────────────────────────────────────────────
-		const fwNavItems = document.querySelectorAll<HTMLElement>('.fw-nav-item');
-		const fwPopovers = document.querySelectorAll<HTMLElement>('.fw-popover-card');
+		const fwNavItems =
+			document.querySelectorAll<HTMLElement>(".fw-nav-item");
+		const fwPopovers =
+			document.querySelectorAll<HTMLElement>(".fw-popover-card");
 
 		function alignFrameworkPointer(target: string) {
-			const navItem = document.querySelector<HTMLElement>(`.fw-nav-item[data-fw-target="${target}"]`);
+			const navItem = document.querySelector<HTMLElement>(
+				`.fw-nav-item[data-fw-target="${target}"]`,
+			);
 			const popover = document.getElementById(`fw-popover-${target}`);
 			if (!navItem || !popover) return;
 
 			requestAnimationFrame(() => {
 				const navRect = navItem.getBoundingClientRect();
 				const popoverRect = popover.getBoundingClientRect();
-				popover.style.setProperty('--fw-arrow-top', `${navRect.top + navRect.height / 2 - popoverRect.top}px`);
+				popover.style.setProperty(
+					"--fw-arrow-top",
+					`${navRect.top + navRect.height / 2 - popoverRect.top}px`,
+				);
 			});
 		}
 
 		// Toggle pop-over on left sidebar click
-		fwNavItems.forEach(item => {
-			item.addEventListener('click', () => {
-				const target = item.getAttribute('data-fw-target');
-				
+		fwNavItems.forEach((item) => {
+			item.addEventListener("click", () => {
+				const target = item.getAttribute("data-fw-target");
+
 				// Deactivate all icons & pop-overs first
-				fwNavItems.forEach(n => n.classList.remove('is-active'));
-				fwPopovers.forEach(p => p.classList.remove('is-active'));
+				fwNavItems.forEach((n) => n.classList.remove("is-active"));
+				fwPopovers.forEach((p) => p.classList.remove("is-active"));
 
 				if (target) {
-					item.classList.add('is-active');
-					const popover = document.getElementById(`fw-popover-${target}`);
+					item.classList.add("is-active");
+					const popover = document.getElementById(
+						`fw-popover-${target}`,
+					);
 					if (popover) {
-						popover.classList.add('is-active');
+						popover.classList.add("is-active");
 						alignFrameworkPointer(target);
 					}
 				}
@@ -896,144 +1320,292 @@ import ExperienceModal from '../components/ExperienceModal.astro';
 		});
 
 		// Match the reference composition on first open: the middle framework card is featured.
-		requestAnimationFrame(() => alignFrameworkPointer('uncommon'));
+		requestAnimationFrame(() => alignFrameworkPointer("uncommon"));
 
 		// Close pop-over via X button
-		document.querySelectorAll<HTMLElement>('.fw-pop-close').forEach(btn => {
-			btn.addEventListener('click', (e) => {
-				e.stopPropagation(); // prevent bubbling to other elements
-				fwNavItems.forEach(n => n.classList.remove('is-active'));
-				fwPopovers.forEach(p => p.classList.remove('is-active'));
+		document
+			.querySelectorAll<HTMLElement>(".fw-pop-close")
+			.forEach((btn) => {
+				btn.addEventListener("click", (e) => {
+					e.stopPropagation(); // prevent bubbling to other elements
+					fwNavItems.forEach((n) => n.classList.remove("is-active"));
+					fwPopovers.forEach((p) => p.classList.remove("is-active"));
+				});
 			});
-		});
 
 		// ──────────────────────────────────────────────────
 		// 10. Core Capabilities Search + Accordion
 		// ──────────────────────────────────────────────────
-		const capabilitiesModal = document.getElementById('modal-page-capabilities');
-		const capabilityRows = Array.from(capabilitiesModal?.querySelectorAll<HTMLElement>('.capability-row') ?? []);
-		const capabilitySearch = capabilitiesModal?.querySelector<HTMLInputElement>('[data-capabilities-search]');
-		const capabilityFilters = Array.from(capabilitiesModal?.querySelectorAll<HTMLElement>('[data-capability-filter]') ?? []);
+		const capabilitiesModal = document.getElementById(
+			"modal-page-capabilities",
+		);
+		const capabilityRows = Array.from(
+			capabilitiesModal?.querySelectorAll<HTMLElement>(
+				".capability-row",
+			) ?? [],
+		);
+		const capabilitySearch =
+			capabilitiesModal?.querySelector<HTMLInputElement>(
+				"[data-capabilities-search]",
+			);
+		const capabilityFilters = Array.from(
+			capabilitiesModal?.querySelectorAll<HTMLElement>(
+				"[data-capability-filter]",
+			) ?? [],
+		);
 
-		const filterCapabilities = (query = '', category = 'all') => {
+		const filterCapabilities = (query = "", category = "all") => {
 			const normalizedQuery = query.trim().toLowerCase();
 			capabilityRows.forEach((row) => {
-				const matchesCategory = category === 'all' || row.dataset.capability === category;
-				const matchesQuery = !normalizedQuery || row.textContent?.toLowerCase().includes(normalizedQuery);
+				const matchesCategory =
+					category === "all" || row.dataset.capability === category;
+				const matchesQuery =
+					!normalizedQuery ||
+					row.textContent?.toLowerCase().includes(normalizedQuery);
 				row.hidden = !(matchesCategory && matchesQuery);
 			});
 		};
 
-		capabilitySearch?.addEventListener('input', () => filterCapabilities(capabilitySearch.value));
+		capabilitySearch?.addEventListener("input", () =>
+			filterCapabilities(capabilitySearch.value),
+		);
 		capabilityFilters.forEach((filter) => {
-			filter.addEventListener('click', () => {
-				capabilityFilters.forEach((button) => button.classList.remove('is-active'));
-				filter.classList.add('is-active');
-				filterCapabilities(capabilitySearch?.value ?? '', filter.dataset.capabilityFilter ?? 'all');
+			filter.addEventListener("click", () => {
+				capabilityFilters.forEach((button) =>
+					button.classList.remove("is-active"),
+				);
+				filter.classList.add("is-active");
+				filterCapabilities(
+					capabilitySearch?.value ?? "",
+					filter.dataset.capabilityFilter ?? "all",
+				);
 			});
 		});
 
 		capabilityRows.forEach((row) => {
-			const header = row.querySelector<HTMLButtonElement>('.capability-row-header');
-			header?.addEventListener('click', () => {
-				const expanded = row.classList.toggle('is-expanded');
-				header.setAttribute('aria-expanded', String(expanded));
-				const chevron = header.querySelector<HTMLElement>('.capability-chevron');
-				if (chevron) chevron.textContent = expanded ? '⌃' : '⌄';
+			const header = row.querySelector<HTMLButtonElement>(
+				".capability-row-header",
+			);
+			header?.addEventListener("click", () => {
+				const expanded = row.classList.toggle("is-expanded");
+				header.setAttribute("aria-expanded", String(expanded));
+				const chevron = header.querySelector<HTMLElement>(
+					".capability-chevron",
+				);
+				if (chevron) chevron.textContent = expanded ? "⌃" : "⌄";
 			});
 		});
 
-		const whereFilters = document.querySelectorAll<HTMLElement>('#modal-page-where .where-sector-filters button');
+		const whereFilters = document.querySelectorAll<HTMLElement>(
+			"#modal-page-where .where-sector-filters button",
+		);
+		const whereDots = document.querySelectorAll<HTMLElement>(
+			"#modal-page-where [data-where-dot]",
+		);
+		const whereCards = document.querySelectorAll<HTMLElement>(
+			"#modal-page-where [data-where-client]",
+		);
+		const whereTags = document.querySelectorAll<HTMLElement>(
+			"#modal-page-where [data-where-tag]",
+		);
+
+		const updateWhereSelection = (clients: string[]) => {
+			const selected = new Set(clients);
+			whereCards.forEach((card) => {
+				card.classList.toggle(
+					"is-highlighted",
+					selected.has(card.dataset.whereClient || ""),
+				);
+			});
+			whereDots.forEach((dot) => {
+				dot.classList.toggle(
+					"is-selected",
+					selected.has(dot.dataset.whereDot || ""),
+				);
+			});
+			whereTags.forEach((tag) => {
+				tag.classList.toggle(
+					"is-visible",
+					selected.has(tag.dataset.whereTag || ""),
+				);
+			});
+		};
+
+		whereDots.forEach((dot) => {
+			dot.addEventListener("click", () => {
+				const client = dot.dataset.whereDot;
+				if (client) updateWhereSelection([client]);
+			});
+		});
+
 		whereFilters.forEach((filter) => {
-			filter.addEventListener('click', () => {
-				whereFilters.forEach((button) => button.classList.remove('is-active'));
-				filter.classList.add('is-active');
+			filter.addEventListener("click", () => {
+				whereFilters.forEach((button) =>
+					button.classList.remove("is-active"),
+				);
+				filter.classList.add("is-active");
+				const sector = filter.dataset.whereSector;
+				if (!sector) return;
+				const matchingClients = Array.from(whereCards)
+					.filter((card) =>
+						(card.dataset.whereSectors || "")
+							.split(",")
+							.includes(sector),
+					)
+					.map((card) => card.dataset.whereClient || "")
+					.filter(Boolean);
+				updateWhereSelection(matchingClients);
 			});
 		});
 
 		// Close contact panel when clicking outside
-		document.addEventListener('click', (e) => {
-			const contactPanel = document.getElementById('contact-panel');
-			const dockMailBtn  = document.querySelector<HTMLElement>('[data-dock-id="dock-mail"]');
+		document.addEventListener("click", (e) => {
+			const contactPanel = document.getElementById("contact-panel");
+			const dockMailBtn = document.querySelector<HTMLElement>(
+				'[data-dock-id="dock-mail"]',
+			);
 			if (
-				contactPanel?.classList.contains('is-open') &&
+				contactPanel?.classList.contains("is-open") &&
 				!contactPanel.contains(e.target as Node) &&
 				e.target !== dockMailBtn &&
 				!dockMailBtn?.contains(e.target as Node)
 			) {
-				contactPanel.classList.remove('is-open');
-				contactPanel.setAttribute('aria-hidden', 'true');
-				dockMailBtn?.classList.remove('is-active');
+				contactPanel.classList.remove("is-open");
+				contactPanel.setAttribute("aria-hidden", "true");
+				dockMailBtn?.classList.remove("is-active");
 			}
 		});
 
 		// ──────────────────────────────────────────────────
 		// 11. The 1% Principle — toggle + expand animation
 		// ──────────────────────────────────────────────────
-		const pplStage     = document.getElementById('ppl-stage');
-		const pplCheckbox  = document.getElementById('ppl-checkbox') as HTMLInputElement | null;
-		const pplExpandBtn = document.getElementById('ppl-expand-btn');
-		const pplCards = document.querySelectorAll<HTMLElement>('[data-principle-card]');
-		const pplInsightCards = document.querySelectorAll<HTMLElement>('#modal-page-principle .ppl-exp-card');
-		const principleTabs = document.querySelectorAll<HTMLElement>('[data-principle-tab]');
-		const principleInfoPanes = document.querySelectorAll<HTMLElement>('[data-principle-pane]');
+		const pplStage = document.getElementById("ppl-stage");
+		const pplCheckbox = document.getElementById(
+			"ppl-checkbox",
+		) as HTMLInputElement | null;
+		const pplExpandBtn = document.getElementById("ppl-expand-btn");
+		const pplCards = document.querySelectorAll<HTMLElement>(
+			"[data-principle-card]",
+		);
+		const pplInsightCards = document.querySelectorAll<HTMLElement>(
+			"#modal-page-principle .ppl-exp-card",
+		);
+		const principleTabs = document.querySelectorAll<HTMLElement>(
+			"[data-principle-tab]",
+		);
+		const principleInfoPanes = document.querySelectorAll<HTMLElement>(
+			"[data-principle-pane]",
+		);
 
 		// Toggle unlock
 		if (pplCheckbox && pplStage) {
-			pplCheckbox.addEventListener('change', () => {
+			pplCheckbox.addEventListener("change", () => {
 				if (pplCheckbox.checked) {
-					pplStage.classList.add('is-unlocked');
+					pplStage.classList.add("is-unlocked");
 				} else {
 					// Locking again also collapses expanded view
-					pplStage.classList.remove('is-unlocked', 'is-selecting', 'is-expanded', 'is-info');
+					pplStage.classList.remove(
+						"is-unlocked",
+						"is-selecting",
+						"is-expanded",
+						"is-info",
+					);
 				}
 			});
 		}
 
 		// Expand button
-		pplExpandBtn?.addEventListener('click', () => {
-			pplStage?.classList.add('is-selecting');
+		pplExpandBtn?.addEventListener("click", () => {
+			pplStage?.classList.add("is-selecting");
 		});
 
 		// Choose an icon card to open its matching highlighted insight.
 		pplCards.forEach((card) => {
-			card.addEventListener('click', () => {
+			card.addEventListener("click", () => {
 				const selectedIndex = Number(card.dataset.principleCard);
 				pplInsightCards.forEach((insightCard, index) => {
-					insightCard.classList.toggle('ppl-exp-card--active', index === selectedIndex);
+					insightCard.classList.toggle(
+						"ppl-exp-card--active",
+						index === selectedIndex,
+					);
 				});
-				pplStage?.classList.remove('is-selecting');
-				pplStage?.classList.add('is-expanded');
+				pplStage?.classList.remove("is-selecting");
+				pplStage?.classList.add("is-expanded");
 			});
 		});
 
 		principleTabs.forEach((tab) => {
-			tab.addEventListener('click', () => {
-				const selectedTab = tab.dataset.principleTab ?? 'principle';
-				const isInfoTab = selectedTab !== 'principle';
+			tab.addEventListener("click", () => {
+				const selectedTab = tab.dataset.principleTab ?? "principle";
+				const isInfoTab = selectedTab !== "principle";
 				principleTabs.forEach((item) => {
 					const isActive = item === tab;
-					item.classList.toggle('is-active', isActive);
-					item.setAttribute('aria-selected', String(isActive));
+					item.classList.toggle("is-active", isActive);
+					item.setAttribute("aria-selected", String(isActive));
 				});
 				principleInfoPanes.forEach((pane) => {
-					pane.classList.toggle('is-active', pane.dataset.principlePane === selectedTab);
+					pane.classList.toggle(
+						"is-active",
+						pane.dataset.principlePane === selectedTab,
+					);
 				});
-				pplStage?.classList.toggle('is-info', isInfoTab);
+				pplStage?.classList.toggle("is-info", isInfoTab);
+			});
+		});
+
+		// About Us tabs: keep the editorial page and the Mission/In Practice
+		// views in the same window, using the same tab interaction pattern.
+		const aboutModal = document.getElementById("modal-page-about");
+		const aboutTabs = document.querySelectorAll<HTMLElement>(
+			"[data-about-tab]",
+		);
+		const aboutPanes = document.querySelectorAll<HTMLElement>(
+			"[data-about-pane]",
+		);
+		const aboutBody = aboutModal?.querySelector<HTMLElement>(
+			".about-window-body",
+		);
+
+		aboutTabs.forEach((tab) => {
+			tab.addEventListener("click", () => {
+				const selectedTab = tab.dataset.aboutTab ?? "about";
+				const isInfoTab = selectedTab !== "about";
+
+				aboutTabs.forEach((item) => {
+					const isActive = item === tab;
+					item.classList.toggle("is-active", isActive);
+					item.setAttribute("aria-selected", String(isActive));
+				});
+				aboutPanes.forEach((pane) => {
+					const isActive = pane.dataset.aboutPane === selectedTab;
+					pane.hidden = !isActive;
+				});
+				aboutBody?.classList.toggle("is-info", isInfoTab);
 			});
 		});
 
 		// ──────────────────────────────────────────────────
 		// 10. MacOS Dock Stack Interactions
 		// ──────────────────────────────────────────────────
-		const dockFolderBtn = document.querySelector<HTMLElement>('[data-dock-id="dock-folder"]');
-		const dockStack = document.querySelector<HTMLElement>('[data-dock-stack]');
-		const dockFanItems = Array.from(document.querySelectorAll<HTMLElement>('.ds-item:nth-child(-n + 3)'));
+		const dockFolderBtn = document.querySelector<HTMLElement>(
+			'[data-dock-id="dock-folder"]',
+		);
+		const dockStack =
+			document.querySelector<HTMLElement>("[data-dock-stack]");
+		const dockFanItems = Array.from(
+			document.querySelectorAll<HTMLElement>(
+				".ds-item:nth-child(-n + 3)",
+			),
+		);
 		let dockHoverTimer: ReturnType<typeof setTimeout> | undefined;
 		let dockCloseTimer: ReturnType<typeof setTimeout> | undefined;
 
 		const D2R = Math.PI / 180;
-		const pointOnFanArc = (center: { x: number; y: number }, radius: number, angle: number) => ({
+		const pointOnFanArc = (
+			center: { x: number; y: number },
+			radius: number,
+			angle: number,
+		) => ({
 			x: center.x - radius * Math.cos(angle * D2R),
 			y: center.y - radius * Math.sin(angle * D2R),
 		});
@@ -1058,9 +1630,9 @@ import ExperienceModal from '../components/ExperienceModal.astro';
 			dockFanItems.forEach((item, index) => {
 				const angle = startAngle + index * step;
 				const point = pointOnFanArc(firstCenter, radius, angle);
-				item.style.setProperty('--fan-x', `${point.x}px`);
-				item.style.setProperty('--fan-y', `${point.y}px`);
-				item.style.setProperty('--fan-rotation', `${angle}deg`);
+				item.style.setProperty("--fan-x", `${point.x}px`);
+				item.style.setProperty("--fan-y", `${point.y}px`);
+				item.style.setProperty("--fan-rotation", `${angle}deg`);
 				item.style.transitionDelay = `${index * 34}ms`;
 			});
 		};
@@ -1069,19 +1641,22 @@ import ExperienceModal from '../components/ExperienceModal.astro';
 			if (dockHoverTimer) clearTimeout(dockHoverTimer);
 			if (dockCloseTimer) clearTimeout(dockCloseTimer);
 			positionDockFan();
-			dockStack?.classList.add('is-open');
+			dockStack?.classList.add("is-open");
 		};
 
 		const closeDockFan = () => {
 			if (dockHoverTimer) clearTimeout(dockHoverTimer);
 			if (dockCloseTimer) clearTimeout(dockCloseTimer);
-			dockStack?.classList.remove('is-open');
+			dockStack?.classList.remove("is-open");
 		};
 
-		document.addEventListener('click', (e) => {
+		document.addEventListener("click", (e) => {
 			const target = e.target as Node;
-			if (dockStack?.classList.contains('is-open')) {
-				if (!dockFolderBtn?.contains(target) && !dockStack.contains(target)) {
+			if (dockStack?.classList.contains("is-open")) {
+				if (
+					!dockFolderBtn?.contains(target) &&
+					!dockStack.contains(target)
+				) {
 					closeDockFan();
 				}
 			}
@@ -1099,39 +1674,51 @@ import ExperienceModal from '../components/ExperienceModal.astro';
 			dockCloseTimer = setTimeout(closeDockFan, 420);
 		};
 
-		dockFolderBtn?.addEventListener('pointerenter', scheduleDockOpen);
-		dockFolderBtn?.addEventListener('pointerleave', (e) => {
+		dockFolderBtn?.addEventListener("pointerenter", scheduleDockOpen);
+		dockFolderBtn?.addEventListener("pointerleave", (e) => {
 			const related = e.relatedTarget as Node | null;
-			if (related && (dockFolderBtn.contains(related) || dockFanItems.some((item) => item.contains(related)))) return;
+			if (
+				related &&
+				(dockFolderBtn.contains(related) ||
+					dockFanItems.some((item) => item.contains(related)))
+			)
+				return;
 			scheduleDockClose();
 		});
 		dockFanItems.forEach((item) => {
-			item.addEventListener('pointerenter', openDockFan);
-			item.addEventListener('pointerleave', (e) => {
+			item.addEventListener("pointerenter", openDockFan);
+			item.addEventListener("pointerleave", (e) => {
 				const related = e.relatedTarget as Node | null;
-				if (related && (dockFolderBtn?.contains(related) || dockFanItems.some((other) => other.contains(related)))) return;
+				if (
+					related &&
+					(dockFolderBtn?.contains(related) ||
+						dockFanItems.some((other) => other.contains(related)))
+				)
+					return;
 				scheduleDockClose();
 			});
 		});
-		window.addEventListener('resize', () => {
-			if (dockStack?.classList.contains('is-open')) positionDockFan();
+		window.addEventListener("resize", () => {
+			if (dockStack?.classList.contains("is-open")) positionDockFan();
 		});
 
-		document.querySelectorAll<HTMLElement>('.ds-item').forEach(item => {
-			item.addEventListener('click', (e) => {
+		document.querySelectorAll<HTMLElement>(".ds-item").forEach((item) => {
+			item.addEventListener("click", (e) => {
 				e.stopPropagation(); // prevent clicking the dock button itself
-				const targetId = item.getAttribute('data-action-target');
+				const targetId = item.getAttribute("data-action-target");
 				if (targetId) {
 					// 1. Close any currently open full-screen modals first
-					document.querySelectorAll('.modal-overlay.is-open').forEach(modal => {
-						closeModalWithGenie(modal as HTMLElement);
-					});
+					document
+						.querySelectorAll(".modal-overlay.is-open")
+						.forEach((modal) => {
+							closeModalWithGenie(modal as HTMLElement);
+						});
 
 					// 2. Open the requested modal
 					const targetModal = document.getElementById(targetId);
 					if (targetModal) {
-						if (targetId.startsWith('win-')) {
-							targetModal.classList.remove('is-minimized');
+						if (targetId.startsWith("win-")) {
+							targetModal.classList.remove("is-minimized");
 							activeZIndex++;
 							targetModal.style.zIndex = String(activeZIndex);
 						} else {

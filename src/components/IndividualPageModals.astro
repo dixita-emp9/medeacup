@@ -832,8 +832,8 @@
       <div class="fw-watermark">
         <div class="fw-bulb">💡</div>
         <div class="fw-watermark-text">
-          Clarity first. Then the idea nobody expects.<br />Then the number that
-          moves.
+          Clarity first. <br />Then the idea nobody expects.<br />Then the
+          number that moves.
         </div>
       </div>
 
@@ -961,7 +961,9 @@
             <li>Whitespace</li>
           </ul>
         </div>
-        <button class="fw-pop-btn">Let's Find Clarity</button>
+        <button class="fw-pop-btn experience-contact-action" type="button">
+          Let's Find Clarity
+        </button>
       </div>
 
       <!-- Uncommon Ideas (U) -->
@@ -996,7 +998,9 @@
             <li>Creative direction</li>
           </ul>
         </div>
-        <button class="fw-pop-btn">Let's Unlock Ideas</button>
+        <button class="fw-pop-btn experience-contact-action" type="button">
+          Let's Unlock Ideas
+        </button>
       </div>
 
       <!-- Power (P) -->
@@ -1029,7 +1033,9 @@
             <li>Measurement</li>
           </ul>
         </div>
-        <button class="fw-pop-btn">Build Market Power</button>
+        <button class="fw-pop-btn experience-contact-action" type="button">
+          Build Market Power
+        </button>
       </div>
     </div>
 
@@ -1319,7 +1325,29 @@
       >
     </div>
     <div class="fullscreen-window-header">
-      <div class="window-title-meta">About Us</div>
+      <div class="about-tabbar" role="tablist" aria-label="About Us sections">
+        <button
+          class="about-tab is-active"
+          type="button"
+          role="tab"
+          aria-selected="true"
+          data-about-tab="about">About Us</button
+        >
+        <button
+          class="about-tab"
+          type="button"
+          role="tab"
+          aria-selected="false"
+          data-about-tab="mission">Mission</button
+        >
+        <button
+          class="about-tab"
+          type="button"
+          role="tab"
+          aria-selected="false"
+          data-about-tab="practice">In Practice</button
+        >
+      </div>
       <div class="fullscreen-window-controls">
         <span
           class="dot-btn dot-red close-modal-btn"
@@ -1450,6 +1478,57 @@
           </p>
         </section>
       </article>
+
+      <section
+        class="about-info-pane"
+        data-about-pane="mission"
+        aria-label="Mission"
+        hidden
+      >
+        <p class="about-info-eyebrow">Mission</p>
+        <p>We find the 1% your market is waiting for.</p>
+        <p>
+          Most brands spread effort across everything. MEDEACUP focuses on
+          finding the one thing that changes the economics, whether that is a
+          buyer insight, a positioning shift or a structural fix, then builds
+          the system that makes it compound.
+        </p>
+        <p class="about-info-closing">
+          The 1% is never the obvious thing. That is why most brands miss it.
+        </p>
+      </section>
+
+      <section
+        class="about-info-pane"
+        data-about-pane="practice"
+        aria-label="In Practice"
+        hidden
+      >
+        <p class="about-info-eyebrow">In Practice</p>
+        <p class="about-practice-item">
+          <span class="bullet-cup-icon" aria-hidden="true">☕</span>
+          <span
+            >Every engagement starts with one question: who is actually buying,
+            and why?</span
+          >
+        </p>
+        <p class="about-practice-item">
+          <span class="bullet-cup-icon" aria-hidden="true">☕</span>
+          <span>Every engagement produces one Thinking Document.</span>
+        </p>
+        <p class="about-practice-item">
+          <span class="bullet-cup-icon" aria-hidden="true">☕</span>
+          <span>Every engagement agrees on one metric before work begins.</span>
+        </p>
+        <p class="about-practice-item">
+          <span class="bullet-cup-icon" aria-hidden="true">☕</span>
+          <span>Every engagement is measured by whether that number moves.</span
+          >
+        </p>
+        <p class="about-info-closing">
+          The 1% is never the obvious thing. That is why most brands miss it.
+        </p>
+      </section>
     </div>
   </div>
 </div>
@@ -1498,7 +1577,11 @@
         <!-- ── Client file icons ── -->
 
         <!-- GODREJ — top left -->
-        <div class="where-client-card where-godrej">
+        <div
+          class="where-client-card where-godrej"
+          data-where-client="godrej"
+          data-where-sectors="d2c,retail,real-estate"
+        >
           <div class="where-file-icon">
             <div class="where-file-body">
               <img
@@ -1511,22 +1594,30 @@
           <span class="where-client-label">GODREJ</span>
         </div>
 
-        <!-- FCTRYLAB — bottom left -->
-        <div class="where-client-card where-fctrylab">
+        <!-- CELEX ENSEMBLE — bottom left -->
+        <div
+          class="where-client-card where-celex"
+          data-where-client="celex"
+          data-where-sectors="hospitality"
+        >
           <div class="where-file-icon">
             <div class="where-file-body">
               <img
-                src="/clients/fctrylab.png"
-                alt="FCTRYLAB"
+                src="/clients/celex.png"
+                alt="Celex Ensemble"
                 class="where-logo"
               />
             </div>
           </div>
-          <span class="where-client-label">FCTRYLAB</span>
+          <span class="where-client-label">CELEX ENSEMBLE</span>
         </div>
 
         <!-- REVERB — top right -->
-        <div class="where-client-card where-reverb">
+        <div
+          class="where-client-card where-reverb"
+          data-where-client="reverb"
+          data-where-sectors="d2c,retail,real-estate"
+        >
           <div class="where-file-icon">
             <div class="where-file-body">
               <img src="/clients/reverb.png" alt="Reverb" class="where-logo" />
@@ -1535,22 +1626,30 @@
           <span class="where-client-label">REVERB</span>
         </div>
 
-        <!-- FABINDIA — right middle -->
-        <div class="where-client-card where-fabindia">
+        <!-- OWL ACADEMY — right middle -->
+        <div
+          class="where-client-card where-owl"
+          data-where-client="owl"
+          data-where-sectors="education"
+        >
           <div class="where-file-icon">
             <div class="where-file-body">
               <img
-                src="/clients/fabindia.png"
-                alt="Fabindia"
+                src="/clients/owl-academy.png"
+                alt="Owl Academy"
                 class="where-logo"
               />
             </div>
           </div>
-          <span class="where-client-label">FABINDIA</span>
+          <span class="where-client-label">OWL ACADEMY</span>
         </div>
 
         <!-- JACOB'S — bottom right -->
-        <div class="where-client-card where-jacobs">
+        <div
+          class="where-client-card where-jacobs"
+          data-where-client="jacobs"
+          data-where-sectors="hospitality,d2c"
+        >
           <div class="where-file-icon">
             <div class="where-file-body">
               <img
@@ -1564,25 +1663,78 @@
         </div>
 
         <!-- ── Orbital diagram (center) ── -->
-        <div class="where-orbit-field" aria-label="Our work across India">
+        <div
+          class="where-orbit-field"
+          aria-label="Our work across five countries"
+        >
           <!-- Orbit glob image (dot cloud + orbit lines + nodes) -->
           <img
             src="/glob.svg"
             alt="Orbital client map"
             class="where-glob-img"
           />
+          <button
+            class="where-dot where-dot-godrej"
+            type="button"
+            data-where-dot="godrej"
+            aria-label="Godrej Interio in India"></button>
+          <button
+            class="where-dot where-dot-reverb"
+            type="button"
+            data-where-dot="reverb"
+            aria-label="Reverb Asia in India"></button>
+          <button
+            class="where-dot where-dot-celex"
+            type="button"
+            data-where-dot="celex"
+            aria-label="Celex Ensemble in the United Kingdom"></button>
+          <button
+            class="where-dot where-dot-jacobs"
+            type="button"
+            data-where-dot="jacobs"
+            aria-label="Jacobs Garden Hotel in the UAE"></button>
+          <button
+            class="where-dot where-dot-owl"
+            type="button"
+            data-where-dot="owl"
+            aria-label="Owl Academy in Belgium"></button>
+          <div class="where-country-tags" aria-live="polite">
+            <span
+              class="where-country-tag where-country-godrej"
+              data-where-tag="godrej"><span>🇮🇳</span> India</span
+            >
+            <span
+              class="where-country-tag where-country-reverb"
+              data-where-tag="reverb"><span>🇮🇳</span> India</span
+            >
+            <span
+              class="where-country-tag where-country-celex"
+              data-where-tag="celex"><span>🇬🇧</span> United Kingdom</span
+            >
+            <span
+              class="where-country-tag where-country-jacobs"
+              data-where-tag="jacobs"><span>🇦🇪</span> UAE</span
+            >
+            <span
+              class="where-country-tag where-country-owl"
+              data-where-tag="owl"><span>🇧🇪</span> Belgium</span
+            >
+          </div>
         </div>
-
-        <!-- India pill — sits above the glob, positioned on the canvas -->
-        <div class="where-country-pill"><span>🇮🇳</span> India</div>
 
         <!-- ── Sector filter pills ── -->
         <div class="where-sector-filters">
-          <button class="is-active" type="button">D2C</button>
-          <button type="button">Retail</button>
-          <button type="button">Real Estate</button>
-          <button type="button">Hospitality</button>
-          <button type="button">Education</button>
+          <button class="is-active" type="button" data-where-sector="d2c"
+            >D2C</button
+          >
+          <button type="button" data-where-sector="retail">Retail</button>
+          <button type="button" data-where-sector="real-estate"
+            >Real Estate</button
+          >
+          <button type="button" data-where-sector="hospitality"
+            >Hospitality</button
+          >
+          <button type="button" data-where-sector="education">Education</button>
         </div>
       </div>
     </div>
@@ -1758,7 +1910,7 @@
         <p class="ppl-info-eyebrow">Mission</p>
         <p>We find the 1% your market is waiting for.</p>
         <p>
-          Most brands spread effort across everything. Mediacup focuses on
+          Most brands spread effort across everything. MEDEACUP focuses on
           finding the one thing that changes the economics, whether that is a
           buyer insight, a positioning shift or a structural fix, then builds
           the system that makes it compound.
@@ -2164,8 +2316,8 @@
   /* The file icon shape with dog-ear corner */
   .where-file-icon {
     position: relative;
-    width: 148px;
-    height: 172px;
+    width: 96px;
+    height: 116px;
     filter: drop-shadow(0 14px 30px rgba(60, 50, 35, 0.12));
   }
 
@@ -2188,16 +2340,16 @@
     position: absolute;
     top: 0;
     right: 0;
-    width: 40px;
-    height: 36px;
+    width: 27px;
+    height: 25px;
     background: linear-gradient(225deg, #d8d0c0 50%, transparent 50%);
     border-radius: 0 4px 0 0;
     z-index: 2;
   }
 
   .where-logo {
-    width: 108px;
-    height: 72px;
+    width: 78px;
+    height: 64px;
     object-fit: contain;
     object-position: center;
   }
@@ -2205,7 +2357,7 @@
   /* Client name label below icon */
   .where-client-label {
     font-family: var(--font-body);
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 500;
     letter-spacing: 0.05em;
     color: rgba(55, 55, 55, 0.65);
@@ -2233,12 +2385,36 @@
     top: 54%;
   }
 
+  .where-celex {
+    left: 12%;
+    top: 52%;
+  }
+
+  .where-owl {
+    right: 7%;
+    top: 26%;
+  }
+
+  .where-client-card {
+    transform-origin: center bottom;
+    transition:
+      transform 220ms ease,
+      filter 220ms ease,
+      opacity 220ms ease;
+  }
+
+  .where-client-card.is-highlighted {
+    z-index: 8;
+    filter: drop-shadow(0 16px 28px rgba(231, 39, 39, 0.2));
+    transform: scale(1.1);
+  }
+
   /* ── Orbital diagram — truly centered ── */
   .where-orbit-field {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 620px;
+    width: 560px;
     height: 560px;
     transform: translate(-50%, -50%);
   }
@@ -2250,6 +2426,109 @@
     height: 100%;
     object-fit: contain;
     object-position: center;
+  }
+
+  .where-dot {
+    position: absolute;
+    z-index: 12;
+    width: 22px;
+    height: 22px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: #e72727;
+    box-shadow: 0 0 0 0 rgba(231, 39, 39, 0.28);
+    cursor: pointer;
+    transform: translate(-50%, -50%);
+    transition:
+      width 180ms ease,
+      height 180ms ease,
+      box-shadow 180ms ease;
+  }
+
+  .where-dot:hover,
+  .where-dot.is-selected {
+    width: 28px;
+    height: 28px;
+    box-shadow: 0 0 0 8px rgba(231, 39, 39, 0.14);
+  }
+
+  .where-dot-godrej {
+    left: 54%;
+    top: 9.9%;
+  }
+
+  .where-dot-reverb {
+    left: 47.5%;
+    top: 25.5%;
+  }
+
+  .where-dot-celex {
+    left: 85%;
+    top: 26.3%;
+  }
+
+  .where-dot-jacobs {
+    left: 67%;
+    top: 64.8%;
+  }
+
+  .where-dot-owl {
+    left: 28.4%;
+    top: 73%;
+  }
+
+  .where-country-tags {
+    position: absolute;
+    inset: 0;
+    z-index: 14;
+    pointer-events: none;
+  }
+
+  .where-country-tag {
+    position: absolute;
+    display: none;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 13px;
+    border: 1px solid rgba(80, 75, 68, 0.18);
+    border-radius: 20px;
+    background: rgba(246, 241, 232, 0.96);
+    backdrop-filter: blur(8px);
+    color: rgba(65, 65, 65, 0.8);
+    font: 500 14px/1 var(--font-body);
+    white-space: nowrap;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+    transform: translate(-50%, -135%);
+  }
+
+  .where-country-tag.is-visible {
+    display: inline-flex;
+  }
+
+  .where-country-godrej {
+    left: 54%;
+    top: 7.9%;
+  }
+
+  .where-country-reverb {
+    left: 47.5%;
+    top: 23.4%;
+  }
+
+  .where-country-celex {
+    left: 85%;
+    top: 24%;
+  }
+
+  .where-country-jacobs {
+    left: 67%;
+    top: 62.6%;
+  }
+
+  .where-country-owl {
+    left: 28.4%;
+    top: 70.8%;
   }
 
   /* India pill — canvas-level, above the glob */
@@ -2316,6 +2595,11 @@
       transform: scale(0.82);
       transform-origin: top center;
       min-height: 680px;
+    }
+
+    .where-file-icon {
+      width: 88px;
+      height: 106px;
     }
   }
 
@@ -4394,6 +4678,75 @@
     margin-top: 14px;
   }
 
+  /* About Us uses the same quiet browser-tab treatment as the 1% window. */
+  .about-tabbar {
+    display: flex;
+    align-items: flex-end;
+    gap: 4px;
+  }
+
+  .about-tab {
+    appearance: none;
+    border: 1px solid transparent;
+    border-bottom: 0;
+    border-radius: 10px 10px 0 0;
+    padding: 7px 11px;
+    background: transparent;
+    color: rgba(82, 75, 68, 0.6);
+    font: 500 12px/1 var(--font-body);
+    cursor: pointer;
+  }
+
+  .about-tab.is-active {
+    border-color: rgba(115, 104, 91, 0.14);
+    background: rgba(255, 255, 255, 0.68);
+    color: var(--text-primary);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  }
+
+  #modal-page-about .about-window-body.is-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 42px 72px;
+  }
+
+  #modal-page-about .about-window-body.is-info .about-story-panel,
+  #modal-page-about .about-window-body.is-info .about-editorial-content {
+    display: none;
+  }
+
+  .about-info-pane {
+    width: min(760px, 100%);
+    color: rgba(23, 23, 23, 0.78);
+    font: 15px/1.5 var(--font-body);
+  }
+
+  .about-info-pane p {
+    margin: 0 0 14px;
+  }
+
+  .about-info-eyebrow {
+    color: var(--brand-red);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .about-practice-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .about-info-closing {
+    margin-top: 26px !important;
+    color: var(--brand-red);
+    font-family: var(--font-display, serif);
+    font-style: italic;
+  }
+
   @media (max-width: 700px) {
     #modal-page-about .about-window-body {
       grid-template-columns: 1fr;
@@ -4403,5 +4756,10 @@
     #modal-page-about .about-editorial-content {
       padding: 10px 8px 0;
     }
+
+    #modal-page-about .about-window-body.is-info {
+      padding: 0 20px 88px;
+    }
   }
+
 </style>

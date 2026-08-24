@@ -7,7 +7,7 @@
     <div class="modal-header">
       <div class="header-left">
         <span class="dot-btn dot-red" id="btn-close-quiz-dot"></span><span
-          class="modal-title">MEDIACUP - Compatibility Quiz</span
+          class="modal-title">MEDEACUP - Compatibility Quiz</span
         >
       </div>
       <button
@@ -43,11 +43,15 @@
   }
 
   .modal-overlay#quiz-modal .quiz-dialog {
-    isolation: isolate;
-    /* background: #f6f2ec !important;
-    background-image: linear-gradient(135deg, rgba(255,255,255,.98), rgba(246,242,236,.98)) !important; */
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
+    /* Keep this window in the same glass layer as the other modal windows. */
+    isolation: auto;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.72),
+      rgba(246, 242, 236, 0.48)
+    ) !important;
+    backdrop-filter: blur(28px) saturate(120%);
+    -webkit-backdrop-filter: blur(28px) saturate(120%) !important;
   }
 
   .modal-overlay#quiz-modal .modal-header {
@@ -79,7 +83,7 @@
     max-height: calc(88vh - 66px);
     overflow-y: auto;
     padding: 28px 26px 30px;
-    /* background: #f6f2ec !important; */
+    background: rgba(246, 242, 236, 0.2) !important;
   }
   .header-left {
     display: flex;
@@ -373,7 +377,7 @@
 
   const renderQuizForm = () => {
     if (!quizBody) return;
-    quizBody.innerHTML = `<div class="quiz-intro"><h2>One last thing.</h2><p class="quiz-form-copy">Leave your details and we’ll come back to you with a specific point of view on what we found.</p></div><form class="quiz-form" id="quiz-lead-form"><div class="quiz-form-row"><input class="quiz-input" id="quiz-first-name" placeholder="First Name" autocomplete="given-name" required><input class="quiz-input" id="quiz-last-name" placeholder="Last Name" autocomplete="family-name" required></div><input class="quiz-input" id="quiz-email" type="email" placeholder="Email" autocomplete="email" required><div class="quiz-phone-row"><div class="quiz-country-code">91</div><input class="quiz-input" id="quiz-phone" type="tel" placeholder="Phone" autocomplete="tel"></div><div class="quiz-nav"><button type="button" class="quiz-btn secondary" id="quiz-form-back">Back</button><button class="quiz-btn" type="submit">Email</button></div></form>`;
+    quizBody.innerHTML = `<div class="quiz-intro"><h2>One last thing.</h2><p class="quiz-form-copy">Leave your details and we’ll come back to you with a specific point of view on what we found.</p></div><form class="quiz-form" id="quiz-lead-form"><div class="quiz-form-row"><input class="quiz-input" id="quiz-first-name" placeholder="First Name" autocomplete="given-name" required><input class="quiz-input" id="quiz-last-name" placeholder="Last Name" autocomplete="family-name" required></div><input class="quiz-input" id="quiz-email" type="email" placeholder="Email" autocomplete="email" required><div class="quiz-phone-row"><div class="quiz-country-code">91</div><input class="quiz-input" id="quiz-phone" type="tel" placeholder="Phone" autocomplete="tel"></div><div class="quiz-nav"><button type="button" class="quiz-btn secondary" id="quiz-form-back">Back</button><button class="quiz-btn" type="submit">Build Your CUP</button></div></form>`;
     quizBody
       .querySelector("#quiz-form-back")
       ?.addEventListener("click", () => renderQuizStep());

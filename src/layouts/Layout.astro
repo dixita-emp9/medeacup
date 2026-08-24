@@ -3,15 +3,18 @@ interface Props {
 	title?: string;
 }
 
-const { title = "MEDIACUP - Desktop OS Workspace" } = Astro.props;
-import '../styles/global.css';
+const { title = "MEDEACUP - Desktop OS Workspace" } = Astro.props;
+import "../styles/global.css";
 ---
 
-<!css>
+<!--css-->
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="description" content="MEDIACUP Interactive Desktop Workspace - We find the 1% your market is waiting for." />
+		<meta
+			name="description"
+			content="MEDEACUP Interactive Desktop Workspace - We find the 1% your market is waiting for."
+		/>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -22,12 +25,21 @@ import '../styles/global.css';
 	<body>
 		<div id="cup-cursor" aria-hidden="true">
 			<svg viewBox="0 0 40 48" xmlns="http://www.w3.org/2000/svg">
-				<line class="cup-cursor-steam" x1="13" y1="7" x2="13" y2="2" />
-				<line class="cup-cursor-steam" x1="20" y1="5" x2="20" y2="0" />
-				<line class="cup-cursor-steam" x1="27" y1="7" x2="27" y2="2" />
-				<line class="cup-cursor-rim" x1="4" y1="11" x2="36" y2="11" />
-				<path class="cup-cursor-fill" d="M6 11 L9 40 Q9 43 12 43 L28 43 Q31 43 31 40 L34 11 Z" />
-				<path class="cup-cursor-handle" d="M31 19 Q41 19 41 27 Q41 35 31 35" />
+				<line class="cup-cursor-steam" x1="13" y1="7" x2="13" y2="2"
+				></line>
+				<line class="cup-cursor-steam" x1="20" y1="5" x2="20" y2="0"
+				></line>
+				<line class="cup-cursor-steam" x1="27" y1="7" x2="27" y2="2"
+				></line>
+				<line class="cup-cursor-rim" x1="4" y1="11" x2="36" y2="11"
+				></line>
+				<path
+					class="cup-cursor-fill"
+					d="M6 11 L9 40 Q9 43 12 43 L28 43 Q31 43 31 40 L34 11 Z"
+				></path>
+				<path
+					class="cup-cursor-handle"
+					d="M31 19 Q41 19 41 27 Q41 35 31 35"></path>
 			</svg>
 		</div>
 		<slot />
@@ -35,11 +47,11 @@ import '../styles/global.css';
 </html>
 
 <script>
-	const cupCursor = document.getElementById('cup-cursor');
-	const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
+	const cupCursor = document.getElementById("cup-cursor");
+	const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)");
 
 	if (cupCursor && finePointer.matches) {
-		document.body.classList.add('has-cup-cursor');
+		document.body.classList.add("has-cup-cursor");
 
 		let mouseX = -100;
 		let mouseY = -100;
@@ -49,7 +61,9 @@ import '../styles/global.css';
 		const isOpaque = (color: string) => {
 			const match = color.match(/rgba?\(([^)]+)\)/);
 			if (!match) return false;
-			const parts = match[1].split(',').map((part) => Number.parseFloat(part.trim()));
+			const parts = match[1]
+				.split(",")
+				.map((part) => Number.parseFloat(part.trim()));
 			// Ignore translucent modal/backdrop layers; keep walking until we find
 			// the solid surface the cursor is actually sitting on.
 			return parts.length < 4 || parts[3] > 0.75;
@@ -58,15 +72,23 @@ import '../styles/global.css';
 		const isDarkTone = (color: string) => {
 			const match = color.match(/rgba?\(([^)]+)\)/);
 			if (!match) return false;
-			const [red, green, blue] = match[1].split(',').map((part) => Number.parseFloat(part.trim()));
-			if ([red, green, blue].some((value) => Number.isNaN(value))) return false;
-			const isBrandRed = red > 130 && red > green * 1.65 && red > blue * 1.65;
-			const luminance = (0.2126 * red + 0.7152 * green + 0.0722 * blue) / 255;
+			const [red, green, blue] = match[1]
+				.split(",")
+				.map((part) => Number.parseFloat(part.trim()));
+			if ([red, green, blue].some((value) => Number.isNaN(value)))
+				return false;
+			const isBrandRed =
+				red > 130 && red > green * 1.65 && red > blue * 1.65;
+			const luminance =
+				(0.2126 * red + 0.7152 * green + 0.0722 * blue) / 255;
 			return isBrandRed || luminance < 0.42;
 		};
 
 		const updateTone = (event: MouseEvent) => {
-			const element = document.elementFromPoint(event.clientX, event.clientY) as HTMLElement | null;
+			const element = document.elementFromPoint(
+				event.clientX,
+				event.clientY,
+			) as HTMLElement | null;
 			if (!element) return;
 
 			let node: HTMLElement | null = element;
@@ -74,32 +96,41 @@ import '../styles/global.css';
 			while (node && node !== document.body) {
 				const explicitTone = node.dataset.cursorTone;
 				if (explicitTone) {
-					dark = explicitTone === 'dark';
+					dark = explicitTone === "dark";
 					break;
 				}
-				const background = window.getComputedStyle(node).backgroundColor;
+				const background =
+					window.getComputedStyle(node).backgroundColor;
 				if (isOpaque(background)) {
 					dark = isDarkTone(background);
 					break;
 				}
 				node = node.parentElement;
 			}
-			document.body.classList.toggle('cup-cursor-dark', dark);
+			document.body.classList.toggle("cup-cursor-dark", dark);
 		};
 
-		document.addEventListener('mousemove', (event) => {
+		document.addEventListener("mousemove", (event) => {
 			mouseX = event.clientX;
 			mouseY = event.clientY;
-			cupCursor.classList.add('is-visible');
+			cupCursor.classList.add("is-visible");
 			const target = event.target as HTMLElement | null;
 			document.body.classList.toggle(
-				'cup-cursor-hover',
-				Boolean(target?.closest('a, button, input, select, textarea, [role="button"], .mac-window, .dock-btn')),
+				"cup-cursor-hover",
+				Boolean(
+					target?.closest(
+						'a, button, input, select, textarea, [role="button"], .mac-window, .dock-btn',
+					),
+				),
 			);
 			updateTone(event);
 		});
-		document.addEventListener('mousedown', () => document.body.classList.add('cup-cursor-pressed'));
-		document.addEventListener('mouseup', () => document.body.classList.remove('cup-cursor-pressed'));
+		document.addEventListener("mousedown", () =>
+			document.body.classList.add("cup-cursor-pressed"),
+		);
+		document.addEventListener("mouseup", () =>
+			document.body.classList.remove("cup-cursor-pressed"),
+		);
 
 		const animate = () => {
 			cursorX += (mouseX - cursorX) * 0.15;
