@@ -704,15 +704,17 @@ import ExperienceModal from "../components/ExperienceModal.astro";
 		// 4. Card Action Links → Open Individual Modal
 		// ──────────────────────────────────────────────────
 		document
-			.getElementById("btn-learn-more")
-			?.addEventListener("click", (e) => {
-				const targetOverlay =
-					document.getElementById("modal-page-mission");
-				if (targetOverlay)
-					openModalWithGenie(
-						targetOverlay,
-						e.currentTarget as HTMLElement,
-					);
+			.querySelectorAll<HTMLElement>("#btn-learn-more, [data-mobile-learn-more]")
+			.forEach((learnMore) => {
+				learnMore.addEventListener("click", (e) => {
+					const targetOverlay =
+						document.getElementById("modal-page-mission");
+					if (targetOverlay)
+						openModalWithGenie(
+							targetOverlay,
+							e.currentTarget as HTMLElement,
+						);
+				});
 			});
 
 		document

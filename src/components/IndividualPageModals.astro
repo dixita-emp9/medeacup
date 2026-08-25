@@ -4186,8 +4186,8 @@
     }
 
     #modal-page-cases .cs-stat-block {
-      padding: 72px 16px 0;
-      width: 72vw;
+      padding: 72px 22px 0;
+      width: 100%;
     }
 
     #modal-page-cases .cs-stat-block h4 {
@@ -4836,11 +4836,31 @@
 
     #modal-page-mission .watermark-column {
       min-height: 260px;
-      padding: 28px 20px;
+      align-items: flex-start;
+      justify-content: flex-start;
+      margin-top: 32px;
+      margin-bottom: 60px;
+      padding: 0px 10px;
+      background: #00000000;
+    }
+
+    #modal-page-mission .glowing-bulb-container {
+      width: 40px;
+      height: 40px;
+      margin: 0px 0px 15px;
+    }
+
+    #modal-page-mission .bulb-icon {
+      font-size: 40px;
     }
 
     #modal-page-mission .watermark-typography {
-      font-size: clamp(30px, 9vw, 44px);
+      max-width: 260px;
+      font-size: 24px;
+      font-weight: 500;
+      line-height: 1.02;
+      color: rgba(0, 0, 0, 0.17);
+      text-align: left;
     }
 
     #modal-page-cases .fullscreen-window-body.cases-grid-body {
@@ -4998,28 +5018,109 @@
 
     #modal-page-where .where-window-body {
       overflow: auto;
-      padding: 76px 0 112px;
+      padding: 76px 12px 112px;
     }
 
     #modal-page-where .where-canvas {
       flex: 0 0 auto;
-      width: 680px;
-      min-height: 820px;
-      transform: scale(0.53);
-      transform-origin: top left;
-      margin-right: -320px;
-      margin-bottom: -380px;
+      width: 100%;
+      min-height: 760px;
+      transform: none;
+      margin: 0;
     }
 
     #modal-page-where .where-sector-filters {
-      left: 340px;
-      bottom: 5%;
+      left: 50%;
+      bottom: 20%;
+      width: calc(100% - 24px);
+      flex-wrap: wrap;
+      justify-content: center;
       gap: 5px;
+      row-gap: 7px;
+      white-space: normal;
     }
 
     #modal-page-where .where-sector-filters button {
-      padding: 9px 13px;
-      font-size: 13px;
+      padding: 9px 12px;
+      font-size: 12px;
+    }
+
+    #modal-page-where .where-file-icon {
+      width: 68px;
+      height: 82px;
+    }
+
+    #modal-page-where .where-file-icon::before {
+      width: 19px;
+      height: 18px;
+    }
+
+    #modal-page-where .where-file-body {
+      padding: 10px 6px 6px;
+    }
+
+    #modal-page-where .where-logo {
+      width: 56px;
+      height: 48px;
+    }
+
+    #modal-page-where .where-client-card {
+      gap: 6px;
+      z-index: 4;
+    }
+
+    #modal-page-where .where-client-label {
+      max-width: 92px;
+      font-size: 10px;
+      line-height: 1.15;
+      text-align: center;
+    }
+
+    #modal-page-where .where-godrej {
+      left: 4%;
+      top: 10%;
+    }
+
+    #modal-page-where .where-reverb {
+      right: 8%;
+      top: 7%;
+    }
+
+    #modal-page-where .where-owl {
+      right: 40%;
+      top: 4%;
+    }
+
+    #modal-page-where .where-celex {
+      left: 8%;
+      top: 49%;
+    }
+
+    #modal-page-where .where-jacobs {
+      right: 8%;
+      top: 49%;
+    }
+
+    #modal-page-where .where-orbit-field {
+      top: 38%;
+      width: min(270px, 76vw);
+      height: min(270px, 76vw);
+    }
+
+    #modal-page-where .where-dot {
+      width: 18px;
+      height: 18px;
+    }
+
+    #modal-page-where .where-dot:hover,
+    #modal-page-where .where-dot.is-selected {
+      width: 24px;
+      height: 24px;
+    }
+
+    #modal-page-where .where-country-tag {
+      padding: 6px 10px;
+      font-size: 12px;
     }
 
     #modal-page-principle .ppl-stage {
