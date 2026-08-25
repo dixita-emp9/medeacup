@@ -136,8 +136,8 @@ const mobileFolders = [
         ><span>The 1% Principle</span></button
       >
       <button class="mobile-recent-shortcut" data-folder-id="video"
-        ><span class="mobile-folder-tile"
-          ><img src="/projects/project-3.jpg" alt="" /><i
+        ><span class="mobile-folder-tile brand-video-mobile"
+          ><img src="/projects/brand-video-img.png" alt="" /><i
             class="mobile-play-dot">▶</i
           ></span
         ><span>Brand Video</span></button
@@ -552,6 +552,14 @@ const mobileFolders = [
       font: inherit;
       font-size: 10px;
       text-align: center;
+    }
+    .mobile-recent-shortcut .mobile-folder-tile.brand-video-mobile {
+      overflow: hidden;
+    }
+    .mobile-recent-shortcut .mobile-folder-tile.brand-video-mobile img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
     .mobile-recent-shortcut .mobile-folder-tile {
       position: relative;
