@@ -1262,7 +1262,7 @@ body:has(.modal-overlay.is-open:not(#quiz-modal)) .modal-overlay {
   #desktop-canvas,
   .desktop-stage {
     min-height: 100svh;
-    height: 1200px;
+    height: 100svh;
   }
 
   html,
@@ -1282,12 +1282,34 @@ body:has(.modal-overlay.is-open:not(#quiz-modal)) .modal-overlay {
   }
 
   .desktop-stage {
-    min-height: 1200px;
+    min-height: 100svh;
   }
 
   .dock-wrapper {
     position: fixed !important;
     bottom: max(18px, env(safe-area-inset-bottom));
+    z-index: 2600 !important;
+  }
+
+  body:has(#quiz-modal.is-open) .dock-wrapper {
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
+
+  #modal-page-cases .mobile-nav-title {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+  }
+
+  #modal-page-cases .mobile-nav-title .dropdown-caret {
+    display: block !important;
+    width: 12px !important;
+    height: 12px !important;
+    flex: 0 0 12px;
+    opacity: 0.65;
+    pointer-events: none;
   }
 
   .contact-panel {
@@ -1300,5 +1322,61 @@ body:has(.modal-overlay.is-open:not(#quiz-modal)) .modal-overlay {
     bottom: 112px;
     transform: translateX(-50%);
     z-index: 20;
+  }
+
+  /* Keep the brand header pinned above every opened mobile page. */
+  .desktop-header,
+  body:has(.modal-overlay.is-open) .desktop-header {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0;
+    right: 0;
+    height: 72px !important;
+    padding: 0 30px !important;
+    background: rgba(251, 250, 247, 0.94);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    z-index: 2500 !important;
+  }
+
+  body:has(.modal-overlay.is-open) .desktop-header .logo-image {
+    width: 104px !important;
+    max-width: 104px;
+  }
+
+  body:has(.modal-overlay.is-open) .desktop-header .status-circle {
+    width: 42px;
+    height: 42px;
+  }
+
+  .modal-overlay:not(#quiz-modal) {
+    align-items: flex-start !important;
+    padding: 72px 0 0 !important;
+  }
+
+  .modal-overlay:not(#quiz-modal) .fullscreen-mac-window {
+    width: 100vw !important;
+    height: calc(100svh - 72px) !important;
+    min-height: calc(100svh - 72px) !important;
+    max-height: none !important;
+    border-radius: 24px 24px 0 0 !important;
+  }
+
+  .modal-overlay:not(#quiz-modal) .fullscreen-window-body {
+    min-height: 0 !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  #quiz-modal {
+    align-items: flex-start !important;
+    padding: 72px 14px 14px !important;
+  }
+
+  #quiz-modal .quiz-dialog {
+    width: 100% !important;
+    height: calc(100svh - 86px) !important;
+    max-height: none !important;
   }
 }

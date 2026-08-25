@@ -37,7 +37,7 @@ import ExperienceModal from "../components/ExperienceModal.astro";
 </Layout>
 
 <script>
-	document.addEventListener("DOMContentLoaded", () => {
+	const initializeApp = () => {
 		const windows = document.querySelectorAll<HTMLElement>(".mac-window");
 		let activeZIndex = 100;
 
@@ -255,8 +255,14 @@ import ExperienceModal from "../components/ExperienceModal.astro";
 					const isPrincipleTab =
 						tab.dataset.principleTab === "principle";
 					tab.classList.toggle("is-active", isPrincipleTab);
-					tab.setAttribute("aria-selected", String(isPrincipleTab));
+					 tab.setAttribute("aria-selected", String(isPrincipleTab));
 				});
+			const mobileTitle = overlayEl.querySelector<HTMLElement>(
+				".mobile-nav-title",
+			);
+			if (mobileTitle?.firstChild) {
+				mobileTitle.firstChild.textContent = "The 1% Principle ";
+			}
 		}
 
 		function resetHomePrincipleToggle() {
@@ -470,6 +476,7 @@ import ExperienceModal from "../components/ExperienceModal.astro";
 		// 3. Folder Click → Open Individual Modal
 		// ──────────────────────────────────────────────────
 		const folderModalMap: Record<string, string> = {
+			mission: "modal-page-mission",
 			principle: "modal-page-principle",
 			cases: "modal-page-cases",
 			experience: "modal-page-experience",
@@ -479,13 +486,17 @@ import ExperienceModal from "../components/ExperienceModal.astro";
 			where: "modal-page-where",
 		};
 
-		document
-			.querySelectorAll<HTMLElement>(
-				".folder-item, .mobile-folder-item, .mobile-principle-card, #win-principle",
+			document
+				.querySelectorAll<HTMLElement>(
+					".folder-item, .mobile-folder-item, .mobile-recent-shortcut, .mobile-principle-card, #win-principle",
 			)
 			.forEach((folder) => {
 				folder.addEventListener("click", () => {
 					const id = folder.getAttribute("data-folder-id");
+					if (id === "video") {
+						openVideoModal();
+						return;
+					}
 					if (id && folderModalMap[id]) {
 						if (id === "experience") {
 							document
@@ -502,7 +513,192 @@ import ExperienceModal from "../components/ExperienceModal.astro";
 							openModalWithGenie(targetOverlay, folder);
 					}
 				});
+				});
+
+		// Mobile modal navigation: the centered title and the three-dot button
+		// expose the same tabs that are visible in the desktop window header.
+		// Pages without tabs get a small page switcher instead.
+		const mobilePageLabels: Record<string, string> = {
+			mission: "Our Mission",
+			principle: "The 1% Principle",
+			cases: "Cup Cases",
+			experience: "Experience Design",
+			framework: "Cup Framework",
+			capabilities: "What we build",
+			about: "About Us",
+			where: "Where We Work",
+		};
+
+		document
+			.querySelectorAll<HTMLElement>(".modal-overlay")
+			.forEach((overlay) => {
+				const nav = overlay.querySelector<HTMLElement>(".mobile-modal-nav");
+				const title = nav?.querySelector<HTMLElement>(".mobile-nav-title");
+				const more = nav?.querySelector<HTMLElement>(".mobile-nav-more");
+				if (!nav || !title || !more) return;
+
+				const menu = document.createElement("div");
+				menu.className = "mobile-tab-menu";
+				menu.hidden = true;
+				menu.setAttribute("aria-label", "Page navigation");
+
+				const desktopTabStrip = overlay.id === "modal-page-experience"
+					? null
+					: overlay.querySelector<HTMLElement>(
+							".principle-tabbar, .browser-tab-strip, .about-tabbar",
+						);
+				const desktopTabs = desktopTabStrip
+					? Array.from(
+							desktopTabStrip.querySelectorAll<HTMLElement>(
+								"[data-principle-tab], [data-framework-tab], [data-about-tab]",
+							),
+					  )
+					: [];
+
+				const addMenuItem = (
+					label: string,
+					action: () => void,
+					isActive = false,
+				) => {
+					const item = document.createElement("button");
+					item.type = "button";
+					item.className = "mobile-tab-menu-item";
+					item.textContent = label;
+					item.dataset.mobileTabLabel = label;
+					item.classList.toggle("is-active", isActive);
+					item.addEventListener("click", (event) => {
+						event.stopPropagation();
+						action();
+						menu.hidden = true;
+						title.setAttribute("aria-expanded", "false");
+					});
+					menu.appendChild(item);
+				};
+
+				if (overlay.id === "modal-page-cases") {
+					const caseMenuItems = [
+						["fctrylab", "FCTRYLAB"],
+						["fabindia", "FabIndia"],
+						["godrej-interio", "Godrej Interio"],
+						["godrej-properties", "Godrej Properties"],
+						["reverb-asia", "Reverb Asia"],
+					] as const;
+					caseMenuItems.forEach(([caseId, label]) => {
+						addMenuItem(
+							label,
+							() => overlay
+								.querySelector<HTMLElement>(
+									`.case-doc-item[data-case-id="${caseId}"], [data-case-tab="${caseId}"]`,
+								)
+								?.click(),
+							Boolean(
+								overlay.querySelector(`#cs-pane-${caseId}.is-active`),
+							),
+						);
+					});
+				} else if (overlay.id === "modal-page-experience") {
+					overlay.querySelectorAll<HTMLElement>("[data-experience-tab]").forEach((experienceTab) => {
+						const label = experienceTab.dataset.experienceTab || experienceTab.textContent?.trim() || "";
+						addMenuItem(label, () => experienceTab.click(), experienceTab.classList.contains("is-active"));
+					});
+				} else if (desktopTabs.length) {
+					desktopTabs.forEach((desktopTab) => {
+						const label = (desktopTab.textContent || "")
+							.replace(/×/g, "")
+							.trim();
+						addMenuItem(label, () => desktopTab.click(), desktopTab.classList.contains("is-active"));
+					});
+				} else {
+					Object.entries(folderModalMap).forEach(([id, targetId]) => {
+						if (targetId === overlay.id) return;
+						addMenuItem(mobilePageLabels[id], () => {
+							const target = document.getElementById(targetId);
+							if (!target) return;
+							closeModalWithGenie(overlay, true);
+							window.setTimeout(() => openModalWithGenie(target, null, true), 40);
+						});
+					});
+				}
+
+				nav.appendChild(menu);
+				const toggleMenu = (event: Event) => {
+					event.stopPropagation();
+					menu.hidden = !menu.hidden;
+					title.setAttribute("aria-expanded", String(!menu.hidden));
+				};
+				title.setAttribute("role", "button");
+				title.setAttribute("tabindex", "0");
+				title.setAttribute("aria-expanded", "false");
+				title.addEventListener("click", toggleMenu);
+				title.addEventListener("keydown", (event) => {
+					if (event.key === "Enter" || event.key === " ") toggleMenu(event);
+				});
+				more.addEventListener("click", toggleMenu);
 			});
+
+		document.addEventListener("click", (event) => {
+			if ((event.target as Element).closest(".mobile-modal-nav")) return;
+			document.querySelectorAll<HTMLElement>(".mobile-tab-menu").forEach((menu) => {
+				menu.hidden = true;
+				menu.closest(".mobile-modal-nav")?.querySelector(".mobile-nav-title")?.setAttribute("aria-expanded", "false");
+			});
+		});
+
+		// Mobile home has two deliberate slides: Recent Projects and the
+		// existing folder/quiz home. The dots and horizontal swipe both use the
+		// same state so the active indicator never drifts from the visible page.
+		const mobileHomeSlides = document.querySelectorAll<HTMLElement>(
+			"[data-mobile-slide]",
+		);
+		const mobileHomeDots = document.querySelectorAll<HTMLButtonElement>(
+			"[data-mobile-slide-dot]",
+		);
+		let activeMobileSlide = "thinking";
+		const setMobileHomeSlide = (slideId: string) => {
+			if (!mobileHomeSlides.length) return;
+			const nextMobileSlide = slideId === "thinking" ? "thinking" : "home";
+			if (nextMobileSlide === activeMobileSlide) return;
+			const enteringFrom = nextMobileSlide === "home" ? "right" : "left";
+			activeMobileSlide = nextMobileSlide;
+			mobileHomeSlides.forEach((slide) => {
+				const isActive = slide.dataset.mobileSlide === activeMobileSlide;
+				slide.classList.toggle("is-active", isActive);
+				slide.classList.remove("is-entering-from-right", "is-entering-from-left");
+				if (isActive) slide.classList.add(`is-entering-from-${enteringFrom}`);
+				slide.setAttribute("aria-hidden", String(!isActive));
+			});
+			mobileHomeDots.forEach((dot) => {
+				const isActive = dot.dataset.mobileSlideDot === activeMobileSlide;
+				dot.classList.toggle("is-active", isActive);
+				dot.setAttribute("aria-selected", String(isActive));
+			});
+		};
+		mobileHomeDots.forEach((dot) => {
+			dot.addEventListener("click", () =>
+				setMobileHomeSlide(dot.dataset.mobileSlideDot || "home"),
+			);
+		});
+		const mobileHomeContent = document.querySelector<HTMLElement>(
+			".mobile-home-content",
+		);
+		let mobileTouchStartX = 0;
+		mobileHomeContent?.addEventListener(
+			"touchstart",
+			(event) => {
+				mobileTouchStartX = event.touches[0]?.clientX || 0;
+			},
+			{ passive: true },
+		);
+		mobileHomeContent?.addEventListener(
+			"touchend",
+			(event) => {
+				const endX = event.changedTouches[0]?.clientX || 0;
+				const distance = endX - mobileTouchStartX;
+				if (Math.abs(distance) < 45) return;
+				setMobileHomeSlide(distance < 0 ? "home" : "thinking");
+			},
+			{ passive: true },
+		);
 
 		// ──────────────────────────────────────────────────
 		// 4. Card Action Links → Open Individual Modal
@@ -556,7 +752,7 @@ import ExperienceModal from "../components/ExperienceModal.astro";
 				});
 			});
 		document
-			.querySelectorAll<HTMLElement>(".project-action")
+			.querySelectorAll<HTMLElement>(".project-action, .mobile-recent-action")
 			.forEach((action) => {
 				action.addEventListener("click", (e) => {
 					e.stopPropagation();
@@ -612,6 +808,22 @@ import ExperienceModal from "../components/ExperienceModal.astro";
 			if (experienceGrid) experienceGrid.hidden = true;
 			if (experienceDetail) experienceDetail.hidden = false;
 			if (experienceDetailTitle) experienceDetailTitle.textContent = name;
+			const experienceMobileTitle = document.querySelector<HTMLElement>(
+				"#modal-page-experience .mobile-nav-title",
+			);
+			if (experienceMobileTitle?.firstChild) {
+				experienceMobileTitle.firstChild.textContent = `${name} `;
+			}
+			document
+				.querySelectorAll<HTMLElement>(
+					"#modal-page-experience .mobile-tab-menu-item",
+				)
+				.forEach((item) => {
+					item.classList.toggle(
+						"is-active",
+						item.dataset.mobileTabLabel === name,
+					);
+				});
 			const isContentTab = Array.from(experienceContentPanels).some(
 				(panel) => panel.dataset.experienceContent === name,
 			);
@@ -642,6 +854,12 @@ import ExperienceModal from "../components/ExperienceModal.astro";
 			?.addEventListener("click", () => {
 				if (experienceDetail) experienceDetail.hidden = true;
 				if (experienceGrid) experienceGrid.hidden = false;
+				const experienceMobileTitle = document.querySelector<HTMLElement>(
+					"#modal-page-experience .mobile-nav-title",
+				);
+				if (experienceMobileTitle?.firstChild) {
+					experienceMobileTitle.firstChild.textContent = "Experience Design ";
+				}
 			});
 		experienceTabs.forEach((tab) => {
 			tab.addEventListener("click", () =>
@@ -736,6 +954,16 @@ import ExperienceModal from "../components/ExperienceModal.astro";
 			if (casesMobileTitle) {
 				casesMobileTitle.innerHTML = `${caseTitleMap[caseId] || "Cup Cases"} <svg class="dropdown-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>`;
 			}
+			document
+				.querySelectorAll<HTMLElement>(
+					"#modal-page-cases .mobile-tab-menu-item",
+				)
+				.forEach((item) => {
+					item.classList.toggle(
+						"is-active",
+						item.dataset.mobileTabLabel === caseTitleMap[caseId],
+					);
+				});
 		}
 
 		function returnToGrid() {
@@ -1182,20 +1410,20 @@ import ExperienceModal from "../components/ExperienceModal.astro";
 			const modal = document.getElementById(id);
 			if (modal) openModalWithGenie(modal, source);
 		};
+		const toggleContactPanel = () => {
+			const contactPanel = document.getElementById("contact-panel");
+			if (!contactPanel) return;
+			const isOpen = contactPanel.classList.contains("is-open");
+			contactPanel.classList.toggle("is-open", !isOpen);
+			contactPanel.setAttribute("aria-hidden", String(isOpen));
+		};
 
 		document
 			.querySelectorAll<HTMLElement>("[data-top-action]")
 			.forEach((control) => {
 				const activate = () => {
-					if (!isMobileViewport()) return;
 					if (control.dataset.topAction === "home")
-						window.scrollTo({ top: 0, behavior: "smooth" });
-					if (control.dataset.topAction === "mail")
-						document
-							.querySelector<HTMLElement>(
-								'[data-dock-id="dock-mail"]',
-							)
-							?.click();
+						openMobilePage("modal-page-about", control);
 				};
 				control.addEventListener("click", activate);
 				control.addEventListener("keydown", (event) => {
@@ -1249,17 +1477,7 @@ import ExperienceModal from "../components/ExperienceModal.astro";
 					quizModal?.classList.add("is-open");
 					return;
 				} else if (dockId === "dock-mail") {
-					const contactPanel =
-						document.getElementById("contact-panel");
-					const isOpen = contactPanel?.classList.contains("is-open");
-					if (isOpen) {
-						contactPanel?.classList.remove("is-open");
-						contactPanel?.setAttribute("aria-hidden", "true");
-						btn.classList.remove("is-active");
-					} else {
-						contactPanel?.classList.add("is-open");
-						contactPanel?.setAttribute("aria-hidden", "false");
-					}
+					toggleContactPanel();
 					return;
 				}
 
@@ -1459,17 +1677,22 @@ import ExperienceModal from "../components/ExperienceModal.astro";
 		});
 
 		// Close contact panel when clicking outside
-		document.addEventListener("click", (e) => {
-			const contactPanel = document.getElementById("contact-panel");
-			const dockMailBtn = document.querySelector<HTMLElement>(
-				'[data-dock-id="dock-mail"]',
-			);
-			if (
-				contactPanel?.classList.contains("is-open") &&
-				!contactPanel.contains(e.target as Node) &&
-				e.target !== dockMailBtn &&
-				!dockMailBtn?.contains(e.target as Node)
-			) {
+			document.addEventListener("click", (e) => {
+				const contactPanel = document.getElementById("contact-panel");
+				const dockMailBtn = document.querySelector<HTMLElement>(
+					'[data-dock-id="dock-mail"]',
+				);
+				const headerMailBtn = document.querySelector<HTMLElement>(
+					'[data-top-action="mail"]',
+				);
+				if (
+					contactPanel?.classList.contains("is-open") &&
+					!contactPanel.contains(e.target as Node) &&
+					e.target !== dockMailBtn &&
+					!dockMailBtn?.contains(e.target as Node) &&
+					e.target !== headerMailBtn &&
+					!headerMailBtn?.contains(e.target as Node)
+				) {
 				contactPanel.classList.remove("is-open");
 				contactPanel.setAttribute("aria-hidden", "true");
 				dockMailBtn?.classList.remove("is-active");
@@ -1538,6 +1761,17 @@ import ExperienceModal from "../components/ExperienceModal.astro";
 			tab.addEventListener("click", () => {
 				const selectedTab = tab.dataset.principleTab ?? "principle";
 				const isInfoTab = selectedTab !== "principle";
+				const mobileTitle = document.querySelector<HTMLElement>(
+					"#modal-page-principle .mobile-nav-title",
+				);
+				const titleByTab: Record<string, string> = {
+					principle: "The 1% Principle ",
+					mission: "Mission ",
+					practice: "In Practice ",
+				};
+				if (mobileTitle?.firstChild) {
+					mobileTitle.firstChild.textContent = titleByTab[selectedTab] || "The 1% Principle ";
+				}
 				principleTabs.forEach((item) => {
 					const isActive = item === tab;
 					item.classList.toggle("is-active", isActive);
@@ -1728,5 +1962,11 @@ import ExperienceModal from "../components/ExperienceModal.astro";
 				}
 			});
 		});
-	});
+	};
+
+	if (document.readyState === "loading") {
+		document.addEventListener("DOMContentLoaded", initializeApp, { once: true });
+	} else {
+		initializeApp();
+	}
 </script>

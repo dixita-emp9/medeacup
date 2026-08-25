@@ -3926,7 +3926,8 @@
 
     #modal-page-principle .ppl-stage.is-unlocked .ppl-toggle-row {
       top: auto !important;
-      bottom: 24px !important;
+      /* Keep the status control clear of the fixed mobile dock. */
+      bottom: max(78px, calc(60px + env(safe-area-inset-bottom))) !important;
       transform: translateX(-50%) !important;
     }
 
@@ -4412,6 +4413,21 @@
     pointer-events: none;
   }
 
+  #modal-page-cases .mobile-nav-title {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+  }
+
+  #modal-page-cases .mobile-nav-title .dropdown-caret {
+    display: block !important;
+    width: 12px !important;
+    height: 12px !important;
+    flex: 0 0 12px;
+    opacity: 0.65;
+  }
+
   .mobile-nav-back svg {
     width: 25px;
     height: 25px;
@@ -4762,4 +4778,452 @@
     }
   }
 
+  /* Responsive page pass: every desktop page remains a complete, scrollable
+     mobile page instead of relying on the desktop canvas dimensions. */
+  @media (max-width: 900px) {
+    .modal-overlay .fullscreen-mac-window {
+      width: 100vw !important;
+      height: 100svh !important;
+      min-height: 100svh !important;
+      max-height: none !important;
+    }
+
+    .modal-overlay .fullscreen-window-body {
+      min-height: 0;
+      overflow-x: hidden;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    #modal-page-mission .fullscreen-window-body {
+      padding-top: 74px;
+    }
+
+    #modal-page-mission .mission-full-content {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      height: auto;
+      min-height: 100%;
+      padding: 28px 22px 112px;
+    }
+
+    #modal-page-mission .mission-main-title {
+      margin-bottom: 20px;
+      font-size: clamp(38px, 11vw, 54px);
+      line-height: 0.98;
+    }
+
+    #modal-page-mission .mission-lead-p {
+      font-size: 19px;
+      line-height: 1.4;
+    }
+
+    #modal-page-mission .mission-secondary-p {
+      font-size: 16px;
+      line-height: 1.5;
+      margin-bottom: 10px;
+    }
+
+    #modal-page-mission .practice-bullets {
+      gap: 14px;
+    }
+
+    #modal-page-mission .practice-bullets li {
+      font-size: 15px;
+      line-height: 1.35;
+    }
+
+    #modal-page-mission .watermark-column {
+      min-height: 260px;
+      padding: 28px 20px;
+    }
+
+    #modal-page-mission .watermark-typography {
+      font-size: clamp(30px, 9vw, 44px);
+    }
+
+    #modal-page-cases .fullscreen-window-body.cases-grid-body {
+      flex: 1 1 auto !important;
+      width: 100% !important;
+      min-height: 0 !important;
+      box-sizing: border-box !important;
+      padding: 156px 18px 112px !important;
+      overflow-y: auto !important;
+    }
+
+    #modal-page-cases .cases-document-grid {
+      width: 100% !important;
+      min-height: 100% !important;
+      align-content: space-evenly !important;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 28px 16px;
+    }
+
+    #modal-page-cases .case-doc-item {
+      min-width: 0;
+    }
+
+    #modal-page-cases .case-doc-label {
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    #modal-page-cases .cs-main-content {
+      padding-top: 90px;
+    }
+
+    #modal-page-cases .cs-headline {
+      margin-right: 22px;
+      margin-left: 22px;
+      font-size: clamp(34px, 10vw, 50px);
+    }
+
+    #modal-page-cases .cs-story-cards {
+      padding-right: 22px;
+      padding-left: 22px;
+    }
+
+    #modal-page-framework .fw-mobile-grid-view {
+      height: auto;
+      min-height: 100%;
+      padding: 96px 20px 112px;
+    }
+
+    #modal-page-framework .cases-document-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 26px 14px;
+    }
+
+    #modal-page-framework #fw-desktop-canvas {
+      min-height: 100%;
+      padding: 96px 20px 112px;
+      overflow-y: auto;
+    }
+
+    #modal-page-framework .fw-popover-card {
+      padding: 28px 20px !important;
+    }
+
+    #modal-page-framework .fw-popover-card h3 {
+      font-size: 29px;
+    }
+
+    #modal-page-framework .fw-pop-body,
+    #modal-page-framework .fw-pop-list {
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    #modal-page-framework .fw-experience-panel {
+      min-height: 100%;
+      padding: 96px 20px 112px;
+    }
+
+    #modal-page-capabilities .capabilities-window-body {
+      padding: 78px 16px 112px;
+    }
+
+    #modal-page-capabilities .capabilities-canvas {
+      padding-top: 20px;
+    }
+
+    #modal-page-capabilities .capabilities-intro h1 {
+      font-size: clamp(32px, 9vw, 48px);
+      line-height: 1;
+    }
+
+    #modal-page-capabilities .capabilities-controls {
+      position: sticky;
+      top: 0;
+      z-index: 4;
+      padding: 8px 0 12px;
+      background: rgba(251, 250, 247, 0.94);
+      backdrop-filter: blur(12px);
+    }
+
+    #modal-page-capabilities .capability-row-heading strong {
+      font-size: 17px;
+    }
+
+    #modal-page-capabilities .capability-row-detail {
+      padding-right: 18px;
+      padding-left: 52px;
+      font-size: 14px;
+    }
+
+    #modal-page-about .about-window-body {
+      display: block;
+      min-height: 100%;
+      padding: 132px 16px 112px !important;
+    }
+
+    #modal-page-about .about-story-panel {
+      padding: 28px 20px;
+      border-radius: 24px;
+    }
+
+    #modal-page-about .about-story-title {
+      font-size: clamp(44px, 14vw, 64px);
+    }
+
+    #modal-page-about .about-story-label {
+      min-height: 52px;
+      font-size: 18px;
+    }
+
+    #modal-page-about .about-belief {
+      font-size: clamp(30px, 9vw, 46px);
+    }
+
+    #modal-page-about .about-editorial-content {
+      padding: 36px 8px 0;
+    }
+
+    #modal-page-about .about-editorial-content h1 {
+      font-size: clamp(32px, 9vw, 48px);
+    }
+
+    #modal-page-about .about-editorial-content p {
+      font-size: 15px;
+      line-height: 1.55;
+    }
+
+    #modal-page-about .about-window-body.is-info {
+      display: flex;
+      min-height: 100%;
+      padding: 132px 22px 112px !important;
+    }
+
+    #modal-page-where .where-window-body {
+      overflow: auto;
+      padding: 76px 0 112px;
+    }
+
+    #modal-page-where .where-canvas {
+      flex: 0 0 auto;
+      width: 680px;
+      min-height: 820px;
+      transform: scale(0.53);
+      transform-origin: top left;
+      margin-right: -320px;
+      margin-bottom: -380px;
+    }
+
+    #modal-page-where .where-sector-filters {
+      left: 340px;
+      bottom: 5%;
+      gap: 5px;
+    }
+
+    #modal-page-where .where-sector-filters button {
+      padding: 9px 13px;
+      font-size: 13px;
+    }
+
+    #modal-page-principle .ppl-stage {
+      overflow-y: auto;
+      padding: 76px 18px 112px !important;
+    }
+
+    #modal-page-principle .ppl-stage.is-unlocked {
+      padding-bottom: 112px !important;
+    }
+
+    #modal-page-principle .ppl-stage.is-unlocked .ppl-orbit-art {
+      width: min(340px, 88vw);
+      height: min(340px, 88vw);
+    }
+
+    #modal-page-principle .principle-tabbar {
+      max-width: calc(100vw - 120px);
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    #modal-page-principle .principle-tabbar::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* Keep the unlocked card fan grouped like the desktop composition. */
+    #modal-page-principle .ppl-stage.is-unlocked .ppl-cards {
+      width: min(350px, calc(100vw - 40px));
+      height: 190px;
+    }
+
+    #modal-page-principle .ppl-stage.is-unlocked .ppl-card {
+      width: 108px;
+      height: 108px;
+      inset: auto;
+      border-radius: 0;
+      box-shadow: none;
+    }
+
+    #modal-page-principle .ppl-stage.is-unlocked .ppl-card-a {
+      left: 7%;
+      top: 56px;
+      transform: rotate(-34deg);
+    }
+
+    #modal-page-principle .ppl-stage.is-unlocked .ppl-card-c {
+      left: 27%;
+      top: 24px;
+      transform: rotate(-16deg);
+    }
+
+    #modal-page-principle .ppl-stage.is-unlocked .ppl-card-d {
+      left: 47%;
+      top: 24px;
+      transform: rotate(16deg);
+    }
+
+    #modal-page-principle .ppl-stage.is-unlocked .ppl-card-e {
+      right: 7%;
+      top: 56px;
+      transform: rotate(34deg);
+    }
+
+    /* Expanded cards follow the desktop selection row on small screens. */
+    #modal-page-principle .ppl-stage.is-selecting .ppl-cards {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      align-items: center;
+      justify-items: center;
+      column-gap: 8px;
+      width: min(360px, calc(100vw - 36px));
+      height: 150px;
+    }
+
+    #modal-page-principle .ppl-stage.is-selecting .ppl-card {
+      position: relative;
+      inset: auto !important;
+      width: clamp(72px, 21vw, 92px);
+      height: auto;
+      transform: none !important;
+    }
+
+    :global(.mobile-tab-menu) {
+      position: absolute;
+      top: 72px;
+      left: 50%;
+      z-index: 90;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      min-width: 190px;
+      max-width: calc(100vw - 40px);
+      padding: 8px;
+      transform: translateX(-50%);
+      border: 1px solid rgba(117, 106, 91, 0.14);
+      border-radius: 18px;
+      background: rgba(251, 250, 247, 0.98);
+      box-shadow: 0 14px 36px rgba(57, 49, 36, 0.16);
+      pointer-events: auto;
+    }
+
+    :global(.mobile-tab-menu[hidden]) {
+      display: none;
+    }
+
+    :global(.mobile-tab-menu-item) {
+      width: 100% !important;
+      height: auto !important;
+      min-height: 42px;
+      justify-content: flex-start !important;
+      padding: 10px 14px !important;
+      border: 0 !important;
+      border-radius: 12px !important;
+      background: transparent !important;
+      box-shadow: none !important;
+      color: var(--text-primary) !important;
+      font: 500 14px/1.2 var(--font-body) !important;
+      text-align: left;
+    }
+
+    :global(.mobile-tab-menu-item.is-active),
+    :global(.mobile-tab-menu-item:active) {
+      background: #ece9e1 !important;
+    }
+
+    .mobile-nav-title {
+      max-width: calc(100vw - 170px);
+      white-space: nowrap;
+      font-size: 16px;
+    }
+
+    /* Keep scrolling content behind an opaque, glassy mobile page bar. */
+    .mobile-modal-nav {
+      inset: 0 0 auto !important;
+      min-height: 72px;
+      padding: 11px 16px;
+      background: rgba(251, 250, 247, 0.96);
+      border-bottom: 1px solid rgba(117, 106, 91, 0.08);
+      -webkit-backdrop-filter: blur(16px);
+      backdrop-filter: blur(16px);
+    }
+
+    #modal-page-principle .ppl-watermark,
+    #modal-page-principle .ppl-stage.is-expanded .ppl-exp-title {
+      /* width: calc(100vw - 24px); */
+      max-width: none;
+      white-space: nowrap;
+      font-size: clamp(24px, 7vw, 31px) !important;
+      letter-spacing: -0.045em;
+    }
+
+    #modal-page-principle .ppl-stage.is-expanded .ppl-expanded-view {
+      padding-top: 100px !important;
+    }
+
+    #modal-page-principle .ppl-stage.is-expanded .ppl-exp-title {
+      color: rgba(177, 169, 158, 0.42) !important;
+    }
+
+    #modal-page-principle .ppl-stage.is-info {
+      justify-content: flex-start !important;
+      padding: 92px 24px 130px !important;
+      overflow-y: auto !important;
+    }
+
+    #modal-page-principle .ppl-stage.is-info .ppl-info-pane.is-active {
+      width: 100%;
+      margin: 0;
+    }
+
+    .fullscreen-window-body {
+      min-height: 0;
+      overflow-x: hidden !important;
+      overflow-y: auto !important;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    #modal-page-principle .fullscreen-window-body {
+      min-height: 0 !important;
+      overflow: hidden !important;
+    }
+
+    /* Preserve the centered desktop composition, but let the stage itself
+       scroll when the expanded content is taller than the phone viewport. */
+    #modal-page-principle .ppl-stage {
+      height: 100% !important;
+      min-height: 0 !important;
+      overflow-x: hidden !important;
+      overflow-y: auto !important;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    #modal-page-principle .ppl-stage.is-expanded {
+      justify-content: flex-start !important;
+      padding-bottom: 150px !important;
+    }
+
+    #modal-page-principle .ppl-stage.is-expanded .ppl-expanded-view {
+      overflow: visible !important;
+    }
+
+    #modal-page-principle .ppl-stage .ppl-toggle-row {
+      z-index: 30;
+    }
+  }
 </style>
