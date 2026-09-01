@@ -77,9 +77,9 @@ const mobileFolders = [
 
 <div class="mobile-home-content">
   <section
-    class="mobile-home-slide mobile-home-slide--recent is-active"
+    class="mobile-home-slide mobile-home-slide--recent"
     data-mobile-slide="thinking"
-    aria-hidden="false"
+    aria-hidden="true"
   >
     <article class="mobile-recent-panel">
       <div class="mobile-recent-heading"><span>Thinking Now</span><i></i></div>
@@ -156,9 +156,9 @@ const mobileFolders = [
   </section>
 
   <section
-    class="mobile-home-slide mobile-home-slide--home"
+    class="mobile-home-slide mobile-home-slide--home is-active"
     data-mobile-slide="home"
-    aria-hidden="true"
+    aria-hidden="false"
   >
     <div class="mobile-feature-grid">
       <button
@@ -215,16 +215,16 @@ const mobileFolders = [
     <button
       type="button"
       role="tab"
-      aria-label="Thinking Now"
+      aria-label="Home"
       aria-selected="true"
       class="is-active"
-      data-mobile-slide-dot="thinking"></button>
+      data-mobile-slide-dot="home"></button>
     <button
       type="button"
       role="tab"
-      aria-label="Home"
+      aria-label="Thinking Now"
       aria-selected="false"
-      data-mobile-slide-dot="home"></button>
+      data-mobile-slide-dot="thinking"></button>
   </div>
 </div>
 
@@ -288,7 +288,7 @@ const mobileFolders = [
   .desktop-label {
     font-size: 15px;
     font-weight: 500;
-    color: #898989;
+    color: #4c4040;
     text-align: center;
     line-height: 1.25;
     word-break: break-word;
@@ -407,6 +407,8 @@ const mobileFolders = [
       left: 20px;
       right: 20px;
       bottom: auto;
+      /* Keep the last mobile shortcut row clear of the fixed bottom dock. */
+      padding-bottom: 160px;
       display: block;
       z-index: 7;
     }
@@ -548,7 +550,7 @@ const mobileFolders = [
       gap: 8px;
       border: 0;
       background: none;
-      color: #888;
+      color: #fff;
       font: inherit;
       font-size: 10px;
       text-align: center;
@@ -695,7 +697,7 @@ const mobileFolders = [
 
     .mobile-unlock {
       position: absolute;
-      left: 11%;
+      left: 6%;
       right: 8%;
       bottom: 8%;
       display: flex;
@@ -865,7 +867,7 @@ const mobileFolders = [
       min-width: 0;
       border: 0;
       background: none;
-      color: #898989;
+      color: #fff;
       font: inherit;
       font-size: clamp(12px, 3.4vw, 18px);
       line-height: 1.12;

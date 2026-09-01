@@ -244,11 +244,7 @@ import ExperienceModal from "../components/ExperienceModal.astro";
 				"is-unlocked",
 				"is-selecting",
 				"is-expanded",
-				"is-info",
 			);
-			overlayEl
-				.querySelectorAll<HTMLElement>("[data-principle-pane]")
-				.forEach((pane) => pane.classList.remove("is-active"));
 			overlayEl
 				.querySelectorAll<HTMLElement>("[data-principle-tab]")
 				.forEach((tab) => {
@@ -644,8 +640,8 @@ import ExperienceModal from "../components/ExperienceModal.astro";
 			});
 		});
 
-		// Mobile home has two deliberate slides: Recent Projects and the
-		// existing folder/quiz home. The dots and horizontal swipe both use the
+		// Mobile home has two deliberate slides: the folder/quiz home and Recent
+		// Projects. The dots and horizontal swipe both use the
 		// same state so the active indicator never drifts from the visible page.
 		const mobileHomeSlides = document.querySelectorAll<HTMLElement>(
 			"[data-mobile-slide]",
@@ -653,18 +649,23 @@ import ExperienceModal from "../components/ExperienceModal.astro";
 		const mobileHomeDots = document.querySelectorAll<HTMLButtonElement>(
 			"[data-mobile-slide-dot]",
 		);
-		let activeMobileSlide = "thinking";
-		const setMobileHomeSlide = (slideId: string) => {
+		let activeMobileSlide = "home";
+		const setMobileHomeSlide = (
+			slideId: string,
+			enteringFrom?: "left" | "right",
+		) => {
 			if (!mobileHomeSlides.length) return;
 			const nextMobileSlide = slideId === "thinking" ? "thinking" : "home";
 			if (nextMobileSlide === activeMobileSlide) return;
-			const enteringFrom = nextMobileSlide === "home" ? "right" : "left";
+			const transitionDirection =
+				enteringFrom ?? (nextMobileSlide === "home" ? "left" : "right");
 			activeMobileSlide = nextMobileSlide;
 			mobileHomeSlides.forEach((slide) => {
 				const isActive = slide.dataset.mobileSlide === activeMobileSlide;
 				slide.classList.toggle("is-active", isActive);
 				slide.classList.remove("is-entering-from-right", "is-entering-from-left");
-				if (isActive) slide.classList.add(`is-entering-from-${enteringFrom}`);
+				if (isActive)
+					slide.classList.add(`is-entering-from-${transitionDirection}`);
 				slide.setAttribute("aria-hidden", String(!isActive));
 			});
 			mobileHomeDots.forEach((dot) => {
@@ -695,7 +696,10 @@ import ExperienceModal from "../components/ExperienceModal.astro";
 				const endX = event.changedTouches[0]?.clientX || 0;
 				const distance = endX - mobileTouchStartX;
 				if (Math.abs(distance) < 45) return;
-				setMobileHomeSlide(distance < 0 ? "home" : "thinking");
+				setMobileHomeSlide(
+					distance < 0 ? "thinking" : "home",
+					distance < 0 ? "right" : "left",
+				);
 			},
 			{ passive: true },
 		);
@@ -881,6 +885,37 @@ import ExperienceModal from "../components/ExperienceModal.astro";
 					contactPanel?.classList.add("is-open");
 					contactPanel?.setAttribute("aria-hidden", "false");
 					dockMailBtn?.classList.add("is-active");
+				}),
+			);
+		document
+			.querySelectorAll<HTMLElement>("[data-open-build]")
+			.forEach((action) =>
+				action.addEventListener("click", (event) => {
+					event.stopPropagation();
+					const experienceModal = document.getElementById(
+						"modal-page-experience",
+					);
+					const capabilitiesModal = document.getElementById(
+						"modal-page-capabilities",
+					);
+					if (!capabilitiesModal) return;
+
+					history.replaceState(
+						{ modal: "modal-page-capabilities" },
+						"",
+						"#modal-page-capabilities",
+					);
+					if (experienceModal)
+						closeModalWithGenie(experienceModal, true);
+					window.setTimeout(
+						() =>
+							openModalWithGenie(
+								capabilitiesModal,
+								event.currentTarget as HTMLElement,
+								true,
+							),
+						40,
+					);
 				}),
 			);
 		document
@@ -1127,8 +1162,8 @@ import ExperienceModal from "../components/ExperienceModal.astro";
 		});
 
 		document
-			.querySelector<HTMLElement>("[data-open-experience]")
-			?.addEventListener("click", (event) => {
+			.querySelectorAll<HTMLElement>("[data-open-experience]")
+			.forEach((action) => action.addEventListener("click", (event) => {
 				const frameworkModal = document.getElementById(
 					"modal-page-framework",
 				);
@@ -1137,6 +1172,12 @@ import ExperienceModal from "../components/ExperienceModal.astro";
 				);
 				if (!experienceModal) return;
 
+				document
+					.getElementById("experience-view-grid")
+					?.removeAttribute("hidden");
+				document
+					.getElementById("experience-view-detail")
+					?.setAttribute("hidden", "true");
 				frameworkModal?.classList.remove("is-open");
 				history.replaceState(
 					{ modal: "modal-page-experience" },
@@ -1148,7 +1189,7 @@ import ExperienceModal from "../components/ExperienceModal.astro";
 					event.currentTarget as HTMLElement,
 					true,
 				);
-			});
+			}));
 
 		// Framework explicit back button logic
 		// Mobile grid document click
@@ -1390,8 +1431,35 @@ import ExperienceModal from "../components/ExperienceModal.astro";
 			?.addEventListener("click", openVideoModal);
 		document
 			.getElementById("about-showreel-btn")
-			?.addEventListener("click", () => {
-				openVideoModal();
+			?.addEventListener("click", (event) => {
+				const showreel = event.currentTarget as HTMLElement;
+				if (showreel.querySelector("iframe")) return;
+				const iframe = document.createElement("iframe");
+				iframe.src = videoSource;
+				iframe.title = "MEDEACUP Brand Showcase Video";
+				iframe.allow =
+					"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+				iframe.allowFullscreen = true;
+				Object.assign(iframe.style, {
+					position: "absolute",
+					top: "0",
+					left: "50%",
+					width: "177.78%",
+					height: "100%",
+					border: "0",
+					transform: "translateX(-50%)",
+					zIndex: "3",
+				});
+				showreel.classList.add("is-playing");
+				showreel.appendChild(iframe);
+			});
+		document
+			.getElementById("about-showreel-btn")
+			?.addEventListener("keydown", (event) => {
+				if (event.key === "Enter" || event.key === " ") {
+					event.preventDefault();
+					(event.currentTarget as HTMLElement).click();
+				}
 			});
 		document
 			.getElementById("video-play-button")
@@ -1452,11 +1520,6 @@ import ExperienceModal from "../components/ExperienceModal.astro";
 						return;
 					}
 					if (dockId === "dock-folder") {
-						const dockStack =
-							document.querySelector("[data-dock-stack]");
-						if (dockStack) {
-							dockStack.classList.toggle("is-open");
-						}
 						return;
 					}
 					if (dockId === "dock-bulb") {
@@ -1568,36 +1631,53 @@ import ExperienceModal from "../components/ExperienceModal.astro";
 			capabilitiesModal?.querySelector<HTMLInputElement>(
 				"[data-capabilities-search]",
 			);
-		const capabilityFilters = Array.from(
-			capabilitiesModal?.querySelectorAll<HTMLElement>(
-				"[data-capability-filter]",
+		const capabilityNavButtons = Array.from(
+			capabilitiesModal?.querySelectorAll<HTMLButtonElement>(
+				"[data-capability-nav]",
 			) ?? [],
 		);
 
-		const filterCapabilities = (query = "", category = "all") => {
+		const filterCapabilities = (query = "") => {
 			const normalizedQuery = query.trim().toLowerCase();
 			capabilityRows.forEach((row) => {
-				const matchesCategory =
-					category === "all" || row.dataset.capability === category;
 				const matchesQuery =
 					!normalizedQuery ||
 					row.textContent?.toLowerCase().includes(normalizedQuery);
-				row.hidden = !(matchesCategory && matchesQuery);
+				row.hidden = !matchesQuery;
 			});
 		};
 
 		capabilitySearch?.addEventListener("input", () =>
 			filterCapabilities(capabilitySearch.value),
 		);
-		capabilityFilters.forEach((filter) => {
-			filter.addEventListener("click", () => {
-				capabilityFilters.forEach((button) =>
-					button.classList.remove("is-active"),
+		capabilityNavButtons.forEach((button) => {
+			button.addEventListener("click", () => {
+				const targetId = button.dataset.capabilityNav;
+				if (targetId === "home") {
+					history.replaceState(
+						null,
+						"",
+						window.location.pathname + window.location.search,
+					);
+					if (capabilitiesModal) closeModalWithGenie(capabilitiesModal);
+					return;
+				}
+
+				const targetModal = targetId
+					? document.getElementById(targetId)
+					: null;
+				if (!targetModal) return;
+				if (targetId === "modal-page-cases") returnToGrid();
+				history.replaceState(
+					{ modal: targetId },
+					"",
+					"#" + targetId,
 				);
-				filter.classList.add("is-active");
-				filterCapabilities(
-					capabilitySearch?.value ?? "",
-					filter.dataset.capabilityFilter ?? "all",
+				if (capabilitiesModal)
+					closeModalWithGenie(capabilitiesModal, true);
+				window.setTimeout(
+					() => openModalWithGenie(targetModal, button, true),
+					40,
 				);
 			});
 		});
@@ -1709,19 +1789,13 @@ import ExperienceModal from "../components/ExperienceModal.astro";
 			"ppl-checkbox",
 		) as HTMLInputElement | null;
 		const pplExpandBtn = document.getElementById("ppl-expand-btn");
+		const pplFrameworkCta = document.getElementById("ppl-framework-cta");
 		const pplCards = document.querySelectorAll<HTMLElement>(
 			"[data-principle-card]",
 		);
 		const pplInsightCards = document.querySelectorAll<HTMLElement>(
 			"#modal-page-principle .ppl-exp-card",
 		);
-		const principleTabs = document.querySelectorAll<HTMLElement>(
-			"[data-principle-tab]",
-		);
-		const principleInfoPanes = document.querySelectorAll<HTMLElement>(
-			"[data-principle-pane]",
-		);
-
 		// Toggle unlock
 		if (pplCheckbox && pplStage) {
 			pplCheckbox.addEventListener("change", () => {
@@ -1733,7 +1807,6 @@ import ExperienceModal from "../components/ExperienceModal.astro";
 						"is-unlocked",
 						"is-selecting",
 						"is-expanded",
-						"is-info",
 					);
 				}
 			});
@@ -1742,6 +1815,31 @@ import ExperienceModal from "../components/ExperienceModal.astro";
 		// Expand button
 		pplExpandBtn?.addEventListener("click", () => {
 			pplStage?.classList.add("is-selecting");
+		});
+
+		// The expanded principle view can hand off directly to the framework
+		// window while preserving the site's shared window transition.
+		pplFrameworkCta?.addEventListener("click", (event) => {
+			const principleModal = document.getElementById("modal-page-principle");
+			const frameworkModal = document.getElementById("modal-page-framework");
+			if (!frameworkModal) return;
+
+			returnToFrameworkGrid();
+			history.replaceState(
+				{ modal: "modal-page-framework" },
+				"",
+				"#modal-page-framework",
+			);
+			if (principleModal) closeModalWithGenie(principleModal, true);
+			window.setTimeout(
+				() =>
+					openModalWithGenie(
+						frameworkModal,
+						event.currentTarget as HTMLElement,
+						true,
+					),
+				40,
+			);
 		});
 
 		// Choose an icon card to open its matching highlighted insight.
@@ -1756,36 +1854,6 @@ import ExperienceModal from "../components/ExperienceModal.astro";
 				});
 				pplStage?.classList.remove("is-selecting");
 				pplStage?.classList.add("is-expanded");
-			});
-		});
-
-		principleTabs.forEach((tab) => {
-			tab.addEventListener("click", () => {
-				const selectedTab = tab.dataset.principleTab ?? "principle";
-				const isInfoTab = selectedTab !== "principle";
-				const mobileTitle = document.querySelector<HTMLElement>(
-					"#modal-page-principle .mobile-nav-title",
-				);
-				const titleByTab: Record<string, string> = {
-					principle: "The 1% Principle ",
-					mission: "Mission ",
-					practice: "In Practice ",
-				};
-				if (mobileTitle?.firstChild) {
-					mobileTitle.firstChild.textContent = titleByTab[selectedTab] || "The 1% Principle ";
-				}
-				principleTabs.forEach((item) => {
-					const isActive = item === tab;
-					item.classList.toggle("is-active", isActive);
-					item.setAttribute("aria-selected", String(isActive));
-				});
-				principleInfoPanes.forEach((pane) => {
-					pane.classList.toggle(
-						"is-active",
-						pane.dataset.principlePane === selectedTab,
-					);
-				});
-				pplStage?.classList.toggle("is-info", isInfoTab);
 			});
 		});
 
@@ -1819,6 +1887,71 @@ import ExperienceModal from "../components/ExperienceModal.astro";
 				aboutBody?.classList.toggle("is-info", isInfoTab);
 			});
 		});
+		document
+			.querySelectorAll<HTMLElement>("[data-open-mission]")
+			.forEach((action) =>
+				action.addEventListener("click", () => {
+					const missionModal = document.getElementById("modal-page-mission");
+					if (!missionModal) return;
+
+					history.replaceState(
+						{ modal: "modal-page-mission" },
+						"",
+						"#modal-page-mission",
+					);
+					if (aboutModal) closeModalWithGenie(aboutModal, true);
+					window.setTimeout(
+						() => openModalWithGenie(missionModal, action, true),
+						40,
+					);
+				}),
+			);
+
+		// Mission CTA: return to the desktop workspace and call attention to
+		// the Thinking Now window on the home page.
+		document
+			.querySelectorAll<HTMLElement>("[data-open-thinking]")
+			.forEach((action) =>
+				action.addEventListener("click", () => {
+						const missionModal = document.getElementById("modal-page-mission");
+						if (isMobileViewport()) {
+							const mobileThinkingPanel = document.querySelector<HTMLElement>(
+								'[data-mobile-slide="thinking"] .mobile-recent-panel',
+							);
+							history.replaceState(null, "", window.location.pathname + window.location.search);
+							if (missionModal?.classList.contains("is-open")) {
+								closeModalWithGenie(missionModal, true);
+							}
+							setMobileHomeSlide("thinking");
+							mobileThinkingPanel?.classList.remove("is-thinking-highlight");
+							window.setTimeout(() => {
+								mobileThinkingPanel?.classList.add("is-thinking-highlight");
+								window.setTimeout(
+									() => mobileThinkingPanel?.classList.remove("is-thinking-highlight"),
+									1900,
+								);
+							}, missionModal?.classList.contains("is-open") ? 440 : 40);
+							return;
+						}
+						const thinkingWindow = document.getElementById("win-projects");
+						if (!thinkingWindow) return;
+
+						history.replaceState(null, "", window.location.pathname + window.location.search);
+						if (missionModal?.classList.contains("is-open")) {
+							closeModalWithGenie(missionModal, true);
+						}
+						thinkingWindow.classList.remove("is-minimized", "is-thinking-highlight");
+						activeZIndex++;
+						thinkingWindow.style.zIndex = String(activeZIndex);
+						window.setTimeout(() => {
+							thinkingWindow.classList.add("is-thinking-highlight");
+							window.setTimeout(
+								() => thinkingWindow.classList.remove("is-thinking-highlight"),
+								1900,
+							);
+						}, missionModal?.classList.contains("is-open") ? 440 : 40);
+				}),
+			);
 
 		// ──────────────────────────────────────────────────
 		// 10. MacOS Dock Stack Interactions
@@ -1886,6 +2019,18 @@ import ExperienceModal from "../components/ExperienceModal.astro";
 			dockStack?.classList.remove("is-open");
 		};
 
+		// Touch devices do not have a reliable hover state, so the folder fan
+		// is controlled explicitly by the dock button click on mobile.
+		dockFolderBtn?.addEventListener("click", (event) => {
+			if (!isMobileViewport()) return;
+			event.stopPropagation();
+			if (dockStack?.classList.contains("is-open")) {
+				closeDockFan();
+			} else {
+				openDockFan();
+			}
+		});
+
 		document.addEventListener("click", (e) => {
 			const target = e.target as Node;
 			if (dockStack?.classList.contains("is-open")) {
@@ -1910,8 +2055,11 @@ import ExperienceModal from "../components/ExperienceModal.astro";
 			dockCloseTimer = setTimeout(closeDockFan, 420);
 		};
 
-		dockFolderBtn?.addEventListener("pointerenter", scheduleDockOpen);
+		dockFolderBtn?.addEventListener("pointerenter", () => {
+			if (!isMobileViewport()) scheduleDockOpen();
+		});
 		dockFolderBtn?.addEventListener("pointerleave", (e) => {
+			if (isMobileViewport()) return;
 			const related = e.relatedTarget as Node | null;
 			if (
 				related &&
@@ -1922,8 +2070,11 @@ import ExperienceModal from "../components/ExperienceModal.astro";
 			scheduleDockClose();
 		});
 		dockFanItems.forEach((item) => {
-			item.addEventListener("pointerenter", openDockFan);
+			item.addEventListener("pointerenter", () => {
+				if (!isMobileViewport()) openDockFan();
+			});
 			item.addEventListener("pointerleave", (e) => {
+				if (isMobileViewport()) return;
 				const related = e.relatedTarget as Node | null;
 				if (
 					related &&

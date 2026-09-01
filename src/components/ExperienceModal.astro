@@ -60,8 +60,9 @@ const d2cSteps = [
     <div class="fullscreen-window-header">
       <div class="browser-tab-strip" aria-label="Open pages">
         <button type="button" class="browser-tab is-active"
-          >Experience Design <span aria-hidden="true">×</span></button
-        >
+          >Experience Design
+          <!-- <span aria-hidden="true">×</span> -->
+        </button>
       </div>
       <div class="fullscreen-window-controls">
         <span
@@ -147,6 +148,9 @@ const d2cSteps = [
               >→</span
             >
           </button>
+          <button class="experience-build-action" data-open-build type="button">
+            Explore <strong>what we build</strong>
+          </button>
         </article>
         <article
           class="experience-tab-content experience-sequence-content"
@@ -155,10 +159,10 @@ const d2cSteps = [
         >
           <p class="experience-idea-eyebrow">The Sequence</p>
           <h2>Each word below is a stage.</h2>
-          <p>
+          <!-- <p>
             On the site, each word can be clicked to open a small contextual
             window with the definition.
-          </p>
+          </p> -->
           <div class="experience-steps" aria-label="The experience sequence">
             {
               sequenceSteps.map((step, index) => (
@@ -181,6 +185,9 @@ const d2cSteps = [
               >→</span
             ></button
           >
+          <button class="experience-build-action" data-open-build type="button"
+            >Explore <strong>what we build</strong></button
+          >
         </article>
         <article
           class="experience-tab-content experience-stage-content"
@@ -201,6 +208,9 @@ const d2cSteps = [
             >Talk to us about an experience problem <span aria-hidden="true"
               >→</span
             ></button
+          >
+          <button class="experience-build-action" data-open-build type="button"
+            >Explore <strong>what we build</strong></button
           >
         </article>
         <article
@@ -224,6 +234,9 @@ const d2cSteps = [
               >→</span
             ></button
           >
+          <button class="experience-build-action" data-open-build type="button"
+            >Explore <strong>what we build</strong></button
+          >
         </article>
         <article
           class="experience-tab-content experience-stage-content"
@@ -245,6 +258,9 @@ const d2cSteps = [
             >Talk to us about an experience problem <span aria-hidden="true"
               >→</span
             ></button
+          >
+          <button class="experience-build-action" data-open-build type="button"
+            >Explore <strong>what we build</strong></button
           >
         </article>
         <article
@@ -289,6 +305,9 @@ const d2cSteps = [
               >→</span
             ></button
           >
+          <button class="experience-build-action" data-open-build type="button"
+            >Explore <strong>what we build</strong></button
+          >
         </article>
         <article
           class="experience-tab-content experience-sequence-content"
@@ -332,6 +351,9 @@ const d2cSteps = [
               >→</span
             ></button
           >
+          <button class="experience-build-action" data-open-build type="button"
+            >Explore <strong>what we build</strong></button
+          >
         </article>
         <article
           class="experience-tab-content experience-commercial-content"
@@ -353,6 +375,9 @@ const d2cSteps = [
             >Talk to us about an experience problem <span aria-hidden="true"
               >→</span
             ></button
+          >
+          <button class="experience-build-action" data-open-build type="button"
+            >Explore <strong>what we build</strong></button
           >
         </article>
         <article
@@ -397,6 +422,9 @@ const d2cSteps = [
             >Talk to us about an experience problem <span aria-hidden="true"
               >→</span
             ></button
+          >
+          <button class="experience-build-action" data-open-build type="button"
+            >Explore <strong>what we build</strong></button
           >
         </article>
         <button
@@ -1422,6 +1450,48 @@ const d2cSteps = [
   #modal-page-experience .experience-contact-action:hover span {
     transform: translateX(4px);
   }
+
+  #modal-page-experience .experience-build-action {
+    appearance: none;
+    display: flex;
+    align-items: center;
+    width: max-content;
+    margin-top: 14px;
+    padding: 11px 22px;
+    border: 1px solid rgba(23, 23, 23, 0.14);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.62);
+    color: rgba(23, 23, 23, 0.62);
+    cursor: pointer;
+    font: 500 14px var(--font-body);
+    letter-spacing: 0.01em;
+    box-shadow: 0 6px 16px rgba(67, 53, 32, 0.06);
+    transition:
+      background 0.2s ease,
+      color 0.2s ease,
+      transform 0.2s ease,
+      box-shadow 0.2s ease;
+  }
+
+  #modal-page-experience .experience-build-action strong {
+    margin-left: 4px;
+    color: var(--brand-red);
+    font-weight: 700;
+  }
+
+  #modal-page-experience .experience-build-action:hover,
+  #modal-page-experience .experience-build-action:focus-visible {
+    background: #111;
+    color: #fff;
+    outline: none;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.16);
+  }
+
+  #modal-page-experience .experience-build-action:hover strong,
+  #modal-page-experience .experience-build-action:focus-visible strong {
+    color: #ff7169;
+  }
   #modal-page-experience .experience-keywords {
     margin-top: 16px !important;
     color: rgba(24, 24, 27, 0.45) !important;
@@ -1563,7 +1633,7 @@ const d2cSteps = [
     right: clamp(32px, 3.5vw, 54px);
     bottom: clamp(58px, 5vw, 72px);
     width: min(220px, 30vw);
-    color: rgba(91, 81, 70, 0.2);
+    color: rgba(91, 81, 70, 0.7);
     text-align: right;
   }
   #modal-page-experience .experience-return-icon {

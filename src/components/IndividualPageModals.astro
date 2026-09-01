@@ -82,6 +82,13 @@
                 >
               </li>
             </ul>
+            <button
+              class="ppl-framework-cta mission-thinking-cta"
+              type="button"
+              data-open-thinking
+            >
+              Explore <strong>Thinking Now</strong>
+            </button>
           </div>
         </div>
         <div class="watermark-column">
@@ -399,9 +406,7 @@
           >
         </button>
         <button class="cs-subtab" data-case-tab="fctrylab">FCTRYLAB</button>
-        <button class="cs-subtab" data-case-tab="fabindia"
-          >FabIndia <span class="subtab-close">×</span></button
-        >
+        <button class="cs-subtab" data-case-tab="fabindia">FabIndia</button>
         <button class="cs-subtab" data-case-tab="godrej-interio"
           >Godrej Interio</button
         >
@@ -433,7 +438,7 @@
         <div class="cs-main-content">
           <!-- FCTRYLAB -->
           <div class="cs-pane" id="cs-pane-fctrylab">
-            <span class="cs-category-label">Tech / Manufacturing</span>
+            <span class="cs-category-label">Lifestyle / Manufacturing</span>
             <div class="cs-brand-name">FCTRYLAB</div>
             <h1 class="cs-headline">Building Factory Intelligence</h1>
             <div class="cs-cards-grid">
@@ -662,8 +667,9 @@
           type="button"
           class="browser-tab is-active"
           data-framework-tab="framework"
-          >Cup Framework <span aria-hidden="true">×</span></button
-        >
+          >Cup Framework
+          <!-- <span aria-hidden="true">×</span> -->
+        </button>
         <button
           type="button"
           class="browser-tab"
@@ -961,9 +967,18 @@
             <li>Whitespace</li>
           </ul>
         </div>
-        <button class="fw-pop-btn experience-contact-action" type="button">
-          Let's Find Clarity
-        </button>
+        <div class="fw-pop-actions">
+          <button class="fw-pop-btn experience-contact-action" type="button">
+            Let's Find Clarity
+          </button>
+          <button
+            class="experience-design-btn"
+            data-open-experience
+            type="button"
+          >
+            Explore <strong>Experience Design</strong>
+          </button>
+        </div>
       </div>
 
       <!-- Uncommon Ideas (U) -->
@@ -998,9 +1013,18 @@
             <li>Creative direction</li>
           </ul>
         </div>
-        <button class="fw-pop-btn experience-contact-action" type="button">
-          Let's Unlock Ideas
-        </button>
+        <div class="fw-pop-actions">
+          <button class="fw-pop-btn experience-contact-action" type="button">
+            Let's Unlock Ideas
+          </button>
+          <button
+            class="experience-design-btn"
+            data-open-experience
+            type="button"
+          >
+            Explore <strong>Experience Design</strong>
+          </button>
+        </div>
       </div>
 
       <!-- Power (P) -->
@@ -1033,9 +1057,18 @@
             <li>Measurement</li>
           </ul>
         </div>
-        <button class="fw-pop-btn experience-contact-action" type="button">
-          Build Market Power
-        </button>
+        <div class="fw-pop-actions">
+          <button class="fw-pop-btn experience-contact-action" type="button">
+            Build Market Power
+          </button>
+          <button
+            class="experience-design-btn"
+            data-open-experience
+            type="button"
+          >
+            Explore <strong>Experience Design</strong>
+          </button>
+        </div>
       </div>
     </div>
 
@@ -1127,10 +1160,10 @@
             />
           </label>
           <button
-            class="capability-filter is-active"
+            class="capability-nav"
             type="button"
-            data-capability-filter="all"
-            aria-label="All capabilities"
+            data-capability-nav="modal-page-cases"
+            aria-label="Open Cup Cases"
           >
             <svg
               width="25"
@@ -1147,10 +1180,10 @@
             >
           </button>
           <button
-            class="capability-filter"
+            class="capability-nav"
             type="button"
-            data-capability-filter="clarity"
-            aria-label="Clarity capabilities"
+            data-capability-nav="modal-page-about"
+            aria-label="Open About Us"
           >
             <svg
               width="25"
@@ -1166,10 +1199,10 @@
             >
           </button>
           <button
-            class="capability-filter"
+            class="capability-nav"
             type="button"
-            data-capability-filter="power"
-            aria-label="Power capabilities"
+            data-capability-nav="home"
+            aria-label="Go to Home"
           >
             <svg
               width="25"
@@ -1374,10 +1407,11 @@
           <span>Brand Showreel</span>
         </div>
 
-        <button
+        <div
           class="about-showreel"
           id="about-showreel-btn"
-          type="button"
+          role="button"
+          tabindex="0"
           aria-label="Play brand showreel"
         >
           <span class="about-showreel-word">BLOSSOM</span>
@@ -1386,7 +1420,7 @@
               ><path d="M8 5v14l11-7z"></path></svg
             >
           </span>
-        </button>
+        </div>
 
         <div class="about-story-label">
           <svg
@@ -1403,9 +1437,16 @@
         </div>
 
         <p class="about-belief">
-          The best firms are not the ones with the most clients. They are the
-          ones whose work travels without them. Do good work. Let God see.
+          The best companies are not the ones with the most clients. They are
+          the ones whose work travels without them. Do good work. Let God see.
         </p>
+        <button
+          class="ppl-framework-cta"
+          type="button"
+          data-open-mission
+        >
+          Explore <strong>Market</strong>
+        </button>
       </aside>
 
       <article class="about-editorial-content">
@@ -1424,7 +1465,7 @@
 
         <section>
           <h2>Why Medeacup</h2>
-          <em>The work has always come before the agency story.</em>
+          <em>The work has always come before the credentials.</em>
           <p>
             In 2019, an unknown diaper brand in Dubai needed customers before it
             had a real market presence. We did not start with ads. We started
@@ -1580,7 +1621,7 @@
         <div
           class="where-client-card where-godrej"
           data-where-client="godrej"
-          data-where-sectors="d2c,retail,real-estate"
+          data-where-sectors="d2c,retail"
         >
           <div class="where-file-icon">
             <div class="where-file-body">
@@ -1594,54 +1635,58 @@
           <span class="where-client-label">GODREJ</span>
         </div>
 
-        <!-- CELEX ENSEMBLE — bottom left -->
+        <!-- BEST WESTERN PLUS — bottom left -->
         <div
-          class="where-client-card where-celex"
-          data-where-client="celex"
+          class="where-client-card where-best-western-plus"
+          data-where-client="best-western-plus"
           data-where-sectors="hospitality"
         >
           <div class="where-file-icon">
             <div class="where-file-body">
               <img
-                src="/clients/celex.png"
-                alt="Celex Ensemble"
+                src="/clients/best-western-plus.png"
+                alt="Best Western Plus"
                 class="where-logo"
               />
             </div>
           </div>
-          <span class="where-client-label">CELEX ENSEMBLE</span>
+          <span class="where-client-label">BEST WESTERN PLUS</span>
         </div>
 
-        <!-- REVERB — top right -->
+        <!-- BEST FABINDIA — top right -->
         <div
-          class="where-client-card where-reverb"
-          data-where-client="reverb"
-          data-where-sectors="d2c,retail,real-estate"
-        >
-          <div class="where-file-icon">
-            <div class="where-file-body">
-              <img src="/clients/reverb.png" alt="Reverb" class="where-logo" />
-            </div>
-          </div>
-          <span class="where-client-label">REVERB</span>
-        </div>
-
-        <!-- OWL ACADEMY — right middle -->
-        <div
-          class="where-client-card where-owl"
-          data-where-client="owl"
-          data-where-sectors="education"
+          class="where-client-card where-fabindia"
+          data-where-client="fabindia"
+          data-where-sectors="retail"
         >
           <div class="where-file-icon">
             <div class="where-file-body">
               <img
-                src="/clients/owl-academy.png"
-                alt="Owl Academy"
+                src="/clients/fab-india.png"
+                alt="Best Fabindia"
                 class="where-logo"
               />
             </div>
           </div>
-          <span class="where-client-label">OWL ACADEMY</span>
+          <span class="where-client-label">FABINDIA</span>
+        </div>
+
+        <!-- FCTRYLAB — right middle -->
+        <div
+          class="where-client-card where-fctrylab"
+          data-where-client="fctrylab"
+          data-where-sectors="d2c"
+        >
+          <div class="where-file-icon">
+            <div class="where-file-body">
+              <img
+                src="/clients/factory-lab.png"
+                alt="FCTRYLAB"
+                class="where-logo"
+              />
+            </div>
+          </div>
+          <span class="where-client-label">FCTRYLAB</span>
         </div>
 
         <!-- JACOB'S — bottom right -->
@@ -1679,45 +1724,46 @@
             data-where-dot="godrej"
             aria-label="Godrej Interio in India"></button>
           <button
-            class="where-dot where-dot-reverb"
+            class="where-dot where-dot-fabindia"
             type="button"
-            data-where-dot="reverb"
-            aria-label="Reverb Asia in India"></button>
+            data-where-dot="fabindia"
+            aria-label="Best Fabindia in India"></button>
           <button
-            class="where-dot where-dot-celex"
+            class="where-dot where-dot-best-western-plus"
             type="button"
-            data-where-dot="celex"
-            aria-label="Celex Ensemble in the United Kingdom"></button>
+            data-where-dot="best-western-plus"
+            aria-label="Best Western Plus in the United Kingdom"></button>
           <button
             class="where-dot where-dot-jacobs"
             type="button"
             data-where-dot="jacobs"
             aria-label="Jacobs Garden Hotel in the UAE"></button>
           <button
-            class="where-dot where-dot-owl"
+            class="where-dot where-dot-fctrylab"
             type="button"
-            data-where-dot="owl"
-            aria-label="Owl Academy in Belgium"></button>
+            data-where-dot="fctrylab"
+            aria-label="FCTRYLAB in the USA"></button>
           <div class="where-country-tags" aria-live="polite">
             <span
               class="where-country-tag where-country-godrej"
               data-where-tag="godrej"><span>🇮🇳</span> India</span
             >
             <span
-              class="where-country-tag where-country-reverb"
-              data-where-tag="reverb"><span>🇮🇳</span> India</span
+              class="where-country-tag where-country-fabindia"
+              data-where-tag="fabindia"><span>🇮🇳</span> India</span
             >
             <span
-              class="where-country-tag where-country-celex"
-              data-where-tag="celex"><span>🇬🇧</span> United Kingdom</span
+              class="where-country-tag where-country-best-western-plus"
+              data-where-tag="best-western-plus"
+              ><span>🇬🇧</span> United Kingdom</span
             >
             <span
               class="where-country-tag where-country-jacobs"
               data-where-tag="jacobs"><span>🇦🇪</span> UAE</span
             >
             <span
-              class="where-country-tag where-country-owl"
-              data-where-tag="owl"><span>🇧🇪</span> Belgium</span
+              class="where-country-tag where-country-fctrylab"
+              data-where-tag="fctrylab"><span>🇺🇸</span> USA</span
             >
           </div>
         </div>
@@ -1728,13 +1774,9 @@
             >D2C</button
           >
           <button type="button" data-where-sector="retail">Retail</button>
-          <button type="button" data-where-sector="real-estate"
-            >Real Estate</button
-          >
           <button type="button" data-where-sector="hospitality"
             >Hospitality</button
           >
-          <button type="button" data-where-sector="education">Education</button>
         </div>
       </div>
     </div>
@@ -1783,20 +1825,6 @@
           aria-selected="true"
           data-principle-tab="principle">the 1% Principle</button
         >
-        <button
-          class="principle-tab"
-          type="button"
-          role="tab"
-          aria-selected="false"
-          data-principle-tab="mission">Mission</button
-        >
-        <button
-          class="principle-tab"
-          type="button"
-          role="tab"
-          aria-selected="false"
-          data-principle-tab="practice">In Practice</button
-        >
       </div>
       <div class="fullscreen-window-controls">
         <span
@@ -1822,7 +1850,7 @@
               data-principle-card="0"
               aria-label="Explore the customer 1%"
             >
-              <img src="/revenue.png" alt="" aria-hidden="true" />
+              <img src="/customer.png" alt="" aria-hidden="true" />
             </button>
             <!-- <div class="ppl-card ppl-card-b"><img src="/unlock-icon-4.png" alt="" aria-hidden="true" /></div> -->
             <button
@@ -1839,7 +1867,7 @@
               data-principle-card="2"
               aria-label="Explore the message 1%"
             >
-              <img src="/authority.png" alt="" aria-hidden="true" />
+              <img src="/leadership.png" alt="" aria-hidden="true" />
             </button>
             <button
               class="ppl-card ppl-card-e"
@@ -1847,7 +1875,7 @@
               data-principle-card="3"
               aria-label="Explore the strategic 1%"
             >
-              <img src="/leadership.png" alt="" aria-hidden="true" />
+              <img src="/authority.png" alt="" aria-hidden="true" />
             </button>
           </div>
           <button class="ppl-expand-btn" id="ppl-expand-btn" type="button"
@@ -1900,57 +1928,10 @@
         <p class="ppl-exp-footer">
           The 1% is never the obvious thing. That is why most brands miss it.
         </p>
+        <button class="ppl-framework-cta" id="ppl-framework-cta" type="button">
+          Explore <strong>CUP Framework</strong>
+        </button>
       </div>
-
-      <section
-        class="ppl-info-pane"
-        data-principle-pane="mission"
-        aria-label="Mission"
-      >
-        <p class="ppl-info-eyebrow">Mission</p>
-        <p>We find the 1% your market is waiting for.</p>
-        <p>
-          Most brands spread effort across everything. MEDEACUP focuses on
-          finding the one thing that changes the economics, whether that is a
-          buyer insight, a positioning shift or a structural fix, then builds
-          the system that makes it compound.
-        </p>
-        <p class="ppl-info-closing">
-          The 1% is never the obvious thing. That is why most brands miss it.
-        </p>
-      </section>
-
-      <section
-        class="ppl-info-pane"
-        data-principle-pane="practice"
-        aria-label="In Practice"
-      >
-        <p class="ppl-info-eyebrow">In Practice</p>
-        <p class="ppl-practice-item">
-          <span class="bullet-cup-icon" aria-hidden="true">☕</span><span
-            >Every engagement starts with one question: who is actually buying,
-            and why?</span
-          >
-        </p>
-        <p class="ppl-practice-item">
-          <span class="bullet-cup-icon" aria-hidden="true">☕</span><span
-            >Every engagement produces one Thinking Document.</span
-          >
-        </p>
-        <p class="ppl-practice-item">
-          <span class="bullet-cup-icon" aria-hidden="true">☕</span><span
-            >Every engagement agrees on one metric before work begins.</span
-          >
-        </p>
-        <p class="ppl-practice-item">
-          <span class="bullet-cup-icon" aria-hidden="true">☕</span><span
-            >Every engagement is measured by whether that number moves.</span
-          >
-        </p>
-        <p class="ppl-info-closing">
-          The 1% is never the obvious thing. That is why most brands miss it.
-        </p>
-      </section>
 
       <!-- Toggle row — centered (locked) → bottom (unlocked) -->
       <div class="ppl-toggle-row" id="ppl-toggle-row">
@@ -2369,30 +2350,21 @@
     top: 10%;
   }
   .where-fctrylab {
-    left: 12%;
-    top: 52%;
-  }
-  .where-reverb {
-    right: 24%;
-    top: 8%;
+    right: 7%;
+    top: 26%;
   }
   .where-fabindia {
-    right: 4%;
-    top: 34%;
+    right: 24%;
+    top: 8%;
   }
   .where-jacobs {
     right: 12%;
     top: 54%;
   }
 
-  .where-celex {
+  .where-best-western-plus {
     left: 12%;
     top: 52%;
-  }
-
-  .where-owl {
-    right: 7%;
-    top: 26%;
   }
 
   .where-client-card {
@@ -2458,12 +2430,12 @@
     top: 9.9%;
   }
 
-  .where-dot-reverb {
+  .where-dot-fabindia {
     left: 47.5%;
     top: 25.5%;
   }
 
-  .where-dot-celex {
+  .where-dot-best-western-plus {
     left: 85%;
     top: 26.3%;
   }
@@ -2473,7 +2445,7 @@
     top: 64.8%;
   }
 
-  .where-dot-owl {
+  .where-dot-fctrylab {
     left: 28.4%;
     top: 73%;
   }
@@ -2511,12 +2483,12 @@
     top: 7.9%;
   }
 
-  .where-country-reverb {
+  .where-country-fabindia {
     left: 47.5%;
     top: 23.4%;
   }
 
-  .where-country-celex {
+  .where-country-best-western-plus {
     left: 85%;
     top: 24%;
   }
@@ -2526,7 +2498,7 @@
     top: 62.6%;
   }
 
-  .where-country-owl {
+  .where-country-fctrylab {
     left: 28.4%;
     top: 70.8%;
   }
@@ -2658,7 +2630,7 @@
   }
 
   .capabilities-search,
-  .capability-filter {
+  .capability-nav {
     display: flex;
     align-items: center;
     border: 0;
@@ -2687,7 +2659,7 @@
     color: rgba(75, 75, 75, 0.55);
   }
 
-  .capability-filter {
+  .capability-nav {
     justify-content: center;
     min-height: 64px;
     border-radius: 50%;
@@ -2698,8 +2670,8 @@
       transform 180ms ease;
   }
 
-  .capability-filter:hover,
-  .capability-filter.is-active {
+  .capability-nav:hover,
+  .capability-nav:focus-visible {
     background: rgba(212, 207, 198, 0.95);
     color: #232323;
     transform: translateY(-2px);
@@ -2822,7 +2794,7 @@
       min-height: 52px;
       padding: 0 16px;
     }
-    .capability-filter {
+    .capability-nav {
       min-height: 48px;
     }
     .capabilities-search input {
@@ -2947,6 +2919,28 @@
   .about-showreel:hover .about-play-button {
     background: #ef302d;
     transform: scale(1.08);
+  }
+
+  .about-showreel.is-playing {
+    cursor: default;
+  }
+
+  .about-showreel.is-playing::before,
+  .about-showreel.is-playing::after,
+  .about-showreel.is-playing .about-showreel-word,
+  .about-showreel.is-playing .about-play-button {
+    display: none;
+  }
+
+  .about-showreel iframe {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    z-index: 3;
+    width: 177.78%;
+    height: 100%;
+    border: 0;
+    transform: translateX(-50%);
   }
 
   .about-belief {
@@ -3109,7 +3103,7 @@
     font-size: 42px;
     font-weight: 700;
     line-height: 1.3;
-    color: rgba(0, 0, 0, 0.25);
+    color: rgba(91, 81, 70, 0.7);
   }
 
   /* Document Grid Layout for Cup Cases (MacBook Air - 11) */
@@ -3538,6 +3532,52 @@
   .fw-pop-btn:hover {
     background: #000000;
     transform: scale(1.02);
+  }
+
+  .fw-pop-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .experience-design-btn {
+    appearance: none;
+    border: 1px solid rgba(23, 23, 23, 0.14);
+    border-radius: 999px;
+    padding: 11px 18px;
+    background: rgba(255, 255, 255, 0.62);
+    color: rgba(23, 23, 23, 0.62);
+    cursor: pointer;
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    box-shadow: 0 6px 16px rgba(67, 53, 32, 0.06);
+    transition:
+      background 0.2s ease,
+      color 0.2s ease,
+      transform 0.2s ease,
+      box-shadow 0.2s ease;
+  }
+
+  .experience-design-btn strong {
+    color: var(--brand-red);
+    font-weight: 700;
+  }
+
+  .experience-design-btn:hover,
+  .experience-design-btn:focus-visible {
+    background: #111;
+    color: #fff;
+    outline: none;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.16);
+  }
+
+  .experience-design-btn:hover strong,
+  .experience-design-btn:focus-visible strong {
+    color: #ff7169;
   }
 
   /* ═══════════════════════════════════════════════ */
@@ -4379,7 +4419,7 @@
     .fw-watermark-text {
       text-align: left !important;
       font-size: 24px !important;
-      color: #0000002b !important;
+      color: rgba(91, 81, 70, 0.7) !important;
     }
 
     .fw-popover-card {
@@ -4512,54 +4552,6 @@
     background: rgba(255, 255, 255, 0.68);
     color: var(--text-primary);
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
-  }
-
-  .ppl-info-pane {
-    display: none;
-    width: min(760px, calc(100% - 64px));
-    margin: 0;
-    color: rgba(23, 23, 23, 0.78);
-    font: 15px/1.5 var(--font-body);
-  }
-
-  .ppl-info-pane p {
-    margin: 0 0 14px;
-  }
-
-  .ppl-practice-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 8px;
-  }
-
-  .ppl-info-eyebrow {
-    color: var(--brand-red);
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-  }
-
-  .ppl-info-closing {
-    margin-top: 26px !important;
-    color: var(--brand-red);
-    font-family: var(--font-display, serif);
-    font-style: italic;
-  }
-
-  #modal-page-principle .ppl-stage.is-info {
-    justify-content: center !important;
-    padding: 0 !important;
-  }
-
-  #modal-page-principle .ppl-stage.is-info .ppl-content,
-  #modal-page-principle .ppl-stage.is-info .ppl-expanded-view,
-  #modal-page-principle .ppl-stage.is-info .ppl-toggle-row {
-    display: none !important;
-  }
-
-  #modal-page-principle .ppl-stage.is-info .ppl-info-pane.is-active {
-    display: block;
   }
 
   #modal-page-framework .fw-experience-panel {
@@ -4859,7 +4851,7 @@
       font-size: 24px;
       font-weight: 500;
       line-height: 1.02;
-      color: rgba(0, 0, 0, 0.17);
+      color: rgba(91, 81, 70, 0.7);
       text-align: left;
     }
 
@@ -5081,17 +5073,17 @@
       top: 10%;
     }
 
-    #modal-page-where .where-reverb {
+    #modal-page-where .where-fabindia {
       right: 8%;
       top: 7%;
     }
 
-    #modal-page-where .where-owl {
+    #modal-page-where .where-fctrylab {
       right: 40%;
       top: 4%;
     }
 
-    #modal-page-where .where-celex {
+    #modal-page-where .where-best-western-plus {
       left: 8%;
       top: 49%;
     }
@@ -5281,17 +5273,6 @@
       color: rgba(177, 169, 158, 0.42) !important;
     }
 
-    #modal-page-principle .ppl-stage.is-info {
-      justify-content: flex-start !important;
-      padding: 92px 24px 130px !important;
-      overflow-y: auto !important;
-    }
-
-    #modal-page-principle .ppl-stage.is-info .ppl-info-pane.is-active {
-      width: 100%;
-      margin: 0;
-    }
-
     .fullscreen-window-body {
       min-height: 0;
       overflow-x: hidden !important;
@@ -5301,26 +5282,42 @@
 
     #modal-page-principle .fullscreen-window-body {
       min-height: 0 !important;
-      overflow: hidden !important;
+      overflow-x: hidden !important;
+      overflow-y: auto !important;
     }
 
-    /* Preserve the centered desktop composition, but let the stage itself
-       scroll when the expanded content is taller than the phone viewport. */
+    /* The Principle modal uses its stage as the mobile scroll container, so
+       every state can move completely above the fixed bottom dock. */
     #modal-page-principle .ppl-stage {
       height: 100% !important;
       min-height: 0 !important;
+      /* The mobile nav overlays the stage; keep the page title below it. */
+      padding-top: 76px !important;
+      /* Reserve a dock-sized scroll area in every Principle state. */
+      padding-bottom: 180px !important;
+      scroll-padding-bottom: 180px;
       overflow-x: hidden !important;
       overflow-y: auto !important;
       -webkit-overflow-scrolling: touch;
     }
 
+    #modal-page-principle .ppl-stage.is-unlocked {
+      justify-content: flex-start !important;
+      padding-top: 100px !important;
+      padding-bottom: 220px !important;
+    }
+
     #modal-page-principle .ppl-stage.is-expanded {
       justify-content: flex-start !important;
-      padding-bottom: 150px !important;
+      /* Leave enough scroll clearance for the fixed mobile dock. */
+      padding-bottom: 260px !important;
+      scroll-padding-bottom: 260px;
     }
 
     #modal-page-principle .ppl-stage.is-expanded .ppl-expanded-view {
       overflow: visible !important;
+      /* Let the closing line scroll completely above the fixed bottom dock. */
+      padding-bottom: 20px !important;
     }
 
     #modal-page-principle .ppl-stage .ppl-toggle-row {
