@@ -1305,19 +1305,21 @@
               <span class="capability-row-icon">04</span>
               <span class="capability-row-heading"
                 ><small>Make It Compound</small><strong
-                  >Intelligence, CRM and Retention</strong
+                  >Experience Design, Intelligence and Retention</strong
                 ></span
               >
               <span class="capability-chevron">⌄</span>
             </button>
             <div class="capability-row-detail">
               <p>
-                Designing the systems that make every interaction smarter than
-                the last. <b>The signal compounds into preference.</b>
+                Designing the experience after the choice and the systems that
+                make every interaction smarter than the last. <b
+                  >The signal compounds into preference.</b
+                >
               </p>
               <p>
-                Guest and customer intelligence · CRM · Social CRM ·
-                Personalisation · Retention · Repeat purchase · Relationship
+                <b>Experience design</b> · Guest and customer intelligence · CRM ·
+                Social CRM · Personalisation · Retention · Repeat purchase · Relationship
                 systems
               </p>
             </div>
@@ -1440,11 +1442,7 @@
           The best companies are not the ones with the most clients. They are
           the ones whose work travels without them. Do good work. Let God see.
         </p>
-        <button
-          class="ppl-framework-cta"
-          type="button"
-          data-open-mission
-        >
+        <button class="ppl-framework-cta" type="button" data-open-mission>
           Explore <strong>Market</strong>
         </button>
       </aside>
@@ -1455,12 +1453,13 @@
           find what changes the economics.
         </h1>
         <p>
-          We work where strategy, creativity and commercial execution meet. The
-          problem might be a buyer nobody has properly understood, a position
-          the market has not claimed, a message that does not move
-          consideration, a growth system that is leaking value, or an experience
-          that is failing to create preference. We find the leverage point,
-          develop the response and stay close to the outcome.
+          We work where strategy, creativity, experience design and commercial
+          execution meet. The problem might be a buyer nobody has properly
+          understood. A position the market has not claimed. A message that does
+          not move consideration. A growth system that is leaking value. Or an
+          experience that is failing to create preference: before the choice,
+          during it, and long after it. We find the leverage point, develop the
+          response and stay close to the outcome.
         </p>
 
         <section>
@@ -1491,10 +1490,54 @@
           <p>
             The people thinking about the problem stay close to the people
             solving it. Strategy, creativity and execution are connected rather
-            than passed through disconnected layers. Every engagement starts
-            with a question, creates a Thinking Document, agrees on a metric and
-            is judged by whether that number moves.
+            than passed through disconnected layers. <b
+              >We are as focused on what happens after the choice as on what
+              creates it.</b
+            > Most work stops at conversion. We design what the person encounters
+            when they arrive on the other side: the recognition, the follow-through,
+            the experience that earns a second choice. Every engagement starts with
+            a question, creates a Thinking Document, agrees on a metric and is judged
+            by whether that number moves.
           </p>
+        </section>
+
+        <section class="about-design-section">
+          <div class="about-design-heading">
+            <h2>What we design</h2>
+          </div>
+          <em class="about-design-kicker">A choice is only the beginning.</em>
+          <p>
+            Someone discovers you. They consider you. They choose you. Then the
+            real experience begins.
+          </p>
+          <p>
+            What happens next is where preference is built or lost. Most brands
+            design the campaign that earns the choice. We design what the person
+            experiences when they get there.
+          </p>
+          <div
+            class="about-design-sequence"
+            aria-label="The experience after choice"
+          >
+            <div class="about-design-step">
+              <span>Before</span>
+              <strong>What creates expectation?</strong>
+            </div>
+            <span class="about-design-arrow" aria-hidden="true">→</span>
+            <div class="about-design-step">
+              <span>During</span>
+              <strong>What makes the choice feel right?</strong>
+            </div>
+            <span class="about-design-arrow" aria-hidden="true">→</span>
+            <div class="about-design-step">
+              <span>After</span>
+              <strong>What gives them a reason to return?</strong>
+            </div>
+          </div>
+          <blockquote>
+            The transaction tells you what they bought. The experience tells you
+            why they might come back.
+          </blockquote>
         </section>
 
         <section>
@@ -1513,9 +1556,8 @@
         <section>
           <h2>The belief</h2>
           <p>
-            The best work should make the business smarter than it was before we
-            arrived. That means leaving behind better decisions, better systems
-            and a clearer understanding of what moves the market.
+            And the best experience should make the person feel like the choice
+            was already obvious.
           </p>
         </section>
       </article>
@@ -2851,7 +2893,8 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    aspect-ratio: 1.18;
+    /* YouTube content is native 16:9; keep the full player and controls in view. */
+    aspect-ratio: 16 / 9;
     margin-bottom: 28px;
     overflow: hidden;
     border: 10px solid rgba(255, 255, 255, 0.6);
@@ -2935,12 +2978,11 @@
   .about-showreel iframe {
     position: absolute;
     top: 0;
-    left: 50%;
+    left: 0;
     z-index: 3;
-    width: 177.78%;
+    width: 100%;
     height: 100%;
     border: 0;
-    transform: translateX(-50%);
   }
 
   .about-belief {
@@ -4664,7 +4706,8 @@
     margin-top: 28px;
   }
 
-  #modal-page-about .about-editorial-content h2 {
+  #modal-page-about .about-editorial-content h2,
+  #modal-page-about .about-design-heading h2 {
     margin: 0 0 8px;
     color: var(--brand-red);
     font-family: var(--font-body);
@@ -4674,7 +4717,8 @@
     text-transform: uppercase;
   }
 
-  #modal-page-about .about-editorial-content em {
+  #modal-page-about .about-editorial-content em,
+  #modal-page-about .about-design-section .about-design-kicker {
     display: block;
     margin-bottom: 16px;
     color: rgba(40, 40, 38, 0.48);
@@ -4684,6 +4728,89 @@
 
   #modal-page-about .about-editorial-content section p + p {
     margin-top: 14px;
+  }
+
+  /* What We Design — a quiet, sequential experience map inside the editorial flow. */
+  #modal-page-about .about-design-section {
+    margin: 42px 0 0;
+  }
+
+  #modal-page-about .about-design-heading {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  #modal-page-about .about-design-badge {
+    padding: 5px 8px 4px;
+    border: 1px solid rgba(230, 46, 45, 0.24);
+    border-radius: 999px;
+    color: var(--brand-red);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  #modal-page-about .about-design-section > p:not(.about-design-kicker) {
+    margin-bottom: 14px;
+  }
+
+  #modal-page-about .about-design-sequence {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(
+        0,
+        1fr
+      );
+    align-items: stretch;
+    gap: 10px;
+    margin-top: 22px;
+  }
+
+  #modal-page-about .about-design-step {
+    display: flex;
+    min-height: 92px;
+    flex-direction: column;
+    justify-content: center;
+    padding: 16px 14px;
+    border: 1px solid rgba(115, 104, 91, 0.14);
+    border-radius: 16px;
+    background: rgba(250, 248, 243, 0.62);
+  }
+
+  #modal-page-about .about-design-step span {
+    margin-bottom: 10px;
+    color: var(--brand-red);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  #modal-page-about .about-design-step strong {
+    color: rgba(33, 33, 31, 0.72);
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.35;
+  }
+
+  #modal-page-about .about-design-arrow {
+    align-self: center;
+    color: var(--brand-red);
+    font-size: 20px;
+  }
+
+  #modal-page-about .about-design-section blockquote {
+    margin: 16px 0 0;
+    padding: 14px 16px;
+    border-left: 2px solid var(--brand-red);
+    border-radius: 0 10px 10px 0;
+    background: rgba(246, 242, 236, 0.74);
+    color: rgba(33, 33, 31, 0.76);
+    font-family: var(--font-display);
+    font-size: 17px;
+    line-height: 1.35;
   }
 
   /* About Us uses the same quiet browser-tab treatment as the 1% window. */
@@ -4763,6 +4890,21 @@
 
     #modal-page-about .about-editorial-content {
       padding: 10px 8px 0;
+    }
+
+    #modal-page-about .about-design-section {
+      padding: 0px;
+    }
+
+    #modal-page-about .about-design-sequence {
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+
+    #modal-page-about .about-design-arrow {
+      justify-self: center;
+      line-height: 1;
+      transform: rotate(90deg);
     }
 
     #modal-page-about .about-window-body.is-info {
