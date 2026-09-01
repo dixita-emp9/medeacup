@@ -1504,4 +1504,11 @@ body:has(.modal-overlay.is-open:not(#quiz-modal)) .modal-overlay {
     height: calc(100svh - 86px) !important;
     max-height: none !important;
   }
+
+  /* The quiz scrolls inside its own body, so give the final Continue button
+     room to clear the fixed dock without moving or hiding the dock. */
+  #quiz-modal .quiz-dialog-body {
+    padding-bottom: 150px !important;
+    scroll-padding-bottom: 150px;
+  }
 }
