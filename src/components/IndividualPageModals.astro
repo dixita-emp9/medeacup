@@ -4671,7 +4671,9 @@
         rgba(235, 211, 197, 0.3),
         transparent 26%
       ),
-      rgba(250, 248, 243, 0.38) !important;
+      /* Keep the frosted treatment, but prevent the desktop cards from showing
+         through the About page content on deployed/mobile renders. */
+      rgba(250, 248, 243, 0.82) !important;
   }
 
   #modal-page-about .about-editorial-content {
@@ -4886,6 +4888,7 @@
     #modal-page-about .about-window-body {
       grid-template-columns: 1fr;
       padding: 18px 14px 88px;
+      background-color: rgba(250, 248, 243, 0.86) !important;
     }
 
     #modal-page-about .about-editorial-content {
