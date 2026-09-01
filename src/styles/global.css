@@ -280,6 +280,15 @@ body:has(.modal-overlay.is-open) #desktop-canvas::before {
   -webkit-backdrop-filter: blur(24px) saturate(180%);
 }
 
+/* Some deployed browsers/contexts do not support backdrop-filter. Keep the
+   window readable there instead of leaving a transparent, sharp layer over
+   the desktop background. Supported browsers retain the glass treatment above. */
+@supports not (backdrop-filter: blur(1px)) {
+  .mac-window.glass-window {
+    background: rgba(246, 242, 236, 0.9);
+  }
+}
+
 .mac-window.is-dragging {
   cursor: grabbing !important;
   box-shadow: var(--glass-shadow-active);
