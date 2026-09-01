@@ -1104,7 +1104,7 @@ body:has(.modal-overlay.is-open:not(#quiz-modal)) .modal-overlay {
 
 .fullscreen-mac-window .fullscreen-window-body {
   /* Keep every page readable over the blurred desktop backdrop. */
-  background: rgba(246, 242, 236, 0.78) !important;
+  background: rgba(246, 242, 236, 0.88) !important;
 }
 
 .modal-window .modal-body,
