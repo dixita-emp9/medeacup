@@ -1,0 +1,191 @@
+---
+
+---
+
+<div
+  class="mac-window window-mission"
+  id="win-mission"
+  style="top: 80px; left: 29%; width: 27vw; min-width: 370px; max-width: 430px;"
+>
+  <div class="window-header">
+    <span class="window-title-tag">Our Mission</span>
+  </div>
+
+  <div class="mission-content">
+    <div class="mission-bg-visual">
+      <div class="red-sparkle s1"></div>
+      <div class="red-sparkle s2"></div>
+      <div class="red-sparkle s3"></div>
+      <div class="red-sparkle s4"></div>
+      <div class="red-sparkle s5"></div>
+      <div class="red-sparkle s6"></div>
+    </div>
+
+    <h2 class="mission-headline">
+      We find <br />
+      the 1% your <br />
+      market is <br />
+      waiting for.
+    </h2>
+
+    <button class="learn-more-btn" id="btn-learn-more"> Learn More </button>
+  </div>
+</div>
+
+<style>
+  .window-mission {
+    height: 500px;
+    background: transparent;
+    border-radius: 28px;
+  }
+
+  @media (max-height: 900px) and (min-width: 901px) {
+    .window-mission {
+      height: 400px;
+      min-width: 320px !important;
+    }
+  }
+
+  @media (max-width: 1550px) and (min-width: 901px) {
+    #win-mission {
+      left: 35% !important;
+      width: 330px !important;
+      min-width: 320px !important;
+    }
+  }
+
+  @media (max-width: 1380px) and (min-width: 901px) {
+    #win-mission {
+      left: 36% !important;
+    }
+    .mission-headline {
+      font-size: clamp(28px, 2.8vw, 36px);
+    }
+  }
+
+  @media (max-width: 1180px) and (min-width: 901px) {
+    #win-mission {
+      left: 35% !important;
+      width: 300px !important;
+      min-width: 290px !important;
+    }
+    .mission-headline {
+      font-size: clamp(24px, 2.4vw, 34px);
+    }
+  }
+
+  .window-mission .window-header {
+    position: absolute;
+    inset: 0 0 auto;
+    z-index: 2;
+    background: transparent;
+    border-bottom: 0;
+    padding: 14px 18px 8px;
+  }
+
+  .window-dots {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .mission-content {
+    position: relative;
+    height: 100%;
+    padding: 36px 32px 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: center;
+    overflow: hidden;
+    border-radius: inherit;
+    background: rgba(255, 255, 255, 1);
+    width: 100%;
+  }
+
+  .mission-bg-visual {
+    position: absolute;
+    inset: 0;
+    background-image: url("/our-mission-home.png");
+    background-size: cover;
+    background-position: center bottom;
+    pointer-events: none;
+  }
+
+  .red-sparkle {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--brand-red);
+    box-shadow: 0 0 10px var(--brand-red);
+  }
+
+  .s1 {
+    top: 22%;
+    left: 18%;
+  }
+  .s2 {
+    top: 28%;
+    right: 20%;
+  }
+  .s3 {
+    bottom: 38%;
+    left: 14%;
+  }
+  .s4 {
+    bottom: 30%;
+    right: 16%;
+  }
+  .s5 {
+    top: 50%;
+    left: 10%;
+  }
+  .s6 {
+    bottom: 18%;
+    right: 24%;
+  }
+
+  .mission-headline {
+    position: relative;
+    font-family: var(--font-heading);
+    font-size: clamp(32px, 2.8vw, 42px);
+    font-weight: 800;
+    line-height: 1.12;
+    color: #111111;
+    margin-bottom: 26px;
+    letter-spacing: -0.03em;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.04));
+  }
+
+  .learn-more-btn {
+    position: relative;
+    display: block;
+    align-self: center;
+    margin: 0 auto;
+    width: fit-content;
+    background: linear-gradient(135deg, #e62e2d 0%, #d41f1e 100%);
+    color: white;
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 700;
+    padding: 13px 34px;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 8px 24px rgba(230, 46, 45, 0.4);
+    transition:
+      transform var(--transition-bounce),
+      box-shadow var(--transition-fast);
+  }
+
+  .learn-more-btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 12px 30px rgba(230, 46, 45, 0.5);
+  }
+
+  .learn-more-btn:active {
+    transform: scale(0.97);
+  }
+</style>

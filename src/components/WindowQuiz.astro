@@ -1,0 +1,184 @@
+---
+
+---
+
+<div
+  class="mac-window glass-window window-quiz"
+  id="win-quiz"
+  style="top: 500px; left: 26%; width: 300px; min-width: 290px; max-width: 380px;"
+>
+  <div class="window-header">
+    <span class="window-title-tag">Are We Compatible?</span>
+  </div>
+
+  <div class="quiz-content">
+    <div class="brain-grid-visual">
+      <img
+        src="/quiz-img.png"
+        alt="Compatibility Quiz Graphics"
+        width="665"
+        height="781"
+        draggable="false"
+        loading="lazy"
+        decoding="async"
+        class="quiz-img"
+      />
+    </div>
+
+    <div class="quiz-footer">
+      <button class="quiz-btn" id="btn-take-quiz"> Take the quiz </button>
+
+      <div class="preview-text-lines">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .window-quiz {
+    height: 350px;
+    border-radius: 26px;
+    background: rgba(255, 255, 255, 0.65) !important;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+  }
+
+  @media (max-height: 900px) and (min-width: 901px) {
+    .window-quiz {
+      height: 250px;
+    }
+    #win-quiz {
+      top: 440px !important;
+    }
+    .brain-grid-visual {
+      height: 150px !important;
+    }
+    .quiz-img {
+      object-fit: cover !important;
+    }
+  }
+
+  @media (max-width: 1550px) and (min-width: 901px) {
+    #win-quiz {
+      left: 28% !important;
+      width: 300px !important;
+      min-width: 290px !important;
+    }
+  }
+
+  @media (max-width: 1380px) and (min-width: 901px) {
+    #win-quiz {
+      left: 27% !important;
+      width: 275px !important;
+      min-width: 265px !important;
+    }
+    .quiz-btn {
+      padding: 6px 16px;
+      font-size: 13px;
+    }
+  }
+
+  @media (max-width: 1180px) and (min-width: 901px) {
+    #win-quiz {
+      left: 25% !important;
+      width: 255px !important;
+      min-width: 245px !important;
+    }
+    .quiz-btn {
+      padding: 5px 12px;
+      font-size: 12px;
+    }
+  }
+
+  .window-dots {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .quiz-content {
+    padding: 14px 18px 20px 18px;
+    display: flex;
+    flex-direction: column;
+    height: calc(100% - 44px);
+    justify-content: space-between;
+  }
+
+  .brain-grid-visual {
+    width: 100%;
+    height: 270px;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08);
+  }
+
+  .quiz-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.96) contrast(1.06);
+    user-select: none;
+    -webkit-user-drag: none;
+    pointer-events: none;
+  }
+
+  .quiz-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-top: 12px;
+  }
+
+  .quiz-btn {
+    background-color: #18181b;
+    color: #ffffff;
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 700;
+    padding: 12px 24px;
+    border-radius: 24px;
+    border: none;
+    cursor: pointer;
+    white-space: nowrap;
+    transition:
+      transform var(--transition-fast),
+      background-color var(--transition-fast);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+  }
+
+  .quiz-btn:hover {
+    background-color: #27272a;
+    transform: scale(1.05);
+  }
+
+  .quiz-btn:active {
+    transform: scale(0.96);
+  }
+
+  .preview-text-lines {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 90px;
+  }
+
+  .preview-text-lines span {
+    height: 4px;
+    background-color: rgba(0, 0, 0, 0.18);
+    border-radius: 2px;
+  }
+
+  .preview-text-lines span:nth-child(1) {
+    width: 100%;
+  }
+  .preview-text-lines span:nth-child(2) {
+    width: 85%;
+  }
+  .preview-text-lines span:nth-child(3) {
+    width: 60%;
+  }
+</style>

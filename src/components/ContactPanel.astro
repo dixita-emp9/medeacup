@@ -1,0 +1,154 @@
+<!-- Contact Us Panel — slides up from the dock (dock-mail trigger) -->
+<div class="contact-panel" id="contact-panel" aria-hidden="true">
+  <div class="contact-panel-inner">
+
+    <h2 class="contact-title">Contact us to unlock 1%<br/>for your business.</h2>
+
+    <form class="contact-form" id="contact-form" novalidate>
+
+      <!-- Row 1: First + Last name -->
+      <div class="contact-row">
+        <input class="contact-input" type="text" placeholder="First Name" autocomplete="given-name" />
+        <input class="contact-input" type="text" placeholder="Last Name"  autocomplete="family-name" />
+      </div>
+
+      <!-- Row 2: Email -->
+      <input class="contact-input contact-input--full" type="email" placeholder="Email" autocomplete="email" />
+
+      <!-- Row 3: Phone with country code -->
+      <div class="contact-row contact-phone-row">
+        <div class="contact-country-code">91</div>
+        <input class="contact-input contact-input--phone" type="tel" placeholder="Email" autocomplete="tel" />
+      </div>
+
+      <!-- Submit -->
+      <button class="contact-submit" type="submit">Email</button>
+
+    </form>
+  </div>
+</div>
+
+<style>
+  /* ── Panel container ── */
+  .contact-panel {
+    position: fixed;
+    /* Move it down so it sits perfectly behind the dock */
+    bottom: 12px; 
+    left: 50%;
+    transform: translateX(-50%) translateY(30px);
+    z-index: 2100;
+    width: 360px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.35s cubic-bezier(0.16,1,0.3,1),
+                transform 0.35s cubic-bezier(0.16,1,0.3,1);
+  }
+
+  .contact-panel.is-open {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+    pointer-events: auto;
+  }
+
+  /* ── Card ── */
+  .contact-panel-inner {
+    background: #F6F2EC; /* exact match to background */
+    border: 1px solid rgba(0,0,0,0.05);
+    border-radius: 36px;
+    /* Huge bottom padding to encompass the dock which sits on top of it */
+    padding: 32px 28px 100px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+  }
+
+  /* ── Title ── */
+  .contact-title {
+    font-family: var(--font-display, serif);
+    font-size: 26px;
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    color: #111;
+    margin: 0 0 24px;
+  }
+
+  /* ── Form layout ── */
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .contact-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  /* ── Inputs ── */
+  .contact-input {
+    width: 100%;
+    padding: 16px 18px;
+    border: none;
+    border-radius: 18px;
+    background: #e6e1d5;
+    font-family: var(--font-body);
+    font-size: 16px;
+    color: #333;
+    outline: none;
+    transition: background 0.2s ease;
+    box-sizing: border-box;
+  }
+
+  .contact-input::placeholder { color: rgba(100, 95, 90, 0.6); }
+
+  .contact-input:focus {
+    background: #dfdacd;
+  }
+
+  .contact-input--full { width: 100%; }
+
+  /* ── Phone row ── */
+  .contact-phone-row {
+    grid-template-columns: auto 1fr;
+    gap: 12px;
+  }
+
+  .contact-country-code {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 20px;
+    border: none;
+    border-radius: 18px;
+    background: #e6e1d5;
+    font-family: var(--font-body);
+    font-size: 16px;
+    color: rgba(100, 95, 90, 0.8);
+    white-space: nowrap;
+  }
+
+  .contact-input--phone {
+    min-width: 0;
+  }
+
+
+
+  /* ── Submit button ── */
+  .contact-submit {
+    width: 100%;
+    padding: 18px;
+    border: none;
+    border-radius: 20px;
+    background: #000;
+    color: #fff;
+    font-family: var(--font-body);
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    cursor: pointer;
+    transition: transform 0.15s ease;
+  }
+
+  .contact-submit:hover  { transform: translateY(-1px); }
+  .contact-submit:active { transform: translateY(0); }
+</style>

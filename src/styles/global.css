@@ -1,0 +1,1513 @@
+/* ─── Local Fonts ──────────────────────────────────────────────── */
+@font-face {
+  font-family: 'Archivo';
+  src: url('/fonts/Archivo-VariableFont_wdth,wght.ttf') format('truetype-variations');
+  font-weight: 100 900;
+  font-stretch: 62% 125%;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ─── Google Fonts – Instrument Serif (selective use only) ──────── */
+@font-face {
+  font-family: 'Instrument Serif';
+  src: url('/fonts/InstrumentSerif-Regular.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Instrument Serif';
+  src: url('/fonts/InstrumentSerif-Italic.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* ─── Utility: apply Instrument Serif to specific elements ──────── */
+.instrument-serif {
+  font-family: 'Instrument Serif', 'Georgia', 'Times New Roman', serif;
+}
+
+:root {
+  /* Color Palette */
+  --bg-desktop: #ffffff;
+  --bg-desktop-accent: #f6f3ec;
+  --brand-red: #e62e2d;
+  --brand-red-hover: #cf2322;
+  --text-primary: #18181b;
+  --text-secondary: #52525b;
+  --text-muted: #8e8e93;
+  --card-bg-solid: #fcfbfa;
+  --card-bg-cream: #F6F2EC;
+  --folder-red: #e62e2d;
+  --folder-cream: #eadecc;
+  --folder-border: #d4c7b2;
+
+  /* Glassmorphism Tokens */
+  --glass-bg: rgba(255, 255, 255, 0.72);
+  --glass-bg-hover: rgba(255, 255, 255, 0.85);
+  --glass-border: rgba(255, 255, 255, 0.8);
+  --glass-shadow: 0 20px 45px -15px rgba(0, 0, 0, 0.09), 0 0 1px 1px rgba(255, 255, 255, 0.6);
+  --glass-shadow-active: 0 30px 65px -12px rgba(0, 0, 0, 0.15), 0 0 1px 1px rgba(255, 255, 255, 0.9);
+
+  /* Typography */
+  --font-heading: 'Archivo', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-body: 'Archivo', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-display: 'Instrument Serif', 'Georgia', 'Times New Roman', serif;
+
+  /* Transitions */
+  --transition-fast: 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-smooth: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-bounce: 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* Default site font — inherited by every element unless overridden */
+  font-family: var(--font-body);
+}
+
+/* Cup cursor: red on light surfaces, off-white on dark/red surfaces. */
+#cup-cursor {
+  position: fixed;
+  z-index: 9999;
+  width: 34px;
+  height: 40px;
+  pointer-events: none;
+  opacity: 0;
+  transform: translate(-30%, -15%);
+  transition: transform 180ms cubic-bezier(0.34, 1.56, 0.64, 1), opacity 120ms ease;
+}
+
+#cup-cursor.is-visible {
+  opacity: 1;
+}
+
+#cup-cursor svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.cup-cursor-fill,
+.cup-cursor-rim,
+.cup-cursor-handle,
+.cup-cursor-steam {
+  fill: none;
+  stroke: var(--brand-red);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: fill 180ms ease, stroke 180ms ease;
+}
+
+.cup-cursor-fill {
+  stroke-width: 2.2;
+}
+
+.cup-cursor-rim {
+  stroke-width: 2.2;
+}
+
+.cup-cursor-handle {
+  stroke-width: 2;
+}
+
+.cup-cursor-steam {
+  stroke-width: 1.8;
+  animation: cup-cursor-steam 850ms ease-in-out infinite alternate;
+}
+
+.cup-cursor-steam:nth-child(2) {
+  animation-delay: 280ms;
+}
+
+.cup-cursor-steam:nth-child(3) {
+  animation-delay: 560ms;
+}
+
+@keyframes cup-cursor-steam {
+  from {
+    opacity: 0.2;
+    transform: translateY(0);
+  }
+
+  to {
+    opacity: 0.75;
+    transform: translateY(-3px);
+  }
+}
+
+body.has-cup-cursor,
+body.has-cup-cursor * {
+  cursor: none !important;
+}
+
+body.has-cup-cursor.cup-cursor-hover #cup-cursor {
+  transform: translate(-30%, -15%) scale(1.6);
+}
+
+body.has-cup-cursor.cup-cursor-pressed #cup-cursor {
+  transform: translate(-30%, -15%) scale(0.75);
+}
+
+body.has-cup-cursor.cup-cursor-dark .cup-cursor-fill,
+body.has-cup-cursor.cup-cursor-dark .cup-cursor-rim,
+body.has-cup-cursor.cup-cursor-dark .cup-cursor-handle {
+  stroke: rgba(255, 255, 255, 0.88);
+}
+
+body.has-cup-cursor.cup-cursor-dark .cup-cursor-steam {
+  stroke: rgba(255, 255, 255, 0.72);
+}
+
+body.has-cup-cursor.cup-cursor-hover .cup-cursor-fill {
+  fill: var(--brand-red);
+}
+
+body.has-cup-cursor.cup-cursor-dark.cup-cursor-hover .cup-cursor-fill {
+  fill: rgba(255, 255, 255, 0.9);
+  stroke: rgba(255, 255, 255, 0.9);
+}
+
+@media (hover: none),
+(pointer: coarse) {
+  #cup-cursor {
+    display: none;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  font-family: var(--font-body);
+  background-color: var(--bg-desktop);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Form controls do not inherit font-family by default — force site-wide Archivo */
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+}
+
+/* Full Screen Desktop Canvas */
+#desktop-canvas {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background: transparent;
+  overflow: hidden;
+}
+
+/* Keep the low-resolution artwork in its own layer so it can be softened
+   without blurring the desktop UI that sits above it. */
+#desktop-canvas::after {
+  content: '';
+  position: fixed;
+  inset: -24px;
+  background: url('/site-background.png') center / cover no-repeat;
+  filter: blur(8px) saturate(92%);
+  transform: scale(1.04);
+  transform-origin: center;
+  opacity: 0.96;
+  pointer-events: none;
+  z-index: 0;
+  transition: filter 0.45s ease, opacity 0.45s ease, transform 0.45s ease;
+}
+
+.desktop-stage {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  margin: 0;
+}
+
+/* Subtle Desktop Dot Pattern */
+#desktop-canvas::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+  background-size: 24px 24px;
+  pointer-events: none;
+  z-index: 1;
+  transition: opacity 0.45s ease;
+}
+
+/* An open page behaves like a frosted browser window: the artwork recedes,
+   while the page chrome remains crisp and readable. */
+body:has(.modal-overlay.is-open) #desktop-canvas::after {
+  filter: blur(24px) saturate(78%);
+  transform: scale(1.08);
+  opacity: 0.78;
+}
+
+body:has(.modal-overlay.is-open) #desktop-canvas::before {
+  opacity: 0.28;
+}
+
+/* Draggable Window Cards */
+.mac-window {
+  position: absolute;
+  background: var(--card-bg-solid);
+  border-radius: 24px;
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  transition: box-shadow var(--transition-smooth), transform var(--transition-fast);
+  will-change: transform, left, top;
+  z-index: 10;
+  overflow: hidden;
+}
+
+.mac-window.glass-window {
+  background: var(--glass-bg);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+}
+
+/* Some deployed browsers/contexts do not support backdrop-filter. Keep the
+   window readable there instead of leaving a transparent, sharp layer over
+   the desktop background. Supported browsers retain the glass treatment above. */
+@supports not (backdrop-filter: blur(1px)) {
+  .mac-window.glass-window {
+    background: rgba(246, 242, 236, 0.9);
+  }
+}
+
+.mac-window.is-dragging {
+  cursor: grabbing !important;
+  box-shadow: var(--glass-shadow-active);
+  transition: none !important;
+}
+
+.mac-window.is-active {
+  z-index: 100 !important;
+  box-shadow: var(--glass-shadow-active);
+}
+
+.mac-window.is-minimized {
+  opacity: 0;
+  transform: scale(0.4) translateY(200px);
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Window Header Bar */
+.window-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px 8px 18px;
+  cursor: grab;
+}
+
+.window-header:active {
+  cursor: grabbing;
+}
+
+.window-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dot-btn {
+  /* Keep the visual dot small, but give the close/minimize controls a forgiving hit area. */
+  position: relative;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  transition: transform var(--transition-fast);
+}
+
+.dot-btn::after {
+  content: '';
+  position: absolute;
+  inset: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.dot-btn:hover {
+  transform: scale(1.15);
+}
+
+.dot-red {
+  background: transparent;
+  color: var(--brand-red);
+}
+
+.dot-black {
+  background: transparent;
+  color: #18181b;
+}
+
+.dot-cream {
+  background: transparent;
+  color: #e4dec3;
+}
+
+.window-title-tag {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  letter-spacing: -0.01em;
+}
+
+/* Custom Scrollbar for list contents */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+
+/* ─────────────────────────────────────────────
+   The 1% Principle — animated locked / unlocked
+   ───────────────────────────────────────────── */
+
+/* Stage fills the full window body height */
+#modal-page-principle .ppl-stage {
+  position: relative;
+  /* anchor for absolute toggle */
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  box-sizing: border-box;
+  /* padding-top: clamp(96px, 18vh, 180px); */
+  /* no overflow:hidden — fullscreen-mac-window handles that */
+}
+
+/* ── Content area (watermark + visual + expand) ── */
+#modal-page-principle .ppl-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  padding: 0 32px;
+  width: 100%;
+  /* Start invisible, slightly below center */
+  opacity: 0;
+  transform: translateY(28px);
+  pointer-events: none;
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#modal-page-principle .ppl-stage.is-unlocked .ppl-content {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+  transition-delay: 0.1s;
+}
+
+/* Keep the unlocked composition centered, with the control anchored below it. */
+#modal-page-principle .ppl-stage.is-unlocked {
+  justify-content: center;
+  padding: 0 0 74px;
+}
+
+/* Faded watermark headline */
+#modal-page-principle .ppl-watermark {
+  font-family: var(--font-display, serif);
+  font-size: clamp(26px, 3.2vw, 50px);
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: rgba(23, 23, 23, 0.18);
+  text-align: center;
+  margin: 0;
+  user-select: none;
+}
+
+/* Visual wrapper — flex column: blob is decorative, cards + expand stack */
+#modal-page-principle .ppl-visual-wrap {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+}
+
+/* Ambient blob */
+#modal-page-principle .ppl-blob {
+  position: absolute;
+  width: 300px;
+  height: 200px;
+  background: radial-gradient(ellipse at center, rgba(180, 170, 210, 0.22) 0%, transparent 70%);
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -65%);
+  pointer-events: none;
+}
+
+/* Card fan — height accounts for rotated card overspill */
+#modal-page-principle .ppl-cards {
+  position: relative;
+  width: min(400px, 68vw);
+  height: 200px;
+  flex-shrink: 0;
+}
+
+#modal-page-principle .ppl-card {
+  position: absolute;
+  width: clamp(100px, 22vw, 120px);
+  aspect-ratio: 1;
+  appearance: none;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  pointer-events: none;
+  transition: left 0.65s cubic-bezier(0.16, 1, 0.3, 1), right 0.65s cubic-bezier(0.16, 1, 0.3, 1), top 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.28s ease, width 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#modal-page-principle .ppl-card::before {
+  content: '';
+  position: absolute;
+  inset: 4%;
+  border: 1px solid rgba(163, 151, 136, 0.15);
+  border-radius: 25%;
+  background: rgba(246, 242, 235, 0.42);
+  box-shadow: 0 8px 20px rgba(90, 78, 64, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.56);
+  backdrop-filter: blur(2px);
+}
+
+#modal-page-principle .ppl-card img {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 7px 11px rgba(31, 28, 52, 0.08));
+}
+
+#modal-page-principle .ppl-card-a {
+  left: 16%;
+  top: 60px;
+  /* transform: none; */
+  z-index: 1;
+}
+
+#modal-page-principle .ppl-card-b {
+  left: 20%;
+  top: 24px;
+  /* transform: none; */
+  z-index: 2;
+}
+
+#modal-page-principle .ppl-card-c {
+  left: 28%;
+  top: 30px;
+  /* transform: none; */
+  z-index: 3;
+}
+
+#modal-page-principle .ppl-card-d {
+  left: 42%;
+  top: 30px;
+  /* transform: none; */
+  z-index: 4;
+}
+
+#modal-page-principle .ppl-card-e {
+  right: 16%;
+  top: 60px;
+  /* transform: none; */
+  z-index: 5;
+}
+
+.ppl-card-a {
+  transform: rotate(316deg);
+}
+
+.ppl-card-b {
+  transform: rotate(335deg);
+}
+
+.ppl-card-c {
+  transform: rotate(335deg);
+}
+
+.ppl-card-d {
+  transform: rotate(25deg);
+}
+
+.ppl-card-e {
+  transform: rotate(40deg);
+}
+
+/* Expand first reveals the cards as a selectable horizontal row. */
+#modal-page-principle .ppl-stage.is-selecting .ppl-cards {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  align-items: center;
+  justify-items: center;
+  column-gap: clamp(22px, 4vw, 58px);
+  width: min(840px, 76vw);
+  height: 180px;
+}
+
+#modal-page-principle .ppl-stage.is-selecting .ppl-card {
+  position: relative;
+  width: clamp(112px, 12vw, 150px);
+  top: auto !important;
+  left: auto !important;
+  right: auto !important;
+  transform: none;
+  z-index: 1;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+#modal-page-principle .ppl-stage.is-selecting .ppl-card:hover,
+#modal-page-principle .ppl-stage.is-selecting .ppl-card:focus-visible {
+  transform: translateY(-14px);
+  outline: none;
+}
+
+#modal-page-principle .ppl-stage.is-selecting .ppl-expand-btn {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-8px);
+}
+
+/* Expand button — below the cards with proper spacing */
+#modal-page-principle .ppl-expand-btn {
+  appearance: none;
+  border: 0;
+  border-radius: 999px;
+  padding: 11px 26px;
+  background: #111;
+  color: #fff;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.22);
+  flex-shrink: 0;
+  transition: background 0.2s, transform 0.2s;
+}
+
+#modal-page-principle .ppl-expand-btn:hover {
+  background: #333;
+  transform: scale(1.05);
+}
+
+/* ── Toggle row — absolutely at center (locked) → bottom (unlocked) ── */
+#modal-page-principle .ppl-toggle-row {
+  position: absolute;
+  left: 50%;
+  /* Locked: centered vertically */
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: top 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 5;
+}
+
+/* Unlocked: slides to 40px from bottom */
+#modal-page-principle .ppl-stage.is-unlocked .ppl-toggle-row {
+  top: auto;
+  bottom: 24px;
+  transform: translateX(-50%);
+}
+
+/* Label text */
+#modal-page-principle .ppl-copy {
+  font-family: var(--font-body);
+  font-size: 24px;
+  font-weight: 500;
+  color: rgba(23, 23, 23, 0.65);
+}
+
+#modal-page-principle .ppl-copy strong {
+  color: #ef3b2d;
+  font-weight: 700;
+}
+
+/* Show/hide labels based on state */
+#modal-page-principle .ppl-copy--locked {
+  display: inline;
+}
+
+#modal-page-principle .ppl-copy--unlocked {
+  display: none;
+}
+
+#modal-page-principle .ppl-stage.is-unlocked .ppl-copy--locked {
+  display: none;
+}
+
+#modal-page-principle .ppl-stage.is-unlocked .ppl-copy--unlocked {
+  display: inline;
+}
+
+/* ── Toggle switch ── */
+#modal-page-principle .ppl-switch {
+  position: relative;
+  width: 72px;
+  height: 38px;
+  flex: 0 0 auto;
+}
+
+#modal-page-principle .ppl-switch input {
+  width: 0;
+  height: 0;
+  opacity: 0;
+}
+
+#modal-page-principle .ppl-slider {
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  background: #d5d1cb;
+  box-shadow: inset 0 2px 3px rgba(0, 0, 0, 0.16), 0 1px 1px rgba(0, 0, 0, 0.12);
+  cursor: pointer;
+  transition: background 0.25s ease;
+}
+
+#modal-page-principle .ppl-slider::before {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #fff;
+  background: #f5f1e9;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3), inset 0 1px 1px rgba(255, 255, 255, 0.8);
+  transition: transform 0.25s ease;
+}
+
+#modal-page-principle .ppl-slider::after {
+  content: '';
+  position: absolute;
+  top: 13px;
+  right: 13px;
+  width: 15px;
+  height: 15px;
+  border: 3px solid #fff;
+  border-radius: 50%;
+}
+
+#modal-page-principle .ppl-switch input:checked+.ppl-slider {
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.16), inset 0 1px 2px rgba(0, 0, 0, 0.06);
+}
+
+#modal-page-principle .ppl-switch input:checked+.ppl-slider::before {
+  background: #10e7a0;
+  transform: translateX(34px);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3), inset 0 1px 1px rgba(255, 255, 255, 0.7);
+}
+
+#modal-page-principle .ppl-switch input:checked+.ppl-slider::after {
+  left: 13px;
+  right: auto;
+  border-color: #f00;
+}
+
+@media (max-width: 900px) {
+  #modal-page-principle .ppl-stage {
+    padding-top: 72px;
+  }
+
+  #modal-page-principle .ppl-watermark {
+    font-size: clamp(20px, 7vw, 32px);
+  }
+
+  #modal-page-principle .ppl-cards {
+    width: 190px;
+    height: 140px;
+  }
+}
+
+/* ───────────────────────────────────────────────────────────────
+   Translucent Mac-inspired window system
+   ─────────────────────────────────────────────────────────────── */
+html,
+body {
+  background-color: var(--bg-desktop);
+  background-image: none;
+}
+
+#desktop-canvas {
+  background: transparent;
+}
+
+.modal-window,
+.folder-dialog,
+.fullscreen-mac-window {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.72), rgba(246, 242, 236, 0.48)) !important;
+  border: 1px solid rgba(255, 255, 255, 0.78) !important;
+  box-shadow: 0 24px 70px rgba(71, 63, 52, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.85) !important;
+  backdrop-filter: blur(28px) saturate(120%);
+  -webkit-backdrop-filter: blur(28px) saturate(120%);
+}
+
+/* Keep the surrounding backdrop airy and warm; avoid a dark modal veil. */
+.modal-overlay {
+  background: rgba(255, 255, 255, 0.3) !important;
+  backdrop-filter: blur(20px) saturate(115%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(115%) !important;
+}
+
+.fullscreen-window-header,
+.modal-window .modal-header,
+.folder-dialog .modal-header {
+  background: rgba(255, 255, 255, 0.38) !important;
+  border-bottom: 1px solid rgba(115, 104, 91, 0.12) !important;
+  backdrop-filter: blur(18px) saturate(130%);
+  -webkit-backdrop-filter: blur(18px) saturate(130%);
+}
+
+.fullscreen-window-header {
+  padding: 14px 20px 0 !important;
+  align-items: flex-end !important;
+}
+
+.fullscreen-window-header .window-title-meta {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 5px 10px !important;
+  border: 1px solid rgba(115, 104, 91, 0.14);
+  border-bottom-color: transparent;
+  border-radius: 10px 10px 0 0;
+  background: rgba(255, 255, 255, 0.68) !important;
+  color: var(--text-primary) !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  position: relative;
+}
+
+.fullscreen-window-header .window-title-meta::before {
+  content: '';
+  width: 9px;
+  height: 9px;
+  margin-right: 6px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: inset 0 0 0 1px rgba(115, 104, 91, 0.1);
+}
+
+/* .fullscreen-window-header .window-title-meta::after {
+  content: '×';
+  margin-left: 12px;
+  color: rgba(82, 75, 68, 0.55);
+  font-size: 13px;
+  line-height: 1;
+} */
+
+.fullscreen-window-header .fullscreen-window-controls {
+  padding-bottom: 8px !important;
+}
+
+.browser-tab-strip {
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  min-height: 28px;
+}
+
+.browser-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 28px;
+  padding: 5px 11px !important;
+  border: 1px solid rgba(115, 104, 91, 0.14) !important;
+  border-bottom: 0 !important;
+  border-radius: 11px 11px 0 0 !important;
+  background: rgba(232, 228, 221, 0.36) !important;
+  color: rgba(82, 75, 68, 0.7) !important;
+  font: 500 12px/1 var(--font-body) !important;
+  white-space: nowrap;
+}
+
+.browser-tab::before {
+  content: '';
+  width: 9px;
+  height: 9px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: inset 0 0 0 1px rgba(115, 104, 91, 0.1);
+}
+
+.browser-tab.is-active {
+  background: rgba(255, 255, 255, 0.72) !important;
+  color: var(--text-primary) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.browser-tab span {
+  color: rgba(82, 75, 68, 0.55);
+  font-size: 13px;
+}
+
+/* When a browser-style page is open, keep the outer brand chrome visible above it. */
+body:has(.modal-overlay.is-open:not(#quiz-modal)) .desktop-header {
+  z-index: 2105;
+  top: 18px;
+  height: 52px;
+  padding: 0 46px;
+}
+
+body:has(.modal-overlay.is-open:not(#quiz-modal)) .desktop-header .logo-text {
+  font-size: 24px;
+  letter-spacing: -0.045em;
+  filter: none;
+}
+
+body:has(.modal-overlay.is-open:not(#quiz-modal)) .desktop-header .status-circle {
+  width: 32px;
+  height: 32px;
+}
+
+body:has(.modal-overlay.is-open:not(#quiz-modal)) .fullscreen-mac-window {
+  width: 88vw;
+  height: 80vh !important;
+  border-radius: 26px !important;
+  overflow: hidden !important;
+  isolation: isolate;
+}
+
+body:has(.modal-overlay.is-open:not(#quiz-modal)) .fullscreen-window-header {
+  border-radius: 26px 26px 0 0;
+}
+
+body:has(.modal-overlay.is-open:not(#quiz-modal)) .fullscreen-window-body {
+  border-radius: 0 0 26px 26px;
+}
+
+/* Keep the outer brand chrome visible above the quiz overlay as well. */
+body:has(#quiz-modal.is-open) .desktop-header {
+  z-index: 2400;
+  top: 18px;
+  height: 52px;
+  padding: 0 46px;
+}
+
+body:has(#quiz-modal.is-open) .desktop-header .logo-text {
+  font-size: 24px;
+  letter-spacing: -0.045em;
+  filter: none;
+}
+
+body:has(#quiz-modal.is-open) .desktop-header .status-circle {
+  width: 32px;
+  height: 32px;
+}
+
+body:has(.modal-overlay.is-open:not(#quiz-modal)) .modal-overlay {
+  padding: 0 0 1vh;
+}
+
+/* The second-level case tabs use the same quiet, Mac-like chrome. */
+.cs-subtab-bar {
+  gap: 2px !important;
+  padding: 0 28px !important;
+  background: rgba(255, 255, 255, 0.26) !important;
+  border-bottom: 1px solid rgba(115, 104, 91, 0.1) !important;
+}
+
+.cs-subtab {
+  padding: 10px 18px !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  color: rgba(82, 75, 68, 0.72) !important;
+}
+
+.cs-subtab.is-active {
+  color: var(--text-primary) !important;
+  border-bottom-color: var(--brand-red) !important;
+  font-weight: 700 !important;
+}
+
+/* Shared small cup mark used in editorial lists and practice bullets. */
+.bullet-cup-icon,
+.fw-pop-list li::before {
+  content: '';
+  display: inline-block;
+  flex: 0 0 16px;
+  width: 16px;
+  height: 18px;
+  font-size: 0 !important;
+  color: transparent !important;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 48'%3E%3Cg fill='none' stroke='%23e62e2d' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 11h28l-3 29q-.4 3-4 3H13q-4 0-4-3L6 11Z'/%3E%3Cpath d='M31 19h3.5a7 7 0 0 1 0 14H30'/%3E%3Cpath d='M13 7V2M20 5V0M27 7V2M4 11h32'/%3E%3C/g%3E%3C/svg%3E") center / contain no-repeat;
+  vertical-align: middle;
+}
+
+.fw-pop-list li {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+/* Framework page typography follows the quiet, oversized reference watermark. */
+.fw-watermark {
+  right: 40px !important;
+  bottom: 38px !important;
+}
+
+.fw-bulb {
+  font-size: 40px !important;
+  margin-bottom: 12px !important;
+}
+
+.fw-watermark-text {
+  max-width: 410px;
+  font-size: 42px !important;
+  font-weight: 500 !important;
+  line-height: 1.02 !important;
+  color: rgba(91, 81, 70, 0.7) !important;
+  text-align: right !important;
+}
+
+/* About page reference proportions: compact editorial panel and quieter copy. */
+#modal-page-about .fullscreen-mac-window {
+  height: 72vh !important;
+}
+
+#modal-page-cases .cs-info-card {
+  border-radius: 18px !important;
+}
+
+#modal-page-cases .cs-cards-grid {
+  gap: 18px !important;
+}
+
+#modal-page-about .about-window-body {
+  grid-template-columns: minmax(250px, 30%) minmax(0, 1fr) !important;
+  gap: clamp(28px, 4vw, 54px) !important;
+  padding: 18px 24px 72px !important;
+  background: rgba(246, 241, 232, 0.72) !important;
+}
+
+#modal-page-about .about-story-panel {
+  padding: 22px 18px 24px !important;
+  border-radius: 18px !important;
+  background: rgba(247, 242, 233, 0.84) !important;
+}
+
+#modal-page-about .about-story-title {
+  margin-bottom: 20px !important;
+  font-size: clamp(34px, 3vw, 48px) !important;
+}
+
+#modal-page-about .about-story-label {
+  min-height: 38px !important;
+  margin-bottom: 10px !important;
+  padding: 0 12px !important;
+  border-radius: 11px !important;
+  gap: 10px !important;
+  font-size: clamp(14px, 1.1vw, 18px) !important;
+}
+
+#modal-page-about .about-story-label svg {
+  width: 17px;
+  height: 19px;
+}
+
+#modal-page-about .about-showreel {
+  margin-bottom: 16px !important;
+  border-width: 6px !important;
+  border-radius: 20px !important;
+}
+
+#modal-page-about .about-play-button {
+  width: 52px;
+  height: 52px;
+}
+
+#modal-page-about .about-showreel-word {
+  font-size: clamp(18px, 2vw, 30px) !important;
+}
+
+#modal-page-about .about-belief {
+  margin: 22px 4px 0 !important;
+  font-size: clamp(24px, 2.1vw, 34px) !important;
+}
+
+#modal-page-about .about-copy-column {
+  padding: clamp(34px, 5vw, 70px) 24px 20px 0 !important;
+}
+
+#modal-page-about .about-copy-column p {
+  margin-bottom: 20px !important;
+  font-size: clamp(13px, 0.9vw, 16px) !important;
+  line-height: 1.35 !important;
+}
+
+.tabs-container {
+  gap: 6px !important;
+  scrollbar-width: none;
+}
+
+.tabs-container::-webkit-scrollbar {
+  display: none;
+}
+
+.tab-btn {
+  min-height: 38px;
+  padding: 9px 18px !important;
+  border: 1px solid rgba(115, 104, 91, 0.14) !important;
+  border-bottom: 0 !important;
+  border-radius: 14px 14px 0 0 !important;
+  background: rgba(232, 228, 221, 0.42) !important;
+  color: rgba(82, 75, 68, 0.75) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.62);
+}
+
+.tab-btn:hover,
+.tab-btn.is-active {
+  background: rgba(255, 255, 255, 0.62) !important;
+  color: var(--text-primary) !important;
+}
+
+.tab-btn.is-active {
+  box-shadow:
+    inset 0 -2px 0 var(--brand-red),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    0 -1px 0 rgba(255, 255, 255, 0.55);
+}
+
+.fullscreen-mac-window .fullscreen-window-body {
+  /* Keep every page readable over the blurred desktop backdrop. */
+  background: rgba(246, 242, 236, 0.78) !important;
+}
+
+.modal-window .modal-body,
+.folder-dialog .folder-modal-body {
+  background: rgba(246, 242, 236, 0.2) !important;
+}
+
+/* Keep every desktop popup on the same generous Mac-window canvas. */
+.folder-modal .folder-dialog,
+#quiz-modal .quiz-dialog,
+#video-modal .modal-window,
+.fullscreen-mac-window {
+  width: min(92vw, 1320px) !important;
+  height: min(82vh, 780px) !important;
+  max-width: none !important;
+  max-height: none !important;
+}
+
+#quiz-modal .quiz-dialog-body,
+.folder-modal .folder-modal-body {
+  max-height: none !important;
+  height: calc(100% - 66px);
+}
+
+@media (max-width: 900px) {
+
+  .modal-window,
+  .folder-dialog,
+  .fullscreen-mac-window {
+    backdrop-filter: blur(18px) saturate(125%);
+    -webkit-backdrop-filter: blur(18px) saturate(125%);
+  }
+
+  .folder-modal .folder-dialog,
+  #quiz-modal .quiz-dialog,
+  #video-modal .modal-window,
+  .fullscreen-mac-window {
+    width: 94vw !important;
+    height: 82vh !important;
+  }
+}
+
+/* ── Expanded view (shown when Expand is clicked) ── */
+
+/* Hidden by default */
+#modal-page-principle .ppl-expanded-view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  padding: 44px 48px 25px;
+  /* bottom padding leaves room for toggle */
+  width: 100%;
+  overflow-y: auto;
+  /* Start invisible */
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* When expanded: show expanded view, hide visual content */
+#modal-page-principle .ppl-stage.is-expanded .ppl-expanded-view {
+  opacity: 1;
+  pointer-events: auto;
+  transition-delay: 0.1s;
+}
+
+#modal-page-principle .ppl-stage.is-expanded .ppl-content {
+  display: none;
+}
+
+/* Hero headline */
+#modal-page-principle .ppl-exp-hero {
+  text-align: center;
+  max-width: 720px;
+}
+
+#modal-page-principle .ppl-exp-title {
+  margin: 0 0 14px;
+  font-family: var(--font-display, serif);
+  font-size: clamp(32px, 4vw, 62px);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  color: #171717;
+}
+
+#modal-page-principle .ppl-exp-subtitle {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.5;
+  color: rgba(23, 23, 23, 0.55);
+  text-align: center;
+}
+
+/* 4-column insight grid */
+#modal-page-principle .ppl-exp-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  width: 100%;
+  max-width: 960px;
+}
+
+#modal-page-principle .ppl-exp-card {
+  padding: 22px 20px;
+  border-radius: 22px;
+  background: rgba(249, 244, 235, 0.85);
+  border: 1px solid rgba(190, 181, 167, 0.25);
+  box-shadow: 0 6px 20px rgba(67, 53, 32, 0.05);
+  min-height: 180px;
+}
+
+/* First card has a blue highlight border */
+#modal-page-principle .ppl-exp-card--active {
+  border: 2px solid #4f9cf9;
+  background: rgba(249, 252, 255, 0.9);
+}
+
+#modal-page-principle .ppl-exp-percent {
+  font-family: var(--font-display, serif);
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1;
+  color: #ef3b2d;
+  margin-bottom: 14px;
+  letter-spacing: -0.02em;
+}
+
+#modal-page-principle .ppl-exp-card p {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgba(23, 23, 23, 0.6);
+  margin: 0;
+}
+
+/* Footer line */
+#modal-page-principle .ppl-exp-footer {
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: rgba(23, 23, 23, 0.5);
+  text-align: center;
+  margin: 0;
+}
+
+#modal-page-principle .ppl-framework-cta,
+#modal-page-about .ppl-framework-cta,
+#modal-page-mission .ppl-framework-cta {
+  appearance: none;
+  border: 1px solid rgba(23, 23, 23, 0.14);
+  border-radius: 999px;
+  padding: 11px 22px;
+  margin: 20px 0px 0px;
+  background: rgba(255, 255, 255, 0.62);
+  color: rgba(23, 23, 23, 0.62);
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  box-shadow: 0 6px 16px rgba(67, 53, 32, 0.06);
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+#modal-page-principle .ppl-framework-cta strong,
+#modal-page-about .ppl-framework-cta strong,
+#modal-page-mission .ppl-framework-cta strong {
+  color: var(--brand-red);
+  font-weight: 700;
+}
+
+#modal-page-principle .ppl-framework-cta:hover,
+#modal-page-principle .ppl-framework-cta:focus-visible,
+#modal-page-about .ppl-framework-cta:hover,
+#modal-page-about .ppl-framework-cta:focus-visible,
+#modal-page-mission .ppl-framework-cta:hover,
+#modal-page-mission .ppl-framework-cta:focus-visible {
+  background: #111;
+  color: #fff;
+  outline: none;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.16);
+}
+
+#modal-page-principle .ppl-framework-cta:hover strong,
+#modal-page-principle .ppl-framework-cta:focus-visible strong,
+#modal-page-about .ppl-framework-cta:hover strong,
+#modal-page-about .ppl-framework-cta:focus-visible strong,
+#modal-page-mission .ppl-framework-cta:hover strong,
+#modal-page-mission .ppl-framework-cta:focus-visible strong {
+  color: #ff7169;
+}
+
+#modal-page-mission .mission-thinking-cta {
+  margin-top: 24px;
+}
+
+#win-projects.is-thinking-highlight {
+  animation: thinking-now-uplift 1.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes thinking-now-uplift {
+  0% {
+    transform: translateY(0) scale(1);
+    box-shadow: var(--glass-shadow);
+  }
+
+  35% {
+    transform: translateY(-16px) scale(1.035);
+    box-shadow: 0 22px 50px rgba(230, 46, 45, 0.26), 0 0 0 8px rgba(230, 46, 45, 0.1);
+  }
+
+  100% {
+    transform: translateY(0) scale(1);
+    box-shadow: var(--glass-shadow);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #win-projects.is-thinking-highlight {
+    animation: none;
+    outline: 3px solid rgba(230, 46, 45, 0.45);
+    outline-offset: 6px;
+  }
+}
+
+@media (max-width: 900px) {
+  .mobile-recent-panel.is-thinking-highlight {
+    animation: thinking-now-mobile-uplift 1.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  @keyframes thinking-now-mobile-uplift {
+    0% {
+      transform: translateY(0) scale(1);
+      box-shadow: none;
+    }
+
+    35% {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 18px 36px rgba(230, 46, 45, 0.24), 0 0 0 7px rgba(230, 46, 45, 0.1);
+    }
+
+    100% {
+      transform: translateY(0) scale(1);
+      box-shadow: none;
+    }
+  }
+
+  #modal-page-principle .ppl-exp-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  #modal-page-principle .ppl-exp-grid {
+    grid-template-columns: 1fr;
+  }
+
+  #modal-page-principle .ppl-expanded-view {
+    padding: 32px 20px 80px;
+  }
+}
+
+/* Large Screen Container Wrapper */
+@media (min-width: 1920px) {
+  body {
+    background-color: #ffffff;
+  }
+
+  #desktop-canvas {
+    width: 80%;
+    margin: 0 auto;
+  }
+}
+
+/* The phone home screen uses the dedicated composition in FolderGrid.astro.
+   Keep the draggable desktop workspace out of the mobile stacking context. */
+@media (max-width: 900px) {
+  .desktop-stage>.mac-window {
+    display: none !important;
+  }
+
+  #desktop-canvas,
+  .desktop-stage {
+    min-height: 100svh;
+    height: 100svh;
+  }
+
+  html,
+  body {
+    height: auto;
+    min-height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  #desktop-canvas {
+    height: 100svh;
+    min-height: 100svh;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  .desktop-stage {
+    min-height: 100svh;
+  }
+
+  .dock-wrapper {
+    position: fixed !important;
+    bottom: max(18px, env(safe-area-inset-bottom));
+    z-index: 2600 !important;
+  }
+
+  /* Keep the last lines of every mobile page scrollable above the fixed dock. */
+  .fullscreen-window-body {
+    scroll-padding-bottom: 150px;
+    padding-bottom: 150px !important;
+  }
+
+  .contact-panel {
+    width: min(360px, calc(100vw - 32px));
+    bottom: max(12px, env(safe-area-inset-bottom));
+  }
+
+  #modal-page-principle .ppl-toggle-row {
+    top: 50%;
+    bottom: auto;
+    transform: translate(-50%, -50%);
+    z-index: 20;
+  }
+
+  /* Keep the brand header pinned above every opened mobile page. */
+  .desktop-header,
+  body:has(.modal-overlay.is-open) .desktop-header {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0;
+    right: 0;
+    height: 72px !important;
+    padding: 0 30px !important;
+    background: rgba(251, 250, 247, 0.94);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    z-index: 2500 !important;
+  }
+
+  body:has(.modal-overlay.is-open) .desktop-header .logo-image {
+    width: 104px !important;
+    max-width: 104px;
+  }
+
+  body:has(.modal-overlay.is-open) .desktop-header .status-circle {
+    width: 42px;
+    height: 42px;
+  }
+
+  .modal-overlay:not(#quiz-modal) {
+    align-items: flex-start !important;
+    padding: 72px 0 0 !important;
+  }
+
+  .modal-overlay:not(#quiz-modal) .fullscreen-mac-window {
+    width: 100vw !important;
+    height: calc(100svh - 72px) !important;
+    min-height: calc(100svh - 72px) !important;
+    max-height: none !important;
+    border-radius: 24px 24px 0 0 !important;
+  }
+
+  .modal-overlay:not(#quiz-modal) .fullscreen-window-body {
+    min-height: 0 !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  #quiz-modal {
+    align-items: flex-start !important;
+    padding: 72px 14px 14px !important;
+  }
+
+  #quiz-modal .quiz-dialog {
+    width: 100% !important;
+    height: calc(100svh - 86px) !important;
+    max-height: none !important;
+  }
+
+  /* The quiz scrolls inside its own body, so give the final Continue button
+     room to clear the fixed dock without moving or hiding the dock. */
+  #quiz-modal .quiz-dialog-body {
+    padding-bottom: 150px !important;
+    scroll-padding-bottom: 150px;
+  }
+}

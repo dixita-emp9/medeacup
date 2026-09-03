@@ -1,0 +1,141 @@
+---
+
+---
+
+<header class="desktop-header">
+  <div class="logo-container">
+    <img
+      class="logo-image"
+      src="/medeacup-logo.png"
+      alt="Medeacup"
+      width="3245"
+      height="509"
+    />
+  </div>
+
+  <div class="top-status-dots">
+    <span
+      class="status-circle status-user"
+      data-top-action="home"
+      role="button"
+      tabindex="0"
+      aria-label="Back to home"
+    >
+      <svg viewBox="0 0 24 24" aria-hidden="true"
+        ><circle cx="12" cy="7" r="4" fill="currentColor"></circle><path
+          d="M4 19c.8-4.2 3.5-6.5 8-6.5s7.2 2.3 8 6.5z"
+          fill="currentColor"></path></svg
+      >
+    </span>
+    <span
+      class="status-circle status-mail"
+      data-top-action="mail"
+      onclick="var panel = document.getElementById('contact-panel'); if (panel) { var open = panel.classList.contains('is-open'); panel.classList.toggle('is-open', !open); panel.setAttribute('aria-hidden', String(open)); }"
+      role="button"
+      tabindex="0"
+      aria-label="Contact us"
+    >
+      <svg viewBox="0 0 24 24" aria-hidden="true"
+        ><rect
+          x="3.5"
+          y="5.5"
+          width="17"
+          height="13"
+          rx="3"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"></rect><path
+          d="m5.5 8 5 4a2.5 2.5 0 0 0 3 0l5-4"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"></path></svg
+      >
+    </span>
+  </div>
+</header>
+
+<style>
+  .desktop-header {
+    position: absolute;
+    top: 30px;
+    left: 0;
+    right: 0;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 48px;
+    z-index: 5;
+    pointer-events: none;
+  }
+
+  .logo-container {
+    pointer-events: auto;
+  }
+
+  .logo-image {
+    display: block;
+    width: 140px !important;
+    max-width: 140px;
+    height: auto !important;
+    filter: drop-shadow(0 3px 6px rgba(230, 46, 45, 0.15));
+  }
+
+  .top-status-dots {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    pointer-events: auto;
+  }
+
+  .status-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #383838;
+    border: 0;
+    box-shadow: none;
+    transition:
+      transform var(--transition-bounce),
+      background-color var(--transition-fast),
+      color var(--transition-fast);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+  }
+
+  .status-circle svg {
+    display: block;
+    width: 29px;
+    height: 29px;
+  }
+
+  .status-circle:hover {
+    background-color: var(--brand-red);
+    color: #fff;
+    transform: scale(1.05);
+  }
+
+  @media (max-width: 900px) {
+    .desktop-header {
+      top: 34px;
+      height: 62px;
+      padding: 0 40px;
+      align-items: center;
+    }
+
+    .logo-image {
+      width: 128px !important;
+      max-width: 128px;
+      filter: none;
+    }
+
+    .status-circle:hover {
+      transform: none;
+      background-color: #383838;
+    }
+  }
+</style>

@@ -1,0 +1,292 @@
+---
+
+---
+
+<div
+  class="mac-window glass-window window-principle"
+  id="win-principle"
+  data-folder-id="principle"
+  style="top: 400px; left: 54%; width: 300px; min-width: 290px; max-width: 380px; cursor: pointer;"
+>
+  <div class="window-header">
+    <span class="window-title-tag">The Medeacup Principle</span>
+  </div>
+
+  <div class="principle-content">
+    <!-- Atom / Orbit Diagram -->
+    <div class="atom-visual-container">
+      <img
+        src="/principle-map.png"
+        alt="The Medeacup Principle orbital diagram"
+        class="principle-orbit-art"
+        draggable="false"
+      />
+    </div>
+
+    <!-- Toggle Switch Footer -->
+    <div class="toggle-footer">
+      <label class="toggle-switch">
+        <input type="checkbox" id="toggle-unlock-1percent" />
+        <span class="slider"></span>
+      </label>
+
+      <span class="toggle-label">
+        Unlock the <strong class="red-text">1%</strong>
+      </span>
+    </div>
+  </div>
+</div>
+
+<style>
+  .window-principle {
+    height: 350px;
+    border-radius: 26px;
+    background: rgba(255, 255, 255, 0.65) !important;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+  }
+
+  @media (max-height: 900px) and (min-width: 901px) {
+    .window-principle {
+      height: 250px;
+    }
+    .atom-visual-container {
+      width: 100% !important;
+      height: 160px !important;
+      margin: 0 !important;
+    }
+    .principle-orbit-art {
+      transform: none;
+    }
+    .principle-content {
+      padding: 0px 22px 10px 22px !important;
+    }
+    .toggle-footer {
+      padding: 4px 12px !important;
+      margin-top: -10px;
+      z-index: 2;
+    }
+    .toggle-switch {
+      transform: scale(0.75);
+      transform-origin: left center;
+    }
+  }
+
+  @media (max-width: 1550px) and (min-width: 901px) {
+    #win-principle {
+      left: 48% !important;
+      width: 300px !important;
+      min-width: 290px !important;
+    }
+  }
+
+  @media (max-width: 1380px) and (min-width: 901px) {
+    #win-principle {
+      left: 50% !important;
+      width: 275px !important;
+      min-width: 265px !important;
+    }
+  }
+
+  @media (max-width: 1180px) and (min-width: 901px) {
+    #win-principle {
+      left: 51% !important;
+      width: 255px !important;
+      min-width: 245px !important;
+    }
+    .toggle-label {
+      font-size: 13px;
+    }
+  }
+
+  .window-dots {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .principle-content {
+    padding: 20px 22px 24px 22px;
+    display: flex;
+    flex-direction: column;
+    height: calc(100% - 44px);
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  /* Atom Orbit Graphic */
+  .atom-visual-container {
+    position: relative;
+    width: 100%;
+    height: 190px;
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 5px 0;
+  }
+
+  .principle-orbit-art {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 10px 18px rgba(70, 62, 52, 0.04));
+    user-select: none;
+    pointer-events: none;
+    -webkit-user-drag: none;
+  }
+
+  .atom-orbit {
+    position: absolute;
+    border-radius: 50%;
+    border: 2px stroke rgba(0, 0, 0, 0.22);
+    border-style: dashed;
+  }
+
+  .orbit-1 {
+    width: 200px;
+    height: 80px;
+    transform: rotate(-35deg);
+    border-color: rgba(0, 0, 0, 0.3);
+  }
+
+  .orbit-2 {
+    width: 200px;
+    height: 80px;
+    transform: rotate(35deg);
+    border-color: rgba(0, 0, 0, 0.3);
+  }
+
+  .orbit-3 {
+    width: 200px;
+    height: 80px;
+    transform: rotate(90deg);
+    border-color: rgba(0, 0, 0, 0.2);
+  }
+
+  .orbit-node {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--brand-red);
+    box-shadow: 0 0 10px rgba(230, 46, 45, 0.7);
+    transition: transform 0.4s ease;
+  }
+
+  .node-1 {
+    top: 50px;
+    left: 35px;
+  }
+  .node-2 {
+    bottom: 60px;
+    right: 40px;
+  }
+  .node-3 {
+    top: 35px;
+    right: 70px;
+  }
+  .node-center {
+    width: 12px;
+    height: 12px;
+    background-color: #18181b;
+  }
+
+  /* Interactive Toggle */
+  .toggle-footer {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: rgba(255, 255, 255, 0.7);
+    padding: 10px 20px;
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  }
+
+  .toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 72px;
+    height: 38px;
+    flex-shrink: 0;
+  }
+
+  .toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .slider {
+    position: absolute;
+    inset: 0;
+    border-radius: 999px;
+    background: #d5d1cb;
+    box-shadow:
+      inset 0 2px 3px rgba(0, 0, 0, 0.16),
+      0 1px 1px rgba(0, 0, 0, 0.12);
+    cursor: pointer;
+    transition: background 0.25s ease;
+  }
+
+  .slider:before {
+    content: "";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #f5f1e9;
+    box-shadow:
+      0 2px 4px rgba(0, 0, 0, 0.3),
+      inset 0 1px 1px rgba(255, 255, 255, 0.8);
+    transition: transform 0.25s ease;
+    z-index: 2;
+  }
+
+  .slider:after {
+    content: "";
+    position: absolute;
+    top: 13px;
+    right: 13px;
+    width: 15px;
+    height: 15px;
+    border: 3px solid #fff;
+    border-radius: 50%;
+    transition: opacity 0.25s ease;
+  }
+
+  input:checked + .slider {
+    background: #fff;
+    box-shadow:
+      0 2px 6px rgba(0, 0, 0, 0.16),
+      inset 0 1px 2px rgba(0, 0, 0, 0.06);
+  }
+
+  input:checked + .slider:before {
+    background: #10e7a0;
+    transform: translateX(34px);
+    box-shadow:
+      0 3px 6px rgba(0, 0, 0, 0.3),
+      inset 0 1px 1px rgba(255, 255, 255, 0.7);
+  }
+
+  input:checked + .slider:after {
+    opacity: 0;
+  }
+
+  .toggle-label {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .red-text {
+    color: var(--brand-red);
+    font-weight: 800;
+  }
+</style>

@@ -1,0 +1,5472 @@
+---
+// IndividualPageModals.astro
+// Replaces the single tabbed window with individual dedicated popups.
+---
+
+<!-- 1. OUR MISSION MODAL -->
+<div class="modal-overlay" id="modal-page-mission">
+  <div class="fullscreen-mac-window">
+    <div class="mobile-modal-nav">
+      <button
+        type="button"
+        class="mobile-nav-back close-modal-btn"
+        data-close-target="modal-page-mission"
+        aria-label="Back"
+      >
+        <svg viewBox="0 0 24 24" aria-hidden="true"
+          ><path d="m14.5 5-7 7 7 7"></path></svg
+        >
+      </button>
+      <div class="mobile-nav-title">
+        Our Mission <svg
+          class="dropdown-caret"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg
+        >
+      </div>
+      <button type="button" class="mobile-nav-more" aria-label="More options"
+        ><i></i><i></i><i></i></button
+      >
+    </div>
+    <div class="fullscreen-window-header">
+      <div class="window-title-meta">Our Mission</div>
+      <div class="fullscreen-window-controls">
+        <span
+          class="dot-btn dot-red close-modal-btn"
+          data-close-target="modal-page-mission"></span>
+        <span class="dot-btn dot-cream"></span>
+        <span class="dot-btn dot-cream"></span>
+      </div>
+    </div>
+    <div class="fullscreen-window-body">
+      <div class="mission-full-content">
+        <div class="mission-text-column">
+          <h1 class="mission-main-title">
+            We find the 1% your <br />
+            market is waiting for.
+          </h1>
+          <p class="mission-lead-p">
+            Most brands spread effort across everything. We find the one thing
+            that changes the economics.
+          </p>
+          <p class="mission-secondary-p">
+            One buyer insight. One positioning shift. One structural fix. Then
+            we build the system that makes it compound.
+          </p>
+          <div class="in-practice-section">
+            <span class="practice-badge">In Practice</span>
+            <ul class="practice-bullets">
+              <li>
+                <span class="bullet-cup-icon">☕</span><span
+                  >Every engagement starts with one question: who is actually
+                  buying, and why?</span
+                >
+              </li>
+              <li>
+                <span class="bullet-cup-icon">☕</span><span
+                  >Every engagement produces one Thinking Document.</span
+                >
+              </li>
+              <li>
+                <span class="bullet-cup-icon">☕</span><span
+                  >Every engagement agrees on one metric before work begins.</span
+                >
+              </li>
+              <li>
+                <span class="bullet-cup-icon">☕</span><span
+                  >Every engagement is measured by whether that number moves.</span
+                >
+              </li>
+            </ul>
+            <button
+              class="ppl-framework-cta mission-thinking-cta"
+              type="button"
+              data-open-thinking
+            >
+              Explore <strong>Thinking Now</strong>
+            </button>
+          </div>
+        </div>
+        <div class="watermark-column">
+          <div class="glowing-bulb-container">
+            <div class="bulb-glow"></div>
+            <span class="bulb-icon">💡</span>
+          </div>
+          <div class="watermark-typography">
+            <span>Creative</span>
+            <br />
+            <span>Intelligence for</span>
+            <br />
+            <span>Measurable Market</span>
+            <br />
+            <span>Power.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 2. CUP CASES MODAL (Dual View: Grid + Tabbed Detail) -->
+<div class="modal-overlay" id="modal-page-cases">
+  <div class="fullscreen-mac-window">
+    <div class="mobile-modal-nav">
+      <button
+        type="button"
+        class="mobile-nav-back close-modal-btn"
+        data-close-target="modal-page-cases"
+        aria-label="Back"
+      >
+        <svg viewBox="0 0 24 24" aria-hidden="true"
+          ><path d="m14.5 5-7 7 7 7"></path></svg
+        >
+      </button>
+      <div class="mobile-nav-title">
+        Cup Cases <svg
+          class="dropdown-caret"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg
+        >
+      </div>
+      <button type="button" class="mobile-nav-more" aria-label="More options"
+        ><i></i><i></i><i></i></button
+      >
+    </div>
+    <div class="fullscreen-window-header">
+      <div class="window-title-meta">Cup Cases</div>
+      <div class="fullscreen-window-controls">
+        <span
+          class="dot-btn dot-red close-modal-btn"
+          data-close-target="modal-page-cases"></span>
+        <span class="dot-btn dot-cream"></span>
+        <span class="dot-btn dot-cream"></span>
+      </div>
+    </div>
+
+    <div class="mobile-cases-search">
+      <svg viewBox="0 0 24 24" aria-hidden="true"
+        ><circle cx="10.8" cy="10.8" r="6.8"></circle><path d="m16 16 5 5"
+        ></path></svg
+      >
+      <input
+        type="search"
+        placeholder="Search"
+        aria-label="Search Cup Cases"
+        data-cases-search
+      />
+    </div>
+
+    <!-- VIEW A: Document Icon Grid (MacBook Air - 11) -->
+    <div class="fullscreen-window-body cases-grid-body" id="cases-view-grid">
+      <div class="cases-document-grid">
+        <div class="case-doc-item" data-case-id="fctrylab">
+          <div class="case-doc-icon">
+            <svg
+              width="48"
+              height="56"
+              viewBox="0 0 48 56"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M4 0H32L44 12V52C44 54.2091 42.2091 56 40 56H4C1.79086 56 0 54.2091 0 52V4C0 1.79086 1.79086 0 4 0Z"
+                fill="#EFE8DA"></path>
+              <path
+                d="M32 0L44 12H36C33.7909 12 32 10.2091 32 8V0Z"
+                fill="#DDD5C3"></path>
+              <line
+                x1="10"
+                y1="20"
+                x2="34"
+                y2="20"
+                stroke="#B8AE9C"
+                stroke-width="2.5"
+                stroke-linecap="round"></line>
+              <line
+                x1="10"
+                y1="28"
+                x2="34"
+                y2="28"
+                stroke="#B8AE9C"
+                stroke-width="2.5"
+                stroke-linecap="round"></line>
+              <line
+                x1="10"
+                y1="36"
+                x2="26"
+                y2="36"
+                stroke="#B8AE9C"
+                stroke-width="2.5"
+                stroke-linecap="round"></line>
+            </svg>
+          </div>
+          <span class="case-doc-label">FCTRYLAB</span>
+        </div>
+        <div class="case-doc-item" data-case-id="fabindia">
+          <div class="case-doc-icon">
+            <svg
+              width="48"
+              height="56"
+              viewBox="0 0 48 56"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M4 0H32L44 12V52C44 54.2091 42.2091 56 40 56H4C1.79086 56 0 54.2091 0 52V4C0 1.79086 1.79086 0 4 0Z"
+                fill="#EFE8DA"></path>
+              <path
+                d="M32 0L44 12H36C33.7909 12 32 10.2091 32 8V0Z"
+                fill="#DDD5C3"></path>
+              <line
+                x1="10"
+                y1="20"
+                x2="34"
+                y2="20"
+                stroke="#B8AE9C"
+                stroke-width="2.5"
+                stroke-linecap="round"></line>
+              <line
+                x1="10"
+                y1="28"
+                x2="34"
+                y2="28"
+                stroke="#B8AE9C"
+                stroke-width="2.5"
+                stroke-linecap="round"></line>
+              <line
+                x1="10"
+                y1="36"
+                x2="26"
+                y2="36"
+                stroke="#B8AE9C"
+                stroke-width="2.5"
+                stroke-linecap="round"></line>
+            </svg>
+          </div>
+          <span class="case-doc-label">FabIndia</span>
+        </div>
+        <div class="case-doc-item" data-case-id="godrej-interio">
+          <div class="case-doc-icon">
+            <svg
+              width="48"
+              height="56"
+              viewBox="0 0 48 56"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M4 0H32L44 12V52C44 54.2091 42.2091 56 40 56H4C1.79086 56 0 54.2091 0 52V4C0 1.79086 1.79086 0 4 0Z"
+                fill="#EFE8DA"></path>
+              <path
+                d="M32 0L44 12H36C33.7909 12 32 10.2091 32 8V0Z"
+                fill="#DDD5C3"></path>
+              <line
+                x1="10"
+                y1="20"
+                x2="34"
+                y2="20"
+                stroke="#B8AE9C"
+                stroke-width="2.5"
+                stroke-linecap="round"></line>
+              <line
+                x1="10"
+                y1="28"
+                x2="34"
+                y2="28"
+                stroke="#B8AE9C"
+                stroke-width="2.5"
+                stroke-linecap="round"></line>
+              <line
+                x1="10"
+                y1="36"
+                x2="26"
+                y2="36"
+                stroke="#B8AE9C"
+                stroke-width="2.5"
+                stroke-linecap="round"></line>
+            </svg>
+          </div>
+          <span class="case-doc-label">Godrej Interio</span>
+        </div>
+        <div class="case-doc-item" data-case-id="godrej-properties">
+          <div class="case-doc-icon">
+            <svg
+              width="48"
+              height="56"
+              viewBox="0 0 48 56"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M4 0H32L44 12V52C44 54.2091 42.2091 56 40 56H4C1.79086 56 0 54.2091 0 52V4C0 1.79086 1.79086 0 4 0Z"
+                fill="#EFE8DA"></path>
+              <path
+                d="M32 0L44 12H36C33.7909 12 32 10.2091 32 8V0Z"
+                fill="#DDD5C3"></path>
+              <line
+                x1="10"
+                y1="20"
+                x2="34"
+                y2="20"
+                stroke="#B8AE9C"
+                stroke-width="2.5"
+                stroke-linecap="round"></line>
+              <line
+                x1="10"
+                y1="28"
+                x2="34"
+                y2="28"
+                stroke="#B8AE9C"
+                stroke-width="2.5"
+                stroke-linecap="round"></line>
+              <line
+                x1="10"
+                y1="36"
+                x2="26"
+                y2="36"
+                stroke="#B8AE9C"
+                stroke-width="2.5"
+                stroke-linecap="round"></line>
+            </svg>
+          </div>
+          <span class="case-doc-label">Godrej Properties</span>
+        </div>
+        <div class="case-doc-item" data-case-id="reverb-asia">
+          <div class="case-doc-icon">
+            <svg
+              width="48"
+              height="56"
+              viewBox="0 0 48 56"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M4 0H32L44 12V52C44 54.2091 42.2091 56 40 56H4C1.79086 56 0 54.2091 0 52V4C0 1.79086 1.79086 0 4 0Z"
+                fill="#EFE8DA"></path>
+              <path
+                d="M32 0L44 12H36C33.7909 12 32 10.2091 32 8V0Z"
+                fill="#DDD5C3"></path>
+              <line
+                x1="10"
+                y1="20"
+                x2="34"
+                y2="20"
+                stroke="#B8AE9C"
+                stroke-width="2.5"
+                stroke-linecap="round"></line>
+              <line
+                x1="10"
+                y1="28"
+                x2="34"
+                y2="28"
+                stroke="#B8AE9C"
+                stroke-width="2.5"
+                stroke-linecap="round"></line>
+              <line
+                x1="10"
+                y1="36"
+                x2="26"
+                y2="36"
+                stroke="#B8AE9C"
+                stroke-width="2.5"
+                stroke-linecap="round"></line>
+            </svg>
+          </div>
+          <span class="case-doc-label">Reverb Asia</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- VIEW B: Tabbed Case Study Detail (MacBook Air - 12) -->
+    <div class="cases-detail-view" id="cases-view-detail" style="display:none;">
+      <!-- Sub-tab bar -->
+      <div class="cs-subtab-bar">
+        <button
+          class="cs-back-btn"
+          id="cs-back-to-grid"
+          title="Back to all cases"
+        >
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.2"
+            stroke-linecap="round"
+            stroke-linejoin="round"><path d="m15 18-6-6 6-6"></path></svg
+          >
+        </button>
+        <button class="cs-subtab" data-case-tab="fctrylab">FCTRYLAB</button>
+        <button class="cs-subtab" data-case-tab="fabindia">FabIndia</button>
+        <button class="cs-subtab" data-case-tab="godrej-interio"
+          >Godrej Interio</button
+        >
+        <button class="cs-subtab" data-case-tab="godrej-properties"
+          >Godrej Properties</button
+        >
+        <button class="cs-subtab" data-case-tab="reverb-asia"
+          >Reverb Asia</button
+        >
+      </div>
+
+      <div class="cs-detail-layout">
+        <!-- Left Sidebar -->
+        <div class="cs-sidebar">
+          <div class="cs-sidebar-item" data-case-tab="fctrylab">FCTRYLAB</div>
+          <div class="cs-sidebar-item" data-case-tab="fabindia">FabIndia</div>
+          <div class="cs-sidebar-item" data-case-tab="godrej-interio">
+            Godrej Interio
+          </div>
+          <div class="cs-sidebar-item" data-case-tab="godrej-properties">
+            Godrej Properties
+          </div>
+          <div class="cs-sidebar-item" data-case-tab="reverb-asia">
+            Reverb Asia
+          </div>
+        </div>
+
+        <!-- Main Content Area (scrollable) -->
+        <div class="cs-main-content">
+          <!-- FCTRYLAB -->
+          <div class="cs-pane" id="cs-pane-fctrylab">
+            <span class="cs-category-label">Lifestyle / Manufacturing</span>
+            <div class="cs-brand-name">FCTRYLAB</div>
+            <h1 class="cs-headline">Building Factory Intelligence</h1>
+            <div class="cs-cards-grid">
+              <div class="cs-story-cards">
+                <div class="cs-info-card">
+                  <h4>The Challenge Question</h4><p>
+                    How do you predict equipment failures before they happen?
+                    Not reactive maintenance. Predictive intelligence.
+                  </p>
+                </div>
+                <div class="cs-info-card">
+                  <h4>What We Found</h4><p>
+                    Sensor data existed across 14 separate dashboards with no
+                    unified alerting threshold. Teams relied on intuition rather
+                    than data patterns.
+                  </p>
+                </div>
+                <div class="cs-info-card">
+                  <h4>What We Built</h4><p>
+                    A unified IoT intelligence layer aggregating real-time
+                    sensor feeds with ML-driven anomaly detection and automated
+                    maintenance scheduling.
+                  </p>
+                </div>
+              </div>
+              <div class="cs-stat-block">
+                <h4>WHAT MOVED</h4><div class="cs-big-number">62%</div><p>
+                  reduction in unplanned downtime. $2.1M annual savings. Zero
+                  critical equipment failures in Q3-Q4.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- FabIndia -->
+          <div class="cs-pane" id="cs-pane-fabindia">
+            <span class="cs-category-label">Retail and Lifestyle / India</span>
+            <div class="cs-brand-name">FabIndia</div>
+            <h1 class="cs-headline">Connecting Marketing to Revenue</h1>
+            <div class="cs-cards-grid">
+              <div class="cs-story-cards">
+                <div class="cs-info-card">
+                  <h4>The Challenge Question</h4><p>
+                    How do we know marketing is actually driving sales? Not just
+                    metrics. Not dashboards. Real revenue attribution.
+                  </p>
+                </div>
+                <div class="cs-info-card">
+                  <h4>What We Found</h4><p>
+                    A missing measurement layer. Digital spend and in-store
+                    footfall existed in entirely separate worlds. Acquisition
+                    cost was artificially high because nobody had connected
+                    digital touchpoints to store walk-ins.
+                  </p>
+                </div>
+                <div class="cs-info-card">
+                  <h4>What We Built</h4><p>
+                    Mapped offline leads manually. Tracked where every lead
+                    originated. Connected store visits to purchases. Ran daily
+                    feedback loops to adjust campaigns in real time.
+                  </p>
+                </div>
+              </div>
+              <div class="cs-stat-block">
+                <h4>WHAT MOVED</h4><div class="cs-big-number">43%</div><p>
+                  reduction in offline purchase cost. 30% improvement in ROAS.
+                  Budget unchanged. Outcomes different.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Godrej Interio -->
+          <div class="cs-pane" id="cs-pane-godrej-interio">
+            <span class="cs-category-label">Furniture / India</span>
+            <div class="cs-brand-name">Godrej Interio</div>
+            <h1 class="cs-headline">Redesigning the Purchase Journey</h1>
+            <div class="cs-cards-grid">
+              <div class="cs-story-cards">
+                <div class="cs-info-card">
+                  <h4>The Challenge Question</h4><p>
+                    Why are high-intent visitors dropping off before reaching
+                    showrooms? Furniture is a tactile purchase — what's breaking
+                    the bridge?
+                  </p>
+                </div>
+                <div class="cs-info-card">
+                  <h4>What We Found</h4><p>
+                    The digital experience ended at product listing. No room
+                    visualizer. No appointment flow. No post-visit follow-up.
+                    The journey had a cliff, not a funnel.
+                  </p>
+                </div>
+                <div class="cs-info-card">
+                  <h4>What We Built</h4><p>
+                    End-to-end digital showroom experience with 3D configurator,
+                    appointment booking, and post-visit nurture sequences tied
+                    to CRM.
+                  </p>
+                </div>
+              </div>
+              <div class="cs-stat-block">
+                <h4>WHAT MOVED</h4><div class="cs-big-number">3.8x</div><p>
+                  showroom visit-to-purchase conversion. 28% increase in average
+                  order value through bundled room solutions.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Godrej Properties -->
+          <div class="cs-pane" id="cs-pane-godrej-properties">
+            <span class="cs-category-label">Real Estate / India</span>
+            <div class="cs-brand-name">Godrej Properties</div>
+            <h1 class="cs-headline">Digital-First Property Sales</h1>
+            <div class="cs-cards-grid">
+              <div class="cs-story-cards">
+                <div class="cs-info-card">
+                  <h4>The Challenge Question</h4><p>
+                    Can you sell a ₹2 Cr apartment without a single site visit?
+                    Not just generate leads — close actual transactions
+                    digitally.
+                  </p>
+                </div>
+                <div class="cs-info-card">
+                  <h4>What We Found</h4><p>
+                    The sales team was spending 80% of time on unqualified
+                    leads. Digital channels drove volume but not intent quality.
+                    No lead scoring existed.
+                  </p>
+                </div>
+                <div class="cs-info-card">
+                  <h4>What We Built</h4><p>
+                    Virtual walkthrough platform with integrated payment
+                    booking. AI-powered lead scoring prioritizing high-intent
+                    buyers. Automated sales pipeline with real-time dashboards.
+                  </p>
+                </div>
+              </div>
+              <div class="cs-stat-block">
+                <h4>WHAT MOVED</h4><div class="cs-big-number">156</div><p>
+                  units sold digitally in 72 hours during launch. ₹312 Cr
+                  revenue from digital-first campaign. 4x reduction in cost per
+                  acquisition.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Reverb Asia -->
+          <div class="cs-pane" id="cs-pane-reverb-asia">
+            <span class="cs-category-label">Music / APAC</span>
+            <div class="cs-brand-name">Reverb Asia</div>
+            <h1 class="cs-headline">Scaling Artist Marketplaces</h1>
+            <div class="cs-cards-grid">
+              <div class="cs-story-cards">
+                <div class="cs-info-card">
+                  <h4>The Challenge Question</h4><p>
+                    How do you build trust in a peer-to-peer marketplace where
+                    buyers can't touch the instruments? The APAC market had zero
+                    reference point.
+                  </p>
+                </div>
+                <div class="cs-info-card">
+                  <h4>What We Found</h4><p>
+                    Sellers had instruments but no photography skills. Buyers
+                    had intent but no confidence. The trust gap was visual, not
+                    transactional.
+                  </p>
+                </div>
+                <div class="cs-info-card">
+                  <h4>What We Built</h4><p>
+                    Seller onboarding toolkit with guided photo capture. Buyer
+                    confidence system with verified seller badges, condition
+                    grading, and return guarantees.
+                  </p>
+                </div>
+              </div>
+              <div class="cs-stat-block">
+                <h4>WHAT MOVED</h4><div class="cs-big-number">8x</div><p>
+                  GMV growth in 6 months. Seller listing completion rate from
+                  23% to 89%. Buyer repeat purchase rate at 34%.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 3. CUP FRAMEWORK MODAL -->
+<div class="modal-overlay" id="modal-page-framework">
+  <div class="fullscreen-mac-window">
+    <div class="mobile-modal-nav">
+      <button
+        type="button"
+        class="mobile-nav-back close-modal-btn"
+        id="fw-mobile-back"
+        data-close-target="modal-page-framework"
+        aria-label="Back"
+      >
+        <svg viewBox="0 0 24 24" aria-hidden="true"
+          ><path d="m14.5 5-7 7 7 7"></path></svg
+        >
+      </button>
+      <div class="mobile-nav-title">
+        Cup Framework <svg
+          class="dropdown-caret"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg
+        >
+      </div>
+      <button type="button" class="mobile-nav-more" aria-label="More options"
+        ><i></i><i></i><i></i></button
+      >
+    </div>
+    <div class="fullscreen-window-header">
+      <div class="browser-tab-strip" aria-label="Open pages">
+        <button
+          type="button"
+          class="browser-tab is-active"
+          data-framework-tab="framework"
+          >Cup Framework
+          <!-- <span aria-hidden="true">×</span> -->
+        </button>
+        <button
+          type="button"
+          class="browser-tab"
+          data-framework-tab="experience">From CUP to Experience</button
+        >
+      </div>
+      <div class="fullscreen-window-controls">
+        <span
+          class="dot-btn dot-red close-modal-btn"
+          data-close-target="modal-page-framework"></span>
+        <span class="dot-btn dot-cream"></span>
+        <span class="dot-btn dot-cream"></span>
+      </div>
+    </div>
+
+    <!-- MOBILE VIEW A: Document Grid (Hidden on desktop) -->
+    <div class="fw-mobile-grid-view" id="fw-mobile-grid">
+      <div class="fw-search-bar">
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          ><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"
+          ></path></svg
+        >
+        <input type="search" placeholder="Search" />
+      </div>
+      <div class="cases-document-grid">
+        <div class="case-doc-item fw-grid-item" data-fw-target="clarity">
+          <div class="case-doc-icon">
+            <svg
+              width="48"
+              height="56"
+              viewBox="0 0 48 56"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M4 0H32L44 12V52C44 54.2091 42.2091 56 40 56H4C1.79086 56 0 54.2091 0 52V4C0 1.79086 1.79086 0 4 0Z"
+                fill="#EFE8DA"></path>
+              <path
+                d="M32 0L44 12H36C33.7909 12 32 10.2091 32 8V0Z"
+                fill="#DDD5C3"></path>
+              <line
+                x1="10"
+                y1="20"
+                x2="34"
+                y2="20"
+                stroke="#B8AE9C"
+                stroke-width="2.5"
+                stroke-linecap="round"></line>
+              <line
+                x1="10"
+                y1="28"
+                x2="34"
+                y2="28"
+                stroke="#B8AE9C"
+                stroke-width="2.5"
+                stroke-linecap="round"></line>
+              <line
+                x1="10"
+                y1="36"
+                x2="26"
+                y2="36"
+                stroke="#B8AE9C"
+                stroke-width="2.5"
+                stroke-linecap="round"></line>
+            </svg>
+          </div>
+          <span class="case-doc-label">Clarity</span>
+        </div>
+        <div class="case-doc-item fw-grid-item" data-fw-target="uncommon">
+          <div class="case-doc-icon">
+            <svg
+              width="48"
+              height="56"
+              viewBox="0 0 48 56"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M4 0H32L44 12V52C44 54.2091 42.2091 56 40 56H4C1.79086 56 0 54.2091 0 52V4C0 1.79086 1.79086 0 4 0Z"
+                fill="#EFE8DA"></path>
+              <path
+                d="M32 0L44 12H36C33.7909 12 32 10.2091 32 8V0Z"
+                fill="#DDD5C3"></path>
+              <line
+                x1="10"
+                y1="20"
+                x2="34"
+                y2="20"
+                stroke="#B8AE9C"
+                stroke-width="2.5"
+                stroke-linecap="round"></line>
+              <line
+                x1="10"
+                y1="28"
+                x2="34"
+                y2="28"
+                stroke="#B8AE9C"
+                stroke-width="2.5"
+                stroke-linecap="round"></line>
+              <line
+                x1="10"
+                y1="36"
+                x2="26"
+                y2="36"
+                stroke="#B8AE9C"
+                stroke-width="2.5"
+                stroke-linecap="round"></line>
+            </svg>
+          </div>
+          <span class="case-doc-label">Uncommon Ideas</span>
+        </div>
+        <div class="case-doc-item fw-grid-item" data-fw-target="power">
+          <div class="case-doc-icon">
+            <svg
+              width="48"
+              height="56"
+              viewBox="0 0 48 56"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M4 0H32L44 12V52C44 54.2091 42.2091 56 40 56H4C1.79086 56 0 54.2091 0 52V4C0 1.79086 1.79086 0 4 0Z"
+                fill="#EFE8DA"></path>
+              <path
+                d="M32 0L44 12H36C33.7909 12 32 10.2091 32 8V0Z"
+                fill="#DDD5C3"></path>
+              <line
+                x1="10"
+                y1="20"
+                x2="34"
+                y2="20"
+                stroke="#B8AE9C"
+                stroke-width="2.5"
+                stroke-linecap="round"></line>
+              <line
+                x1="10"
+                y1="28"
+                x2="34"
+                y2="28"
+                stroke="#B8AE9C"
+                stroke-width="2.5"
+                stroke-linecap="round"></line>
+              <line
+                x1="10"
+                y1="36"
+                x2="26"
+                y2="36"
+                stroke="#B8AE9C"
+                stroke-width="2.5"
+                stroke-linecap="round"></line>
+            </svg>
+          </div>
+          <span class="case-doc-label">Power In market</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="fw-canvas-body" id="fw-desktop-canvas">
+      <!-- Watermark Background -->
+      <div class="fw-watermark">
+        <div class="fw-bulb">💡</div>
+        <div class="fw-watermark-text">
+          Clarity first. <br />Then the idea nobody expects.<br />Then the
+          number that moves.
+        </div>
+      </div>
+
+      <!-- Left Sidebar: C-U-P Icons -->
+      <div class="fw-sidebar">
+        <!-- C -->
+        <div class="fw-nav-item" data-fw-target="clarity">
+          <div class="fw-nav-icon">
+            <svg
+              width="40"
+              height="48"
+              viewBox="0 0 48 56"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M4 0H32L44 12V52C44 54.2091 42.2091 56 40 56H4C1.79086 56 0 54.2091 0 52V4C0 1.79086 1.79086 0 4 0Z"
+                fill="#EFE8DA"></path>
+              <path
+                d="M32 0L44 12H36C33.7909 12 32 10.2091 32 8V0Z"
+                fill="#DDD5C3"></path>
+              <text
+                x="50%"
+                y="60%"
+                font-family="var(--font-display)"
+                font-size="22"
+                font-weight="500"
+                fill="#B8AE9C"
+                text-anchor="middle">C</text
+              >
+            </svg>
+          </div>
+          <span class="fw-nav-label">Clarity</span>
+        </div>
+
+        <!-- U -->
+        <div class="fw-nav-item is-active" data-fw-target="uncommon">
+          <div class="fw-nav-icon">
+            <svg
+              width="40"
+              height="48"
+              viewBox="0 0 48 56"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M4 0H32L44 12V52C44 54.2091 42.2091 56 40 56H4C1.79086 56 0 54.2091 0 52V4C0 1.79086 1.79086 0 4 0Z"
+                fill="#EFE8DA"></path>
+              <path
+                d="M32 0L44 12H36C33.7909 12 32 10.2091 32 8V0Z"
+                fill="#DDD5C3"></path>
+              <text
+                x="50%"
+                y="60%"
+                font-family="var(--font-display)"
+                font-size="22"
+                font-weight="500"
+                fill="#B8AE9C"
+                text-anchor="middle">U</text
+              >
+            </svg>
+          </div>
+          <span class="fw-nav-label">Uncommon Ideas</span>
+        </div>
+
+        <!-- P -->
+        <div class="fw-nav-item" data-fw-target="power">
+          <div class="fw-nav-icon">
+            <svg
+              width="40"
+              height="48"
+              viewBox="0 0 48 56"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M4 0H32L44 12V52C44 54.2091 42.2091 56 40 56H4C1.79086 56 0 54.2091 0 52V4C0 1.79086 1.79086 0 4 0Z"
+                fill="#EFE8DA"></path>
+              <path
+                d="M32 0L44 12H36C33.7909 12 32 10.2091 32 8V0Z"
+                fill="#DDD5C3"></path>
+              <text
+                x="50%"
+                y="60%"
+                font-family="var(--font-display)"
+                font-size="22"
+                font-weight="500"
+                fill="#B8AE9C"
+                text-anchor="middle">P</text
+              >
+            </svg>
+          </div>
+          <span class="fw-nav-label">Power In Market</span>
+        </div>
+      </div>
+
+      <!-- Pop-over Cards -->
+      <!-- Clarity (C) -->
+      <div class="fw-popover-card" id="fw-popover-clarity">
+        <div class="fw-popover-arrow"></div>
+        <div class="fw-popover-header">
+          <h3>Clarity</h3>
+          <span class="fw-pop-close">×</span>
+        </div>
+        <p class="fw-pop-sub">Understand before you influence.</p>
+        <div class="fw-pop-body">
+          <p>
+            Define the position, buyer, value proposition and whitespace. <span
+              class="fw-highlight">Most brands act before they understand.</span
+            >
+          </p>
+          <p>
+            You cannot influence a market you have not understood. Clarity
+            removes the assumptions that make campaigns expensive and outcomes
+            unpredictable.
+          </p>
+        </div>
+        <div class="fw-pop-list-box">
+          <span class="fw-pop-list-title">Focus</span>
+          <ul class="fw-pop-list">
+            <li>Brand architecture</li>
+            <li>Value proposition</li>
+            <li>Audience segmentation</li>
+            <li>Core narrative</li>
+            <li>Whitespace</li>
+          </ul>
+        </div>
+        <div class="fw-pop-actions">
+          <button class="fw-pop-btn experience-contact-action" type="button">
+            Let's Find Clarity
+          </button>
+          <button
+            class="experience-design-btn"
+            data-open-experience
+            type="button"
+          >
+            Explore <strong>Experience Design</strong>
+          </button>
+        </div>
+      </div>
+
+      <!-- Uncommon Ideas (U) -->
+      <div class="fw-popover-card is-active" id="fw-popover-uncommon">
+        <div class="fw-popover-arrow"></div>
+        <div class="fw-popover-header">
+          <h3>Uncommon Ideas</h3>
+          <span class="fw-pop-close">×</span>
+        </div>
+        <p class="fw-pop-sub">
+          Turn understanding into something worth noticing.
+        </p>
+        <div class="fw-pop-body">
+          <p>
+            Use market and buyer understanding to find <span
+              class="fw-highlight">the idea that can change perception.</span
+            >
+          </p>
+          <p>
+            Creativity without insight is decoration. We use what we know about
+            the buyer to find the idea they were waiting to see. The one that
+            earns attention rather than buying it.
+          </p>
+        </div>
+        <div class="fw-pop-list-box">
+          <span class="fw-pop-list-title">Focus</span>
+          <ul class="fw-pop-list">
+            <li>Buyer behaviour</li>
+            <li>Market mapping</li>
+            <li>Demand signals</li>
+            <li>Competitor analysis</li>
+            <li>Creative direction</li>
+          </ul>
+        </div>
+        <div class="fw-pop-actions">
+          <button class="fw-pop-btn experience-contact-action" type="button">
+            Let's Unlock Ideas
+          </button>
+          <button
+            class="experience-design-btn"
+            data-open-experience
+            type="button"
+          >
+            Explore <strong>Experience Design</strong>
+          </button>
+        </div>
+      </div>
+
+      <!-- Power (P) -->
+      <div class="fw-popover-card" id="fw-popover-power">
+        <div class="fw-popover-arrow"></div>
+        <div class="fw-popover-header">
+          <h3>Power In Market</h3>
+          <span class="fw-pop-close">×</span>
+        </div>
+        <p class="fw-pop-sub">Make the idea change the number.</p>
+        <div class="fw-pop-body">
+          <p>
+            Turn attention into measurable movement through <span
+              class="fw-highlight">conversion, growth and revenue systems.</span
+            >
+          </p>
+          <p>
+            Awareness is not power. Conversion is power. We build the systems
+            that capture demand, convert it efficiently, and compound it over
+            time. The number either moves or it does not.
+          </p>
+        </div>
+        <div class="fw-pop-list-box">
+          <span class="fw-pop-list-title">Focus</span>
+          <ul class="fw-pop-list">
+            <li>CRO</li>
+            <li>Growth Loops</li>
+            <li>Lifecycle Marketing</li>
+            <li>Revenue operations</li>
+            <li>Measurement</li>
+          </ul>
+        </div>
+        <div class="fw-pop-actions">
+          <button class="fw-pop-btn experience-contact-action" type="button">
+            Build Market Power
+          </button>
+          <button
+            class="experience-design-btn"
+            data-open-experience
+            type="button"
+          >
+            Explore <strong>Experience Design</strong>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <section class="fw-experience-panel" id="fw-experience-panel" hidden>
+      <div class="fw-experience-card">
+        <p class="fw-experience-eyebrow">From CUP to Experience</p>
+        <p class="fw-experience-question">
+          What does the person actually experience?
+        </p>
+        <p>
+          The CUP Framework diagnoses the problem and builds the response.
+          Experience Design shapes what happens to the person on the other side
+          of that work. Understanding one makes the other more powerful.
+        </p>
+        <button type="button" class="fw-experience-link" data-open-experience
+          >→ Explore Experience Design</button
+        >
+      </div>
+    </section>
+  </div>
+</div>
+<div class="modal-overlay" id="modal-page-capabilities">
+  <div class="fullscreen-mac-window">
+    <div class="mobile-modal-nav">
+      <button
+        type="button"
+        class="mobile-nav-back close-modal-btn"
+        data-close-target="modal-page-capabilities"
+        aria-label="Back"
+      >
+        <svg viewBox="0 0 24 24" aria-hidden="true"
+          ><path d="m14.5 5-7 7 7 7"></path></svg
+        >
+      </button>
+      <div class="mobile-nav-title">
+        What We Build <svg
+          class="dropdown-caret"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg
+        >
+      </div>
+      <button type="button" class="mobile-nav-more" aria-label="More options"
+        ><i></i><i></i><i></i></button
+      >
+    </div>
+    <div class="fullscreen-window-header">
+      <div class="window-title-meta">What We Build</div>
+      <div class="fullscreen-window-controls">
+        <span
+          class="dot-btn dot-red close-modal-btn"
+          data-close-target="modal-page-capabilities"></span>
+        <span class="dot-btn dot-cream"></span>
+        <span class="dot-btn dot-cream"></span>
+      </div>
+    </div>
+    <div class="fullscreen-window-body capabilities-window-body">
+      <div class="capabilities-canvas">
+        <div class="capabilities-intro">
+          <h1 style="text-align:center;">
+            Sometimes the answer is a campaign. Sometimes it is the system
+            behind the campaign.
+          </h1>
+          <span class="capabilities-info" title="Our four capability pillars"
+            >i</span
+          >
+        </div>
+
+        <div class="capabilities-controls">
+          <label class="capabilities-search">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.2"
+              stroke-linecap="round"
+              ><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"
+              ></path></svg
+            >
+            <input
+              type="search"
+              data-capabilities-search
+              placeholder="Search our capabilities"
+            />
+          </label>
+          <button
+            class="capability-nav"
+            type="button"
+            data-capability-nav="modal-page-cases"
+            aria-label="Open Cup Cases"
+          >
+            <svg
+              width="25"
+              height="25"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              ><path d="M3 7h5l2 2h11v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"
+              ></path><path d="M3 7V5a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v2"
+              ></path></svg
+            >
+          </button>
+          <button
+            class="capability-nav"
+            type="button"
+            data-capability-nav="modal-page-about"
+            aria-label="Open About Us"
+          >
+            <svg
+              width="25"
+              height="25"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              ><path d="M6 3h9l4 4v14H6z"></path><path d="M15 3v5h4"
+              ></path></svg
+            >
+          </button>
+          <button
+            class="capability-nav"
+            type="button"
+            data-capability-nav="home"
+            aria-label="Go to Home"
+          >
+            <svg
+              width="25"
+              height="25"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              ><path d="M4 13h4l2-5 3 9 2-4h5"></path></svg
+            >
+          </button>
+        </div>
+
+        <div class="capabilities-list" data-capabilities-list>
+          <article class="capability-row is-expanded" data-capability="clarity">
+            <button
+              class="capability-row-header"
+              type="button"
+              aria-expanded="true"
+            >
+              <span class="capability-row-icon">01</span>
+              <span class="capability-row-heading"
+                ><small>Find the Signal</small><strong
+                  >Buyer and Market Intelligence</strong
+                ></span
+              >
+              <span class="capability-chevron">⌃</span>
+            </button>
+            <div class="capability-row-detail">
+              <p>
+                Understanding what the market is actually saying before building
+                a response to it. <b>Every engagement starts here.</b>
+              </p>
+              <p>
+                Buyer intelligence · Customer profiles · Behaviour maps · Market
+                intelligence · Demand signals · Opportunity maps
+              </p>
+            </div>
+          </article>
+          <article class="capability-row" data-capability="clarity">
+            <button
+              class="capability-row-header"
+              type="button"
+              aria-expanded="false"
+            >
+              <span class="capability-row-icon">02</span>
+              <span class="capability-row-heading"
+                ><small>Make It Mean Something</small><strong
+                  >Positioning, Messaging and Creative</strong
+                ></span
+              >
+              <span class="capability-chevron">⌄</span>
+            </button>
+            <div class="capability-row-detail">
+              <p>
+                Turning insight into something worth noticing. <b
+                  >The idea that earns attention rather than buying it.</b
+                >
+              </p>
+              <p>
+                Positioning · Messaging · Creative platforms · Content systems ·
+                Creator frameworks · Campaigns
+              </p>
+            </div>
+          </article>
+          <article class="capability-row" data-capability="uncommon">
+            <button
+              class="capability-row-header"
+              type="button"
+              aria-expanded="false"
+            >
+              <span class="capability-row-icon">03</span>
+              <span class="capability-row-heading"
+                ><small>Make It Move</small><strong
+                  >Distribution and Growth Systems</strong
+                ></span
+              >
+              <span class="capability-chevron">⌄</span>
+            </button>
+            <div class="capability-row-detail">
+              <p>
+                Making the idea reach the right people and convert efficiently. <b
+                  >Attention is not the outcome. Movement is.</b
+                >
+              </p>
+              <p>
+                Distribution · Performance · Conversion journeys · Experiments ·
+                Acquisition systems · Feedback loops
+              </p>
+            </div>
+          </article>
+          <article class="capability-row" data-capability="power">
+            <button
+              class="capability-row-header"
+              type="button"
+              aria-expanded="false"
+            >
+              <span class="capability-row-icon">04</span>
+              <span class="capability-row-heading"
+                ><small>Make It Compound</small><strong
+                  >Experience Design, Intelligence and Retention</strong
+                ></span
+              >
+              <span class="capability-chevron">⌄</span>
+            </button>
+            <div class="capability-row-detail">
+              <p>
+                Designing the experience after the choice and the systems that
+                make every interaction smarter than the last. <b
+                  >The signal compounds into preference.</b
+                >
+              </p>
+              <p>
+                <b>Experience design</b> · Guest and customer intelligence · CRM ·
+                Social CRM · Personalisation · Retention · Repeat purchase · Relationship
+                systems
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 5. ABOUT US MODAL -->
+<div class="modal-overlay" id="modal-page-about">
+  <div class="fullscreen-mac-window">
+    <div class="mobile-modal-nav">
+      <button
+        type="button"
+        class="mobile-nav-back close-modal-btn"
+        data-close-target="modal-page-about"
+        aria-label="Back"
+      >
+        <svg viewBox="0 0 24 24" aria-hidden="true"
+          ><path d="m14.5 5-7 7 7 7"></path></svg
+        >
+      </button>
+      <div class="mobile-nav-title">
+        About Us <svg
+          class="dropdown-caret"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg
+        >
+      </div>
+      <button type="button" class="mobile-nav-more" aria-label="More options"
+        ><i></i><i></i><i></i></button
+      >
+    </div>
+    <div class="fullscreen-window-header">
+      <div class="about-tabbar" role="tablist" aria-label="About Us sections">
+        <button
+          class="about-tab is-active"
+          type="button"
+          role="tab"
+          aria-selected="true"
+          data-about-tab="about">About Us</button
+        >
+        <button
+          class="about-tab"
+          type="button"
+          role="tab"
+          aria-selected="false"
+          data-about-tab="mission">Mission</button
+        >
+        <button
+          class="about-tab"
+          type="button"
+          role="tab"
+          aria-selected="false"
+          data-about-tab="practice">In Practice</button
+        >
+      </div>
+      <div class="fullscreen-window-controls">
+        <span
+          class="dot-btn dot-red close-modal-btn"
+          data-close-target="modal-page-about"></span>
+        <span class="dot-btn dot-cream"></span>
+        <span class="dot-btn dot-cream"></span>
+      </div>
+    </div>
+    <div class="fullscreen-window-body about-window-body">
+      <aside class="about-story-panel">
+        <h1 class="about-story-title">Build the cup</h1>
+
+        <div class="about-story-label">
+          <svg
+            width="25"
+            height="28"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"><path d="M6 3h12v18l-6-4-6 4z"></path></svg
+          >
+          <span>Brand Showreel</span>
+        </div>
+
+        <div
+          class="about-showreel"
+          id="about-showreel-btn"
+          role="button"
+          tabindex="0"
+          aria-label="Play brand showreel"
+        >
+          <span class="about-showreel-word">BLOSSOM</span>
+          <span class="about-play-button">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"
+              ><path d="M8 5v14l11-7z"></path></svg
+            >
+          </span>
+        </div>
+
+        <div class="about-story-label">
+          <svg
+            width="25"
+            height="28"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"><path d="M6 3h12v18l-6-4-6 4z"></path></svg
+          >
+          <span>What we believe</span>
+        </div>
+
+        <p class="about-belief">
+          The best companies are not the ones with the most clients. They are
+          the ones whose work travels without them. Do good work. Let God see.
+        </p>
+        <button class="ppl-framework-cta" type="button" data-open-mission>
+          Explore <strong>Market</strong>
+        </button>
+      </aside>
+
+      <article class="about-editorial-content">
+        <h1>
+          Medeacup is a creative intelligence company built around one idea:
+          find what changes the economics.
+        </h1>
+        <p>
+          We work where strategy, creativity, experience design and commercial
+          execution meet. The problem might be a buyer nobody has properly
+          understood. A position the market has not claimed. A message that does
+          not move consideration. A growth system that is leaking value. Or an
+          experience that is failing to create preference: before the choice,
+          during it, and long after it. We find the leverage point, develop the
+          response and stay close to the outcome.
+        </p>
+
+        <section>
+          <h2>Why Medeacup</h2>
+          <em>The work has always come before the credentials.</em>
+          <p>
+            In 2019, an unknown diaper brand in Dubai needed customers before it
+            had a real market presence. We did not start with ads. We started
+            with free trials in Facebook mother groups. 400 leads. 60%
+            conversion. The product sold before the brand existed.
+          </p>
+          <p>
+            Later, a US sneaker brand had crossed $1M in sales but could not
+            clearly identify its buyer. Understanding the buyer moved monitored
+            sales from $500 to $3,000 a month in 40 days.
+          </p>
+          <p>
+            The lesson was consistent: find what actually matters, then build
+            around it.
+          </p>
+        </section>
+
+        <section>
+          <h2>How we work</h2>
+          <em
+            >Close to the problem. Close to the team. Accountable to outcomes.</em
+          >
+          <p>
+            The people thinking about the problem stay close to the people
+            solving it. Strategy, creativity and execution are connected rather
+            than passed through disconnected layers. <b
+              >We are as focused on what happens after the choice as on what
+              creates it.</b
+            > Most work stops at conversion. We design what the person encounters
+            when they arrive on the other side: the recognition, the follow-through,
+            the experience that earns a second choice. Every engagement starts with
+            a question, creates a Thinking Document, agrees on a metric and is judged
+            by whether that number moves.
+          </p>
+        </section>
+
+        <section class="about-design-section">
+          <div class="about-design-heading">
+            <h2>What we design</h2>
+          </div>
+          <em class="about-design-kicker">A choice is only the beginning.</em>
+          <p>
+            Someone discovers you. They consider you. They choose you. Then the
+            real experience begins.
+          </p>
+          <p>
+            What happens next is where preference is built or lost. Most brands
+            design the campaign that earns the choice. We design what the person
+            experiences when they get there.
+          </p>
+          <div
+            class="about-design-sequence"
+            aria-label="The experience after choice"
+          >
+            <div class="about-design-step">
+              <span>Before</span>
+              <strong>What creates expectation?</strong>
+            </div>
+            <span class="about-design-arrow" aria-hidden="true">→</span>
+            <div class="about-design-step">
+              <span>During</span>
+              <strong>What makes the choice feel right?</strong>
+            </div>
+            <span class="about-design-arrow" aria-hidden="true">→</span>
+            <div class="about-design-step">
+              <span>After</span>
+              <strong>What gives them a reason to return?</strong>
+            </div>
+          </div>
+          <blockquote>
+            The transaction tells you what they bought. The experience tells you
+            why they might come back.
+          </blockquote>
+        </section>
+
+        <section>
+          <h2>Our standard</h2>
+          <em
+            >Senior thinking. Direct involvement. Commercial accountability.</em
+          >
+          <p>
+            The client should know who is thinking, who is making and what the
+            work is expected to change. Every engagement begins with a direct
+            conversation with the Founding Partner. The person who diagnoses the
+            problem is the same person who designs the solution.
+          </p>
+        </section>
+
+        <section>
+          <h2>The belief</h2>
+          <p>
+            And the best experience should make the person feel like the choice
+            was already obvious.
+          </p>
+        </section>
+      </article>
+
+      <section
+        class="about-info-pane"
+        data-about-pane="mission"
+        aria-label="Mission"
+        hidden
+      >
+        <p class="about-info-eyebrow">Mission</p>
+        <p>We find the 1% your market is waiting for.</p>
+        <p>
+          Most brands spread effort across everything. MEDEACUP focuses on
+          finding the one thing that changes the economics, whether that is a
+          buyer insight, a positioning shift or a structural fix, then builds
+          the system that makes it compound.
+        </p>
+        <p class="about-info-closing">
+          The 1% is never the obvious thing. That is why most brands miss it.
+        </p>
+      </section>
+
+      <section
+        class="about-info-pane"
+        data-about-pane="practice"
+        aria-label="In Practice"
+        hidden
+      >
+        <p class="about-info-eyebrow">In Practice</p>
+        <p class="about-practice-item">
+          <span class="bullet-cup-icon" aria-hidden="true">☕</span>
+          <span
+            >Every engagement starts with one question: who is actually buying,
+            and why?</span
+          >
+        </p>
+        <p class="about-practice-item">
+          <span class="bullet-cup-icon" aria-hidden="true">☕</span>
+          <span>Every engagement produces one Thinking Document.</span>
+        </p>
+        <p class="about-practice-item">
+          <span class="bullet-cup-icon" aria-hidden="true">☕</span>
+          <span>Every engagement agrees on one metric before work begins.</span>
+        </p>
+        <p class="about-practice-item">
+          <span class="bullet-cup-icon" aria-hidden="true">☕</span>
+          <span>Every engagement is measured by whether that number moves.</span
+          >
+        </p>
+        <p class="about-info-closing">
+          The 1% is never the obvious thing. That is why most brands miss it.
+        </p>
+      </section>
+    </div>
+  </div>
+</div>
+
+<!-- 6. WHERE WE WORK MODAL -->
+<div class="modal-overlay" id="modal-page-where">
+  <div class="fullscreen-mac-window">
+    <div class="mobile-modal-nav">
+      <button
+        type="button"
+        class="mobile-nav-back close-modal-btn"
+        data-close-target="modal-page-where"
+        aria-label="Back"
+      >
+        <svg viewBox="0 0 24 24" aria-hidden="true"
+          ><path d="m14.5 5-7 7 7 7"></path></svg
+        >
+      </button>
+      <div class="mobile-nav-title">
+        Where We Work <svg
+          class="dropdown-caret"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg
+        >
+      </div>
+      <button type="button" class="mobile-nav-more" aria-label="More options"
+        ><i></i><i></i><i></i></button
+      >
+    </div>
+    <div class="fullscreen-window-header">
+      <div class="window-title-meta">Where We Work</div>
+      <div class="fullscreen-window-controls">
+        <span
+          class="dot-btn dot-red close-modal-btn"
+          data-close-target="modal-page-where"></span>
+        <span class="dot-btn dot-cream"></span>
+        <span class="dot-btn dot-cream"></span>
+      </div>
+    </div>
+    <div class="fullscreen-window-body where-window-body">
+      <div class="where-canvas">
+        <!-- ── Client file icons ── -->
+
+        <!-- GODREJ — top left -->
+        <div
+          class="where-client-card where-godrej"
+          data-where-client="godrej"
+          data-where-sectors="d2c,retail"
+        >
+          <div class="where-file-icon">
+            <div class="where-file-body">
+              <img
+                src="/clients/godrej.png"
+                alt="Godrej Interio"
+                class="where-logo"
+              />
+            </div>
+          </div>
+          <span class="where-client-label">GODREJ</span>
+        </div>
+
+        <!-- BEST WESTERN PLUS — bottom left -->
+        <div
+          class="where-client-card where-best-western-plus"
+          data-where-client="best-western-plus"
+          data-where-sectors="hospitality"
+        >
+          <div class="where-file-icon">
+            <div class="where-file-body">
+              <img
+                src="/clients/best-western-plus.png"
+                alt="Best Western Plus"
+                class="where-logo"
+              />
+            </div>
+          </div>
+          <span class="where-client-label">BEST WESTERN PLUS</span>
+        </div>
+
+        <!-- BEST FABINDIA — top right -->
+        <div
+          class="where-client-card where-fabindia"
+          data-where-client="fabindia"
+          data-where-sectors="retail"
+        >
+          <div class="where-file-icon">
+            <div class="where-file-body">
+              <img
+                src="/clients/fab-india.png"
+                alt="Best Fabindia"
+                class="where-logo"
+              />
+            </div>
+          </div>
+          <span class="where-client-label">FABINDIA</span>
+        </div>
+
+        <!-- FCTRYLAB — right middle -->
+        <div
+          class="where-client-card where-fctrylab"
+          data-where-client="fctrylab"
+          data-where-sectors="d2c"
+        >
+          <div class="where-file-icon">
+            <div class="where-file-body">
+              <img
+                src="/clients/factory-lab.png"
+                alt="FCTRYLAB"
+                class="where-logo"
+              />
+            </div>
+          </div>
+          <span class="where-client-label">FCTRYLAB</span>
+        </div>
+
+        <!-- JACOB'S — bottom right -->
+        <div
+          class="where-client-card where-jacobs"
+          data-where-client="jacobs"
+          data-where-sectors="hospitality,d2c"
+        >
+          <div class="where-file-icon">
+            <div class="where-file-body">
+              <img
+                src="/clients/jacobs.png"
+                alt="Jacob's Garden"
+                class="where-logo"
+              />
+            </div>
+          </div>
+          <span class="where-client-label">JACOB'S</span>
+        </div>
+
+        <!-- ── Orbital diagram (center) ── -->
+        <div
+          class="where-orbit-field"
+          aria-label="Our work across five countries"
+        >
+          <!-- Orbit glob image (dot cloud + orbit lines + nodes) -->
+          <img
+            src="/glob.svg"
+            alt="Orbital client map"
+            class="where-glob-img"
+          />
+          <button
+            class="where-dot where-dot-godrej"
+            type="button"
+            data-where-dot="godrej"
+            aria-label="Godrej Interio in India"></button>
+          <button
+            class="where-dot where-dot-fabindia"
+            type="button"
+            data-where-dot="fabindia"
+            aria-label="Best Fabindia in India"></button>
+          <button
+            class="where-dot where-dot-best-western-plus"
+            type="button"
+            data-where-dot="best-western-plus"
+            aria-label="Best Western Plus in the United Kingdom"></button>
+          <button
+            class="where-dot where-dot-jacobs"
+            type="button"
+            data-where-dot="jacobs"
+            aria-label="Jacobs Garden Hotel in the UAE"></button>
+          <button
+            class="where-dot where-dot-fctrylab"
+            type="button"
+            data-where-dot="fctrylab"
+            aria-label="FCTRYLAB in the USA"></button>
+          <div class="where-country-tags" aria-live="polite">
+            <span
+              class="where-country-tag where-country-godrej"
+              data-where-tag="godrej"><span>🇮🇳</span> India</span
+            >
+            <span
+              class="where-country-tag where-country-fabindia"
+              data-where-tag="fabindia"><span>🇮🇳</span> India</span
+            >
+            <span
+              class="where-country-tag where-country-best-western-plus"
+              data-where-tag="best-western-plus"
+              ><span>🇬🇧</span> United Kingdom</span
+            >
+            <span
+              class="where-country-tag where-country-jacobs"
+              data-where-tag="jacobs"><span>🇦🇪</span> UAE</span
+            >
+            <span
+              class="where-country-tag where-country-fctrylab"
+              data-where-tag="fctrylab"><span>🇺🇸</span> USA</span
+            >
+          </div>
+        </div>
+
+        <!-- ── Sector filter pills ── -->
+        <div class="where-sector-filters">
+          <button class="is-active" type="button" data-where-sector="d2c"
+            >D2C</button
+          >
+          <button type="button" data-where-sector="retail">Retail</button>
+          <button type="button" data-where-sector="hospitality"
+            >Hospitality</button
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 7. THE 1% PRINCIPLE MODAL -->
+<div class="modal-overlay" id="modal-page-principle">
+  <div class="fullscreen-mac-window">
+    <div class="mobile-modal-nav">
+      <button
+        type="button"
+        class="mobile-nav-back close-modal-btn"
+        data-close-target="modal-page-principle"
+        aria-label="Back"
+      >
+        <svg viewBox="0 0 24 24" aria-hidden="true"
+          ><path d="m14.5 5-7 7 7 7"></path></svg
+        >
+      </button>
+      <div class="mobile-nav-title">
+        The 1% Principle <svg
+          class="dropdown-caret"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg
+        >
+      </div>
+      <button type="button" class="mobile-nav-more" aria-label="More options"
+        ><i></i><i></i><i></i></button
+      >
+    </div>
+    <div class="fullscreen-window-header">
+      <div
+        class="principle-tabbar"
+        role="tablist"
+        aria-label="The 1% Principle sections"
+      >
+        <button
+          class="principle-tab is-active"
+          type="button"
+          role="tab"
+          aria-selected="true"
+          data-principle-tab="principle">the 1% Principle</button
+        >
+      </div>
+      <div class="fullscreen-window-controls">
+        <span
+          class="dot-btn dot-red close-modal-btn"
+          data-close-target="modal-page-principle"></span>
+        <span class="dot-btn dot-cream"></span>
+        <span class="dot-btn dot-cream"></span>
+      </div>
+    </div>
+
+    <!-- Single-stage — add class 'is-unlocked' to animate -->
+    <div class="ppl-stage" id="ppl-stage" style="flex:1;">
+      <!-- Content: hidden until unlocked -->
+      <div class="ppl-content">
+        <p class="ppl-watermark">Growth is hidden in the 1%.</p>
+
+        <div class="ppl-visual-wrap">
+          <div class="ppl-blob"></div>
+          <div class="ppl-cards">
+            <button
+              class="ppl-card ppl-card-a"
+              type="button"
+              data-principle-card="0"
+              aria-label="Explore the customer 1%"
+            >
+              <img src="/customer.png" alt="" aria-hidden="true" />
+            </button>
+            <!-- <div class="ppl-card ppl-card-b"><img src="/unlock-icon-4.png" alt="" aria-hidden="true" /></div> -->
+            <button
+              class="ppl-card ppl-card-c"
+              type="button"
+              data-principle-card="1"
+              aria-label="Explore the channel 1%"
+            >
+              <img src="/growth.png" alt="" aria-hidden="true" />
+            </button>
+            <button
+              class="ppl-card ppl-card-d"
+              type="button"
+              data-principle-card="2"
+              aria-label="Explore the message 1%"
+            >
+              <img src="/leadership.png" alt="" aria-hidden="true" />
+            </button>
+            <button
+              class="ppl-card ppl-card-e"
+              type="button"
+              data-principle-card="3"
+              aria-label="Explore the strategic 1%"
+            >
+              <img src="/authority.png" alt="" aria-hidden="true" />
+            </button>
+          </div>
+          <button class="ppl-expand-btn" id="ppl-expand-btn" type="button"
+            >Expand</button
+          >
+        </div>
+      </div>
+
+      <!-- Expanded view: shown when Expand is clicked -->
+      <div class="ppl-expanded-view">
+        <div class="ppl-exp-hero">
+          <h2 class="ppl-exp-title">Growth is hidden in the 1%.</h2>
+          <p class="ppl-exp-subtitle">
+            In every category, a small number of decisions<br />determine most
+            of the outcome.
+          </p>
+        </div>
+
+        <div class="ppl-exp-grid">
+          <article class="ppl-exp-card ppl-exp-card--active">
+            <div class="ppl-exp-percent">1%</div>
+            <p>
+              of customers generate most revenue. Who are they? Where do they
+              come from? Why do they stay?
+            </p>
+          </article>
+          <article class="ppl-exp-card">
+            <div class="ppl-exp-percent">1%</div>
+            <p>
+              of channels drive most growth. Which one is yours? Most brands are
+              not sure.
+            </p>
+          </article>
+          <article class="ppl-exp-card">
+            <div class="ppl-exp-percent">1%</div>
+            <p>
+              of messages build real authority. The one sentence your buyer will
+              repeat.
+            </p>
+          </article>
+          <article class="ppl-exp-card">
+            <div class="ppl-exp-percent">1%</div>
+            <p>
+              of strategic decisions determine market leadership. One structural
+              change. Everything else follows.
+            </p>
+          </article>
+        </div>
+
+        <p class="ppl-exp-footer">
+          The 1% is never the obvious thing. That is why most brands miss it.
+        </p>
+        <button class="ppl-framework-cta" id="ppl-framework-cta" type="button">
+          Explore <strong>CUP Framework</strong>
+        </button>
+      </div>
+
+      <!-- Toggle row — centered (locked) → bottom (unlocked) -->
+      <div class="ppl-toggle-row" id="ppl-toggle-row">
+        <label class="ppl-switch">
+          <input type="checkbox" id="ppl-checkbox" />
+          <span class="ppl-slider"></span>
+        </label>
+        <span class="ppl-copy ppl-copy--locked"
+          >Unlock the <strong>1%</strong></span
+        >
+        <span class="ppl-copy ppl-copy--unlocked"
+          >1% <strong>Unlocked</strong></span
+        >
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(16px);
+    z-index: 2000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+
+  .modal-overlay.is-open {
+    display: flex;
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .fullscreen-mac-window {
+    width: 93vw;
+    height: 86vh;
+    background: linear-gradient(180deg, #fbf9f4 0%, #f4eee2 100%);
+    border-radius: 32px;
+    border: 2px solid rgba(255, 255, 255, 0.95);
+    box-shadow: 0 40px 90px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    will-change: clip-path, opacity;
+  }
+
+  .fullscreen-window-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 32px;
+    background: rgba(0, 0, 0, 0.02);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  }
+
+  .window-title-meta {
+    font-family: var(--font-body);
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  .fullscreen-window-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .close-modal-btn {
+    cursor: pointer;
+  }
+
+  .fullscreen-window-body {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .mobile-principle-nav {
+    display: none;
+  }
+
+  .principle-popup-body {
+    position: relative;
+    min-height: 100%;
+    padding: 26px;
+  }
+
+  .principle-stage {
+    position: absolute;
+    inset: 16px;
+    border-radius: 24px;
+    background: rgba(251, 248, 240, 0.92);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.6);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 36px 42px;
+    transition:
+      opacity 220ms ease,
+      transform 260ms ease,
+      filter 220ms ease;
+  }
+
+  .principle-stage.is-locked {
+    gap: 28px;
+    justify-content: flex-start;
+    padding-top: clamp(96px, 18vh, 180px);
+  }
+
+  .principle-stage.is-open {
+    justify-content: flex-start;
+    padding-top: 36px;
+  }
+
+  .principle-stage.is-hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0.985);
+  }
+
+  .principle-hero,
+  .principle-expanded-hero {
+    text-align: center;
+    max-width: 760px;
+  }
+
+  .principle-locked-title,
+  .principle-open-title {
+    font-family: var(--font-display);
+    font-size: clamp(36px, 4.3vw, 68px);
+    line-height: 1;
+    letter-spacing: -0.04em;
+    color: #171717;
+    margin-bottom: 10px;
+  }
+
+  .principle-locked-subtitle,
+  .principle-open-subtitle {
+    font-family: var(--font-body);
+    font-size: 18px;
+    line-height: 1.45;
+    color: rgba(23, 23, 23, 0.52);
+    max-width: 520px;
+    margin: 0 auto;
+  }
+
+  .principle-visual {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+  }
+
+  .principle-cards {
+    position: relative;
+    width: 220px;
+    height: 150px;
+  }
+
+  .principle-card {
+    position: absolute;
+    inset: 0;
+    border-radius: 26px;
+    background: radial-gradient(
+      circle at 30% 30%,
+      rgba(255, 255, 255, 0.92),
+      rgba(247, 240, 228, 0.92) 42%,
+      rgba(240, 233, 220, 0.98) 100%
+    );
+    border: 1px solid rgba(190, 181, 167, 0.22);
+    box-shadow: 0 18px 28px rgba(67, 53, 32, 0.06);
+  }
+
+  .principle-card-a {
+    transform: rotate(-22deg) translate(-30px, 18px);
+  }
+  .principle-card-b {
+    transform: rotate(-10deg) translate(-8px, 6px);
+  }
+  .principle-card-c {
+    transform: rotate(8deg) translate(18px, -2px);
+  }
+  .principle-card-d {
+    transform: rotate(20deg) translate(42px, 16px);
+  }
+
+  .principle-expand-btn {
+    appearance: none;
+    border: 0;
+    border-radius: 999px;
+    background: #000;
+    color: #fff;
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 600;
+    padding: 10px 18px;
+    cursor: pointer;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.18);
+  }
+
+  .principle-toggle-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 12px;
+  }
+
+  .principle-switch {
+    position: relative;
+    width: 42px;
+    height: 24px;
+    flex: 0 0 auto;
+  }
+
+  .principle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .principle-slider {
+    position: absolute;
+    inset: 0;
+    background: #ded7cb;
+    border-radius: 999px;
+    transition: background 180ms ease;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+  }
+
+  .principle-slider::before {
+    content: "";
+    position: absolute;
+    left: 3px;
+    top: 3px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.22);
+    transition: transform 180ms ease;
+  }
+
+  .principle-switch input:checked + .principle-slider {
+    background: #14d48b;
+  }
+
+  .principle-switch input:checked + .principle-slider::before {
+    transform: translateX(18px);
+  }
+
+  .principle-toggle-copy {
+    font-family: var(--font-body);
+    font-size: 18px;
+    color: rgba(23, 23, 23, 0.6);
+  }
+
+  .principle-toggle-copy strong {
+    color: #ef3b2d;
+    font-weight: 700;
+  }
+
+  .principle-insights-grid {
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+    width: min(100%, 1120px);
+  }
+
+  .principle-insight-card {
+    min-height: 170px;
+    border-radius: 24px;
+    background: rgba(249, 244, 235, 0.88);
+    border: 1px solid rgba(190, 181, 167, 0.22);
+    padding: 22px 18px;
+    box-shadow: 0 18px 28px rgba(67, 53, 32, 0.05);
+  }
+
+  .principle-insight-percent {
+    font-family: var(--font-display);
+    font-size: 52px;
+    line-height: 0.9;
+    color: #ef3b2d;
+    margin-bottom: 12px;
+  }
+
+  .principle-insight-card p {
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.45;
+    color: rgba(23, 23, 23, 0.58);
+  }
+
+  .principle-footer-copy {
+    margin-top: 20px;
+    font-family: var(--font-body);
+    font-size: 16px;
+    color: rgba(23, 23, 23, 0.58);
+    text-align: center;
+  }
+
+  @media (max-width: 1100px) {
+    .principle-insights-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 720px) {
+    .principle-stage {
+      inset: 10px;
+      padding: 24px 18px;
+    }
+
+    .principle-insights-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .principle-locked-title,
+    .principle-open-title {
+      font-size: clamp(30px, 10vw, 52px);
+    }
+  }
+
+  .default-padded-body {
+    padding: 48px;
+  }
+
+  /* Where We Work — MacBook Air-22 orbital client map */
+  .where-window-body {
+    min-height: 0;
+    padding: 0;
+    background: #f6f1e8;
+    overflow: hidden;
+    flex: 1;
+    display: flex;
+  }
+
+  .where-canvas {
+    position: relative;
+    width: 100%;
+    flex: 1;
+    min-height: 520px;
+  }
+
+  /* ── Client card: file icon + label ── */
+  .where-client-card {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  /* The file icon shape with dog-ear corner */
+  .where-file-icon {
+    position: relative;
+    width: 96px;
+    height: 116px;
+    filter: drop-shadow(0 14px 30px rgba(60, 50, 35, 0.12));
+  }
+
+  /* Main body of the file */
+  .where-file-body {
+    position: absolute;
+    inset: 0;
+    background: #eee8da;
+    border-radius: 4px 4px 6px 6px;
+    clip-path: polygon(0 0, 72% 0, 100% 22%, 100% 100%, 0 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 8px 8px;
+  }
+
+  /* Dog-ear triangle — top right folded corner */
+  .where-file-icon::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 27px;
+    height: 25px;
+    background: linear-gradient(225deg, #d8d0c0 50%, transparent 50%);
+    border-radius: 0 4px 0 0;
+    z-index: 2;
+  }
+
+  .where-logo {
+    width: 78px;
+    height: 64px;
+    object-fit: contain;
+    object-position: center;
+  }
+
+  /* Client name label below icon */
+  .where-client-label {
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    color: rgba(55, 55, 55, 0.65);
+  }
+
+  /* ── Positions — spread around the centered glob ── */
+  .where-godrej {
+    left: 4%;
+    top: 10%;
+  }
+  .where-fctrylab {
+    right: 7%;
+    top: 26%;
+  }
+  .where-fabindia {
+    right: 24%;
+    top: 8%;
+  }
+  .where-jacobs {
+    right: 12%;
+    top: 54%;
+  }
+
+  .where-best-western-plus {
+    left: 12%;
+    top: 52%;
+  }
+
+  .where-client-card {
+    transform-origin: center bottom;
+    transition:
+      transform 220ms ease,
+      filter 220ms ease,
+      opacity 220ms ease;
+  }
+
+  .where-client-card.is-highlighted {
+    z-index: 8;
+    filter: drop-shadow(0 16px 28px rgba(231, 39, 39, 0.2));
+    transform: scale(1.1);
+  }
+
+  /* ── Orbital diagram — truly centered ── */
+  .where-orbit-field {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 560px;
+    height: 560px;
+    transform: translate(-50%, -50%);
+  }
+
+  .where-glob-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+  }
+
+  .where-dot {
+    position: absolute;
+    z-index: 12;
+    width: 22px;
+    height: 22px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: #e72727;
+    box-shadow: 0 0 0 0 rgba(231, 39, 39, 0.28);
+    cursor: pointer;
+    transform: translate(-50%, -50%);
+    transition:
+      width 180ms ease,
+      height 180ms ease,
+      box-shadow 180ms ease;
+  }
+
+  .where-dot:hover,
+  .where-dot.is-selected {
+    width: 28px;
+    height: 28px;
+    box-shadow: 0 0 0 8px rgba(231, 39, 39, 0.14);
+  }
+
+  .where-dot-godrej {
+    left: 54%;
+    top: 9.9%;
+  }
+
+  .where-dot-fabindia {
+    left: 47.5%;
+    top: 25.5%;
+  }
+
+  .where-dot-best-western-plus {
+    left: 85%;
+    top: 26.3%;
+  }
+
+  .where-dot-jacobs {
+    left: 67%;
+    top: 64.8%;
+  }
+
+  .where-dot-fctrylab {
+    left: 28.4%;
+    top: 73%;
+  }
+
+  .where-country-tags {
+    position: absolute;
+    inset: 0;
+    z-index: 14;
+    pointer-events: none;
+  }
+
+  .where-country-tag {
+    position: absolute;
+    display: none;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 13px;
+    border: 1px solid rgba(80, 75, 68, 0.18);
+    border-radius: 20px;
+    background: rgba(246, 241, 232, 0.96);
+    backdrop-filter: blur(8px);
+    color: rgba(65, 65, 65, 0.8);
+    font: 500 14px/1 var(--font-body);
+    white-space: nowrap;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+    transform: translate(-50%, -135%);
+  }
+
+  .where-country-tag.is-visible {
+    display: inline-flex;
+  }
+
+  .where-country-godrej {
+    left: 54%;
+    top: 7.9%;
+  }
+
+  .where-country-fabindia {
+    left: 47.5%;
+    top: 23.4%;
+  }
+
+  .where-country-best-western-plus {
+    left: 85%;
+    top: 24%;
+  }
+
+  .where-country-jacobs {
+    left: 67%;
+    top: 62.6%;
+  }
+
+  .where-country-fctrylab {
+    left: 28.4%;
+    top: 70.8%;
+  }
+
+  /* India pill — canvas-level, above the glob */
+  .where-country-pill {
+    position: absolute;
+    top: 14%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 18px;
+    border: 1px solid rgba(80, 75, 68, 0.18);
+    border-radius: 20px;
+    background: rgba(246, 241, 232, 0.95);
+    backdrop-filter: blur(8px);
+    color: rgba(65, 65, 65, 0.78);
+    font-family: var(--font-body);
+    font-size: 16px;
+    font-weight: 500;
+    white-space: nowrap;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+    z-index: 10;
+  }
+
+  /* ── Sector filter pills ── */
+  .where-sector-filters {
+    position: absolute;
+    bottom: 6%;
+    left: 50%;
+    display: flex;
+    gap: 8px;
+    transform: translateX(-50%);
+    white-space: nowrap;
+  }
+
+  .where-sector-filters button {
+    padding: 10px 20px;
+    border: 0;
+    border-radius: 22px;
+    background: rgba(224, 218, 208, 0.8);
+    color: rgba(70, 70, 70, 0.68);
+    cursor: pointer;
+    font-family: var(--font-body);
+    font-size: 14px;
+    transition:
+      background 180ms ease,
+      color 180ms ease,
+      transform 180ms ease;
+  }
+
+  .where-sector-filters button:hover,
+  .where-sector-filters button.is-active {
+    background: rgba(205, 200, 188, 0.95);
+    color: #2a2a2a;
+    transform: translateY(-2px);
+  }
+
+  @media (max-width: 900px) {
+    .where-window-body {
+      overflow-y: auto;
+    }
+    .where-canvas {
+      transform: scale(0.82);
+      transform-origin: top center;
+      min-height: 680px;
+    }
+
+    .where-file-icon {
+      width: 88px;
+      height: 106px;
+    }
+  }
+
+  /* Core Capabilities — MacBook Air -21 */
+  .capabilities-window-body {
+    position: relative;
+    min-height: 0;
+    padding: 0 30px 84px;
+    background: #f6f1e8;
+    overflow-y: auto;
+  }
+
+  .capabilities-canvas {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: min(100%, 760px);
+    margin: 0 auto;
+    padding-top: clamp(90px, 13vh, 150px);
+  }
+
+  .capabilities-intro {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 84px;
+    color: rgba(40, 40, 40, 0.62);
+  }
+
+  .capabilities-intro h1 {
+    margin: 0;
+    font-family: var(--font-body);
+    font-size: clamp(20px, 1.8vw, 30px);
+    font-weight: 500;
+    letter-spacing: -0.045em;
+  }
+
+  .capabilities-info {
+    display: grid;
+    place-items: center;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.05);
+    font-family: Georgia, serif;
+    font-size: 14px;
+    font-style: italic;
+  }
+
+  .capabilities-controls {
+    display: grid;
+    grid-template-columns: minmax(280px, 1fr) 64px 64px 64px;
+    gap: 8px;
+    width: 100%;
+    margin-bottom: 12px;
+  }
+
+  .capabilities-search,
+  .capability-nav {
+    display: flex;
+    align-items: center;
+    border: 0;
+    background: rgba(226, 222, 214, 0.76);
+    color: rgba(45, 45, 45, 0.68);
+  }
+
+  .capabilities-search {
+    gap: 14px;
+    min-height: 64px;
+    padding: 0 24px;
+    border-radius: 32px;
+  }
+
+  .capabilities-search input {
+    width: 100%;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: #262626;
+    font-family: var(--font-body);
+    font-size: 20px;
+  }
+
+  .capabilities-search input::placeholder {
+    color: rgba(75, 75, 75, 0.55);
+  }
+
+  .capability-nav {
+    justify-content: center;
+    min-height: 64px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition:
+      background 180ms ease,
+      color 180ms ease,
+      transform 180ms ease;
+  }
+
+  .capability-nav:hover,
+  .capability-nav:focus-visible {
+    background: rgba(212, 207, 198, 0.95);
+    color: #232323;
+    transform: translateY(-2px);
+  }
+
+  .capabilities-list {
+    width: 100%;
+    padding: 0 18px;
+    border-radius: 28px;
+    background: rgba(226, 222, 214, 0.76);
+  }
+
+  .capability-row {
+    border-bottom: 1px solid rgba(80, 74, 65, 0.1);
+  }
+
+  .capability-row:last-child {
+    border-bottom: 0;
+  }
+
+  .capability-row-header {
+    display: grid;
+    grid-template-columns: 48px 1fr 24px;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    min-height: 74px;
+    padding: 10px 0;
+    border: 0;
+    background: transparent;
+    color: #3b3a38;
+    cursor: pointer;
+    text-align: left;
+  }
+
+  .capability-row-icon {
+    display: grid;
+    place-items: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 14px;
+    background: #ee2e2d;
+    color: #fff;
+    font-family: Georgia, serif;
+    font-size: 13px;
+    box-shadow: 0 4px 10px rgba(238, 46, 45, 0.16);
+  }
+
+  .capability-row-heading {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .capability-row-heading small {
+    color: rgba(70, 68, 64, 0.42);
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .capability-row-heading strong {
+    color: rgba(35, 35, 35, 0.7);
+    font-family: var(--font-body);
+    font-size: 19px;
+    font-weight: 500;
+    letter-spacing: -0.04em;
+  }
+
+  .capability-chevron {
+    color: rgba(60, 60, 60, 0.54);
+    font-size: 22px;
+    line-height: 1;
+  }
+
+  .capability-row-detail {
+    max-height: 0;
+    padding: 0 40px 18px 60px;
+    overflow: hidden;
+    color: rgba(60, 60, 60, 0.48);
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.35;
+    opacity: 0;
+    transform: translateY(-12px);
+    transition:
+      max-height 700ms cubic-bezier(0.16, 1, 0.3, 1),
+      opacity 500ms ease,
+      transform 700ms cubic-bezier(0.16, 1, 0.3, 1),
+      padding 700ms ease;
+    transition-delay: 120ms;
+  }
+
+  .capability-row-detail p {
+    margin: 0 0 14px;
+  }
+  .capability-row-detail p:last-child {
+    margin-bottom: 0;
+  }
+  .capability-row.is-expanded .capability-row-detail {
+    max-height: 180px;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (max-width: 720px) {
+    .capabilities-window-body {
+      padding: 0 16px 100px;
+    }
+    .capabilities-canvas {
+      padding-top: 64px;
+    }
+    .capabilities-intro {
+      margin-bottom: 44px;
+    }
+    .capabilities-controls {
+      grid-template-columns: 1fr repeat(3, 48px);
+    }
+    .capabilities-search {
+      min-height: 52px;
+      padding: 0 16px;
+    }
+    .capability-nav {
+      min-height: 48px;
+    }
+    .capabilities-search input {
+      font-size: 15px;
+    }
+  }
+
+  /* About Us — MacBook Air -19 editorial layout */
+  .about-window-body {
+    display: grid;
+    grid-template-columns: minmax(330px, 34%) minmax(0, 1fr);
+    gap: clamp(34px, 5vw, 92px);
+    padding: 28px 42px 96px;
+    background: #f6f1e8;
+    overflow-y: auto;
+  }
+
+  .about-story-panel {
+    align-self: stretch;
+    padding: 42px 34px 38px;
+    border: 1px solid rgba(110, 96, 76, 0.12);
+    border-radius: 30px;
+    background: rgba(247, 242, 233, 0.82);
+  }
+
+  .about-story-title {
+    margin: 0 0 34px;
+    color: #111;
+    font-family: var(--font-display);
+    font-size: clamp(42px, 4.2vw, 72px);
+    font-weight: 500;
+    letter-spacing: -0.075em;
+    line-height: 0.95;
+  }
+
+  .about-story-label {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    min-height: 62px;
+    margin-bottom: 14px;
+    padding: 0 18px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.7);
+    color: #ef302d;
+    font-family: var(--font-body);
+    font-size: clamp(18px, 1.5vw, 28px);
+    font-weight: 500;
+  }
+
+  .about-showreel {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    /* YouTube content is native 16:9; keep the full player and controls in view. */
+    aspect-ratio: 16 / 9;
+    margin-bottom: 28px;
+    overflow: hidden;
+    border: 10px solid rgba(255, 255, 255, 0.6);
+    border-radius: 30px;
+    background:
+      radial-gradient(
+        circle at 68% 35%,
+        rgba(255, 255, 255, 0.52),
+        transparent 25%
+      ),
+      linear-gradient(135deg, #8791c8 0%, #b3a5c8 46%, #dfc9b4 100%);
+    cursor: pointer;
+    box-shadow: 0 12px 28px rgba(60, 48, 35, 0.12);
+  }
+
+  .about-showreel::before,
+  .about-showreel::after {
+    position: absolute;
+    bottom: -18%;
+    width: 36%;
+    height: 90%;
+    border-radius: 48% 52% 12% 12%;
+    background: linear-gradient(
+      90deg,
+      rgba(71, 83, 130, 0.32),
+      rgba(244, 232, 206, 0.5)
+    );
+    content: "";
+    transform: rotate(18deg);
+  }
+
+  .about-showreel::before {
+    left: 14%;
+  }
+  .about-showreel::after {
+    right: 12%;
+    transform: rotate(-16deg);
+    opacity: 0.75;
+  }
+
+  .about-showreel-word {
+    position: relative;
+    z-index: 1;
+    color: rgba(255, 255, 255, 0.62);
+    font-family: var(--font-display);
+    font-size: clamp(24px, 2.6vw, 46px);
+    letter-spacing: -0.06em;
+  }
+
+  .about-play-button {
+    position: absolute;
+    z-index: 2;
+    display: grid;
+    place-items: center;
+    width: 74px;
+    height: 74px;
+    border-radius: 50%;
+    background: rgba(24, 24, 24, 0.75);
+    color: #fff;
+    transition:
+      transform 180ms ease,
+      background 180ms ease;
+  }
+
+  .about-showreel:hover .about-play-button {
+    background: #ef302d;
+    transform: scale(1.08);
+  }
+
+  .about-showreel.is-playing {
+    cursor: default;
+  }
+
+  .about-showreel.is-playing::before,
+  .about-showreel.is-playing::after,
+  .about-showreel.is-playing .about-showreel-word,
+  .about-showreel.is-playing .about-play-button {
+    display: none;
+  }
+
+  .about-showreel iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  .about-belief {
+    margin: 38px 8px 0;
+    color: #111;
+    font-family: var(--font-display);
+    font-size: clamp(28px, 2.6vw, 48px);
+    font-weight: 500;
+    letter-spacing: -0.06em;
+    line-height: 0.98;
+  }
+
+  .about-copy-column {
+    align-self: start;
+    width: 100%;
+    max-width: none;
+    padding: clamp(48px, 9vw, 130px) 48px 40px 0;
+  }
+
+  .about-copy-column p {
+    margin: 0 0 34px;
+    color: rgba(35, 35, 35, 0.62);
+    font-family: var(--font-body);
+    font-size: clamp(17px, 1.35vw, 25px);
+    line-height: 1.35;
+  }
+
+  .about-copy-column strong {
+    color: rgba(27, 27, 27, 0.82);
+    font-weight: 700;
+  }
+
+  @media (max-width: 900px) {
+    .about-window-body {
+      grid-template-columns: 1fr;
+      padding: 24px 20px 110px;
+    }
+    .about-copy-column {
+      padding: 18px 8px 0;
+    }
+    .about-belief {
+      font-size: clamp(30px, 8vw, 48px);
+    }
+  }
+
+  /* Mission layout styles */
+  .mission-full-content {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 48px;
+    padding: 56px 64px;
+    height: 100%;
+  }
+
+  .mission-main-title {
+    font-family: var(--font-display);
+    font-size: clamp(36px, 4vw, 58px);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    color: var(--text-primary);
+    margin-bottom: 28px;
+  }
+
+  .mission-lead-p {
+    font-family: var(--font-body);
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1.5;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+  }
+
+  .mission-secondary-p {
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    margin-bottom: 40px;
+  }
+
+  .in-practice-section {
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    padding-top: 32px;
+  }
+
+  .practice-badge {
+    display: inline-block;
+    background: #e62e2d;
+    color: #ffffff;
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-bottom: 24px;
+  }
+
+  .practice-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .practice-bullets li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-family: var(--font-body);
+    font-size: 15px;
+    color: var(--text-primary);
+  }
+
+  .bullet-cup-icon {
+    font-size: 16px;
+  }
+
+  .watermark-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(0, 0, 0, 0.02);
+    border-radius: 24px;
+    padding: 40px 24px;
+    text-align: center;
+  }
+
+  .glowing-bulb-container {
+    position: relative;
+    width: 90px;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .bulb-glow {
+    position: absolute;
+    inset: -10px;
+    background: radial-gradient(
+      circle,
+      rgba(255, 200, 0, 0.4) 0%,
+      rgba(255, 200, 0, 0) 70%
+    );
+    border-radius: 50%;
+  }
+
+  .bulb-icon {
+    font-size: 54px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .watermark-typography {
+    font-family: var(--font-display);
+    font-size: 42px;
+    font-weight: 700;
+    line-height: 1.3;
+    color: rgba(91, 81, 70, 0.7);
+  }
+
+  /* Document Grid Layout for Cup Cases (MacBook Air - 11) */
+  .cases-grid-body {
+    padding: 56px 64px;
+  }
+
+  .mobile-cases-search {
+    display: none;
+  }
+
+  .cases-document-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 48px 36px;
+    align-items: flex-start;
+  }
+
+  .case-doc-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    cursor: pointer;
+    padding: 16px;
+    border-radius: 20px;
+    transition:
+      transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+      background-color 0.2s ease;
+  }
+
+  .case-doc-item:hover {
+    transform: translateY(-4px);
+    background: rgba(0, 0, 0, 0.04);
+  }
+
+  .case-doc-icon {
+    width: 88px;
+    height: 104px;
+    background: #f7f3eb;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 16px;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.06);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: box-shadow 0.2s ease;
+  }
+
+  .case-doc-item:hover .case-doc-icon {
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.12);
+  }
+
+  .case-doc-label {
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-primary);
+    text-align: center;
+  }
+
+  /* Shared pane headings */
+  .pane-title {
+    font-family: var(--font-display);
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 32px;
+  }
+
+  .pane-lead {
+    font-size: 18px;
+    color: var(--text-secondary);
+    margin-bottom: 24px;
+  }
+  .pane-quote {
+    font-style: italic;
+    font-size: 20px;
+    border-left: 4px solid #e62e2d;
+    padding-left: 20px;
+    color: var(--text-primary);
+  }
+
+  .pane-framework-grid,
+  .pane-cap-grid,
+  .pane-loc-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .pf-card,
+  .pcap-card,
+  .ploc-card {
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 20px;
+    padding: 24px;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+  }
+
+  .pf-num,
+  .ps-num {
+    font-family: var(--font-display);
+    font-size: 36px;
+    font-weight: 800;
+    color: #e62e2d;
+  }
+  .pcap-emoji,
+  .ploc-flag {
+    font-size: 32px;
+    margin-bottom: 8px;
+    display: block;
+  }
+  .pane-stats-row {
+    display: flex;
+    gap: 48px;
+  }
+  .ps-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .ps-lbl {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-secondary);
+  }
+
+  /* ═══════════════════════════════════════════════ */
+  /* Cup Framework Modal (MacBook Air - 14 & 15)   */
+  /* ═══════════════════════════════════════════════ */
+
+  .fw-canvas-body {
+    flex: 1;
+    position: relative;
+    display: flex;
+    overflow: hidden;
+  }
+
+  /* Watermark */
+  .fw-watermark {
+    position: absolute;
+    right: 48px;
+    bottom: 48px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .fw-bulb {
+    font-size: 48px;
+    margin-bottom: 16px;
+    opacity: 0.8;
+    filter: drop-shadow(0 0 20px rgba(255, 204, 0, 0.4));
+  }
+
+  .fw-watermark-text {
+    font-family: var(--font-display);
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.1;
+    color: rgba(0, 0, 0, 0.04);
+    text-align: right;
+    letter-spacing: -0.02em;
+  }
+
+  /* Left Sidebar: C-U-P */
+  .fw-sidebar {
+    width: 140px;
+    padding: 32px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+    border-right: 1px solid rgba(0, 0, 0, 0.05);
+    background: rgba(0, 0, 0, 0.01);
+    z-index: 10;
+  }
+
+  .fw-nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .fw-nav-item:hover {
+    transform: translateY(-4px) scale(1.05);
+  }
+
+  .fw-nav-icon {
+    width: 64px;
+    height: 76px;
+    background: #f7f3eb;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+    transition: box-shadow 0.2s ease;
+  }
+
+  .fw-nav-item:hover .fw-nav-icon,
+  .fw-nav-item.is-active .fw-nav-icon {
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+    background: #ffffff;
+  }
+
+  .fw-nav-label {
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-align: center;
+    transition: color 0.2s ease;
+  }
+
+  .fw-nav-item.is-active .fw-nav-label {
+    color: var(--text-primary);
+    font-weight: 700;
+  }
+
+  /* Center Floating Canvas */
+  .fw-center-canvas {
+    flex: 1;
+    position: relative;
+    z-index: 5;
+  }
+
+  .fw-floating-item {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transform: rotate(var(--rotation));
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    cursor: pointer;
+  }
+
+  .fw-floating-item:hover {
+    transform: rotate(0deg) scale(1.08) translateY(-6px);
+    z-index: 20;
+  }
+
+  .fw-float-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.08));
+    transition: filter 0.3s ease;
+  }
+
+  .fw-floating-item:hover .fw-float-icon {
+    filter: drop-shadow(0 20px 32px rgba(0, 0, 0, 0.15));
+  }
+
+  .fw-float-pill {
+    background: rgba(0, 0, 0, 0.04);
+    backdrop-filter: blur(8px);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    white-space: nowrap;
+    transition:
+      background 0.3s ease,
+      color 0.3s ease;
+  }
+
+  .fw-floating-item:hover .fw-float-pill {
+    background: rgba(0, 0, 0, 0.08);
+    color: var(--text-primary);
+  }
+
+  /* Pop-over Card (Speech Bubble) */
+  .fw-popover-card {
+    position: absolute;
+    left: 140px; /* Right next to sidebar */
+    transform: scale(0.95);
+    transform-origin: left top;
+    opacity: 0;
+    pointer-events: none;
+    width: 380px;
+    background: #fdfaf5;
+    border-radius: 24px;
+    padding: 32px;
+    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.12);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    z-index: 30;
+    transition:
+      transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+      opacity 0.3s ease;
+  }
+
+  .fw-popover-card.is-active {
+    opacity: 1;
+    pointer-events: auto;
+    transform: scale(1);
+  }
+
+  /* Specific positions for each card based on icon */
+  #fw-popover-clarity {
+    top: 30px;
+  }
+  #fw-popover-uncommon {
+    top: 168px;
+  }
+  #fw-popover-power {
+    top: 306px;
+  }
+
+  .fw-popover-arrow {
+    position: absolute;
+    left: -10px;
+    top: 40px;
+    width: 20px;
+    height: 20px;
+    background: #fdfaf5;
+    border-left: 1px solid rgba(0, 0, 0, 0.06);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    transform: rotate(45deg);
+  }
+
+  .fw-popover-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 4px;
+  }
+
+  .fw-popover-header h3 {
+    font-family: var(--font-display);
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+  }
+
+  .fw-pop-close {
+    font-size: 20px;
+    color: var(--text-muted);
+    cursor: pointer;
+    line-height: 1;
+    padding: 4px;
+    transition: color 0.2s ease;
+  }
+
+  .fw-pop-close:hover {
+    color: var(--text-primary);
+  }
+
+  .fw-pop-sub {
+    font-family: var(--font-body);
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-bottom: 24px;
+  }
+
+  .fw-pop-body {
+    font-family: var(--font-body);
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--text-primary);
+    margin-bottom: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .fw-highlight {
+    color: #e62e2d;
+    font-weight: 600;
+  }
+
+  .fw-pop-list-box {
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+    padding-top: 16px;
+    margin-bottom: 24px;
+  }
+
+  .fw-pop-list-title {
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    display: block;
+    margin-bottom: 12px;
+  }
+
+  .fw-pop-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .fw-pop-list li {
+    font-family: var(--font-body);
+    font-size: 13px;
+    color: var(--text-primary);
+  }
+
+  .fw-pop-btn {
+    background: #111111;
+    color: #ffffff;
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 600;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 30px;
+    cursor: pointer;
+    width: max-content;
+    transition:
+      transform 0.2s ease,
+      background 0.2s ease;
+  }
+
+  .fw-pop-btn:hover {
+    background: #000000;
+    transform: scale(1.02);
+  }
+
+  .fw-pop-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .experience-design-btn {
+    appearance: none;
+    border: 1px solid rgba(23, 23, 23, 0.14);
+    border-radius: 999px;
+    padding: 11px 18px;
+    background: rgba(255, 255, 255, 0.62);
+    color: rgba(23, 23, 23, 0.62);
+    cursor: pointer;
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    box-shadow: 0 6px 16px rgba(67, 53, 32, 0.06);
+    transition:
+      background 0.2s ease,
+      color 0.2s ease,
+      transform 0.2s ease,
+      box-shadow 0.2s ease;
+  }
+
+  .experience-design-btn strong {
+    color: var(--brand-red);
+    font-weight: 700;
+  }
+
+  .experience-design-btn:hover,
+  .experience-design-btn:focus-visible {
+    background: #111;
+    color: #fff;
+    outline: none;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.16);
+  }
+
+  .experience-design-btn:hover strong,
+  .experience-design-btn:focus-visible strong {
+    color: #ff7169;
+  }
+
+  /* ═══════════════════════════════════════════════ */
+  /* Case Study Detail View (MacBook Air - 12)      */
+  /* ═══════════════════════════════════════════════ */
+
+  .cases-detail-view {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  /* Sub-tab bar */
+  .cs-subtab-bar {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 0 32px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    background: rgba(0, 0, 0, 0.015);
+    overflow-x: auto;
+    flex-shrink: 0;
+  }
+
+  .cs-back-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    color: var(--text-secondary);
+    transition:
+      background-color 0.2s ease,
+      color 0.2s ease;
+    margin-right: 8px;
+  }
+
+  .cs-back-btn:hover {
+    background: rgba(0, 0, 0, 0.06);
+    color: var(--text-primary);
+  }
+
+  .cs-subtab {
+    padding: 10px 20px;
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    white-space: nowrap;
+    transition:
+      color 0.2s ease,
+      border-color 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .cs-subtab:hover {
+    color: var(--text-primary);
+  }
+
+  .cs-subtab.is-active {
+    color: var(--text-primary);
+    border-bottom-color: #e62e2d;
+    font-weight: 700;
+  }
+
+  .subtab-close {
+    font-size: 14px;
+    color: var(--text-muted);
+    cursor: pointer;
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s ease;
+  }
+
+  .subtab-close:hover {
+    background: rgba(0, 0, 0, 0.1);
+  }
+
+  /* Detail layout: sidebar + content */
+  .cs-detail-layout {
+    flex: 1;
+    display: flex;
+    overflow: hidden;
+  }
+
+  /* Left sidebar */
+  .cs-sidebar {
+    width: 160px;
+    flex-shrink: 0;
+    border-right: 1px solid rgba(0, 0, 0, 0.06);
+    padding: 24px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    overflow-y: auto;
+    background: rgba(0, 0, 0, 0.015);
+  }
+
+  .cs-sidebar-item {
+    padding: 10px 24px;
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition:
+      background-color 0.15s ease,
+      color 0.15s ease;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .cs-sidebar-item:hover {
+    background: rgba(0, 0, 0, 0.04);
+    color: var(--text-primary);
+  }
+
+  .cs-sidebar-item.is-active {
+    background: rgba(230, 46, 45, 0.06);
+    color: #e62e2d;
+    font-weight: 700;
+  }
+
+  /* Main scrollable content */
+  .cs-main-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 40px 48px;
+  }
+
+  .cs-main-content::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .cs-main-content::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.12);
+    border-radius: 10px;
+  }
+
+  /* Case study panes */
+  .cs-pane {
+    display: none;
+  }
+
+  .cs-pane.is-active {
+    display: block;
+  }
+
+  .cs-category-label {
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 500;
+    color: #8c857b;
+    letter-spacing: -0.01em;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .cs-brand-name {
+    font-family: var(--font-body);
+    font-size: 16px;
+    font-weight: 600;
+    color: #6b645b;
+    margin-bottom: 8px;
+  }
+
+  .cs-headline {
+    font-family: var(--font-display);
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 800;
+    color: #111111;
+    letter-spacing: -0.03em;
+    line-height: 1.08;
+    margin-bottom: 36px;
+  }
+
+  /* 4-column info cards grid */
+  .cs-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    align-items: stretch;
+  }
+
+  .cs-story-cards {
+    display: contents;
+  }
+
+  @media (max-width: 1100px) {
+    .cs-cards-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .cs-info-card {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 24px 20px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+    border: 1px solid rgba(0, 0, 0, 0.04);
+  }
+
+  .cs-info-card h4 {
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 700;
+    color: #e62e2d;
+    margin-bottom: 14px;
+  }
+
+  .cs-info-card p {
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.6;
+    color: #4a453e;
+  }
+
+  .cs-stat-block {
+    padding: 24px 12px;
+  }
+
+  .cs-stat-block h4 {
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 700;
+    color: #e62e2d;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .cs-big-number {
+    font-family: var(--font-display);
+    font-size: clamp(56px, 6vw, 90px);
+    font-weight: 800;
+    color: #e62e2d;
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+    margin-bottom: 16px;
+  }
+
+  .cs-stat-block p {
+    font-family: var(--font-body);
+    font-size: 14px;
+    line-height: 1.5;
+    color: #6b645b;
+  }
+
+  @media (max-width: 900px) {
+    .modal-overlay {
+      z-index: 2300;
+      background: #fbfaf7;
+      backdrop-filter: none;
+    }
+
+    .modal-overlay .fullscreen-mac-window {
+      position: relative;
+      width: 100vw;
+      height: 100svh;
+      min-height: 100svh;
+      border: 0;
+      border-radius: 0;
+      background: #fbfaf7;
+      box-shadow: none;
+    }
+
+    .modal-overlay .fullscreen-window-header {
+      display: none;
+    }
+
+    .mobile-modal-nav {
+      position: absolute;
+      inset: 27px 24px auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 30;
+      pointer-events: none; /* Let clicks pass through empty space */
+    }
+
+    .mobile-modal-nav > * {
+      pointer-events: auto; /* Re-enable clicks on buttons and title */
+    }
+
+    .mobile-modal-nav button {
+      appearance: none;
+      display: grid;
+      place-items: center;
+      width: 50px;
+      height: 50px;
+      padding: 0;
+      border: 1px solid rgba(117, 106, 91, 0.14);
+      border-radius: 50%;
+      background: #faf8f3;
+      color: #9b9b98;
+      box-shadow: 0 2px 8px rgba(57, 49, 36, 0.04);
+      cursor: pointer;
+    }
+
+    .mobile-nav-back svg {
+      width: 25px;
+      height: 25px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .mobile-nav-title {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .mobile-nav-title svg {
+      width: 16px;
+      height: 16px;
+      opacity: 0.5;
+    }
+
+    .mobile-nav-more {
+      display: flex !important;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+    }
+    .mobile-nav-more i {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: currentColor;
+    }
+
+    #modal-page-principle .fullscreen-window-body {
+      overflow: hidden;
+      background: #fbfaf7;
+    }
+
+    #modal-page-principle .ppl-stage {
+      inset: 0;
+      min-height: 100%;
+      padding: 0;
+      border-radius: 0;
+      background: #fbfaf7;
+      box-shadow: none;
+    }
+
+    #modal-page-principle .ppl-toggle-row {
+      gap: 12px;
+      white-space: nowrap;
+    }
+
+    #modal-page-principle .ppl-copy {
+      font-size: 20px;
+    }
+
+    #modal-page-principle .ppl-stage.is-unlocked:not(.is-expanded) {
+      justify-content: center;
+      padding: 0 0 78px;
+    }
+
+    #modal-page-principle .ppl-stage.is-unlocked.is-expanded {
+      justify-content: center;
+      padding: 0 0 78px;
+    }
+
+    #modal-page-principle .ppl-stage.is-unlocked .ppl-toggle-row {
+      top: auto !important;
+      /* Keep the status control clear of the fixed mobile dock. */
+      bottom: max(78px, calc(60px + env(safe-area-inset-bottom))) !important;
+      transform: translateX(-50%) !important;
+    }
+
+    #modal-page-principle .ppl-stage.is-expanded .ppl-expanded-view {
+      gap: 28px;
+      padding: 55px 0 118px;
+      overflow: hidden;
+      opacity: 1;
+    }
+
+    #modal-page-principle .ppl-stage.is-expanded .ppl-exp-hero {
+      width: min(350px, calc(100vw - 40px));
+      flex: 0 0 auto;
+    }
+
+    #modal-page-principle .ppl-stage.is-expanded .ppl-exp-title {
+      margin-bottom: 18px;
+      color: rgba(177, 169, 158, 0.2);
+      font-size: clamp(42px, 11vw, 58px);
+      line-height: 0.96;
+    }
+
+    #modal-page-principle .ppl-stage.is-expanded .ppl-exp-subtitle {
+      color: rgba(23, 23, 23, 0.52);
+      font-size: 16px;
+      line-height: 1.35;
+    }
+
+    #modal-page-principle .ppl-stage.is-expanded .ppl-exp-grid {
+      display: flex;
+      flex: 0 0 auto;
+      gap: 26px;
+      width: 100vw;
+      max-width: none;
+      padding: 0 52px;
+      scroll-padding-left: 52px;
+      overflow-x: auto;
+      overflow-y: visible;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+      touch-action: pan-x;
+    }
+
+    #modal-page-principle
+      .ppl-stage.is-expanded
+      .ppl-exp-grid::-webkit-scrollbar {
+      display: none;
+    }
+
+    #modal-page-principle .ppl-stage.is-expanded .ppl-exp-card {
+      flex: 0 0 min(278px, calc(100vw - 105px));
+      min-height: 310px;
+      padding: 28px 30px;
+      border-radius: 32px;
+      scroll-snap-align: start;
+    }
+
+    #modal-page-principle .ppl-stage.is-expanded .ppl-exp-percent {
+      margin-bottom: 22px;
+      font-size: 56px;
+      font-weight: 400;
+    }
+
+    #modal-page-principle .ppl-stage.is-expanded .ppl-exp-card p {
+      font-size: 18px;
+      line-height: 1.55;
+    }
+
+    #modal-page-principle .ppl-stage.is-expanded .ppl-exp-footer {
+      width: min(350px, calc(100vw - 48px));
+      flex: 0 0 auto;
+      font-size: 15px;
+      line-height: 1.4;
+    }
+
+    #modal-page-principle .ppl-stage.is-expanded .ppl-toggle-row {
+      top: auto !important;
+      bottom: 24px !important;
+    }
+
+    #modal-page-cases .fullscreen-window-body.cases-grid-body {
+      padding: 180px 24px 170px;
+      overflow-y: auto;
+    }
+
+    #modal-page-cases .mobile-cases-search {
+      position: absolute;
+      top: 100px;
+      left: 24px;
+      right: 24px;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      gap: 0;
+      height: 48px;
+      padding: 0 16px;
+      border-radius: 24px;
+      background: #f7f3eb;
+      border: 1px solid rgba(0, 0, 0, 0.06);
+    }
+
+    #modal-page-cases .mobile-cases-search svg {
+      width: 18px;
+      height: 18px;
+      margin-right: 10px;
+      flex: 0 0 auto;
+      fill: none;
+      stroke: #aaa9a6;
+      stroke-width: 2.2;
+      stroke-linecap: round;
+    }
+
+    #modal-page-cases .mobile-cases-search input {
+      min-width: 0;
+      width: 100%;
+      border: 0;
+      outline: 0;
+      background: transparent;
+      color: #555;
+      font: 16px var(--font-body);
+    }
+
+    #modal-page-cases .mobile-cases-search input::placeholder {
+      color: #aaa9a6;
+    }
+
+    #modal-page-cases.is-detail .mobile-cases-search {
+      display: none;
+    }
+
+    #modal-page-cases .cases-document-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 48px 36px;
+    }
+
+    #modal-page-cases .case-doc-item {
+      gap: 12px;
+      padding: 0;
+    }
+    #modal-page-cases .case-doc-icon {
+      width: 88px;
+      height: 104px;
+      border-radius: 16px;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.06);
+    }
+    #modal-page-cases .case-doc-icon svg {
+      width: 48px;
+      height: 56px;
+    }
+    #modal-page-cases .case-doc-label {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-primary);
+      white-space: nowrap;
+    }
+
+    #modal-page-cases .cases-detail-view {
+      display: flex !important;
+      position: relative;
+      padding: 0 0 120px;
+      overflow: hidden;
+    }
+
+    #modal-page-cases .cs-subtab-bar,
+    #modal-page-cases .cs-sidebar {
+      display: none;
+    }
+
+    #modal-page-cases .cs-detail-layout {
+      display: block;
+      min-height: 0;
+      overflow: hidden;
+    }
+
+    #modal-page-cases .cs-main-content {
+      height: 100%;
+      padding: 100px 0 120px;
+      overflow-x: hidden;
+      overflow-y: auto;
+      scrollbar-width: none;
+    }
+
+    #modal-page-cases .cs-main-content::-webkit-scrollbar {
+      display: none;
+    }
+
+    #modal-page-cases .cs-pane {
+      width: 100%;
+      overflow: hidden;
+    }
+
+    #modal-page-cases .cs-category-label {
+      margin: 0 32px 24px;
+      font-size: 20px;
+      line-height: 1.05;
+      color: #92918f;
+    }
+
+    #modal-page-cases .cs-brand-name {
+      display: none;
+    }
+
+    #modal-page-cases .cs-headline {
+      margin: 0 32px 42px;
+      font-size: clamp(34px, 5.8vw, 44px);
+      line-height: 0.98;
+      letter-spacing: -0.045em;
+    }
+
+    #modal-page-cases .cs-cards-grid {
+      display: block;
+      width: 100%;
+      min-width: 0;
+    }
+
+    #modal-page-cases .cs-story-cards {
+      display: flex;
+      gap: 30px;
+      width: 100%;
+      padding: 0 36px;
+      overflow-x: scroll;
+      overflow-y: hidden;
+      scrollbar-width: none;
+      scroll-snap-type: x mandatory;
+      scroll-padding-inline: 36px;
+      -webkit-overflow-scrolling: touch;
+      touch-action: pan-x;
+    }
+
+    #modal-page-cases .cs-story-cards::-webkit-scrollbar {
+      display: none;
+    }
+
+    #modal-page-cases .cs-info-card {
+      flex: 0 0 72vw;
+      min-height: 0;
+      padding: 36px 30px;
+      border: 0;
+      border-radius: 64px;
+      background: #f7f3ed;
+      box-shadow: none;
+      scroll-snap-align: start;
+    }
+
+    #modal-page-cases .cs-info-card h4 {
+      margin-bottom: 44px;
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+    #modal-page-cases .cs-info-card p {
+      font-size: 18px;
+      line-height: 1.35;
+      color: #92918f;
+    }
+
+    #modal-page-cases .cs-stat-block {
+      padding: 72px 22px 0;
+      width: 100%;
+    }
+
+    #modal-page-cases .cs-stat-block h4 {
+      display: none;
+    }
+
+    #modal-page-cases .cs-big-number {
+      margin-bottom: 24px;
+      font-size: clamp(76px, 15vw, 120px);
+      font-weight: 400;
+      line-height: 0.9;
+    }
+
+    #modal-page-cases .cs-stat-block p {
+      font-size: clamp(20px, 3.8vw, 30px);
+      line-height: 1.35;
+      color: #92918f;
+    }
+
+    #modal-page-principle .ppl-stage.is-unlocked .ppl-content {
+      gap: 20px;
+      padding: 0 18px;
+      transform: translateY(0) !important;
+    }
+
+    #modal-page-principle .ppl-stage.is-unlocked .ppl-watermark {
+      width: min(350px, 90vw);
+      color: rgba(177, 169, 158, 0.2);
+      font-size: clamp(42px, 10.5vw, 58px);
+      line-height: 0.95;
+    }
+
+    #modal-page-principle .ppl-stage.is-unlocked .ppl-visual-wrap {
+      gap: 55px;
+      isolation: isolate;
+    }
+
+    #modal-page-principle .ppl-stage.is-unlocked .ppl-cards {
+      width: min(370px, 86vw);
+      height: 185px;
+      z-index: 1;
+    }
+
+    #modal-page-principle .ppl-stage.is-unlocked .ppl-card {
+      width: clamp(110px, 30vw, 145px);
+      height: auto;
+      inset: auto;
+      border-radius: 0;
+      box-shadow: none;
+    }
+
+    #modal-page-principle .ppl-stage.is-unlocked .ppl-card-a {
+      left: 0;
+      top: 40px;
+      transform: none;
+    }
+    #modal-page-principle .ppl-stage.is-unlocked .ppl-card-b {
+      left: 16%;
+      top: 20px;
+      transform: none;
+    }
+    #modal-page-principle .ppl-stage.is-unlocked .ppl-card-c {
+      left: 32%;
+      top: 0;
+      transform: none;
+    }
+    #modal-page-principle .ppl-stage.is-unlocked .ppl-card-d {
+      left: 48%;
+      top: 20px;
+      transform: none;
+    }
+    #modal-page-principle .ppl-stage.is-unlocked .ppl-card-e {
+      right: 0;
+      top: 40px;
+      transform: none;
+    }
+
+    #modal-page-principle .ppl-stage.is-selecting .ppl-cards {
+      width: min(390px, 88vw);
+      height: 145px;
+    }
+
+    #modal-page-principle .ppl-stage.is-selecting .ppl-card {
+      width: clamp(72px, 19vw, 94px);
+      top: 16px;
+      right: auto;
+      transform: none;
+      cursor: pointer;
+      pointer-events: auto;
+    }
+
+    #modal-page-principle .ppl-stage.is-selecting .ppl-card-a {
+      left: 0;
+    }
+    #modal-page-principle .ppl-stage.is-selecting .ppl-card-c {
+      left: 32%;
+    }
+    #modal-page-principle .ppl-stage.is-selecting .ppl-card-d {
+      left: 64%;
+    }
+    #modal-page-principle .ppl-stage.is-selecting .ppl-card-e {
+      left: auto;
+      right: 0;
+    }
+
+    #modal-page-principle .ppl-stage.is-unlocked .ppl-expand-btn {
+      position: relative;
+      z-index: 100;
+      isolation: isolate;
+      margin-top: 0;
+      padding: 11px 23px;
+      font-size: 15px;
+    }
+
+    #modal-page-principle .ppl-stage.is-unlocked .ppl-toggle-row {
+      top: auto !important;
+      bottom: 24px !important;
+      transform: translateX(-50%) !important;
+    }
+  }
+
+  /* Framework Mobile Grid View */
+  .fw-mobile-grid-view {
+    display: none;
+    padding: 100px 24px 40px;
+    height: 100%;
+    overflow-y: auto;
+  }
+
+  .fw-search-bar {
+    position: relative;
+    margin-bottom: 32px;
+  }
+
+  .fw-search-bar svg {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 18px;
+    height: 18px;
+    color: #9b9b98;
+  }
+
+  .fw-search-bar input {
+    width: 100%;
+    height: 48px;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    background: #f7f3eb;
+    border-radius: 24px;
+    padding: 0 16px 0 44px;
+    font-size: 16px;
+    color: var(--text-primary);
+    outline: none;
+  }
+
+  /* Mobile overrides */
+  @media (max-width: 900px) {
+    .fw-mobile-grid-view {
+      display: block;
+    }
+    #fw-desktop-canvas {
+      display: none !important; /* hidden by default on mobile, shown via JS */
+      flex-direction: column;
+      padding: 100px 24px 40px;
+      overflow-y: auto;
+    }
+
+    /* Detail View Active State */
+    #modal-page-framework.is-mobile-detail .fw-mobile-grid-view {
+      display: none !important;
+    }
+    #modal-page-framework.is-mobile-detail #fw-desktop-canvas {
+      display: flex !important;
+    }
+    .fw-sidebar {
+      display: none !important; /* hide sidebar on mobile */
+    }
+    .fw-watermark {
+      position: relative !important;
+      right: auto !important;
+      bottom: auto !important;
+      align-items: flex-start !important;
+      margin-top: 60px;
+      margin-bottom: 60px;
+      opacity: 0.6;
+      order: 3;
+    }
+    .fw-watermark-text {
+      text-align: left !important;
+      font-size: 24px !important;
+      color: rgba(91, 81, 70, 0.7) !important;
+    }
+
+    .fw-popover-card {
+      position: relative !important;
+      left: 0 !important;
+      top: 0 !important;
+      transform: none !important;
+      width: 100% !important;
+      padding: 32px 24px !important;
+      background: #f1efe9 !important;
+      border-radius: 24px !important;
+      box-shadow: none !important;
+      border: none !important;
+      display: none; /* hide inactive cards */
+      order: 1;
+    }
+    .fw-popover-card.is-active {
+      display: block;
+    }
+    .fw-popover-arrow,
+    .fw-pop-close {
+      display: none !important; /* hide arrow and desktop close button */
+    }
+
+    .fw-pop-body {
+      margin-bottom: 24px;
+    }
+  }
+
+  .mobile-modal-nav button svg {
+    pointer-events: none;
+  }
+
+  #modal-page-cases .mobile-nav-title {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+  }
+
+  #modal-page-cases .mobile-nav-title .dropdown-caret {
+    display: block !important;
+    width: 12px !important;
+    height: 12px !important;
+    flex: 0 0 12px;
+    opacity: 0.65;
+  }
+
+  .mobile-nav-back svg {
+    width: 25px;
+    height: 25px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  @media (min-width: 901px) {
+    .mobile-modal-nav {
+      display: none !important;
+    }
+
+    /* Desktop framework cards stay beside the sidebar at one shared top position. */
+    #modal-page-framework .fw-popover-card {
+      top: 30px;
+      left: 140px;
+      transform: scale(0.95);
+      transform-origin: left top;
+    }
+
+    #modal-page-framework .fw-popover-card.is-active {
+      transform: scale(1);
+    }
+
+    #modal-page-framework .fw-popover-arrow {
+      top: var(--fw-arrow-top, 40px);
+      transform: translateY(-50%) rotate(45deg);
+    }
+  }
+
+  /* Keep the principle experience as one centered composition. The insight
+     view is removed from layout until a card is selected. */
+  #modal-page-principle .ppl-expanded-view {
+    display: none;
+  }
+
+  #modal-page-principle .ppl-stage.is-expanded .ppl-expanded-view {
+    display: flex;
+  }
+
+  #modal-page-principle .ppl-stage.is-unlocked {
+    justify-content: center !important;
+    padding: 0 !important;
+  }
+
+  /* Once unlocked, the same switch becomes the visible status control below
+     the Expand button (or below the expanded insight view). */
+  #modal-page-principle .ppl-stage.is-unlocked .ppl-toggle-row {
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    transform: none !important;
+    margin: 22px 0 0 !important;
+    z-index: 10;
+  }
+
+  .principle-tabbar {
+    display: flex;
+    align-items: flex-end;
+    gap: 4px;
+  }
+
+  .principle-tab {
+    appearance: none;
+    border: 1px solid transparent;
+    border-bottom: 0;
+    border-radius: 10px 10px 0 0;
+    padding: 7px 11px;
+    background: transparent;
+    color: rgba(82, 75, 68, 0.6);
+    font: 500 12px/1 var(--font-body);
+    cursor: pointer;
+  }
+
+  .principle-tab.is-active {
+    border-color: rgba(115, 104, 91, 0.14);
+    background: rgba(255, 255, 255, 0.68);
+    color: var(--text-primary);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  }
+
+  #modal-page-framework .fw-experience-panel {
+    flex: 1;
+    display: grid;
+    place-items: center;
+    padding: 48px;
+  }
+
+  #modal-page-framework .fw-experience-panel[hidden] {
+    display: none;
+  }
+
+  #modal-page-framework .fw-experience-card {
+    width: min(840px, 100%);
+    padding: 28px 32px;
+    color: rgba(23, 23, 23, 0.78);
+    font: 15px/1.5 var(--font-body);
+  }
+
+  .fw-experience-card p {
+    margin: 0 0 12px;
+  }
+
+  .fw-experience-eyebrow {
+    color: var(--brand-red);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .fw-experience-question {
+    color: var(--text-primary);
+  }
+
+  .fw-experience-link {
+    appearance: none;
+    border: 0;
+    padding: 0;
+    background: transparent;
+    color: var(--brand-red);
+    font: inherit;
+    cursor: pointer;
+  }
+
+  .fw-experience-link:hover {
+    color: var(--text-primary);
+  }
+
+  #modal-page-framework.is-experience-tab #fw-desktop-canvas,
+  #modal-page-framework.is-experience-tab #fw-mobile-grid {
+    display: none !important;
+  }
+
+  #modal-page-framework.is-experience-tab .fw-experience-panel {
+    display: grid !important;
+  }
+
+  /* About Us — quiet editorial content on the shared translucent surface. */
+  #modal-page-about .about-window-body {
+    display: grid;
+    grid-template-columns: minmax(250px, 30%) minmax(0, 1fr);
+    gap: clamp(28px, 4vw, 54px);
+    padding: 18px 24px 72px;
+    overflow-y: auto;
+    background:
+      radial-gradient(
+        circle at 14% 82%,
+        rgba(194, 220, 205, 0.28),
+        transparent 26%
+      ),
+      radial-gradient(
+        circle at 87% 22%,
+        rgba(235, 211, 197, 0.3),
+        transparent 26%
+      ),
+      /* Keep the frosted treatment, but prevent the desktop cards from showing
+         through the About page content on deployed/mobile renders. */
+      rgba(250, 248, 243, 0.82) !important;
+  }
+
+  #modal-page-about .about-editorial-content {
+    width: 100%;
+    align-self: start;
+    padding: clamp(34px, 5vw, 70px) 24px 28px 0;
+  }
+
+  #modal-page-about .about-editorial-content h1 {
+    margin: 0 0 14px;
+    color: var(--text-primary);
+    font-family: var(--font-display);
+    font-size: clamp(28px, 3vw, 46px);
+    font-weight: 500;
+    letter-spacing: -0.05em;
+    line-height: 1.03;
+  }
+
+  #modal-page-about .about-editorial-content p {
+    margin: 0;
+    color: rgba(33, 33, 31, 0.76);
+    font-family: var(--font-body);
+    font-size: clamp(14px, 1.1vw, 16px);
+    line-height: 1.65;
+  }
+
+  #modal-page-about .about-editorial-content > p {
+    margin-bottom: 30px;
+  }
+
+  #modal-page-about .about-editorial-content section {
+    margin-top: 28px;
+  }
+
+  #modal-page-about .about-editorial-content h2,
+  #modal-page-about .about-design-heading h2 {
+    margin: 0 0 8px;
+    color: var(--brand-red);
+    font-family: var(--font-body);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  #modal-page-about .about-editorial-content em,
+  #modal-page-about .about-design-section .about-design-kicker {
+    display: block;
+    margin-bottom: 16px;
+    color: rgba(40, 40, 38, 0.48);
+    font-family: var(--font-display);
+    font-size: 14px;
+  }
+
+  #modal-page-about .about-editorial-content section p + p {
+    margin-top: 14px;
+  }
+
+  /* What We Design — a quiet, sequential experience map inside the editorial flow. */
+  #modal-page-about .about-design-section {
+    margin: 42px 0 0;
+  }
+
+  #modal-page-about .about-design-heading {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  #modal-page-about .about-design-badge {
+    padding: 5px 8px 4px;
+    border: 1px solid rgba(230, 46, 45, 0.24);
+    border-radius: 999px;
+    color: var(--brand-red);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  #modal-page-about .about-design-section > p:not(.about-design-kicker) {
+    margin-bottom: 14px;
+  }
+
+  #modal-page-about .about-design-sequence {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(
+        0,
+        1fr
+      );
+    align-items: stretch;
+    gap: 10px;
+    margin-top: 22px;
+  }
+
+  #modal-page-about .about-design-step {
+    display: flex;
+    min-height: 92px;
+    flex-direction: column;
+    justify-content: center;
+    padding: 16px 14px;
+    border: 1px solid rgba(115, 104, 91, 0.14);
+    border-radius: 16px;
+    background: rgba(250, 248, 243, 0.62);
+  }
+
+  #modal-page-about .about-design-step span {
+    margin-bottom: 10px;
+    color: var(--brand-red);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  #modal-page-about .about-design-step strong {
+    color: rgba(33, 33, 31, 0.72);
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.35;
+  }
+
+  #modal-page-about .about-design-arrow {
+    align-self: center;
+    color: var(--brand-red);
+    font-size: 20px;
+  }
+
+  #modal-page-about .about-design-section blockquote {
+    margin: 16px 0 0;
+    padding: 14px 16px;
+    border-left: 2px solid var(--brand-red);
+    border-radius: 0 10px 10px 0;
+    background: rgba(246, 242, 236, 0.74);
+    color: rgba(33, 33, 31, 0.76);
+    font-family: var(--font-display);
+    font-size: 17px;
+    line-height: 1.35;
+  }
+
+  /* About Us uses the same quiet browser-tab treatment as the 1% window. */
+  .about-tabbar {
+    display: flex;
+    align-items: flex-end;
+    gap: 4px;
+  }
+
+  .about-tab {
+    appearance: none;
+    border: 1px solid transparent;
+    border-bottom: 0;
+    border-radius: 10px 10px 0 0;
+    padding: 7px 11px;
+    background: transparent;
+    color: rgba(82, 75, 68, 0.6);
+    font: 500 12px/1 var(--font-body);
+    cursor: pointer;
+  }
+
+  .about-tab.is-active {
+    border-color: rgba(115, 104, 91, 0.14);
+    background: rgba(255, 255, 255, 0.68);
+    color: var(--text-primary);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  }
+
+  #modal-page-about .about-window-body.is-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 42px 72px;
+  }
+
+  #modal-page-about .about-window-body.is-info .about-story-panel,
+  #modal-page-about .about-window-body.is-info .about-editorial-content {
+    display: none;
+  }
+
+  .about-info-pane {
+    width: min(760px, 100%);
+    color: rgba(23, 23, 23, 0.78);
+    font: 15px/1.5 var(--font-body);
+  }
+
+  .about-info-pane p {
+    margin: 0 0 14px;
+  }
+
+  .about-info-eyebrow {
+    color: var(--brand-red);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .about-practice-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .about-info-closing {
+    margin-top: 26px !important;
+    color: var(--brand-red);
+    font-family: var(--font-display, serif);
+    font-style: italic;
+  }
+
+  @media (max-width: 700px) {
+    #modal-page-about .about-window-body {
+      grid-template-columns: 1fr;
+      padding: 18px 14px 88px;
+      background-color: rgba(250, 248, 243, 0.86) !important;
+    }
+
+    #modal-page-about .about-editorial-content {
+      padding: 10px 8px 0;
+    }
+
+    #modal-page-about .about-design-section {
+      padding: 0px;
+    }
+
+    #modal-page-about .about-design-sequence {
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+
+    #modal-page-about .about-design-arrow {
+      justify-self: center;
+      line-height: 1;
+      transform: rotate(90deg);
+    }
+
+    #modal-page-about .about-window-body.is-info {
+      padding: 0 20px 88px;
+    }
+  }
+
+  /* Responsive page pass: every desktop page remains a complete, scrollable
+     mobile page instead of relying on the desktop canvas dimensions. */
+  @media (max-width: 900px) {
+    .modal-overlay .fullscreen-mac-window {
+      width: 100vw !important;
+      height: 100svh !important;
+      min-height: 100svh !important;
+      max-height: none !important;
+    }
+
+    .modal-overlay .fullscreen-window-body {
+      min-height: 0;
+      overflow-x: hidden;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    #modal-page-mission .fullscreen-window-body {
+      padding-top: 74px;
+    }
+
+    #modal-page-mission .mission-full-content {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      height: auto;
+      min-height: 100%;
+      padding: 28px 22px 112px;
+    }
+
+    #modal-page-mission .mission-main-title {
+      margin-bottom: 20px;
+      font-size: clamp(38px, 11vw, 54px);
+      line-height: 0.98;
+    }
+
+    #modal-page-mission .mission-lead-p {
+      font-size: 19px;
+      line-height: 1.4;
+    }
+
+    #modal-page-mission .mission-secondary-p {
+      font-size: 16px;
+      line-height: 1.5;
+      margin-bottom: 10px;
+    }
+
+    #modal-page-mission .practice-bullets {
+      gap: 14px;
+    }
+
+    #modal-page-mission .practice-bullets li {
+      font-size: 15px;
+      line-height: 1.35;
+    }
+
+    #modal-page-mission .watermark-column {
+      min-height: 260px;
+      align-items: flex-start;
+      justify-content: flex-start;
+      margin-top: 32px;
+      margin-bottom: 60px;
+      padding: 0px 10px;
+      background: #00000000;
+    }
+
+    #modal-page-mission .glowing-bulb-container {
+      width: 40px;
+      height: 40px;
+      margin: 0px 0px 15px;
+    }
+
+    #modal-page-mission .bulb-icon {
+      font-size: 40px;
+    }
+
+    #modal-page-mission .watermark-typography {
+      max-width: 260px;
+      font-size: 24px;
+      font-weight: 500;
+      line-height: 1.02;
+      color: rgba(91, 81, 70, 0.7);
+      text-align: left;
+    }
+
+    #modal-page-cases .fullscreen-window-body.cases-grid-body {
+      flex: 1 1 auto !important;
+      width: 100% !important;
+      min-height: 0 !important;
+      box-sizing: border-box !important;
+      padding: 156px 18px 112px !important;
+      overflow-y: auto !important;
+    }
+
+    #modal-page-cases .cases-document-grid {
+      width: 100% !important;
+      min-height: 100% !important;
+      align-content: space-evenly !important;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 28px 16px;
+    }
+
+    #modal-page-cases .case-doc-item {
+      min-width: 0;
+    }
+
+    #modal-page-cases .case-doc-label {
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    #modal-page-cases .cs-main-content {
+      padding-top: 90px;
+    }
+
+    #modal-page-cases .cs-headline {
+      margin-right: 22px;
+      margin-left: 22px;
+      font-size: clamp(34px, 10vw, 50px);
+    }
+
+    #modal-page-cases .cs-story-cards {
+      padding-right: 22px;
+      padding-left: 22px;
+    }
+
+    #modal-page-framework .fw-mobile-grid-view {
+      height: auto;
+      min-height: 100%;
+      padding: 96px 20px 112px;
+    }
+
+    #modal-page-framework .cases-document-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 26px 14px;
+    }
+
+    #modal-page-framework #fw-desktop-canvas {
+      min-height: 100%;
+      padding: 96px 20px 112px;
+      overflow-y: auto;
+    }
+
+    #modal-page-framework .fw-popover-card {
+      padding: 28px 20px !important;
+    }
+
+    #modal-page-framework .fw-popover-card h3 {
+      font-size: 29px;
+    }
+
+    #modal-page-framework .fw-pop-body,
+    #modal-page-framework .fw-pop-list {
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    #modal-page-framework .fw-experience-panel {
+      min-height: 100%;
+      padding: 96px 20px 112px;
+    }
+
+    #modal-page-capabilities .capabilities-window-body {
+      padding: 78px 16px 112px;
+    }
+
+    #modal-page-capabilities .capabilities-canvas {
+      padding-top: 20px;
+    }
+
+    #modal-page-capabilities .capabilities-intro h1 {
+      font-size: clamp(32px, 9vw, 48px);
+      line-height: 1;
+    }
+
+    #modal-page-capabilities .capabilities-controls {
+      position: sticky;
+      top: 0;
+      z-index: 4;
+      padding: 8px 0 12px;
+      background: rgba(251, 250, 247, 0.94);
+      backdrop-filter: blur(12px);
+    }
+
+    #modal-page-capabilities .capability-row-heading strong {
+      font-size: 17px;
+    }
+
+    #modal-page-capabilities .capability-row-detail {
+      padding-right: 18px;
+      padding-left: 52px;
+      font-size: 14px;
+    }
+
+    #modal-page-about .about-window-body {
+      display: block;
+      min-height: 100%;
+      padding: 132px 16px 112px !important;
+    }
+
+    #modal-page-about .about-story-panel {
+      padding: 28px 20px;
+      border-radius: 24px;
+    }
+
+    #modal-page-about .about-story-title {
+      font-size: clamp(44px, 14vw, 64px);
+    }
+
+    #modal-page-about .about-story-label {
+      min-height: 52px;
+      font-size: 18px;
+    }
+
+    #modal-page-about .about-belief {
+      font-size: clamp(30px, 9vw, 46px);
+    }
+
+    #modal-page-about .about-editorial-content {
+      padding: 36px 8px 0;
+    }
+
+    #modal-page-about .about-editorial-content h1 {
+      font-size: clamp(32px, 9vw, 48px);
+    }
+
+    #modal-page-about .about-editorial-content p {
+      font-size: 15px;
+      line-height: 1.55;
+    }
+
+    #modal-page-about .about-window-body.is-info {
+      display: flex;
+      min-height: 100%;
+      padding: 132px 22px 112px !important;
+    }
+
+    #modal-page-where .where-window-body {
+      overflow: auto;
+      padding: 76px 12px 112px;
+    }
+
+    #modal-page-where .where-canvas {
+      flex: 0 0 auto;
+      width: 100%;
+      min-height: 760px;
+      transform: none;
+      margin: 0;
+    }
+
+    #modal-page-where .where-sector-filters {
+      left: 50%;
+      bottom: 20%;
+      width: calc(100% - 24px);
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 5px;
+      row-gap: 7px;
+      white-space: normal;
+    }
+
+    #modal-page-where .where-sector-filters button {
+      padding: 9px 12px;
+      font-size: 12px;
+    }
+
+    #modal-page-where .where-file-icon {
+      width: 68px;
+      height: 82px;
+    }
+
+    #modal-page-where .where-file-icon::before {
+      width: 19px;
+      height: 18px;
+    }
+
+    #modal-page-where .where-file-body {
+      padding: 10px 6px 6px;
+    }
+
+    #modal-page-where .where-logo {
+      width: 56px;
+      height: 48px;
+    }
+
+    #modal-page-where .where-client-card {
+      gap: 6px;
+      z-index: 4;
+    }
+
+    #modal-page-where .where-client-label {
+      max-width: 92px;
+      font-size: 10px;
+      line-height: 1.15;
+      text-align: center;
+    }
+
+    #modal-page-where .where-godrej {
+      left: 4%;
+      top: 10%;
+    }
+
+    #modal-page-where .where-fabindia {
+      right: 8%;
+      top: 7%;
+    }
+
+    #modal-page-where .where-fctrylab {
+      right: 40%;
+      top: 4%;
+    }
+
+    #modal-page-where .where-best-western-plus {
+      left: 8%;
+      top: 49%;
+    }
+
+    #modal-page-where .where-jacobs {
+      right: 8%;
+      top: 49%;
+    }
+
+    #modal-page-where .where-orbit-field {
+      top: 38%;
+      width: min(270px, 76vw);
+      height: min(270px, 76vw);
+    }
+
+    #modal-page-where .where-dot {
+      width: 18px;
+      height: 18px;
+    }
+
+    #modal-page-where .where-dot:hover,
+    #modal-page-where .where-dot.is-selected {
+      width: 24px;
+      height: 24px;
+    }
+
+    #modal-page-where .where-country-tag {
+      padding: 6px 10px;
+      font-size: 12px;
+    }
+
+    #modal-page-principle .ppl-stage {
+      overflow-y: auto;
+      padding: 76px 18px 112px !important;
+    }
+
+    #modal-page-principle .ppl-stage.is-unlocked {
+      padding-bottom: 112px !important;
+    }
+
+    #modal-page-principle .ppl-stage.is-unlocked .ppl-orbit-art {
+      width: min(340px, 88vw);
+      height: min(340px, 88vw);
+    }
+
+    #modal-page-principle .principle-tabbar {
+      max-width: calc(100vw - 120px);
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    #modal-page-principle .principle-tabbar::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* Keep the unlocked card fan grouped like the desktop composition. */
+    #modal-page-principle .ppl-stage.is-unlocked .ppl-cards {
+      width: min(350px, calc(100vw - 40px));
+      height: 190px;
+    }
+
+    #modal-page-principle .ppl-stage.is-unlocked .ppl-card {
+      width: 108px;
+      height: 108px;
+      inset: auto;
+      border-radius: 0;
+      box-shadow: none;
+    }
+
+    #modal-page-principle .ppl-stage.is-unlocked .ppl-card-a {
+      left: 7%;
+      top: 56px;
+      transform: rotate(-34deg);
+    }
+
+    #modal-page-principle .ppl-stage.is-unlocked .ppl-card-c {
+      left: 27%;
+      top: 24px;
+      transform: rotate(-16deg);
+    }
+
+    #modal-page-principle .ppl-stage.is-unlocked .ppl-card-d {
+      left: 47%;
+      top: 24px;
+      transform: rotate(16deg);
+    }
+
+    #modal-page-principle .ppl-stage.is-unlocked .ppl-card-e {
+      right: 7%;
+      top: 56px;
+      transform: rotate(34deg);
+    }
+
+    /* Expanded cards follow the desktop selection row on small screens. */
+    #modal-page-principle .ppl-stage.is-selecting .ppl-cards {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      align-items: center;
+      justify-items: center;
+      column-gap: 8px;
+      width: min(360px, calc(100vw - 36px));
+      height: 150px;
+    }
+
+    #modal-page-principle .ppl-stage.is-selecting .ppl-card {
+      position: relative;
+      inset: auto !important;
+      width: clamp(72px, 21vw, 92px);
+      height: auto;
+      transform: none !important;
+    }
+
+    :global(.mobile-tab-menu) {
+      position: absolute;
+      top: 72px;
+      left: 50%;
+      z-index: 90;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      min-width: 190px;
+      max-width: calc(100vw - 40px);
+      padding: 8px;
+      transform: translateX(-50%);
+      border: 1px solid rgba(117, 106, 91, 0.14);
+      border-radius: 18px;
+      background: rgba(251, 250, 247, 0.98);
+      box-shadow: 0 14px 36px rgba(57, 49, 36, 0.16);
+      pointer-events: auto;
+    }
+
+    :global(.mobile-tab-menu[hidden]) {
+      display: none;
+    }
+
+    :global(.mobile-tab-menu-item) {
+      width: 100% !important;
+      height: auto !important;
+      min-height: 42px;
+      justify-content: flex-start !important;
+      padding: 10px 14px !important;
+      border: 0 !important;
+      border-radius: 12px !important;
+      background: transparent !important;
+      box-shadow: none !important;
+      color: var(--text-primary) !important;
+      font: 500 14px/1.2 var(--font-body) !important;
+      text-align: left;
+    }
+
+    :global(.mobile-tab-menu-item.is-active),
+    :global(.mobile-tab-menu-item:active) {
+      background: #ece9e1 !important;
+    }
+
+    .mobile-nav-title {
+      max-width: calc(100vw - 170px);
+      white-space: nowrap;
+      font-size: 16px;
+    }
+
+    /* Keep scrolling content behind an opaque, glassy mobile page bar. */
+    .mobile-modal-nav {
+      inset: 0 0 auto !important;
+      min-height: 72px;
+      padding: 11px 16px;
+      background: rgba(251, 250, 247, 0.96);
+      border-bottom: 1px solid rgba(117, 106, 91, 0.08);
+      -webkit-backdrop-filter: blur(16px);
+      backdrop-filter: blur(16px);
+    }
+
+    #modal-page-principle .ppl-watermark,
+    #modal-page-principle .ppl-stage.is-expanded .ppl-exp-title {
+      /* width: calc(100vw - 24px); */
+      max-width: none;
+      white-space: nowrap;
+      font-size: clamp(24px, 7vw, 31px) !important;
+      letter-spacing: -0.045em;
+    }
+
+    #modal-page-principle .ppl-stage.is-expanded .ppl-expanded-view {
+      padding-top: 100px !important;
+    }
+
+    #modal-page-principle .ppl-stage.is-expanded .ppl-exp-title {
+      color: rgba(177, 169, 158, 0.42) !important;
+    }
+
+    .fullscreen-window-body {
+      min-height: 0;
+      overflow-x: hidden !important;
+      overflow-y: auto !important;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    #modal-page-principle .fullscreen-window-body {
+      min-height: 0 !important;
+      overflow-x: hidden !important;
+      overflow-y: auto !important;
+    }
+
+    /* The Principle modal uses its stage as the mobile scroll container, so
+       every state can move completely above the fixed bottom dock. */
+    #modal-page-principle .ppl-stage {
+      height: 100% !important;
+      min-height: 0 !important;
+      /* The mobile nav overlays the stage; keep the page title below it. */
+      padding-top: 76px !important;
+      /* Reserve a dock-sized scroll area in every Principle state. */
+      padding-bottom: 180px !important;
+      scroll-padding-bottom: 180px;
+      overflow-x: hidden !important;
+      overflow-y: auto !important;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    #modal-page-principle .ppl-stage.is-unlocked {
+      justify-content: flex-start !important;
+      padding-top: 100px !important;
+      padding-bottom: 220px !important;
+    }
+
+    #modal-page-principle .ppl-stage.is-expanded {
+      justify-content: flex-start !important;
+      /* Leave enough scroll clearance for the fixed mobile dock. */
+      padding-bottom: 260px !important;
+      scroll-padding-bottom: 260px;
+    }
+
+    #modal-page-principle .ppl-stage.is-expanded .ppl-expanded-view {
+      overflow: visible !important;
+      /* Let the closing line scroll completely above the fixed bottom dock. */
+      padding-bottom: 20px !important;
+    }
+
+    #modal-page-principle .ppl-stage .ppl-toggle-row {
+      z-index: 30;
+    }
+  }
+</style>

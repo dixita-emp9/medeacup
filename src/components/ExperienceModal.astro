@@ -1,0 +1,1878 @@
+---
+const experienceTabs = [
+  "The Idea",
+  "The Sequence",
+  "Before",
+  "During",
+  "After",
+  "The Preference Loop",
+  "Hospitality",
+  "D2C",
+  "The Commercial Layer",
+];
+
+const sequenceSteps = [
+  {
+    title: "Discover",
+    copy: "What creates attention, relevance and expectation?",
+  },
+  { title: "Choose", copy: "What creates enough trust and conviction to act?" },
+  { title: "Experience", copy: "What makes the choice feel right?" },
+  { title: "Remember", copy: "What becomes part of memory and preference?" },
+  { title: "Return", copy: "What gives someone a reason to choose again?" },
+];
+const hospitalitySteps = [
+  { title: "Discover", copy: "The guest notices a possibility." },
+  { title: "Book", copy: "The promise becomes a commitment." },
+  { title: "Arrive", copy: "The first moments confirm the choice." },
+  { title: "Experience", copy: "The stay becomes a memory." },
+  { title: "Remember", copy: "The details become preference." },
+  { title: "Return", copy: "The experience earns another visit." },
+];
+const d2cSteps = [
+  { title: "Discover", copy: "The product enters consideration." },
+  { title: "Consider", copy: "Relevance earns a closer look." },
+  { title: "Buy", copy: "Trust becomes a transaction." },
+  { title: "Use", copy: "The product proves its promise." },
+  { title: "Trust", copy: "Value becomes a relationship." },
+  { title: "Repeat", copy: "The experience earns recommendation." },
+];
+---
+
+<div class="modal-overlay" id="modal-page-experience">
+  <div class="fullscreen-mac-window experience-window">
+    <div class="mobile-modal-nav">
+      <button
+        type="button"
+        class="mobile-nav-back close-modal-btn"
+        data-close-target="modal-page-experience"
+        aria-label="Back">‹</button
+      >
+      <div class="mobile-nav-title">
+        Experience Design <span class="mobile-nav-chevron" aria-hidden="true"
+          >⌄</span
+        >
+      </div>
+      <button type="button" class="mobile-nav-more" aria-label="More options"
+        ><i></i><i></i><i></i></button
+      >
+    </div>
+    <div class="fullscreen-window-header">
+      <div class="browser-tab-strip" aria-label="Open pages">
+        <button type="button" class="browser-tab is-active"
+          >Experience Design
+          <!-- <span aria-hidden="true">×</span> -->
+        </button>
+      </div>
+      <div class="fullscreen-window-controls">
+        <span
+          class="dot-btn dot-red close-modal-btn"
+          data-close-target="modal-page-experience"></span>
+        <span class="dot-btn dot-cream"></span><span class="dot-btn dot-cream"
+        ></span>
+      </div>
+    </div>
+
+    <div class="experience-grid-view" id="experience-view-grid">
+      <div class="experience-intro">
+        <h1>Design what happens when people choose you.</h1>
+        <h2>A choice is only the beginning.</h2>
+        <p>
+          Someone discovers you. They consider you. They choose you. Then the
+          real experience begins. What happens next can change memory,
+          preference, return, recommendation and revenue. We design that space.
+        </p>
+      </div>
+      <div class="experience-folder-grid cases-document-grid">
+        {
+          experienceTabs.map((name) => (
+            <button
+              class="experience-doc-item case-doc-item"
+              type="button"
+              data-experience-id={name}
+            >
+              <span
+                class="experience-doc-icon case-doc-icon"
+                aria-hidden="true"
+              >
+                <span class="experience-file-glyph" />
+              </span>
+              <span class="experience-doc-label case-doc-label">{name}</span>
+            </button>
+          ))
+        }
+      </div>
+    </div>
+
+    <div class="experience-detail-view" id="experience-view-detail" hidden>
+      <div class="experience-subtab-bar" aria-label="Experience design topics">
+        <button
+          class="experience-back-btn"
+          id="experience-back-to-grid"
+          type="button"
+          aria-label="Back to Experience Design">‹</button
+        >
+        <div class="experience-tab-list">
+          {
+            experienceTabs.map((name, index) => (
+              <button
+                class={`experience-subtab ${index === 0 ? "is-active" : ""}`}
+                type="button"
+                data-experience-tab={name}
+              >
+                {name}
+              </button>
+            ))
+          }
+        </div>
+      </div>
+      <div class="experience-detail-content">
+        <h1 class="cs-headline" id="experience-detail-title">
+          Experience Design
+        </h1>
+        <article
+          class="experience-tab-content"
+          data-experience-content="The Idea"
+          hidden
+        >
+          <p class="experience-idea-eyebrow">The Idea</p>
+          <h2>Experience is not a touchpoint. It is a sequence.</h2>
+          <p>
+            A welcome message on its own is not an experience. A recommendation
+            is not an experience. A beautiful room is not an experience. A great
+            product is not an experience. They become meaningful when they
+            connect — when each one shapes what comes next.
+          </p>
+          <button class="experience-contact-action" type="button">
+            Talk to us about an experience problem <span aria-hidden="true"
+              >→</span
+            >
+          </button>
+          <button class="experience-build-action" data-open-build type="button">
+            Explore <strong>What We Build</strong>
+          </button>
+        </article>
+        <article
+          class="experience-tab-content experience-sequence-content"
+          data-experience-content="The Sequence"
+          hidden
+        >
+          <p class="experience-idea-eyebrow">The Sequence</p>
+          <h2>Each word below is a stage.</h2>
+          <!-- <p>
+            On the site, each word can be clicked to open a small contextual
+            window with the definition.
+          </p> -->
+          <div class="experience-steps" aria-label="The experience sequence">
+            {
+              sequenceSteps.map((step, index) => (
+                <>
+                  <article class="experience-step-card">
+                    <p>{step.title}</p>
+                    <span>{step.copy}</span>
+                  </article>
+                  {index < sequenceSteps.length - 1 && (
+                    <span class="experience-step-arrow" aria-hidden="true">
+                      →
+                    </span>
+                  )}
+                </>
+              ))
+            }
+          </div>
+          <button class="experience-contact-action" type="button"
+            >Talk to us about an experience problem <span aria-hidden="true"
+              >→</span
+            ></button
+          >
+          <button class="experience-build-action" data-open-build type="button"
+            >Explore <strong>What We Build</strong></button
+          >
+        </article>
+        <article
+          class="experience-tab-content experience-stage-content"
+          data-experience-content="Before"
+          hidden
+        >
+          <p class="experience-idea-eyebrow">Before</p>
+          <h2>What creates expectation?</h2>
+          <p>
+            Experience design begins before arrival, purchase or interaction.
+            The signals someone picks up before they commit shape the confidence
+            they carry into the moment of choice.
+          </p>
+          <p class="experience-keywords">
+            Discovery · Context · Trust · Anticipation · Identity
+          </p>
+          <button class="experience-contact-action" type="button"
+            >Talk to us about an experience problem <span aria-hidden="true"
+              >→</span
+            ></button
+          >
+          <button class="experience-build-action" data-open-build type="button"
+            >Explore <strong>What We Build</strong></button
+          >
+        </article>
+        <article
+          class="experience-tab-content experience-stage-content"
+          data-experience-content="During"
+          hidden
+        >
+          <p class="experience-idea-eyebrow">During</p>
+          <h2>What makes the choice feel right?</h2>
+          <p>
+            This is where the brand becomes real. What someone physically or
+            digitally encounters in the moment they are consuming or
+            experiencing the product or service.
+          </p>
+          <p class="experience-keywords">
+            Recognition · Interaction · Product · Service · Ritual · Ease ·
+            Environment
+          </p>
+          <button class="experience-contact-action" type="button"
+            >Talk to us about an experience problem <span aria-hidden="true"
+              >→</span
+            ></button
+          >
+          <button class="experience-build-action" data-open-build type="button"
+            >Explore <strong>What We Build</strong></button
+          >
+        </article>
+        <article
+          class="experience-tab-content experience-stage-content"
+          data-experience-content="After"
+          hidden
+        >
+          <p class="experience-idea-eyebrow">After</p>
+          <h2>What gives them a reason to return?</h2>
+          <p>
+            The experience should not end when the transaction ends. What
+            happens after the sale, the stay, or the delivery is often the
+            moment that decides whether the person returns or disappears.
+          </p>
+          <p class="experience-keywords">
+            Memory · Relevance · Follow-up · Recommendation · Recognition ·
+            Repurchase · Relationship
+          </p>
+          <button class="experience-contact-action" type="button"
+            >Talk to us about an experience problem <span aria-hidden="true"
+              >→</span
+            ></button
+          >
+          <button class="experience-build-action" data-open-build type="button"
+            >Explore <strong>What We Build</strong></button
+          >
+        </article>
+        <article
+          class="experience-tab-content experience-sequence-content"
+          data-experience-content="Hospitality"
+          hidden
+        >
+          <p class="experience-idea-eyebrow">Hospitality</p>
+          <h2>What happens when the guest chooses the hotel again?</h2>
+          <p>
+            The hospitality experience is a sequence that begins long before
+            check-in and continues long after checkout.
+          </p>
+          <div
+            class="experience-steps"
+            aria-label="The hospitality experience sequence"
+          >
+            {
+              hospitalitySteps.map((step, index) => (
+                <>
+                  <article class="experience-step-card">
+                    <>
+                      <p>{step.title}</p>
+                      <span>{step.copy}</span>
+                    </>
+                  </article>
+                  {index < hospitalitySteps.length - 1 && (
+                    <span class="experience-step-arrow" aria-hidden="true">
+                      →
+                    </span>
+                  )}
+                </>
+              ))
+            }
+          </div>
+          <p class="experience-explore-copy">
+            Explore: recognition, rituals, staff knowledge, room details,
+            preferences, pre-arrival signals and post-stay relationship.
+          </p>
+          <button class="experience-contact-action" type="button"
+            >Talk to us about an experience problem <span aria-hidden="true"
+              >→</span
+            ></button
+          >
+          <button class="experience-build-action" data-open-build type="button"
+            >Explore <strong>What We Build</strong></button
+          >
+        </article>
+        <article
+          class="experience-tab-content experience-sequence-content"
+          data-experience-content="D2C"
+          hidden
+        >
+          <p class="experience-idea-eyebrow">D2C</p>
+          <h2>What happens after the customer buys?</h2>
+          <p>
+            The D2C experience determines whether the purchase is the beginning
+            of a relationship or a one-time event.
+          </p>
+          <div
+            class="experience-steps"
+            aria-label="The D2C experience sequence"
+          >
+            {
+              d2cSteps.map((step, index) => (
+                <>
+                  <article class="experience-step-card">
+                    <>
+                      <p>{step.title}</p>
+                      <span>{step.copy}</span>
+                    </>
+                  </article>
+                  {index < d2cSteps.length - 1 && (
+                    <span class="experience-step-arrow" aria-hidden="true">
+                      →
+                    </span>
+                  )}
+                </>
+              ))
+            }
+          </div>
+          <p class="experience-explore-copy">
+            Explore: discovery, product experience, practical relevance, brand
+            trust, repurchase and recommendation.
+          </p>
+          <button class="experience-contact-action" type="button"
+            >Talk to us about an experience problem <span aria-hidden="true"
+              >→</span
+            ></button
+          >
+          <button class="experience-build-action" data-open-build type="button"
+            >Explore <strong>What We Build</strong></button
+          >
+        </article>
+        <article
+          class="experience-tab-content experience-commercial-content"
+          data-experience-content="The Commercial Layer"
+          hidden
+        >
+          <p class="experience-idea-eyebrow">The Commercial Layer</p>
+          <h2>
+            We do not design experiences for applause.<br />We design them to
+            change behaviour.
+          </h2>
+          <p>
+            The commercial outcomes of experience design include direct
+            bookings, conversion, repeat purchase, average spend, retention and
+            referral. The exact metric depends on the business. The principle
+            does not.
+          </p>
+          <button class="experience-contact-action" type="button"
+            >Talk to us about an experience problem <span aria-hidden="true"
+              >→</span
+            ></button
+          >
+          <button class="experience-build-action" data-open-build type="button"
+            >Explore <strong>What We Build</strong></button
+          >
+        </article>
+        <article
+          class="experience-tab-content experience-preference-content"
+          data-experience-content="The Preference Loop"
+          hidden
+        >
+          <p class="experience-idea-eyebrow">The Preference Loop</p>
+          <h2>Every interaction is a chance to learn what someone prefers.</h2>
+          <div class="experience-preference-pointers">
+            <p>
+              <span class="bullet-cup-icon" aria-hidden="true">☕</span><strong
+                >Capture the signal</strong
+              ><span>— what did this person respond to?</span>
+            </p>
+            <p>
+              <span class="bullet-cup-icon" aria-hidden="true">☕</span><strong
+                >Shape the next interaction</strong
+              ><span>— use what you know</span>
+            </p>
+            <p>
+              <span class="bullet-cup-icon" aria-hidden="true">☕</span><strong
+                >Increase relevance</strong
+              ><span>— the experience becomes more personal</span>
+            </p>
+            <p>
+              <span class="bullet-cup-icon" aria-hidden="true">☕</span><strong
+                >Build preference</strong
+              ><span>— familiarity converts to loyalty</span>
+            </p>
+            <p>
+              <span class="bullet-cup-icon" aria-hidden="true">☕</span><strong
+                >Create growth</strong
+              ><span>— preference drives return, referral, revenue</span>
+            </p>
+          </div>
+          <p class="experience-preference-closing">
+            We find the 1% that matters to a person, then design the experience
+            around it.
+          </p>
+          <button class="experience-contact-action" type="button"
+            >Talk to us about an experience problem <span aria-hidden="true"
+              >→</span
+            ></button
+          >
+          <button class="experience-build-action" data-open-build type="button"
+            >Explore <strong>What We Build</strong></button
+          >
+        </article>
+        <button
+          class="experience-contact-action experience-contact-action--fallback"
+          type="button"
+        >
+          Talk to us about an experience problem <span aria-hidden="true"
+            >→</span
+          >
+        </button>
+        <div class="experience-return-note" aria-hidden="true">
+          <svg
+            class="experience-return-icon"
+            viewBox="0 0 32 42"
+            width="32"
+            height="42"
+            style="display: inline-block; width: 32px; height: 42px;"
+            aria-hidden="true"
+          >
+            <defs>
+              <radialGradient
+                id="experience-bulb-glow"
+                cx="50%"
+                cy="35%"
+                r="62%"
+              >
+                <stop offset="0%" stop-color="#fffde7"></stop>
+                <stop offset="68%" stop-color="#fff0a8"></stop>
+                <stop offset="100%" stop-color="#f2c84c"></stop>
+              </radialGradient>
+            </defs>
+            <path
+              d="M16 2.5a11.25 11.25 0 0 0-6.6 20.36c1.52 1.12 2.37 2.7 2.52 4.4h8.16c.15-1.7 1-3.28 2.52-4.4A11.25 11.25 0 0 0 16 2.5Z"
+              fill="url(#experience-bulb-glow)"
+              stroke="#efc34e"
+              stroke-width="1.25"></path>
+            <path
+              d="M12.05 28.1h7.9M12.7 30.65h6.6M13.5 33.15h5"
+              fill="none"
+              stroke="#88827a"
+              stroke-width="1.8"
+              stroke-linecap="round"></path>
+            <path
+              d="M16 0v1.2M3.95 5.1l.85.85M28.05 5.1l-.85.85M1 16h1.2M29.8 16H31"
+              fill="none"
+              stroke="#f1c950"
+              stroke-width="1.5"
+              stroke-linecap="round"></path>
+          </svg>
+          <p>
+            The transaction tells you what they bought. The experience tells you
+            why they might come back.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(16px);
+    z-index: 2000;
+    transition: opacity 0.25s ease;
+  }
+  .modal-overlay.is-open {
+    display: flex;
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .experience-window .mobile-modal-nav {
+    display: none;
+  }
+  .experience-window .fullscreen-window-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 20px;
+  }
+  .experience-window .fullscreen-window-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .experience-window .dot-btn {
+    position: relative;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    cursor: pointer;
+  }
+  .experience-window .dot-btn::after {
+    content: "";
+    position: absolute;
+    inset: 6px;
+    border-radius: 50%;
+    background: currentColor;
+  }
+  .experience-window .dot-red {
+    color: var(--brand-red);
+  }
+  .experience-window .dot-cream {
+    color: #ddd7c3;
+  }
+  .experience-grid-view {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    padding: 40px 64px;
+  }
+  .experience-subtab-bar {
+    display: flex;
+    align-items: center;
+    min-height: 48px;
+    border-bottom: 1px solid rgba(24, 24, 27, 0.09);
+    background: rgba(255, 255, 255, 0.42);
+  }
+  .experience-back-btn {
+    align-self: stretch;
+    flex: 0 0 58px;
+    border: 0;
+    border-right: 1px solid rgba(24, 24, 27, 0.09);
+    background: transparent;
+    color: var(--text-primary);
+    font-size: 28px;
+    line-height: 1;
+    cursor: pointer;
+  }
+  .experience-back-btn:hover {
+    color: var(--brand-red);
+  }
+  .experience-tab-list {
+    display: flex;
+    align-self: stretch;
+    min-width: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .experience-tab-list::-webkit-scrollbar {
+    display: none;
+  }
+  .experience-subtab {
+    position: relative;
+    flex: 0 0 auto;
+    padding: 0 18px;
+    border: 0;
+    background: transparent;
+    color: var(--text-secondary);
+    font: 500 13px var(--font-body);
+    white-space: nowrap;
+    cursor: pointer;
+  }
+  .experience-subtab::after {
+    position: absolute;
+    right: 14px;
+    bottom: 0;
+    left: 14px;
+    height: 2px;
+    background: var(--brand-red);
+    content: "";
+    transform: scaleX(0);
+    transition: transform 0.18s ease;
+  }
+  .experience-subtab:hover,
+  .experience-subtab.is-active {
+    color: var(--text-primary);
+  }
+  .experience-subtab.is-active::after {
+    transform: scaleX(1);
+  }
+  .experience-intro {
+    width: 100%;
+    margin: 0 0 34px;
+    text-align: left;
+  }
+  .experience-intro h1 {
+    margin: 10px 0 8px;
+    font-family: var(--font-display);
+    font-size: clamp(30px, 4vw, 52px);
+    font-weight: 500;
+    line-height: 1.03;
+  }
+  .experience-intro h2 {
+    margin: 0 0 12px;
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--text-secondary);
+  }
+  .experience-intro p {
+    width: 100%;
+    margin: 0;
+    color: var(--text-secondary);
+    line-height: 1.55;
+  }
+  .experience-folder-grid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(140px, 1fr));
+    gap: 48px 36px;
+    align-items: start;
+  }
+  .experience-doc-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--text-primary);
+    cursor: pointer;
+  }
+  .experience-doc-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 88px;
+    height: 104px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 16px;
+    background: #f7f3eb;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.06);
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease;
+  }
+  .experience-file-glyph {
+    position: relative;
+    display: block;
+    width: 44px;
+    height: 56px;
+    border-radius: 3px;
+    background: #efe8da;
+    box-shadow: inset 0 0 0 1px rgba(184, 174, 156, 0.14);
+    clip-path: polygon(0 0, 68% 0, 100% 24%, 100% 100%, 0 100%);
+  }
+  .experience-file-glyph::before {
+    content: "";
+    position: absolute;
+    top: 19px;
+    left: 10px;
+    width: 25px;
+    height: 3px;
+    border-radius: 3px;
+    background: #b8ae9c;
+    box-shadow:
+      0 8px 0 #b8ae9c,
+      0 16px 0 #b8ae9c;
+  }
+  .experience-doc-label {
+    font: 600 15px var(--font-body);
+    color: var(--text-primary);
+    text-align: center;
+    white-space: nowrap;
+  }
+  .experience-doc-item:hover .experience-doc-icon {
+    transform: translateY(-3px);
+    box-shadow: 0 18px 38px rgba(71, 63, 52, 0.16);
+  }
+  .experience-detail-view {
+    flex: 1;
+    min-height: 0;
+  }
+  .experience-detail-content {
+    height: calc(100% - 58px);
+    display: grid;
+    place-items: center;
+    padding: 36px;
+    text-align: center;
+  }
+  .experience-detail-content .cs-headline {
+    margin: 0;
+  }
+  .experience-tab-content {
+    display: none;
+  }
+  .experience-return-note {
+    position: absolute;
+    right: clamp(32px, 3.5vw, 54px);
+    bottom: clamp(58px, 5vw, 72px);
+    width: min(300px, 30vw);
+    color: rgba(91, 81, 70, 0.2);
+    text-align: right;
+  }
+  .experience-return-icon {
+    display: inline-block;
+    width: 32px;
+    height: 42px;
+    margin: 0 4px 0 0;
+    filter: drop-shadow(0 2px 5px rgba(206, 167, 74, 0.2));
+  }
+  .experience-return-note p {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(30px, 2.8vw, 40px);
+    font-weight: 400;
+    line-height: 1.08;
+    letter-spacing: -0.045em;
+  }
+  .experience-doc-item:hover .experience-doc-icon {
+    transform: translateY(-3px);
+    box-shadow: 0 18px 38px rgba(71, 63, 52, 0.16);
+  }
+  @media (max-width: 900px) {
+    #modal-page-experience .mobile-modal-nav {
+      position: relative;
+      inset: auto;
+      display: flex !important;
+      flex: 0 0 66px;
+      min-height: 66px;
+      height: 66px;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 16px;
+      background: rgba(255, 255, 255, 0.94);
+      border-bottom: 1px solid rgba(117, 106, 91, 0.1);
+      z-index: 20;
+    }
+
+    #modal-page-experience .mobile-modal-nav > button {
+      width: 40px;
+      height: 40px;
+      border: 1px solid rgba(117, 106, 91, 0.14);
+      border-radius: 50%;
+      background: #faf8f3;
+      color: #9b9b98;
+      box-shadow: 0 2px 8px rgba(57, 49, 36, 0.04);
+    }
+
+    #modal-page-experience .mobile-nav-title {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      max-width: calc(100vw - 160px);
+      overflow: hidden;
+      color: var(--text-primary);
+      font: 500 13px var(--font-body);
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    #modal-page-experience .mobile-nav-chevron {
+      color: rgba(82, 75, 68, 0.65);
+      font-size: 15px;
+      line-height: 1;
+    }
+
+    #modal-page-experience .mobile-nav-more {
+      display: flex !important;
+      gap: 3px;
+    }
+
+    #modal-page-experience .mobile-nav-more i {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: currentColor;
+    }
+
+    #modal-page-experience .fullscreen-window-header {
+      display: none !important;
+    }
+
+    /* Experience topics live in the green mobile dropdown, not a red tab row. */
+    #modal-page-experience .experience-subtab-bar {
+      display: none !important;
+    }
+
+    .experience-grid-view {
+      padding: 22px 16px 74px;
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(137, 130, 118, 0.45) transparent;
+    }
+
+    .experience-grid-view::-webkit-scrollbar,
+    .experience-detail-view::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    .experience-grid-view::-webkit-scrollbar-thumb,
+    .experience-detail-view::-webkit-scrollbar-thumb {
+      border-radius: 999px;
+      background: rgba(137, 130, 118, 0.45);
+    }
+
+    .experience-intro {
+      margin-bottom: 26px;
+    }
+
+    .experience-intro h1 {
+      margin: 0 0 6px;
+      font-size: 27px;
+      line-height: 1.02;
+    }
+
+    .experience-intro h2 {
+      margin-bottom: 10px;
+      font-size: 15px;
+    }
+
+    .experience-intro p {
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .experience-folder-grid {
+      gap: 25px 12px;
+    }
+
+    .experience-doc-icon {
+      width: 68px;
+      height: 78px;
+      border-radius: 14px;
+    }
+
+    .experience-file-glyph {
+      width: 34px;
+      height: 44px;
+    }
+
+    .experience-file-glyph::before {
+      top: 15px;
+      left: 8px;
+      width: 19px;
+      height: 2px;
+      box-shadow:
+        0 6px 0 #b8ae9c,
+        0 12px 0 #b8ae9c;
+    }
+
+    .experience-doc-label {
+      font-size: 11px;
+      line-height: 1.15;
+    }
+
+    .experience-detail-view {
+      min-height: 0;
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(137, 130, 118, 0.45) transparent;
+    }
+
+    #modal-page-experience .experience-subtab-bar {
+      min-height: 40px;
+      overflow: hidden;
+    }
+
+    #modal-page-experience .experience-back-btn {
+      flex-basis: 42px;
+      font-size: 22px;
+    }
+
+    #modal-page-experience .experience-subtab {
+      padding: 0 14px;
+      font-size: 10px;
+    }
+
+    #modal-page-experience .experience-detail-content,
+    #modal-page-experience
+      .experience-detail-content:has(.experience-tab-content:not([hidden])) {
+      display: block;
+      min-height: 100%;
+      padding: 34px 28px 100px !important;
+      text-align: left;
+    }
+
+    #modal-page-experience .experience-detail-content.is-idea,
+    #modal-page-experience
+      .experience-detail-content.is-idea
+      .experience-tab-content:not([hidden]) {
+      position: static;
+      width: auto;
+      min-height: 0;
+    }
+
+    #modal-page-experience .experience-tab-content:not([hidden]) {
+      max-width: none;
+    }
+
+    #modal-page-experience .experience-idea-eyebrow {
+      margin-bottom: 14px;
+      font-size: 9px;
+    }
+
+    #modal-page-experience .experience-tab-content h2 {
+      margin-bottom: 14px;
+      font-size: 28px;
+      line-height: 1.04;
+    }
+
+    #modal-page-experience
+      .experience-tab-content
+      > p:not(.experience-idea-eyebrow) {
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    #modal-page-experience .experience-contact-action {
+      margin-top: 22px;
+      font-size: 11px;
+    }
+
+    #modal-page-experience .experience-steps {
+      width: max-content;
+      max-width: none;
+      gap: 10px;
+      margin-top: 22px;
+      overflow: visible;
+    }
+
+    #modal-page-experience .experience-step-card {
+      flex: 0 0 142px;
+      min-height: 116px;
+      padding: 16px 10px;
+    }
+
+    #modal-page-experience .experience-step-arrow {
+      flex: 0 0 12px;
+      font-size: 17px;
+    }
+
+    #modal-page-experience .experience-return-note {
+      display: none;
+    }
+  }
+  @media (max-width: 600px) {
+    .experience-folder-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    .experience-doc-item {
+      min-width: 0;
+    }
+    .experience-doc-label {
+      white-space: normal;
+    }
+  }
+</style>
+
+<style is="global">
+  @media (max-width: 900px) {
+    #modal-page-experience .experience-window {
+      overflow: hidden !important;
+    }
+
+    #modal-page-experience .mobile-modal-nav {
+      flex: 0 0 56px !important;
+      height: 56px !important;
+      min-height: 56px !important;
+      padding: 8px 16px !important;
+    }
+
+    #modal-page-experience .mobile-modal-nav > button {
+      width: 38px !important;
+      height: 38px !important;
+      min-width: 38px !important;
+      min-height: 38px !important;
+    }
+
+    #modal-page-experience .mobile-nav-title {
+      font-size: 12px !important;
+      line-height: 1 !important;
+    }
+
+    #modal-page-experience .experience-grid-view,
+    #modal-page-experience .experience-detail-view {
+      height: calc(100% - 56px) !important;
+    }
+
+    #modal-page-experience .experience-subtab-bar {
+      flex: 0 0 40px !important;
+      height: 40px !important;
+      min-height: 40px !important;
+    }
+
+    #modal-page-experience .experience-tab-list {
+      width: calc(100% - 42px) !important;
+      overflow-x: auto !important;
+      scrollbar-width: none !important;
+    }
+
+    #modal-page-experience .experience-tab-list::-webkit-scrollbar {
+      display: none !important;
+    }
+
+    #modal-page-experience .experience-steps {
+      display: flex !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      overflow-x: auto !important;
+      overflow-y: hidden !important;
+      flex-wrap: nowrap !important;
+      padding: 0 0 8px !important;
+      scrollbar-width: none !important;
+      touch-action: pan-x !important;
+    }
+
+    #modal-page-experience .experience-steps::-webkit-scrollbar {
+      display: none !important;
+    }
+
+    #modal-page-experience .experience-step-card {
+      flex: 0 0 142px !important;
+      min-width: 142px !important;
+    }
+
+    #modal-page-experience .experience-return-note {
+      position: absolute !important;
+      right: 14px !important;
+      bottom: 18px !important;
+      width: 128px !important;
+      opacity: 0.65 !important;
+      z-index: 1 !important;
+    }
+
+    #modal-page-experience .experience-return-note p {
+      font-size: 28px !important;
+      line-height: 1.02 !important;
+    }
+  }
+</style>
+
+<style is="global">
+  @media (max-width: 900px) {
+    #modal-page-experience .fullscreen-window-header {
+      display: none !important;
+    }
+    #modal-page-experience .mobile-modal-nav {
+      position: relative !important;
+      inset: auto !important;
+      display: flex !important;
+      flex: 0 0 66px !important;
+      height: 66px !important;
+      min-height: 66px !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      padding: 10px 16px !important;
+      background: rgba(251, 250, 247, 0.97) !important;
+      border-bottom: 1px solid rgba(117, 106, 91, 0.1) !important;
+      z-index: 30 !important;
+    }
+    #modal-page-experience .mobile-modal-nav > button {
+      width: 40px !important;
+      height: 40px !important;
+      min-width: 40px !important;
+      min-height: 40px !important;
+      border: 1px solid rgba(117, 106, 91, 0.14) !important;
+      border-radius: 50% !important;
+      background: #faf8f3 !important;
+    }
+    #modal-page-experience .mobile-nav-title {
+      display: flex !important;
+      align-items: center !important;
+      gap: 6px !important;
+      color: var(--text-primary) !important;
+      font: 500 13px var(--font-body) !important;
+    }
+    #modal-page-experience .mobile-nav-more {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 3px !important;
+    }
+    #modal-page-experience .mobile-nav-more i {
+      width: 4px !important;
+      height: 4px !important;
+    }
+    #modal-page-experience .experience-detail-view,
+    #modal-page-experience .experience-grid-view {
+      height: calc(100% - 66px) !important;
+      min-height: 0 !important;
+      overflow-x: hidden !important;
+      overflow-y: auto !important;
+    }
+    #modal-page-experience .experience-detail-content,
+    #modal-page-experience
+      .experience-detail-content:has(.experience-tab-content:not([hidden])) {
+      position: relative !important;
+      display: block !important;
+      width: 100% !important;
+      min-height: 100% !important;
+      padding: 34px 28px 120px !important;
+      overflow-x: hidden !important;
+      text-align: left !important;
+    }
+    #modal-page-experience
+      .experience-detail-content.is-idea
+      .experience-tab-content:not([hidden]),
+    #modal-page-experience .experience-process-content:not([hidden]),
+    #modal-page-experience .experience-sequence-content:not([hidden]) {
+      position: static !important;
+      width: 100% !important;
+      max-width: none !important;
+      min-height: 0 !important;
+      margin: 0 !important;
+    }
+    #modal-page-experience .experience-steps {
+      width: max-content !important;
+      max-width: none !important;
+      margin-left: 0 !important;
+      overflow: visible !important;
+    }
+    #modal-page-experience .experience-return-note {
+      display: block !important;
+      right: 18px !important;
+      bottom: 38px !important;
+      width: 126px !important;
+      opacity: 0.72 !important;
+    }
+  }
+</style>
+
+<style is:global>
+  @media (max-width: 900px) {
+    /* Experience Design uses the same compact page bar as the other mobile pages. */
+    #modal-page-experience .fullscreen-window-header {
+      display: none !important;
+    }
+
+    #modal-page-experience .mobile-modal-nav {
+      position: relative !important;
+      inset: auto !important;
+      display: flex !important;
+      flex: 0 0 66px !important;
+      width: 100% !important;
+      height: 66px !important;
+      min-height: 66px !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      padding: 10px 16px !important;
+      background: rgba(251, 250, 247, 0.97) !important;
+      border-bottom: 1px solid rgba(117, 106, 91, 0.1) !important;
+      z-index: 30 !important;
+    }
+
+    #modal-page-experience .mobile-modal-nav > button {
+      width: 40px !important;
+      height: 40px !important;
+      min-width: 40px !important;
+      min-height: 40px !important;
+      padding: 0 !important;
+      border: 1px solid rgba(117, 106, 91, 0.14) !important;
+      border-radius: 50% !important;
+      background: #faf8f3 !important;
+      color: #9b9b98 !important;
+      box-shadow: 0 2px 8px rgba(57, 49, 36, 0.04) !important;
+    }
+
+    #modal-page-experience .mobile-nav-title {
+      display: flex !important;
+      align-items: center !important;
+      gap: 6px !important;
+      max-width: calc(100vw - 160px) !important;
+      overflow: hidden !important;
+      color: var(--text-primary) !important;
+      font: 500 13px var(--font-body) !important;
+      white-space: nowrap !important;
+    }
+
+    #modal-page-experience .mobile-nav-chevron {
+      color: rgba(82, 75, 68, 0.65) !important;
+      font-size: 15px !important;
+      line-height: 1 !important;
+    }
+
+    #modal-page-experience .mobile-nav-more {
+      display: flex !important;
+      gap: 3px !important;
+    }
+
+    #modal-page-experience .mobile-nav-more i {
+      width: 4px !important;
+      height: 4px !important;
+      border-radius: 50% !important;
+      background: currentColor !important;
+    }
+
+    #modal-page-experience .experience-grid-view {
+      height: calc(100% - 66px) !important;
+      min-height: 0 !important;
+      overflow-x: hidden !important;
+      overflow-y: auto !important;
+      padding: 22px 16px 92px !important;
+    }
+
+    #modal-page-experience .experience-detail-view {
+      height: calc(100% - 66px) !important;
+      min-height: 0 !important;
+      overflow-x: hidden !important;
+      overflow-y: auto !important;
+    }
+
+    #modal-page-experience .experience-detail-content,
+    #modal-page-experience
+      .experience-detail-content:has(.experience-tab-content:not([hidden])) {
+      position: relative !important;
+      display: block !important;
+      width: 100% !important;
+      min-height: 100% !important;
+      padding: 34px 28px 120px !important;
+      overflow-x: hidden !important;
+      text-align: left !important;
+    }
+
+    #modal-page-experience .experience-detail-content.is-idea,
+    #modal-page-experience
+      .experience-detail-content.is-idea
+      .experience-tab-content:not([hidden]),
+    #modal-page-experience .experience-process-content,
+    #modal-page-experience .experience-process-content:not([hidden]),
+    #modal-page-experience .experience-sequence-content:not([hidden]),
+    #modal-page-experience .experience-preference-content:not([hidden]) {
+      position: static !important;
+      width: 100% !important;
+      max-width: none !important;
+      min-height: 0 !important;
+      margin: 0 !important;
+    }
+
+    #modal-page-experience .experience-tab-content:not([hidden]) {
+      display: block !important;
+    }
+
+    #modal-page-experience .experience-tab-content h2 {
+      font-size: 28px !important;
+      line-height: 1.04 !important;
+    }
+
+    #modal-page-experience
+      .experience-tab-content
+      > p:not(.experience-idea-eyebrow) {
+      max-width: none !important;
+      font-size: 13px !important;
+      line-height: 1.5 !important;
+    }
+
+    #modal-page-experience .experience-steps {
+      width: max-content !important;
+      max-width: none !important;
+      margin: 22px 0 0 !important;
+      overflow: visible !important;
+    }
+
+    #modal-page-experience .experience-step-card {
+      flex: 0 0 142px !important;
+      min-width: 142px !important;
+      min-height: 116px !important;
+    }
+
+    #modal-page-experience .experience-return-note {
+      display: block !important;
+      position: absolute !important;
+      right: 18px !important;
+      bottom: 38px !important;
+      width: 126px !important;
+      opacity: 0.72 !important;
+      pointer-events: none !important;
+    }
+
+    #modal-page-experience .experience-return-note p {
+      font-size: 28px !important;
+    }
+  }
+</style>
+
+<style is:global>
+  #modal-page-experience .experience-window {
+    display: flex;
+    flex-direction: column;
+  }
+  #modal-page-experience .experience-subtab-bar {
+    display: flex;
+    align-items: center;
+    min-height: 48px;
+    border-bottom: 1px solid rgba(24, 24, 27, 0.09);
+    background: rgba(255, 255, 255, 0.42);
+  }
+  #modal-page-experience .experience-back-btn {
+    align-self: stretch;
+    flex: 0 0 58px;
+    border: 0;
+    border-right: 1px solid rgba(24, 24, 27, 0.09);
+    background: transparent;
+    color: var(--text-primary);
+    font-size: 28px;
+    line-height: 1;
+    cursor: pointer;
+  }
+  #modal-page-experience .experience-tab-list {
+    display: flex;
+    align-self: stretch;
+    min-width: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  #modal-page-experience .experience-tab-list::-webkit-scrollbar {
+    display: none;
+  }
+  #modal-page-experience .experience-subtab {
+    position: relative;
+    flex: 0 0 auto;
+    padding: 0 18px;
+    border: 0;
+    background: transparent;
+    color: var(--text-secondary);
+    font: 500 13px var(--font-body);
+    white-space: nowrap;
+    cursor: pointer;
+  }
+  #modal-page-experience .experience-subtab::after {
+    position: absolute;
+    right: 14px;
+    bottom: 0;
+    left: 14px;
+    height: 2px;
+    background: var(--brand-red);
+    content: "";
+    transform: scaleX(0);
+    transition: transform 0.18s ease;
+  }
+  #modal-page-experience .experience-subtab:hover,
+  #modal-page-experience .experience-subtab.is-active {
+    color: var(--text-primary);
+  }
+  #modal-page-experience .experience-subtab.is-active::after {
+    transform: scaleX(1);
+  }
+  #modal-page-experience .experience-detail-view {
+    flex: 1;
+    min-height: 0;
+  }
+  #modal-page-experience .experience-detail-content {
+    position: relative;
+    display: grid;
+    min-height: 100%;
+    padding: 36px;
+    place-items: center;
+    text-align: center;
+  }
+  #modal-page-experience
+    .experience-detail-content:has(.experience-tab-content:not([hidden])) {
+    display: block;
+    padding: clamp(54px, 8vw, 118px) clamp(48px, 10vw, 160px);
+    text-align: left;
+  }
+  #modal-page-experience
+    .experience-detail-content:has(.experience-tab-content:not([hidden]))
+    .cs-headline {
+    display: none;
+  }
+  #modal-page-experience .experience-tab-content:not([hidden]) {
+    display: block;
+    max-width: 700px;
+  }
+  #modal-page-experience .experience-detail-content.is-idea {
+    display: block !important;
+    padding: 0 !important;
+    text-align: left !important;
+  }
+  #modal-page-experience .experience-detail-content.is-idea .cs-headline {
+    display: none !important;
+  }
+  #modal-page-experience
+    .experience-detail-content.is-idea
+    .experience-tab-content:not([hidden]) {
+    display: block !important;
+    position: absolute;
+    top: clamp(54px, 8vw, 60px);
+    left: clamp(48px, 6vw, 88px);
+    width: min(800px, calc(100% - 96px));
+    max-width: none;
+    height: auto !important;
+    min-height: 320px;
+  }
+  #modal-page-experience .experience-idea-eyebrow {
+    margin: 0 0 18px;
+    color: rgba(24, 24, 27, 0.58);
+    font: 600 10px/1 var(--font-body);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+  #modal-page-experience .experience-tab-content h2 {
+    margin: 0 0 16px;
+    color: var(--text-primary);
+    font: 500 clamp(28px, 3.1vw, 48px)/1.05 var(--font-display);
+    letter-spacing: -0.045em;
+  }
+  #modal-page-experience
+    .experience-tab-content
+    > p:not(.experience-idea-eyebrow) {
+    max-width: 640px;
+    margin: 0;
+    color: rgba(24, 24, 27, 0.76);
+    font: 15px/1.65 var(--font-body);
+  }
+  #modal-page-experience .experience-contact-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    margin-top: 30px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--brand-red);
+    font: 600 14px var(--font-body);
+    cursor: pointer;
+  }
+  #modal-page-experience .experience-contact-action span {
+    font-size: 20px;
+    line-height: 1;
+    transition: transform 0.18s ease;
+  }
+  #modal-page-experience .experience-contact-action:hover span {
+    transform: translateX(4px);
+  }
+
+  #modal-page-experience .experience-build-action {
+    appearance: none;
+    display: flex;
+    align-items: center;
+    width: max-content;
+    margin-top: 14px;
+    padding: 11px 22px;
+    border: 1px solid rgba(23, 23, 23, 0.14);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.62);
+    color: rgba(23, 23, 23, 0.62);
+    cursor: pointer;
+    font: 500 14px var(--font-body);
+    letter-spacing: 0.01em;
+    box-shadow: 0 6px 16px rgba(67, 53, 32, 0.06);
+    transition:
+      background 0.2s ease,
+      color 0.2s ease,
+      transform 0.2s ease,
+      box-shadow 0.2s ease;
+  }
+
+  #modal-page-experience .experience-build-action strong {
+    margin-left: 4px;
+    color: var(--brand-red);
+    font-weight: 700;
+  }
+
+  #modal-page-experience .experience-build-action:hover,
+  #modal-page-experience .experience-build-action:focus-visible {
+    background: #111;
+    color: #fff;
+    outline: none;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.16);
+  }
+
+  #modal-page-experience .experience-build-action:hover strong,
+  #modal-page-experience .experience-build-action:focus-visible strong {
+    color: #ff7169;
+  }
+  #modal-page-experience .experience-keywords {
+    margin-top: 16px !important;
+    color: rgba(24, 24, 27, 0.45) !important;
+    font-size: 13px !important;
+  }
+  #modal-page-experience .experience-sequence-content,
+  #modal-page-experience .experience-process-content {
+    max-width: 900px !important;
+  }
+  #modal-page-experience .experience-process-content {
+    width: min(900px, calc(100% - 96px));
+    position: static !important;
+    width: min(900px, calc(100% - 96px)) !important;
+    min-height: 320px;
+    margin-left: clamp(48px, 6vw, 88px);
+  }
+  #modal-page-experience
+    .experience-detail-content.is-idea
+    .experience-process-content:not([hidden]) {
+    position: static !important;
+    width: min(900px, calc(100% - 96px)) !important;
+    min-height: 320px;
+    margin-left: clamp(48px, 6vw, 88px);
+  }
+  #modal-page-experience
+    .experience-sequence-content
+    > p:not(.experience-idea-eyebrow),
+  #modal-page-experience
+    .experience-process-content
+    > p:not(.experience-idea-eyebrow) {
+    max-width: 720px;
+  }
+  #modal-page-experience .experience-steps {
+    display: flex;
+    align-items: stretch;
+    width: min(880px, calc(100vw - 220px));
+    margin-top: 30px;
+  }
+  #modal-page-experience .experience-step-card {
+    flex: 1 1 0;
+    min-width: 118px;
+    min-height: 132px;
+    padding: 20px 14px;
+    border: 1px solid rgba(86, 74, 60, 0.12);
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.5);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  }
+  #modal-page-experience .experience-step-card p {
+    margin: 0 0 14px;
+    color: var(--brand-red);
+    font: 700 10px/1 var(--font-body);
+    letter-spacing: 0.16em;
+    text-align: center;
+    text-transform: uppercase;
+  }
+  #modal-page-experience .experience-step-card span {
+    display: block;
+    color: rgba(24, 24, 27, 0.58);
+    font: 12px/1.42 var(--font-body);
+    text-align: center;
+  }
+  #modal-page-experience .experience-step-arrow {
+    display: grid;
+    flex: 0 0 26px;
+    place-items: center;
+    color: var(--brand-red);
+    font: 400 21px/1 var(--font-display);
+  }
+  #modal-page-experience .experience-explore-copy {
+    margin-top: 18px !important;
+    color: rgba(24, 24, 27, 0.52) !important;
+    font-size: 13px !important;
+  }
+  #modal-page-experience .experience-preference-content {
+    width: min(820px, calc(100% - 96px)) !important;
+  }
+  #modal-page-experience .experience-preference-pointers {
+    margin-top: 26px;
+    overflow: hidden;
+    /* border: 1px solid rgba(86, 74, 60, 0.14); */
+    /* border-radius: 14px; */
+    /* background: rgba(255, 255, 255, 0.42); */
+  }
+  #modal-page-experience .experience-preference-pointers p {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    /* min-height: 48px; */
+    margin: 0;
+    padding: 9px 0px;
+    /* border-bottom: 1px solid rgba(86, 74, 60, 0.1); */
+    color: rgba(24, 24, 27, 0.66);
+    font: 13px/1.35 var(--font-body);
+  }
+  #modal-page-experience .experience-preference-pointers b {
+    flex: 0 0 25px;
+    color: var(--brand-red);
+    font: 700 9px var(--font-body);
+    letter-spacing: 0.14em;
+  }
+  #modal-page-experience .experience-preference-pointers .bullet-cup-icon {
+    flex: 0 0 17px;
+    color: var(--brand-red);
+    font-size: 14px;
+    line-height: 1;
+  }
+  #modal-page-experience .experience-preference-pointers strong {
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+  #modal-page-experience .experience-preference-closing {
+    margin-top: 16px !important;
+    color: var(--brand-red) !important;
+    font: italic 14px/1.35 var(--font-display) !important;
+  }
+  @media (max-width: 900px) {
+    #modal-page-experience .experience-steps {
+      width: 100%;
+      overflow-x: auto;
+      padding-bottom: 8px;
+    }
+    #modal-page-experience .experience-step-card {
+      flex-basis: 142px;
+    }
+  }
+  #modal-page-experience .experience-contact-action--fallback {
+    position: absolute;
+    bottom: clamp(48px, 6vw, 84px);
+    left: clamp(48px, 6vw, 88px);
+  }
+  #modal-page-experience
+    .experience-detail-content.is-idea
+    .experience-contact-action--fallback {
+    display: none;
+  }
+  #modal-page-experience .experience-return-note {
+    position: absolute;
+    right: clamp(32px, 3.5vw, 54px);
+    bottom: clamp(58px, 5vw, 72px);
+    width: min(220px, 30vw);
+    color: rgba(91, 81, 70, 0.7);
+    text-align: right;
+  }
+  #modal-page-experience .experience-return-icon {
+    display: inline-block;
+    width: 32px;
+    height: 42px;
+    margin: 0 4px 0 0;
+    filter: drop-shadow(0 2px 5px rgba(206, 167, 74, 0.2));
+  }
+  #modal-page-experience .experience-return-note p {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(30px, 2.8vw, 40px);
+    font-weight: 400;
+    line-height: 1.08;
+    letter-spacing: -0.045em;
+  }
+</style>
+
+<style is="global">
+  @media (max-width: 900px) {
+    #modal-page-experience .experience-window {
+      overflow: hidden !important;
+    }
+    #modal-page-experience .mobile-modal-nav {
+      flex: 0 0 56px !important;
+      height: 56px !important;
+      min-height: 56px !important;
+      padding: 8px 16px !important;
+    }
+    #modal-page-experience .mobile-modal-nav > button {
+      width: 38px !important;
+      height: 38px !important;
+      min-width: 38px !important;
+      min-height: 38px !important;
+    }
+    #modal-page-experience .mobile-nav-title {
+      font-size: 12px !important;
+      line-height: 1 !important;
+    }
+    #modal-page-experience .experience-grid-view,
+    #modal-page-experience .experience-detail-view {
+      height: calc(100% - 56px) !important;
+    }
+    #modal-page-experience .experience-subtab-bar {
+      flex: 0 0 40px !important;
+      height: 40px !important;
+      min-height: 40px !important;
+    }
+    #modal-page-experience .experience-tab-list {
+      width: calc(100% - 42px) !important;
+      overflow-x: auto !important;
+      scrollbar-width: none !important;
+    }
+    #modal-page-experience .experience-tab-list::-webkit-scrollbar {
+      display: none !important;
+    }
+    #modal-page-experience .experience-steps {
+      display: flex !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      overflow-x: auto !important;
+      overflow-y: hidden !important;
+      flex-wrap: nowrap !important;
+      padding: 0 0 8px !important;
+      scrollbar-width: none !important;
+      touch-action: pan-x !important;
+    }
+    #modal-page-experience .experience-steps::-webkit-scrollbar {
+      display: none !important;
+    }
+    #modal-page-experience .experience-step-card {
+      flex: 0 0 142px !important;
+      min-width: 142px !important;
+    }
+    #modal-page-experience .experience-return-note {
+      position: absolute !important;
+      right: 14px !important;
+      bottom: 18px !important;
+      width: 128px !important;
+      opacity: 0.65 !important;
+      z-index: 1 !important;
+    }
+    #modal-page-experience .experience-return-note p {
+      font-size: 28px !important;
+      line-height: 1.02 !important;
+    }
+  }
+</style>
+
+<style is="global">
+  @media (max-width: 900px) {
+    #modal-page-experience .fullscreen-window-header {
+      display: none !important;
+    }
+    #modal-page-experience .mobile-modal-nav {
+      position: relative !important;
+      inset: auto !important;
+      display: flex !important;
+      flex: 0 0 56px !important;
+      height: 56px !important;
+      min-height: 56px !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      padding: 10px 16px !important;
+      background: rgba(251, 250, 247, 0.97) !important;
+      border-bottom: 1px solid rgba(117, 106, 91, 0.1) !important;
+      z-index: 30 !important;
+    }
+    #modal-page-experience .mobile-modal-nav > button {
+      width: 40px !important;
+      height: 40px !important;
+      min-width: 40px !important;
+      min-height: 40px !important;
+      border: 1px solid rgba(117, 106, 91, 0.14) !important;
+      border-radius: 50% !important;
+      background: #faf8f3 !important;
+    }
+    #modal-page-experience .mobile-nav-title {
+      display: flex !important;
+      align-items: center !important;
+      gap: 6px !important;
+      color: var(--text-primary) !important;
+      font: 500 13px var(--font-body) !important;
+      padding: 8px 14px !important;
+    }
+    #modal-page-experience .mobile-nav-more {
+      display: flex !important;
+      gap: 3px !important;
+      padding: 9px 8px !important;
+      border: 2px solid #a9dc7e !important;
+      background: rgba(255, 255, 255, 0.76) !important;
+    }
+    #modal-page-experience .mobile-nav-more i {
+      width: 4px !important;
+      height: 4px !important;
+    }
+    #modal-page-experience .experience-detail-view,
+    #modal-page-experience .experience-grid-view {
+      height: calc(100% - 56px) !important;
+      min-height: 0 !important;
+      overflow-x: hidden !important;
+      overflow-y: auto !important;
+    }
+    #modal-page-experience .experience-detail-view {
+      position: relative !important;
+    }
+    #modal-page-experience .experience-detail-content,
+    #modal-page-experience
+      .experience-detail-content:has(.experience-tab-content:not([hidden])) {
+      position: static !important;
+      display: block !important;
+      width: 100% !important;
+      min-height: 100% !important;
+      padding: 28px 28px 48px !important;
+      overflow-x: hidden !important;
+      text-align: left !important;
+    }
+    #modal-page-experience
+      .experience-detail-content.is-idea
+      .experience-tab-content:not([hidden]),
+    #modal-page-experience .experience-process-content:not([hidden]),
+    #modal-page-experience .experience-sequence-content:not([hidden]) {
+      position: static !important;
+      width: 100% !important;
+      max-width: none !important;
+      min-height: 0 !important;
+      margin: 0 !important;
+    }
+    #modal-page-experience .experience-steps {
+      display: flex !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      margin-left: 0 !important;
+      overflow-x: auto !important;
+      overflow-y: hidden !important;
+      flex-wrap: nowrap !important;
+      padding-bottom: 8px !important;
+      scrollbar-width: none !important;
+      touch-action: pan-x !important;
+    }
+    #modal-page-experience .experience-steps::-webkit-scrollbar {
+      display: none !important;
+    }
+    #modal-page-experience .experience-step-card {
+      flex: 0 0 142px !important;
+      min-width: 142px !important;
+    }
+    #modal-page-experience .experience-return-note {
+      display: block !important;
+      position: relative !important;
+      top: auto !important;
+      right: auto !important;
+      bottom: auto !important;
+      left: auto !important;
+      margin: 32px 0 0 !important;
+      width: 100% !important;
+      opacity: 0.42 !important;
+      text-align: left !important;
+      z-index: 0 !important;
+    }
+    #modal-page-experience .experience-return-icon {
+      display: block !important;
+      width: 28px !important;
+      height: 36px !important;
+      margin: 0 0 4px 5px !important;
+    }
+    #modal-page-experience .experience-return-note p {
+      font-size: 17px !important;
+      line-height: 1.03 !important;
+      text-align: left !important;
+    }
+    #modal-page-experience .experience-preference-pointers p {
+      display: grid !important;
+      grid-template-columns: 18px 92px minmax(0, 1fr) !important;
+      align-items: start !important;
+      column-gap: 5px !important;
+      padding: 7px 0 !important;
+      font-size: 11px !important;
+      line-height: 1.25 !important;
+    }
+    #modal-page-experience .experience-preference-pointers .bullet-cup-icon {
+      grid-column: 1;
+    }
+    #modal-page-experience .experience-preference-pointers strong {
+      grid-column: 2;
+      font-size: 11px !important;
+      line-height: 1.25 !important;
+    }
+    #modal-page-experience .experience-preference-pointers p > span:last-child {
+      grid-column: 3;
+      color: rgba(24, 24, 27, 0.58);
+    }
+
+    /* Keep the topic selector in the mobile dropdown; never render the red tab strip. */
+    #modal-page-experience .experience-subtab-bar {
+      display: none !important;
+      height: 0 !important;
+      min-height: 0 !important;
+    }
+  }
+</style>

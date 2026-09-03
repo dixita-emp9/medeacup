@@ -1,0 +1,1039 @@
+---
+const folders = [
+  { id: "principle", name: "The 1% Principle", img: "/the1.png" },
+  { id: "cases", name: "Cup Cases", img: "/cupcase.png" },
+  { id: "framework", name: "Cup Framework", img: "/folder.png" },
+  { id: "capabilities", name: "What We Build", img: "/folder.png" },
+  { id: "about", name: "About Us", img: "/folder.png" },
+  { id: "where", name: "Where We Work", img: "/folder.png" },
+];
+const mobileFolders = [
+  { id: "framework", name: "Cup Framework", img: "/folder.png" },
+  { id: "about", name: "About Us", img: "/folder.png" },
+  { id: "cases", name: "Cup Cases", img: "/cupcase.png" },
+  { id: "capabilities", name: "What We Build", img: "/folder.png" },
+  { id: "where", name: "Where We Work", img: "/folder.png" },
+  { id: "experience", name: "Experience Design", img: "/folder.png" },
+];
+---
+
+<div class="folder-grid-container">
+  {
+    folders.map((folder) => (
+      <div
+        class="desktop-item folder-item"
+        data-folder-id={folder.id}
+        tabindex="0"
+      >
+        <div class="folder-img-wrap">
+          <img
+            src={folder.img}
+            alt={folder.name}
+            width="100"
+            height="75"
+            class="folder-icon-img"
+          />
+        </div>
+        <span class="desktop-label">{folder.name}</span>
+      </div>
+    ))
+  }
+
+  <!-- Experience Design folder belongs in the desktop grid -->
+  <div
+    class="desktop-item folder-item"
+    id="experience-folder-btn"
+    data-folder-id="experience"
+    tabindex="0"
+  >
+    <div class="folder-img-wrap">
+      <img
+        src="/folder.png"
+        alt="Experience Design"
+        width="100"
+        height="75"
+        class="folder-icon-img"
+      />
+    </div>
+    <span class="desktop-label">Experience Design</span>
+  </div>
+
+  <!-- Live Clock Widget -->
+  <div
+    class="desktop-item widget-item"
+    id="clock-widget-btn"
+    tabindex="0"
+    aria-label="Current time"
+  >
+    <div class="compass-box clock-box">
+      <div class="compass-dial clock-dial" aria-hidden="true">
+        <div class="clock-hand clock-hour"></div>
+        <div class="clock-hand clock-minute"></div>
+        <div class="clock-center"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="mobile-home-content">
+  <section
+    class="mobile-home-slide mobile-home-slide--recent"
+    data-mobile-slide="thinking"
+    aria-hidden="true"
+  >
+    <article class="mobile-recent-panel">
+      <div class="mobile-recent-heading"><span>Thinking Now</span><i></i></div>
+      <div class="mobile-recent-project">
+        <img src="/projects/experience-design-thinking.png" alt="" /><span
+          ><b>EXPERIENCE DESIGN</b><p>
+            What happens after someone chooses you?
+          </p><button
+            class="mobile-recent-action"
+            type="button"
+            data-project-target="modal-page-experience"
+            >Experience Design <span aria-hidden="true">→</span></button
+          ></span
+        >
+      </div>
+      <div class="mobile-recent-project">
+        <img src="/projects/preference-thinking.png" alt="" /><span
+          ><b>PREFERENCE</b><p>
+            When does someone stop discovering and start choosing?
+          </p><button
+            class="mobile-recent-action"
+            type="button"
+            data-project-target="modal-page-principle"
+            >The 1% Principle <span aria-hidden="true">→</span></button
+          ></span
+        >
+      </div>
+      <div class="mobile-recent-project">
+        <img src="/projects/hospitality-thinking.png" alt="" /><span
+          ><b>HOSPITALITY</b><p>
+            What are guests telling you that nobody has stopped long enough to
+            hear?
+          </p><button
+            class="mobile-recent-action"
+            type="button"
+            data-project-target="modal-page-experience"
+            data-project-detail="Hospitality"
+            >Experience Design <span aria-hidden="true">→</span></button
+          ></span
+        >
+      </div>
+    </article>
+    <article class="mobile-recent-panel mobile-recent-hero">
+      <div class="mobile-recent-heading">
+        <span>Our Mission</span><em><i></i><i></i><i></i><i></i></em>
+      </div>
+      <h2>We find the 1% your<br />market is waiting for.</h2>
+      <button type="button" data-mobile-learn-more>Learn More</button>
+    </article>
+    <div class="mobile-recent-shortcuts">
+      <button class="mobile-recent-shortcut" data-folder-id="principle"
+        ><span class="mobile-folder-tile is-principle"
+          ><img src="/the1.png" alt="" /></span
+        ><span>The 1% Principle</span></button
+      >
+      <button class="mobile-recent-shortcut" data-folder-id="video"
+        ><span class="mobile-folder-tile brand-video-mobile"
+          ><img src="/projects/brand-video-img.png" alt="" /><i
+            class="mobile-play-dot">▶</i
+          ></span
+        ><span>Brand Video</span></button
+      >
+      <button
+        class="mobile-recent-shortcut"
+        id="mobile-recent-clock"
+        aria-label="Current time"
+        ><span class="mobile-recent-clock-face"
+          ><i class="mobile-clock-hand mobile-clock-hour"></i><i
+            class="mobile-clock-hand mobile-clock-minute"></i><i
+            class="mobile-clock-center"></i></span
+        ><span>Time</span></button
+      >
+    </div>
+  </section>
+
+  <section
+    class="mobile-home-slide mobile-home-slide--home is-active"
+    data-mobile-slide="home"
+    aria-hidden="false"
+  >
+    <div class="mobile-feature-grid">
+      <button
+        class="mobile-principle-card"
+        data-folder-id="principle"
+        aria-label="Open The 1% Principle"
+      >
+        <img
+          class="mobile-orbit-art"
+          src="/glob.svg"
+          alt=""
+          aria-hidden="true"
+        />
+        <span class="mobile-unlock"
+          ><i></i><span>Unlock the <strong>1%</strong></span></span
+        >
+      </button>
+
+      <button
+        class="mobile-quiz-card"
+        id="mobile-take-quiz"
+        aria-label="Take the quiz"
+      >
+        <img
+          class="mobile-quiz-image"
+          src="/quiz-img.png"
+          alt=""
+          aria-hidden="true"
+        />
+        <span class="mobile-quiz-lines" aria-hidden="true"
+          ><i></i><i></i><i></i><i></i></span
+        >
+        <span class="mobile-quiz-button">Take the quiz</span>
+      </button>
+    </div>
+
+    <div class="mobile-folder-grid">
+      {
+        mobileFolders.map((folder) => (
+          <button class="mobile-folder-item" data-folder-id={folder.id}>
+            <span
+              class={`mobile-folder-tile ${folder.id === "principle" ? "is-principle" : ""}`}
+            >
+              <img src={folder.img} alt="" width="100" height="75" />
+            </span>
+            <span>{folder.name}</span>
+          </button>
+        ))
+      }
+    </div>
+  </section>
+
+  <div class="mobile-pagination" role="tablist" aria-label="Home slides">
+    <button
+      type="button"
+      role="tab"
+      aria-label="Home"
+      aria-selected="true"
+      class="is-active"
+      data-mobile-slide-dot="home"></button>
+    <button
+      type="button"
+      role="tab"
+      aria-label="Thinking Now"
+      aria-selected="false"
+      data-mobile-slide-dot="thinking"></button>
+  </div>
+</div>
+
+<style>
+  .folder-grid-container {
+    position: absolute;
+    top: 125px;
+    left: 48px;
+    display: grid;
+    grid-template-columns: repeat(2, 155px);
+    grid-gap: 32px 28px;
+    z-index: 6;
+  }
+
+  @media (max-width: 1380px) and (min-width: 901px) {
+    .folder-grid-container {
+      grid-template-columns: repeat(2, 135px);
+      grid-gap: 26px 20px;
+      left: 36px;
+    }
+  }
+
+  @media (max-width: 1180px) and (min-width: 901px) {
+    .folder-grid-container {
+      grid-template-columns: repeat(2, 105px);
+      grid-gap: 14px 10px;
+      left: 16px;
+    }
+  }
+
+  .desktop-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 16px;
+    padding: 8px 6px;
+    transition:
+      transform var(--transition-fast),
+      background-color var(--transition-fast);
+    outline: none;
+  }
+
+  .desktop-item:hover {
+    transform: translateY(-4px) scale(1.05);
+  }
+
+  .desktop-item:focus,
+  .desktop-item:active {
+    background-color: rgba(0, 0, 0, 0.06);
+  }
+
+  /* Folder Image Styling */
+  .folder-img-wrap {
+    width: 100px;
+    height: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
+  }
+
+  @media (max-width: 1380px) and (min-width: 901px) {
+    .folder-img-wrap {
+      width: 85px;
+      height: 64px;
+      margin-bottom: 10px;
+    }
+  }
+
+  @media (max-width: 1180px) and (min-width: 901px) {
+    .folder-img-wrap {
+      width: 65px;
+      height: 48px;
+      margin-bottom: 6px;
+    }
+  }
+
+  .folder-icon-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.1));
+    transition:
+      filter 0.2s ease,
+      transform 0.2s ease;
+  }
+
+  .desktop-item:hover .folder-icon-img {
+    filter: drop-shadow(0 10px 24px rgba(0, 0, 0, 0.15));
+  }
+
+  .desktop-label {
+    font-size: 15px;
+    font-weight: 500;
+    color: #4c4040;
+    text-align: center;
+    line-height: 1.25;
+    word-break: break-word;
+  }
+
+  @media (max-width: 1180px) and (min-width: 901px) {
+    .desktop-label {
+      font-size: 13px;
+    }
+  }
+
+
+
+  /* Video Icon Box */
+  .video-icon-box {
+    width: 110px;
+    height: 84px;
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 5px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    margin-bottom: 12px;
+  }
+
+  .video-preview-bg {
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    background: linear-gradient(135deg, #a7b5d9 0%, #6879a5 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .video-icon-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .play-badge {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    padding-left: 2px;
+  }
+
+  /* Live Clock Widget */
+  .compass-box {
+    width: 110px;
+    height: 110px;
+    background: linear-gradient(135deg, #fbf9f4 0%, #ede6d4 100%);
+    border-radius: 26px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid rgba(255, 255, 255, 0.95);
+  }
+
+  .compass-dial {
+    position: relative;
+    width: 66px;
+    height: 66px;
+    border-radius: 50%;
+    border: 2px solid rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .clock-hand {
+    position: absolute;
+    left: 50%;
+    bottom: 50%;
+    width: 3px;
+    border-radius: 999px;
+    transform-origin: 50% 100%;
+    transform: translateX(-50%) rotate(0deg);
+  }
+
+  .clock-hour {
+    height: 20px;
+    background: #18181b;
+  }
+
+  .clock-minute {
+    height: 28px;
+    width: 2.5px;
+    background: var(--brand-red);
+  }
+
+  .clock-center {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--brand-red);
+    transform: translate(-50%, -50%);
+  }
+
+  .mobile-home-content {
+    display: none;
+  }
+
+  @media (max-width: 900px) {
+    .folder-grid-container {
+      display: none;
+    }
+
+    .mobile-home-content {
+      position: absolute;
+      top: 92px;
+      left: 20px;
+      right: 20px;
+      bottom: auto;
+      /* Keep the last mobile shortcut row clear of the fixed bottom dock. */
+      padding-bottom: 160px;
+      display: block;
+      z-index: 7;
+      overflow-x: hidden;
+    }
+
+    .mobile-home-slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      visibility: hidden;
+      opacity: 0;
+      transition: transform 0.45s cubic-bezier(0.32, 0.72, 0, 1), opacity 0.4s ease, visibility 0s 0.45s;
+    }
+    .mobile-home-slide[data-mobile-slide="home"] {
+      transform: translateX(-100%);
+    }
+    .mobile-home-slide[data-mobile-slide="thinking"] {
+      transform: translateX(100%);
+    }
+
+    .mobile-home-slide.is-active {
+      position: relative;
+      visibility: visible;
+      opacity: 1;
+      transform: translateX(0);
+      z-index: 2;
+      transition: transform 0.45s cubic-bezier(0.32, 0.72, 0, 1), opacity 0.4s ease, visibility 0s 0s;
+    }
+
+    .mobile-recent-panel {
+      padding: 12px 10px;
+      margin-bottom: 9px;
+      border: 1px solid rgba(118, 106, 91, 0.14);
+      border-radius: 28px;
+      background: rgba(247, 243, 236, 0.86);
+      box-shadow:
+        inset 0 1px 2px rgba(255, 255, 255, 0.9),
+        0 1px 3px rgba(84, 68, 48, 0.08);
+    }
+    .mobile-recent-heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: #68645e;
+      font-size: 11px;
+      font-weight: 600;
+      margin: 0 2px 8px;
+    }
+    .mobile-recent-heading > i,
+    .mobile-recent-heading em i {
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      margin-left: 3px;
+      border-radius: 50%;
+      background: #d0cec8;
+    }
+    .mobile-recent-heading > i {
+      background: #000;
+      width: 19px;
+      height: 19px;
+      border: 5px solid var(--brand-red);
+    }
+    .mobile-recent-project {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 15px 0;
+      color: #242424;
+      font-size: 10px;
+      line-height: 1.05;
+    }
+    .mobile-recent-project img {
+      width: 45px;
+      height: 45px;
+      flex: 0 0 45px;
+      border-radius: 14px;
+      object-fit: cover;
+    }
+    .mobile-recent-project span {
+      display: block;
+      flex: 1;
+      min-width: 0;
+    }
+    .mobile-recent-project b {
+      display: block;
+      width: max-content;
+      margin-bottom: 3px;
+      padding: 2px 5px;
+      border-radius: 5px;
+      background: #e7e3dd;
+      color: #5f5b55;
+      font-size: 7px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+    .mobile-recent-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      margin-top: 5px;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      color: var(--brand-red);
+      font: 600 10px/1 var(--font-body);
+      cursor: pointer;
+    }
+    .mobile-recent-action span {
+      flex: 0 0 auto;
+      font-size: 14px;
+      line-height: 0.8;
+    }
+    .mobile-recent-hero {
+      min-height: 132px;
+      padding: 11px 12px;
+      background:
+        linear-gradient(
+          135deg,
+          rgba(247, 243, 236, 0.96),
+          rgba(239, 231, 215, 0.78)
+        ),
+        url("/our-mission-home.png") center/cover;
+    }
+    .mobile-recent-hero h2 {
+      margin: 8px 0 10px;
+      color: #111;
+      font-size: clamp(21px, 6vw, 30px);
+      line-height: 0.98;
+      letter-spacing: -0.04em;
+    }
+    .mobile-recent-hero button {
+      padding: 8px 14px;
+      border: 0;
+      border-radius: 18px;
+      background: #fff;
+      color: #333;
+      font-size: 11px;
+    }
+    .mobile-recent-shortcuts {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 22px;
+    }
+    .mobile-recent-shortcut {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      border: 0;
+      background: none;
+      color: #fff;
+      font: inherit;
+      font-size: 10px;
+      text-align: center;
+    }
+    .mobile-recent-shortcut .mobile-folder-tile.brand-video-mobile {
+      overflow: hidden;
+    }
+    .mobile-recent-shortcut .mobile-folder-tile.brand-video-mobile img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .mobile-recent-shortcut .mobile-folder-tile {
+      position: relative;
+      width: 100%;
+      max-width: 82px;
+      border-radius: 20px;
+    }
+    .mobile-recent-shortcut .mobile-folder-tile img {
+      width: 68%;
+      height: 68%;
+      object-fit: contain;
+    }
+    .mobile-play-dot {
+      position: absolute;
+      inset: 50% auto auto 50%;
+      display: grid;
+      place-items: center;
+      width: 25px;
+      height: 25px;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      background: rgba(20, 20, 20, 0.68);
+      color: white;
+      font-size: 10px;
+      font-style: normal;
+    }
+    .mobile-recent-clock-face {
+      display: block;
+      width: 100%;
+      max-width: 82px;
+      aspect-ratio: 1;
+      border: 2px solid #d7d1c7;
+      border-radius: 24px;
+      background: #f8f4ec;
+      position: relative;
+    }
+    .mobile-clock-hand {
+      position: absolute;
+      left: 50%;
+      bottom: 50%;
+      width: 2px;
+      border-radius: 999px;
+      transform-origin: 50% 100%;
+    }
+    .mobile-clock-hour {
+      height: 25%;
+      background: #18181b;
+    }
+    .mobile-clock-minute {
+      height: 36%;
+      background: var(--brand-red);
+    }
+    .mobile-clock-center {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--brand-red);
+      transform: translate(-50%, -50%);
+    }
+
+    .mobile-feature-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .mobile-principle-card,
+    .mobile-quiz-card {
+      position: relative;
+      height: min(330px, 61vw);
+      min-height: 275px;
+      overflow: hidden;
+      border: 1px solid rgba(118, 106, 91, 0.16);
+      border-radius: 38px;
+      background: #f7f2ea;
+      box-shadow:
+        inset 0 1px 2px rgba(255, 255, 255, 0.9),
+        0 1px 3px rgba(84, 68, 48, 0.1);
+      cursor: pointer;
+    }
+
+    .mobile-principle-card {
+      display: block;
+    }
+    .mobile-orbit-art {
+      position: absolute;
+      width: 88%;
+      aspect-ratio: 1;
+      left: 6%;
+      top: 9%;
+      border-radius: 50%;
+      object-fit: contain;
+      opacity: 0.9;
+    }
+
+    .mobile-orbit {
+      position: absolute;
+      inset: 18% 5%;
+      border: 1.5px solid #383838;
+      border-radius: 50%;
+    }
+    .mobile-orbit-a {
+      transform: rotate(32deg) scaleY(0.43);
+    }
+    .mobile-orbit-b {
+      transform: rotate(-32deg) scaleY(0.43);
+    }
+    .mobile-orbit-c {
+      transform: rotate(90deg) scaleY(0.43);
+    }
+    .mobile-orbit-node {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--brand-red);
+    }
+    .mobile-node-a {
+      right: 9%;
+      top: 43%;
+    }
+    .mobile-node-b {
+      left: 45%;
+      top: 37%;
+    }
+    .mobile-node-c {
+      right: 28%;
+      bottom: 28%;
+    }
+
+    .mobile-unlock {
+      position: absolute;
+      left: 6%;
+      right: 8%;
+      bottom: 8%;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #888;
+      font-size: clamp(12px, 3.4vw, 19px);
+      white-space: nowrap;
+    }
+    .mobile-unlock i {
+      position: relative;
+      display: block;
+      flex-shrink: 0;
+      width: 44px;
+      height: 24px;
+      border-radius: 999px;
+      background: #d5d1cb;
+      box-shadow:
+        inset 0 2px 3px rgba(0, 0, 0, 0.16),
+        0 1px 1px rgba(0, 0, 0, 0.12);
+    }
+    .mobile-unlock i::before {
+      content: "";
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #f5f1e9;
+      box-shadow:
+        0 1px 3px rgba(0, 0, 0, 0.3),
+        inset 0 1px 1px rgba(255, 255, 255, 0.8);
+      z-index: 2;
+    }
+    .mobile-unlock i::after {
+      content: "";
+      position: absolute;
+      top: 7px;
+      right: 5px;
+      width: 10px;
+      height: 10px;
+      box-sizing: border-box;
+      border: 2px solid #fff;
+      border-radius: 50%;
+    }
+    .mobile-unlock strong {
+      color: var(--brand-red);
+      font-weight: 500;
+    }
+
+    .mobile-quiz-card {
+      padding: 0;
+      background: #f8f3eb;
+      text-align: left;
+    }
+    .mobile-quiz-image {
+      position: absolute;
+      top: 8px;
+      left: 10px;
+      display: block;
+      width: calc(100% - 20px);
+      height: 48%;
+      margin: 0;
+      border-radius: 27px;
+      overflow: hidden;
+      object-fit: cover;
+      object-position: center top;
+    }
+    .quiz-head {
+      position: absolute;
+      width: 38%;
+      aspect-ratio: 0.75;
+      border-radius: 50% 50% 44% 44%;
+      background:
+        radial-gradient(circle at 50% 26%, #e8c6a4 0 16%, transparent 17%),
+        #e79782;
+      opacity: 0.9;
+    }
+    .quiz-head::after {
+      content: "";
+      position: absolute;
+      inset: 21% 25%;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 35% 40%, #8ca66e 0 5%, transparent 6%),
+        radial-gradient(circle at 68% 56%, #9dbb77 0 7%, transparent 8%),
+        #a4bb81;
+    }
+    .quiz-head-one {
+      left: -4%;
+      bottom: -14%;
+      transform: rotate(22deg);
+    }
+    .quiz-head-two {
+      left: 24%;
+      top: -26%;
+      transform: rotate(-16deg);
+      background-color: #4f5c52;
+    }
+    .quiz-head-three {
+      left: 51%;
+      bottom: -14%;
+      transform: rotate(-18deg);
+      background-color: #e9bf9c;
+    }
+    .quiz-head-four {
+      right: -7%;
+      top: -20%;
+      transform: rotate(12deg);
+      background-color: #d6e3bd;
+    }
+    .mobile-quiz-lines {
+      position: absolute;
+      top: 57%;
+      left: 19px;
+      right: 19px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      margin: 0;
+    }
+    .mobile-quiz-lines i {
+      display: block;
+      height: 5px;
+      width: 88%;
+      border-radius: 10px;
+      background: #d2cdc5;
+    }
+    .mobile-quiz-lines i:nth-child(2) {
+      width: 74%;
+    }
+    .mobile-quiz-lines i:nth-child(3) {
+      width: 85%;
+    }
+    .mobile-quiz-lines i:nth-child(4) {
+      width: 65%;
+    }
+    .mobile-quiz-button {
+      position: absolute;
+      left: 8px;
+      right: 8px;
+      bottom: 9px;
+      display: block;
+      padding: 15px 8px;
+      border-radius: 28px;
+      background: #000;
+      color: #fff;
+      text-align: center;
+      font-size: clamp(16px, 4vw, 24px);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .mobile-folder-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      column-gap: 24px;
+      row-gap: 26px;
+      margin-top: 39px;
+    }
+    .mobile-folder-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+      border: 0;
+      background: none;
+      color: #fff;
+      font: inherit;
+      font-size: clamp(12px, 3.4vw, 18px);
+      line-height: 1.12;
+      text-align: center;
+      cursor: pointer;
+    }
+    .mobile-folder-tile {
+      display: grid;
+      place-items: center;
+      width: 82px;
+      aspect-ratio: 1;
+      max-width: 82px;
+      border-radius: 24px;
+      background: #f8f2e9;
+    }
+    .mobile-folder-tile.is-principle {
+      background: #ffe5bf;
+    }
+    .mobile-folder-tile img {
+      width: 62%;
+      height: auto;
+      object-fit: contain;
+    }
+    .mobile-pagination {
+      display: flex;
+      justify-content: center;
+      gap: 7px;
+      margin-top: 28px;
+    }
+    .mobile-pagination button {
+      width: 8px;
+      height: 8px;
+      padding: 0;
+      border: 0;
+      border-radius: 50%;
+      background: #d0ceca;
+      cursor: pointer;
+    }
+    .mobile-pagination button.is-active {
+      background: #8b8984;
+    }
+
+    @media (max-width: 410px) {
+      .mobile-home-content {
+        left: 25px;
+        right: 25px;
+      }
+      .mobile-feature-grid {
+        gap: 7px;
+      }
+      .mobile-principle-card,
+      .mobile-quiz-card {
+        min-height: 240px;
+      }
+      .mobile-folder-grid {
+        column-gap: 12px;
+        row-gap: 22px;
+        margin-top: 28px;
+      }
+      .mobile-pagination {
+        margin-top: 28px;
+      }
+    }
+  }
+
+  @keyframes floatBob {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-8px);
+    }
+  }
+
+  @keyframes mobileSlideFromRight {
+    from {
+      opacity: 0.35;
+      transform: translateX(28px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes mobileSlideFromLeft {
+    from {
+      opacity: 0.35;
+      transform: translateX(-28px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+</style>
+
+<script>
+  const updateClock = () => {
+    const now = new Date();
+    const minutes = now.getMinutes() + now.getSeconds() / 60;
+    const hours = (now.getHours() % 12) + minutes / 60;
+
+    const hourTransform = `translateX(-50%) rotate(${hours * 30}deg)`;
+    const minuteTransform = `translateX(-50%) rotate(${minutes * 6}deg)`;
+    document
+      .querySelectorAll<HTMLElement>(".clock-hour, .mobile-clock-hour")
+      .forEach((hand) => (hand.style.transform = hourTransform));
+    document
+      .querySelectorAll<HTMLElement>(".clock-minute, .mobile-clock-minute")
+      .forEach((hand) => (hand.style.transform = minuteTransform));
+  };
+
+  updateClock();
+  window.setInterval(updateClock, 1000);
+</script>

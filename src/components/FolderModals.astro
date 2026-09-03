@@ -1,0 +1,454 @@
+---
+const folderData = [
+  {
+    id: "modal-principle",
+    title: "The 1% Principle",
+    subtitle: "Strategic Market Whitespace Identification",
+    tag: "Core Methodology",
+    content: `
+      <p>The <strong>1% Principle</strong> is MEDEACUP's proprietary framework for uncovering the highest-value structural gap in your industry.</p>
+      <div class="modal-stats-grid">
+        <div class="mstat-box">
+          <span class="mstat-num">99%</span>
+          <span class="mstat-lbl">Market Noise Filtered</span>
+        </div>
+        <div class="mstat-box">
+          <span class="mstat-num">1%</span>
+          <span class="mstat-lbl">High-Impact Focus</span>
+        </div>
+        <div class="mstat-box">
+          <span class="mstat-num">4.8x</span>
+          <span class="mstat-lbl">Avg ROI Acceleration</span>
+        </div>
+      </div>
+      <p style="margin-top: 16px;">We help brands avoid red-ocean competition by positioning directly where unsatisfied high-margin demand accumulates.</p>
+    `,
+  },
+  {
+    id: "modal-cases",
+    title: "Cup Cases & Portfolio",
+    subtitle: "Selected Client Success Stories",
+    tag: "Case Studies",
+    content: `
+      <div class="cases-modal-list">
+        <div class="case-modal-card">
+          <div class="case-badge">FinTech</div>
+          <h4>NexaPay Global Scaling</h4>
+          <p>Captured 14% market share in 8 months through targeted structural positioning.</p>
+        </div>
+        <div class="case-modal-card">
+          <div class="case-badge">SaaS</div>
+          <h4>CloudScale Enterprise Launch</h4>
+          <p>Repositioned enterprise messaging resulting in 3.2x expansion in ARR.</p>
+        </div>
+        <div class="case-modal-card">
+          <div class="case-badge">Consumer</div>
+          <h4>LuxeAura Brand Transformation</h4>
+          <p>Created bespoke market narrative scaling D2C sales by 240% YoY.</p>
+        </div>
+      </div>
+    `,
+  },
+  {
+    id: "modal-framework",
+    title: "Cup Framework",
+    subtitle: "The 4-Step Structural Execution Blueprint",
+    tag: "Execution Model",
+    content: `
+      <div class="framework-steps">
+        <div class="fstep-item">
+          <span class="fstep-num">01</span>
+          <div>
+            <h5>Deep Signal Discovery</h5>
+            <p>Auditing industry blind spots and uncaptured demand streams.</p>
+          </div>
+        </div>
+        <div class="fstep-item">
+          <span class="fstep-num">02</span>
+          <div>
+            <h5>Structuralization</h5>
+            <p>Drafting the 1% positioning strategy and core narrative architecture.</p>
+          </div>
+        </div>
+        <div class="fstep-item">
+          <span class="fstep-num">03</span>
+          <div>
+            <h5>Precision Optimization</h5>
+            <p>Deploying digital assets, campaigns, and UX design touchpoints.</p>
+          </div>
+        </div>
+        <div class="fstep-item">
+          <span class="fstep-num">04</span>
+          <div>
+            <h5>Compound Scaling</h5>
+            <p>Continuous measurement, feedback loops, and market capture expansion.</p>
+          </div>
+        </div>
+      </div>
+    `,
+  },
+  {
+    id: "modal-capabilities",
+    title: "What We Build",
+    subtitle: "End-to-End Strategic & Digital Excellence",
+    tag: "Capabilities",
+    content: `
+      <div class="cap-grid">
+        <div class="cap-card">
+          <div class="cap-icon">🎯</div>
+          <h5>Brand Positioning</h5>
+          <p>Disruptive messaging architectures designed to win top-tier markets.</p>
+        </div>
+        <div class="cap-card">
+          <div class="cap-icon">⚡</div>
+          <h5>Digital Experience</h5>
+          <p>State-of-the-art web apps, interactive OS interfaces, and dynamic UX.</p>
+        </div>
+        <div class="cap-card">
+          <div class="cap-icon">📊</div>
+          <h5>Growth Engineering</h5>
+          <p>Data-driven acquisition engines built for long-term scalability.</p>
+        </div>
+        <div class="cap-card">
+          <div class="cap-icon">💎</div>
+          <h5>Creative Direction</h5>
+          <p>World-class visual aesthetics, motion design, and brand identity systems.</p>
+        </div>
+      </div>
+    `,
+  },
+  {
+    id: "modal-about",
+    title: "About MEDEACUP",
+    subtitle: "Our Philosophy & Mission",
+    tag: "Company Overview",
+    content: `
+      <p>MEDEACUP is a premier strategic design and market acceleration agency. We believe that true market dominance does not come from doing 100 things slightly better, but from mastering the <strong>1% structural opportunity</strong> that changes everything.</p>
+      <div class="about-quote-box">
+        "We don't build standard websites; we engineer high-impact digital ecosystems."
+      </div>
+      <p style="margin-top: 16px;">Our team of strategists, designers, and engineers partner with visionary leaders to create category-defining products.</p>
+    `,
+  },
+  {
+    id: "modal-where",
+    title: "Where We Work",
+    subtitle: "Global Operations & Office Hubs",
+    tag: "Locations",
+    content: `
+      <div class="locations-grid">
+        <div class="location-card">
+          <span class="loc-flag">🇺🇸</span>
+          <h5>New York</h5>
+          <p>5th Avenue Tech Center, NY 10001</p>
+        </div>
+        <div class="location-card">
+          <span class="loc-flag">🇬🇧</span>
+          <h5>London</h5>
+          <p>Shoreditch High St, EC16 4GG</p>
+        </div>
+        <div class="location-card">
+          <span class="loc-flag">🇯🇵</span>
+          <h5>Tokyo</h5>
+          <p>Roppongi Hills Tower, Tokyo 106</p>
+        </div>
+        <div class="location-card">
+          <span class="loc-flag">🇸🇬</span>
+          <h5>Singapore</h5>
+          <p>Marina Bay Financial Tower 2</p>
+        </div>
+      </div>
+    `,
+  },
+];
+---
+
+{
+  folderData.map((folder) => (
+    <div class="modal-overlay folder-modal" id={folder.id}>
+      <div class="modal-window folder-dialog">
+        <div class="modal-header">
+          <div class="header-left">
+            <span class="dot-btn dot-red close-folder-modal-btn" />
+            <span class="modal-title">{folder.title}</span>
+          </div>
+          <span class="folder-tag-badge">{folder.tag}</span>
+        </div>
+
+        <div class="folder-modal-body">
+          <h3 class="folder-subtitle">{folder.subtitle}</h3>
+          <div class="folder-main-html" set:html={folder.content} />
+        </div>
+      </div>
+    </div>
+  ))
+}
+
+<style>
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(14px);
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+
+  .modal-overlay.is-open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .folder-dialog {
+    width: 90%;
+    max-width: 600px;
+    background: #fdfbf7;
+    border-radius: 28px;
+    overflow: hidden;
+    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.25);
+    border: 1.5px solid rgba(255, 255, 255, 0.95);
+    transform: scale(0.9);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .modal-overlay.is-open .folder-dialog {
+    transform: scale(1);
+  }
+
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 24px;
+    background: rgba(0, 0, 0, 0.02);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  }
+
+  .modal-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  .folder-tag-badge {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--brand-red);
+    background: rgba(230, 46, 45, 0.08);
+    padding: 4px 12px;
+    border-radius: 12px;
+    letter-spacing: 0.02em;
+  }
+
+  .folder-modal-body {
+    padding: 28px 26px;
+    max-height: 70vh;
+    overflow-y: auto;
+  }
+
+  .folder-subtitle {
+    font-family: var(--font-heading);
+    font-size: 24px;
+    font-weight: 700;
+    color: #111111;
+    margin-bottom: 20px;
+    line-height: 1.25;
+  }
+
+  :global(.modal-stats-grid) {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin: 20px 0;
+  }
+
+  :global(.mstat-box) {
+    background: #ffffff;
+    padding: 16px 12px;
+    border-radius: 18px;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  }
+
+  :global(.mstat-num) {
+    font-family: var(--font-heading);
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--brand-red);
+    display: block;
+  }
+
+  :global(.mstat-lbl) {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-top: 4px;
+    display: block;
+  }
+
+  :global(.cases-modal-list) {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  :global(.case-modal-card) {
+    background: #ffffff;
+    padding: 16px 18px;
+    border-radius: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  }
+
+  :global(.case-badge) {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--brand-red);
+    background: rgba(230, 46, 45, 0.08);
+    padding: 2px 8px;
+    border-radius: 8px;
+    margin-bottom: 6px;
+  }
+
+  :global(.case-modal-card h4) {
+    font-size: 16px;
+    font-weight: 700;
+    color: #18181b;
+    margin-bottom: 4px;
+  }
+
+  :global(.case-modal-card p) {
+    font-size: 13px;
+    color: var(--text-secondary);
+  }
+
+  :global(.framework-steps) {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  :global(.fstep-item) {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    background: #ffffff;
+    padding: 16px;
+    border-radius: 18px;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+  }
+
+  :global(.fstep-num) {
+    font-family: var(--font-heading);
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--brand-red);
+    background: rgba(230, 46, 45, 0.08);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  :global(.fstep-item h5) {
+    font-size: 15px;
+    font-weight: 700;
+    color: #18181b;
+    margin-bottom: 2px;
+  }
+
+  :global(.fstep-item p) {
+    font-size: 13px;
+    color: var(--text-secondary);
+  }
+
+  :global(.cap-grid) {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+
+  :global(.cap-card) {
+    background: #ffffff;
+    padding: 16px;
+    border-radius: 18px;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+  }
+
+  :global(.cap-icon) {
+    font-size: 24px;
+    margin-bottom: 8px;
+  }
+
+  :global(.cap-card h5) {
+    font-size: 15px;
+    font-weight: 700;
+    color: #18181b;
+    margin-bottom: 4px;
+  }
+
+  :global(.cap-card p) {
+    font-size: 12px;
+    color: var(--text-secondary);
+    line-height: 1.35;
+  }
+
+  :global(.about-quote-box) {
+    background: rgba(230, 46, 45, 0.05);
+    border-left: 4px solid var(--brand-red);
+    padding: 16px 20px;
+    border-radius: 12px;
+    font-family: var(--font-heading);
+    font-size: 16px;
+    font-weight: 600;
+    color: #111111;
+    margin: 20px 0;
+  }
+
+  :global(.locations-grid) {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+
+  :global(.location-card) {
+    background: #ffffff;
+    padding: 16px;
+    border-radius: 18px;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+  }
+
+  :global(.loc-flag) {
+    font-size: 24px;
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  :global(.location-card h5) {
+    font-size: 15px;
+    font-weight: 700;
+    color: #18181b;
+    margin-bottom: 2px;
+  }
+
+  :global(.location-card p) {
+    font-size: 12px;
+    color: var(--text-secondary);
+  }
+</style>

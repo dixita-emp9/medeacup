@@ -1,0 +1,142 @@
+---
+
+---
+
+<div class="modal-overlay" id="video-modal">
+  <div class="modal-window">
+    <div class="modal-header">
+      <span class="modal-title">Brand Video - MEDEACUP Showcase</span>
+      <button class="close-modal-btn" id="close-video-modal">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="video-container">
+        <button
+          class="video-placeholder"
+          id="video-play-button"
+          type="button"
+          aria-label="Load MEDEACUP brand video"
+        >
+          <span aria-hidden="true">Play video</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style is:global>
+  #video-modal.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(16, 16, 18, 0.62) !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+    z-index: 2400;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+
+  #video-modal.modal-overlay.is-open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  #video-modal .modal-window {
+    display: flex;
+    flex-direction: column;
+    width: min(96vw, 1440px);
+    height: min(92vh, 900px);
+    background: #18181b !important;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    transform: scale(0.9);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  #video-modal.modal-overlay.is-open .modal-window {
+    transform: scale(1);
+  }
+
+  #video-modal .modal-header {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 20px;
+    background: rgba(255, 255, 255, 0.05) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+  }
+
+  #video-modal .modal-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: #f4f4f5;
+  }
+
+  #video-modal .close-modal-btn {
+    background: transparent;
+    border: none;
+    color: #a1a1aa;
+    font-size: 24px;
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.2s ease;
+  }
+
+  #video-modal .close-modal-btn:hover {
+    color: #ffffff;
+  }
+
+  #video-modal .modal-body {
+    flex: 1 1 auto;
+    min-height: 0;
+    padding: 0;
+    background: #18181b !important;
+  }
+
+  #video-modal .video-container {
+    width: 100%;
+    height: 100%;
+  }
+
+  #video-modal .video-container iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  #video-modal .video-placeholder {
+    display: grid;
+    place-items: center;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    background:
+      radial-gradient(circle at 50% 42%, #e62e2d 0 10%, transparent 11%),
+      #292929;
+    color: #ffffff;
+    font: 600 18px var(--font-body, sans-serif);
+    cursor: pointer;
+  }
+
+  @media (max-width: 700px) {
+    #video-modal .modal-window {
+      width: 94vw;
+      height: min(78vh, 620px);
+      border-radius: 18px;
+    }
+
+    #video-modal .modal-header {
+      padding: 12px 15px;
+    }
+
+    #video-modal .modal-title {
+      font-size: 12px;
+    }
+  }
+</style>
