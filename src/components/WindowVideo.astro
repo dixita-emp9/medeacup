@@ -1,7 +1,7 @@
 <div
   class="mac-window glass-window window-video"
   id="win-video"
-  style="top: auto; left: auto; right: 4%; bottom: 70px; width: 280px;"
+  style="top: 597px; left: 1194.56px; width: 280px; z-index: 112;"
 >
   <div class="window-header">
     <span class="window-title-tag">Brand Video</span>
@@ -26,15 +26,25 @@
 </div>
 
 <style>
-  @media (max-width: 1550px) and (min-width: 901px) {
+  @media (max-height: 900px) and (min-width: 901px) {
+    #win-video {
+      top: 507px !important;
+    }
+  }
+
+  @media (max-width: 1919px) and (min-width: 901px) {
     #win-video {
       width: 250px !important;
+      right: 34px !important;
+      left: auto !important;
     }
   }
 
   @media (max-width: 1380px) and (min-width: 901px) {
     #win-video {
       width: 230px !important;
+      right: 30px !important;
+      left: auto !important;
     }
     .video-window-preview {
       height: 140px;
@@ -45,6 +55,7 @@
     #win-video {
       width: 200px !important;
       right: 2% !important;
+      left: auto !important;
     }
     .video-window-preview {
       height: 120px;

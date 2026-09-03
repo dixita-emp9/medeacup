@@ -32,7 +32,7 @@ const projects = [
 <div
   class="mac-window window-projects"
   id="win-projects"
-  style="top: 120px; right: 48px; width: 380px; min-width: 360px; max-width: 420px;"
+  style="top: 120px; left: 1108px; width: 380px; min-width: 360px; max-width: 420px; z-index: 110;"
 >
   <div class="window-header">
     <span class="window-title-tag">Thinking Now</span>
@@ -96,11 +96,12 @@ const projects = [
     }
   }
 
-  @media (max-width: 1550px) and (min-width: 901px) {
+  @media (max-width: 1919px) and (min-width: 901px) {
     #win-projects {
       width: 320px !important;
       min-width: 320px !important;
       right: 20px !important;
+      left: auto !important;
     }
   }
 
@@ -109,6 +110,7 @@ const projects = [
       width: 290px !important;
       min-width: 290px !important;
       right: 20px !important;
+      left: auto !important;
     }
     .project-title {
       font-size: 13px !important;

@@ -6,7 +6,7 @@
   class="mac-window glass-window window-principle"
   id="win-principle"
   data-folder-id="principle"
-  style="top: 400px; left: 54%; width: 300px; min-width: 290px; max-width: 380px; cursor: pointer;"
+  style="top: 400px; left: 829.438px; width: 300px; min-width: 290px; max-width: 380px; cursor: pointer; z-index: 108;"
 >
   <div class="window-header">
     <span class="window-title-tag">The Medeacup Principle</span>
@@ -39,7 +39,7 @@
 
 <style>
   .window-principle {
-    height: 350px;
+    height: 250px;
     border-radius: 26px;
     background: rgba(255, 255, 255, 0.65) !important;
     backdrop-filter: blur(8px) !important;
@@ -72,9 +72,9 @@
     }
   }
 
-  @media (max-width: 1550px) and (min-width: 901px) {
+  @media (max-width: 1919px) and (min-width: 901px) {
     #win-principle {
-      left: 48% !important;
+      left: 56% !important;
       width: 300px !important;
       min-width: 290px !important;
     }
@@ -82,7 +82,7 @@
 
   @media (max-width: 1380px) and (min-width: 901px) {
     #win-principle {
-      left: 50% !important;
+      left: 58% !important;
       width: 275px !important;
       min-width: 265px !important;
     }
@@ -90,7 +90,7 @@
 
   @media (max-width: 1180px) and (min-width: 901px) {
     #win-principle {
-      left: 51% !important;
+      left: 60% !important;
       width: 255px !important;
       min-width: 245px !important;
     }
@@ -106,7 +106,7 @@
   }
 
   .principle-content {
-    padding: 20px 22px 24px 22px;
+    padding: 0px 22px 10px 22px;
     display: flex;
     flex-direction: column;
     height: calc(100% - 44px);
@@ -119,12 +119,12 @@
   .atom-visual-container {
     position: relative;
     width: 100%;
-    height: 190px;
+    height: 160px;
     flex: 0 0 auto;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 5px 0;
+    margin: 0;
   }
 
   .principle-orbit-art {
@@ -198,9 +198,9 @@
   .toggle-footer {
     display: flex;
     align-items: center;
-    gap: 14px;
+    gap: 14px; margin-top: -10px; z-index: 2;
     background: rgba(255, 255, 255, 0.7);
-    padding: 10px 20px;
+    padding: 4px 12px;
     border-radius: 24px;
     border: 1px solid rgba(255, 255, 255, 0.9);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
@@ -288,5 +288,19 @@
   .red-text {
     color: var(--brand-red);
     font-weight: 800;
+  }
+
+  @media (min-width: 1920px) {
+    .window-principle {
+      height: 400px !important;
+    }
+    #win-principle {
+      z-index: 112 !important;
+    }
+    .atom-visual-container {
+      height: auto !important;
+      flex: 1 !important;
+      margin: 10px 0 15px 0 !important;
+    }
   }
 </style>
