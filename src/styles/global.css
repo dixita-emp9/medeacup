@@ -295,15 +295,6 @@ body:has(.modal-overlay.is-open) #desktop-canvas::before {
   transition: none !important;
 }
 
-/* Responsive breakpoint positions use !important so the initial composition
-   stays stable. Once a user drags a window, let its measured position win. */
-.mac-window.is-user-positioned {
-  left: var(--drag-left) !important;
-  top: var(--drag-top) !important;
-  right: auto !important;
-  bottom: auto !important;
-}
-
 .mac-window.is-active {
   z-index: 100 !important;
   box-shadow: var(--glass-shadow-active);
