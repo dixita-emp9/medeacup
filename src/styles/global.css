@@ -1442,10 +1442,12 @@ body:has(.modal-overlay.is-open:not(#quiz-modal)) .modal-overlay {
     bottom: max(12px, env(safe-area-inset-bottom));
   }
 
-  #modal-page-principle .ppl-toggle-row {
-    top: auto;
-    bottom: 112px;
-    transform: translateX(-50%);
+  /* The locked principle screen keeps its unlock control centered. Only the
+     unlocked state should move the status control near the bottom/dock. */
+  #modal-page-principle .ppl-stage:not(.is-unlocked) .ppl-toggle-row {
+    top: 50% !important;
+    bottom: auto !important;
+    transform: translate(-50%, -50%) !important;
     z-index: 20;
   }
 
