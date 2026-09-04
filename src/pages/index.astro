@@ -57,6 +57,7 @@ import ExperienceModal from "../components/ExperienceModal.astro";
 				initialTop = 0;
 			let maxLeft = 0,
 				maxTop = 0;
+			let activePointerId: number | null = null;
 
 			const bringToFront = () => {
 				activeZIndex++;
@@ -68,9 +69,11 @@ import ExperienceModal from "../components/ExperienceModal.astro";
 			win.addEventListener("pointerdown", bringToFront);
 
 			header.addEventListener("pointerdown", (e: PointerEvent) => {
+				if (!e.isPrimary || e.button !== 0 || isDragging) return;
 				if ((e.target as HTMLElement).classList.contains("dot-btn"))
 					return;
 				isDragging = true;
+				activePointerId = e.pointerId;
 				didDrag = false;
 				bringToFront();
 				win.classList.add("is-dragging");
@@ -107,7 +110,7 @@ import ExperienceModal from "../components/ExperienceModal.astro";
 			});
 
 			header.addEventListener("pointermove", (e: PointerEvent) => {
-				if (!isDragging) return;
+				if (!isDragging || e.pointerId !== activePointerId) return;
 				if (Math.hypot(e.clientX - startX, e.clientY - startY) > 5)
 					didDrag = true;
 				let newLeft = initialLeft + (e.clientX - startX);
@@ -118,17 +121,28 @@ import ExperienceModal from "../components/ExperienceModal.astro";
 				win.style.top = `${newTop}px`;
 			});
 
-			const stopDrag = (e: PointerEvent) => {
+			const stopDrag = (e?: PointerEvent) => {
 				if (!isDragging) return;
+				if (e && e.pointerId !== activePointerId) return;
 				isDragging = false;
+				activePointerId = null;
 				if (didDrag) suppressNextClick = true;
 				win.classList.remove("is-dragging");
 				try {
-					header.releasePointerCapture(e.pointerId);
+					if (e && header.hasPointerCapture(e.pointerId)) {
+						header.releasePointerCapture(e.pointerId);
+					}
 				} catch {}
 			};
 			header.addEventListener("pointerup", stopDrag);
 			header.addEventListener("pointercancel", stopDrag);
+			header.addEventListener("lostpointercapture", stopDrag);
+			document.addEventListener("pointerup", stopDrag);
+			document.addEventListener("pointercancel", stopDrag);
+			window.addEventListener("blur", () => stopDrag());
+			document.addEventListener("visibilitychange", () => {
+				if (document.hidden) stopDrag();
+			});
 
 			// A drag emits a click on pointer release; swallow only that synthetic click.
 			win.addEventListener(
