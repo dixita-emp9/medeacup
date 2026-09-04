@@ -5,7 +5,7 @@
 <div
   class="mac-window window-mission"
   id="win-mission"
-  style="top: 80px; left: 29%; width: 27vw; min-width: 370px; max-width: 430px;"
+  style="top: 80px; left: 445.438px; width: 27vw; min-width: 370px; max-width: 430px; z-index: 106;"
 >
   <div class="window-header">
     <span class="window-title-tag">Our Mission</span>
@@ -37,6 +37,41 @@
     height: 500px;
     background: transparent;
     border-radius: 28px;
+  }
+
+  @media (max-height: 900px) and (min-width: 901px) {
+    .window-mission {
+      height: 400px;
+      min-width: 320px !important;
+    }
+  }
+
+  @media (max-width: 1919px) and (min-width: 901px) {
+    #win-mission {
+      left: 35% !important;
+      width: 330px !important;
+      min-width: 320px !important;
+    }
+  }
+
+  @media (max-width: 1380px) and (min-width: 901px) {
+    #win-mission {
+      left: 36% !important;
+    }
+    .mission-headline {
+      font-size: clamp(28px, 2.8vw, 36px);
+    }
+  }
+
+  @media (max-width: 1180px) and (min-width: 901px) {
+    #win-mission {
+      left: 35% !important;
+      width: 300px !important;
+      min-width: 290px !important;
+    }
+    .mission-headline {
+      font-size: clamp(24px, 2.4vw, 34px);
+    }
   }
 
   .window-mission .window-header {

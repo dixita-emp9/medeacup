@@ -5,7 +5,7 @@
 <div
   class="mac-window glass-window window-quiz"
   id="win-quiz"
-  style="top: 500px; left: 26%; width: 300px; min-width: 290px; max-width: 380px;"
+  style="top: 500px; left: 399.359px; width: 300px; min-width: 290px; max-width: 380px; z-index: 108;"
 >
   <div class="window-header">
     <span class="window-title-tag">Are we compatible?</span>
@@ -41,6 +41,56 @@
   .window-quiz {
     height: 350px;
     border-radius: 26px;
+    background: rgba(255, 255, 255, 0.65) !important;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+  }
+
+  @media (max-height: 900px) and (min-width: 901px) {
+    .window-quiz {
+      height: 250px;
+    }
+    #win-quiz {
+      top: 440px !important;
+    }
+    .brain-grid-visual {
+      height: 150px !important;
+    }
+    .quiz-img {
+      object-fit: cover !important;
+    }
+  }
+
+  @media (max-width: 1919px) and (min-width: 901px) {
+    #win-quiz {
+      left: 18% !important;
+      width: 300px !important;
+      min-width: 290px !important;
+    }
+  }
+
+  @media (max-width: 1380px) and (min-width: 901px) {
+    #win-quiz {
+      left: 14% !important;
+      width: 275px !important;
+      min-width: 265px !important;
+    }
+    .quiz-btn {
+      padding: 6px 16px;
+      font-size: 13px;
+    }
+  }
+
+  @media (max-width: 1180px) and (min-width: 901px) {
+    #win-quiz {
+      left: 8% !important;
+      width: 255px !important;
+      min-width: 245px !important;
+    }
+    .quiz-btn {
+      padding: 5px 12px;
+      font-size: 12px;
+    }
   }
 
   .window-dots {
@@ -130,5 +180,11 @@
   }
   .preview-text-lines span:nth-child(3) {
     width: 60%;
+  }
+
+  @media (min-width: 1920px) {
+    #win-quiz {
+      z-index: 108 !important;
+    }
   }
 </style>
