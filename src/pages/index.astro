@@ -265,11 +265,10 @@ import ExperienceModal from "../components/ExperienceModal.astro";
 					const isPrincipleTab =
 						tab.dataset.principleTab === "principle";
 					tab.classList.toggle("is-active", isPrincipleTab);
-					 tab.setAttribute("aria-selected", String(isPrincipleTab));
+					tab.setAttribute("aria-selected", String(isPrincipleTab));
 				});
-			const mobileTitle = overlayEl.querySelector<HTMLElement>(
-				".mobile-nav-title",
-			);
+			const mobileTitle =
+				overlayEl.querySelector<HTMLElement>(".mobile-nav-title");
 			if (mobileTitle?.firstChild) {
 				mobileTitle.firstChild.textContent = "The 1% Principle ";
 			}
@@ -496,9 +495,9 @@ import ExperienceModal from "../components/ExperienceModal.astro";
 			where: "modal-page-where",
 		};
 
-			document
-				.querySelectorAll<HTMLElement>(
-					".folder-item, .mobile-folder-item, .mobile-recent-shortcut, .mobile-principle-card, #win-principle",
+		document
+			.querySelectorAll<HTMLElement>(
+				".folder-item, .mobile-folder-item, .mobile-recent-shortcut, .mobile-principle-card, #win-principle",
 			)
 			.forEach((folder) => {
 				folder.addEventListener("click", () => {
@@ -523,7 +522,7 @@ import ExperienceModal from "../components/ExperienceModal.astro";
 							openModalWithGenie(targetOverlay, folder);
 					}
 				});
-				});
+			});
 
 		// Mobile modal navigation: the centered title and the three-dot button
 		// expose the same tabs that are visible in the desktop window header.
@@ -534,7 +533,7 @@ import ExperienceModal from "../components/ExperienceModal.astro";
 			cases: "Cup Cases",
 			experience: "Experience Design",
 			framework: "Cup Framework",
-			capabilities: "What we build",
+			capabilities: "What We Build",
 			about: "About Us",
 			where: "Where We Work",
 		};
@@ -542,9 +541,12 @@ import ExperienceModal from "../components/ExperienceModal.astro";
 		document
 			.querySelectorAll<HTMLElement>(".modal-overlay")
 			.forEach((overlay) => {
-				const nav = overlay.querySelector<HTMLElement>(".mobile-modal-nav");
-				const title = nav?.querySelector<HTMLElement>(".mobile-nav-title");
-				const more = nav?.querySelector<HTMLElement>(".mobile-nav-more");
+				const nav =
+					overlay.querySelector<HTMLElement>(".mobile-modal-nav");
+				const title =
+					nav?.querySelector<HTMLElement>(".mobile-nav-title");
+				const more =
+					nav?.querySelector<HTMLElement>(".mobile-nav-more");
 				if (!nav || !title || !more) return;
 
 				const menu = document.createElement("div");
@@ -552,17 +554,18 @@ import ExperienceModal from "../components/ExperienceModal.astro";
 				menu.hidden = true;
 				menu.setAttribute("aria-label", "Page navigation");
 
-				const desktopTabStrip = overlay.id === "modal-page-experience"
-					? null
-					: overlay.querySelector<HTMLElement>(
-							".principle-tabbar, .browser-tab-strip, .about-tabbar",
-						);
+				const desktopTabStrip =
+					overlay.id === "modal-page-experience"
+						? null
+						: overlay.querySelector<HTMLElement>(
+								".principle-tabbar, .browser-tab-strip, .about-tabbar",
+							);
 				const desktopTabs = desktopTabStrip
 					? Array.from(
 							desktopTabStrip.querySelectorAll<HTMLElement>(
 								"[data-principle-tab], [data-framework-tab], [data-about-tab]",
 							),
-					  )
+						)
 					: [];
 
 				const addMenuItem = (
@@ -596,27 +599,43 @@ import ExperienceModal from "../components/ExperienceModal.astro";
 					caseMenuItems.forEach(([caseId, label]) => {
 						addMenuItem(
 							label,
-							() => overlay
-								.querySelector<HTMLElement>(
-									`.case-doc-item[data-case-id="${caseId}"], [data-case-tab="${caseId}"]`,
-								)
-								?.click(),
+							() =>
+								overlay
+									.querySelector<HTMLElement>(
+										`.case-doc-item[data-case-id="${caseId}"], [data-case-tab="${caseId}"]`,
+									)
+									?.click(),
 							Boolean(
-								overlay.querySelector(`#cs-pane-${caseId}.is-active`),
+								overlay.querySelector(
+									`#cs-pane-${caseId}.is-active`,
+								),
 							),
 						);
 					});
 				} else if (overlay.id === "modal-page-experience") {
-					overlay.querySelectorAll<HTMLElement>("[data-experience-tab]").forEach((experienceTab) => {
-						const label = experienceTab.dataset.experienceTab || experienceTab.textContent?.trim() || "";
-						addMenuItem(label, () => experienceTab.click(), experienceTab.classList.contains("is-active"));
-					});
+					overlay
+						.querySelectorAll<HTMLElement>("[data-experience-tab]")
+						.forEach((experienceTab) => {
+							const label =
+								experienceTab.dataset.experienceTab ||
+								experienceTab.textContent?.trim() ||
+								"";
+							addMenuItem(
+								label,
+								() => experienceTab.click(),
+								experienceTab.classList.contains("is-active"),
+							);
+						});
 				} else if (desktopTabs.length) {
 					desktopTabs.forEach((desktopTab) => {
 						const label = (desktopTab.textContent || "")
 							.replace(/×/g, "")
 							.trim();
-						addMenuItem(label, () => desktopTab.click(), desktopTab.classList.contains("is-active"));
+						addMenuItem(
+							label,
+							() => desktopTab.click(),
+							desktopTab.classList.contains("is-active"),
+						);
 					});
 				} else {
 					Object.entries(folderModalMap).forEach(([id, targetId]) => {
@@ -625,7 +644,10 @@ import ExperienceModal from "../components/ExperienceModal.astro";
 							const target = document.getElementById(targetId);
 							if (!target) return;
 							closeModalWithGenie(overlay, true);
-							window.setTimeout(() => openModalWithGenie(target, null, true), 40);
+							window.setTimeout(
+								() => openModalWithGenie(target, null, true),
+								40,
+							);
 						});
 					});
 				}
@@ -641,17 +663,22 @@ import ExperienceModal from "../components/ExperienceModal.astro";
 				title.setAttribute("aria-expanded", "false");
 				title.addEventListener("click", toggleMenu);
 				title.addEventListener("keydown", (event) => {
-					if (event.key === "Enter" || event.key === " ") toggleMenu(event);
+					if (event.key === "Enter" || event.key === " ")
+						toggleMenu(event);
 				});
 				more.addEventListener("click", toggleMenu);
 			});
 
 		document.addEventListener("click", (event) => {
 			if ((event.target as Element).closest(".mobile-modal-nav")) return;
-			document.querySelectorAll<HTMLElement>(".mobile-tab-menu").forEach((menu) => {
-				menu.hidden = true;
-				menu.closest(".mobile-modal-nav")?.querySelector(".mobile-nav-title")?.setAttribute("aria-expanded", "false");
-			});
+			document
+				.querySelectorAll<HTMLElement>(".mobile-tab-menu")
+				.forEach((menu) => {
+					menu.hidden = true;
+					menu.closest(".mobile-modal-nav")
+						?.querySelector(".mobile-nav-title")
+						?.setAttribute("aria-expanded", "false");
+				});
 		});
 
 		// Mobile home has two deliberate slides: the folder/quiz home and Recent
@@ -669,21 +696,29 @@ import ExperienceModal from "../components/ExperienceModal.astro";
 			enteringFrom?: "left" | "right",
 		) => {
 			if (!mobileHomeSlides.length) return;
-			const nextMobileSlide = slideId === "thinking" ? "thinking" : "home";
+			const nextMobileSlide =
+				slideId === "thinking" ? "thinking" : "home";
 			if (nextMobileSlide === activeMobileSlide) return;
 			const transitionDirection =
 				enteringFrom ?? (nextMobileSlide === "home" ? "left" : "right");
 			activeMobileSlide = nextMobileSlide;
 			mobileHomeSlides.forEach((slide) => {
-				const isActive = slide.dataset.mobileSlide === activeMobileSlide;
+				const isActive =
+					slide.dataset.mobileSlide === activeMobileSlide;
 				slide.classList.toggle("is-active", isActive);
-				slide.classList.remove("is-entering-from-right", "is-entering-from-left");
+				slide.classList.remove(
+					"is-entering-from-right",
+					"is-entering-from-left",
+				);
 				if (isActive)
-					slide.classList.add(`is-entering-from-${transitionDirection}`);
+					slide.classList.add(
+						`is-entering-from-${transitionDirection}`,
+					);
 				slide.setAttribute("aria-hidden", String(!isActive));
 			});
 			mobileHomeDots.forEach((dot) => {
-				const isActive = dot.dataset.mobileSlideDot === activeMobileSlide;
+				const isActive =
+					dot.dataset.mobileSlideDot === activeMobileSlide;
 				dot.classList.toggle("is-active", isActive);
 				dot.setAttribute("aria-selected", String(isActive));
 			});
@@ -722,7 +757,9 @@ import ExperienceModal from "../components/ExperienceModal.astro";
 		// 4. Card Action Links → Open Individual Modal
 		// ──────────────────────────────────────────────────
 		document
-			.querySelectorAll<HTMLElement>("#btn-learn-more, [data-mobile-learn-more]")
+			.querySelectorAll<HTMLElement>(
+				"#btn-learn-more, [data-mobile-learn-more]",
+			)
 			.forEach((learnMore) => {
 				learnMore.addEventListener("click", (e) => {
 					const targetOverlay =
@@ -772,7 +809,9 @@ import ExperienceModal from "../components/ExperienceModal.astro";
 				});
 			});
 		document
-			.querySelectorAll<HTMLElement>(".project-action, .mobile-recent-action")
+			.querySelectorAll<HTMLElement>(
+				".project-action, .mobile-recent-action",
+			)
 			.forEach((action) => {
 				action.addEventListener("click", (e) => {
 					e.stopPropagation();
@@ -874,11 +913,13 @@ import ExperienceModal from "../components/ExperienceModal.astro";
 			?.addEventListener("click", () => {
 				if (experienceDetail) experienceDetail.hidden = true;
 				if (experienceGrid) experienceGrid.hidden = false;
-				const experienceMobileTitle = document.querySelector<HTMLElement>(
-					"#modal-page-experience .mobile-nav-title",
-				);
+				const experienceMobileTitle =
+					document.querySelector<HTMLElement>(
+						"#modal-page-experience .mobile-nav-title",
+					);
 				if (experienceMobileTitle?.firstChild) {
-					experienceMobileTitle.firstChild.textContent = "Experience Design ";
+					experienceMobileTitle.firstChild.textContent =
+						"Experience Design ";
 				}
 			});
 		experienceTabs.forEach((tab) => {
@@ -1177,33 +1218,35 @@ import ExperienceModal from "../components/ExperienceModal.astro";
 
 		document
 			.querySelectorAll<HTMLElement>("[data-open-experience]")
-			.forEach((action) => action.addEventListener("click", (event) => {
-				const frameworkModal = document.getElementById(
-					"modal-page-framework",
-				);
-				const experienceModal = document.getElementById(
-					"modal-page-experience",
-				);
-				if (!experienceModal) return;
+			.forEach((action) =>
+				action.addEventListener("click", (event) => {
+					const frameworkModal = document.getElementById(
+						"modal-page-framework",
+					);
+					const experienceModal = document.getElementById(
+						"modal-page-experience",
+					);
+					if (!experienceModal) return;
 
-				document
-					.getElementById("experience-view-grid")
-					?.removeAttribute("hidden");
-				document
-					.getElementById("experience-view-detail")
-					?.setAttribute("hidden", "true");
-				frameworkModal?.classList.remove("is-open");
-				history.replaceState(
-					{ modal: "modal-page-experience" },
-					"",
-					"#modal-page-experience",
-				);
-				openModalWithGenie(
-					experienceModal,
-					event.currentTarget as HTMLElement,
-					true,
-				);
-			}));
+					document
+						.getElementById("experience-view-grid")
+						?.removeAttribute("hidden");
+					document
+						.getElementById("experience-view-detail")
+						?.setAttribute("hidden", "true");
+					frameworkModal?.classList.remove("is-open");
+					history.replaceState(
+						{ modal: "modal-page-experience" },
+						"",
+						"#modal-page-experience",
+					);
+					openModalWithGenie(
+						experienceModal,
+						event.currentTarget as HTMLElement,
+						true,
+					);
+				}),
+			);
 
 		// Framework explicit back button logic
 		// Mobile grid document click
@@ -1672,7 +1715,8 @@ import ExperienceModal from "../components/ExperienceModal.astro";
 						"",
 						window.location.pathname + window.location.search,
 					);
-					if (capabilitiesModal) closeModalWithGenie(capabilitiesModal);
+					if (capabilitiesModal)
+						closeModalWithGenie(capabilitiesModal);
 					return;
 				}
 
@@ -1681,11 +1725,7 @@ import ExperienceModal from "../components/ExperienceModal.astro";
 					: null;
 				if (!targetModal) return;
 				if (targetId === "modal-page-cases") returnToGrid();
-				history.replaceState(
-					{ modal: targetId },
-					"",
-					"#" + targetId,
-				);
+				history.replaceState({ modal: targetId }, "", "#" + targetId);
 				if (capabilitiesModal)
 					closeModalWithGenie(capabilitiesModal, true);
 				window.setTimeout(
@@ -1772,22 +1812,22 @@ import ExperienceModal from "../components/ExperienceModal.astro";
 		});
 
 		// Close contact panel when clicking outside
-			document.addEventListener("click", (e) => {
-				const contactPanel = document.getElementById("contact-panel");
-				const dockMailBtn = document.querySelector<HTMLElement>(
-					'[data-dock-id="dock-mail"]',
-				);
-				const headerMailBtn = document.querySelector<HTMLElement>(
-					'[data-top-action="mail"]',
-				);
-				if (
-					contactPanel?.classList.contains("is-open") &&
-					!contactPanel.contains(e.target as Node) &&
-					e.target !== dockMailBtn &&
-					!dockMailBtn?.contains(e.target as Node) &&
-					e.target !== headerMailBtn &&
-					!headerMailBtn?.contains(e.target as Node)
-				) {
+		document.addEventListener("click", (e) => {
+			const contactPanel = document.getElementById("contact-panel");
+			const dockMailBtn = document.querySelector<HTMLElement>(
+				'[data-dock-id="dock-mail"]',
+			);
+			const headerMailBtn = document.querySelector<HTMLElement>(
+				'[data-top-action="mail"]',
+			);
+			if (
+				contactPanel?.classList.contains("is-open") &&
+				!contactPanel.contains(e.target as Node) &&
+				e.target !== dockMailBtn &&
+				!dockMailBtn?.contains(e.target as Node) &&
+				e.target !== headerMailBtn &&
+				!headerMailBtn?.contains(e.target as Node)
+			) {
 				contactPanel.classList.remove("is-open");
 				contactPanel.setAttribute("aria-hidden", "true");
 				dockMailBtn?.classList.remove("is-active");
@@ -1833,8 +1873,12 @@ import ExperienceModal from "../components/ExperienceModal.astro";
 		// The expanded principle view can hand off directly to the framework
 		// window while preserving the site's shared window transition.
 		pplFrameworkCta?.addEventListener("click", (event) => {
-			const principleModal = document.getElementById("modal-page-principle");
-			const frameworkModal = document.getElementById("modal-page-framework");
+			const principleModal = document.getElementById(
+				"modal-page-principle",
+			);
+			const frameworkModal = document.getElementById(
+				"modal-page-framework",
+			);
 			if (!frameworkModal) return;
 
 			returnToFrameworkGrid();
@@ -1873,15 +1917,12 @@ import ExperienceModal from "../components/ExperienceModal.astro";
 		// About Us tabs: keep the editorial page and the Mission/In Practice
 		// views in the same window, using the same tab interaction pattern.
 		const aboutModal = document.getElementById("modal-page-about");
-		const aboutTabs = document.querySelectorAll<HTMLElement>(
-			"[data-about-tab]",
-		);
-		const aboutPanes = document.querySelectorAll<HTMLElement>(
-			"[data-about-pane]",
-		);
-		const aboutBody = aboutModal?.querySelector<HTMLElement>(
-			".about-window-body",
-		);
+		const aboutTabs =
+			document.querySelectorAll<HTMLElement>("[data-about-tab]");
+		const aboutPanes =
+			document.querySelectorAll<HTMLElement>("[data-about-pane]");
+		const aboutBody =
+			aboutModal?.querySelector<HTMLElement>(".about-window-body");
 
 		aboutTabs.forEach((tab) => {
 			tab.addEventListener("click", () => {
@@ -1904,7 +1945,8 @@ import ExperienceModal from "../components/ExperienceModal.astro";
 			.querySelectorAll<HTMLElement>("[data-open-mission]")
 			.forEach((action) =>
 				action.addEventListener("click", () => {
-					const missionModal = document.getElementById("modal-page-mission");
+					const missionModal =
+						document.getElementById("modal-page-mission");
 					if (!missionModal) return;
 
 					history.replaceState(
@@ -1926,43 +1968,77 @@ import ExperienceModal from "../components/ExperienceModal.astro";
 			.querySelectorAll<HTMLElement>("[data-open-thinking]")
 			.forEach((action) =>
 				action.addEventListener("click", () => {
-						const missionModal = document.getElementById("modal-page-mission");
-						if (isMobileViewport()) {
-							const mobileThinkingPanel = document.querySelector<HTMLElement>(
+					const missionModal =
+						document.getElementById("modal-page-mission");
+					if (isMobileViewport()) {
+						const mobileThinkingPanel =
+							document.querySelector<HTMLElement>(
 								'[data-mobile-slide="thinking"] .mobile-recent-panel',
 							);
-							history.replaceState(null, "", window.location.pathname + window.location.search);
-							if (missionModal?.classList.contains("is-open")) {
-								closeModalWithGenie(missionModal, true);
-							}
-							setMobileHomeSlide("thinking");
-							mobileThinkingPanel?.classList.remove("is-thinking-highlight");
-							window.setTimeout(() => {
-								mobileThinkingPanel?.classList.add("is-thinking-highlight");
-								window.setTimeout(
-									() => mobileThinkingPanel?.classList.remove("is-thinking-highlight"),
-									1900,
-								);
-							}, missionModal?.classList.contains("is-open") ? 440 : 40);
-							return;
-						}
-						const thinkingWindow = document.getElementById("win-projects");
-						if (!thinkingWindow) return;
-
-						history.replaceState(null, "", window.location.pathname + window.location.search);
+						history.replaceState(
+							null,
+							"",
+							window.location.pathname + window.location.search,
+						);
 						if (missionModal?.classList.contains("is-open")) {
 							closeModalWithGenie(missionModal, true);
 						}
-						thinkingWindow.classList.remove("is-minimized", "is-thinking-highlight");
-						activeZIndex++;
-						thinkingWindow.style.zIndex = String(activeZIndex);
-						window.setTimeout(() => {
-							thinkingWindow.classList.add("is-thinking-highlight");
+						setMobileHomeSlide("thinking");
+						mobileThinkingPanel?.classList.remove(
+							"is-thinking-highlight",
+						);
+						window.setTimeout(
+							() => {
+								mobileThinkingPanel?.classList.add(
+									"is-thinking-highlight",
+								);
+								window.setTimeout(
+									() =>
+										mobileThinkingPanel?.classList.remove(
+											"is-thinking-highlight",
+										),
+									1900,
+								);
+							},
+							missionModal?.classList.contains("is-open")
+								? 440
+								: 40,
+						);
+						return;
+					}
+					const thinkingWindow =
+						document.getElementById("win-projects");
+					if (!thinkingWindow) return;
+
+					history.replaceState(
+						null,
+						"",
+						window.location.pathname + window.location.search,
+					);
+					if (missionModal?.classList.contains("is-open")) {
+						closeModalWithGenie(missionModal, true);
+					}
+					thinkingWindow.classList.remove(
+						"is-minimized",
+						"is-thinking-highlight",
+					);
+					activeZIndex++;
+					thinkingWindow.style.zIndex = String(activeZIndex);
+					window.setTimeout(
+						() => {
+							thinkingWindow.classList.add(
+								"is-thinking-highlight",
+							);
 							window.setTimeout(
-								() => thinkingWindow.classList.remove("is-thinking-highlight"),
+								() =>
+									thinkingWindow.classList.remove(
+										"is-thinking-highlight",
+									),
 								1900,
 							);
-						}, missionModal?.classList.contains("is-open") ? 440 : 40);
+						},
+						missionModal?.classList.contains("is-open") ? 440 : 40,
+					);
 				}),
 			);
 
@@ -2131,7 +2207,9 @@ import ExperienceModal from "../components/ExperienceModal.astro";
 	};
 
 	if (document.readyState === "loading") {
-		document.addEventListener("DOMContentLoaded", initializeApp, { once: true });
+		document.addEventListener("DOMContentLoaded", initializeApp, {
+			once: true,
+		});
 	} else {
 		initializeApp();
 	}
