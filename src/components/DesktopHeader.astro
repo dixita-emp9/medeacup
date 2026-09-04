@@ -93,11 +93,13 @@
     width: 36px;
     height: 36px;
     border-radius: 50%;
-    background-color: #eae5d7;
-    border: 2px solid rgba(255, 255, 255, 0.8);
-    box-shadow:
-      inset 0 2px 4px rgba(0, 0, 0, 0.06),
-      0 2px 8px rgba(0, 0, 0, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #383838;
+    color: #fff;
+    border: 0;
+    box-shadow: none;
     transition:
       transform var(--transition-bounce),
       background-color var(--transition-fast);
@@ -105,12 +107,14 @@
   }
 
   .status-circle svg {
-    display: none;
+    display: block;
+    width: 24px;
+    height: 24px;
   }
 
   .status-circle:hover {
     transform: scale(1.15);
-    background-color: var(--brand-red);
+    background-color: #383838;
   }
 
   @media (max-width: 900px) {
@@ -134,17 +138,9 @@
     .status-circle {
       width: 40px;
       height: 40px;
-      border: 0;
-      background: #383838;
-      color: #fff;
-      box-shadow: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
     }
 
     .status-circle svg {
-      display: block;
       width: 29px;
       height: 29px;
     }
@@ -154,8 +150,5 @@
       transform: none;
     }
 
-    .status-circle {
-      cursor: pointer;
-    }
   }
 </style>
