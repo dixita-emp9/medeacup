@@ -95,8 +95,9 @@ import ExperienceModal from "../components/ExperienceModal.astro";
 				// same pixel-based coordinates used by the other desktop windows.
 				win.style.right = "auto";
 				win.style.bottom = "auto";
-				win.style.left = `${initialLeft}px`;
-				win.style.top = `${initialTop}px`;
+				win.classList.add("is-user-positioned");
+				win.style.setProperty("--drag-left", `${initialLeft}px`);
+				win.style.setProperty("--drag-top", `${initialTop}px`);
 				maxLeft = (win.offsetParent as HTMLElement | null)?.clientWidth
 					? (win.offsetParent as HTMLElement).clientWidth -
 						win.offsetWidth -
@@ -117,8 +118,8 @@ import ExperienceModal from "../components/ExperienceModal.astro";
 				let newTop = initialTop + (e.clientY - startY);
 				newLeft = Math.max(10, Math.min(newLeft, maxLeft));
 				newTop = Math.max(50, Math.min(newTop, maxTop));
-				win.style.left = `${newLeft}px`;
-				win.style.top = `${newTop}px`;
+				win.style.setProperty("--drag-left", `${newLeft}px`);
+				win.style.setProperty("--drag-top", `${newTop}px`);
 			});
 
 			const stopDrag = (e?: PointerEvent) => {
