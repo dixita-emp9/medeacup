@@ -1381,7 +1381,7 @@ body:has(.modal-overlay.is-open:not(#quiz-modal)) .modal-overlay {
 }
 
 /* Large Screen Container Wrapper */
-@media (min-width: 2000px) {
+@media (min-width: 1920px) {
   body {
     background-color: #ffffff;
   }
