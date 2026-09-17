@@ -1,9 +1,36 @@
 ---
 interface Props {
 	title?: string;
+	description?: string;
+	keywords?: string;
 }
 
-const { title = "MEDEACUP - Desktop OS Workspace" } = Astro.props;
+const {
+	title = "MedeaCup | Creative Intelligence & Growth Strategy Company",
+	description =
+		"Creative intelligence and growth strategy company helping brands turn market intelligence, creative ideas and customer experience into commercial growth.",
+	keywords =
+		"creative intelligence company, creative strategy, growth strategy, brand strategy, market intelligence, experience design, creative intelligence company in India, creative strategy and growth company, strategic growth partner for brands",
+} = Astro.props;
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site ?? Astro.url).href;
+const organizationSchema = {
+	"@context": "https://schema.org",
+	"@graph": [
+		{
+			"@type": "Organization",
+			name: "MedeaCup",
+			url: canonicalUrl,
+			logo: new URL("/medeacup-logo.png", canonicalUrl).href,
+			description,
+		},
+		{
+			"@type": "WebSite",
+			name: "MedeaCup",
+			url: canonicalUrl,
+			description,
+		},
+	],
+};
 import "../styles/global.css";
 import Preloader from "../components/Preloader.astro";
 import ScreenSaver from "../components/ScreenSaver.astro";
@@ -13,16 +40,37 @@ import ScreenSaver from "../components/ScreenSaver.astro";
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<meta
-			name="description"
-			content="MEDEACUP Interactive Desktop Workspace - We find the 1% your market is waiting for."
-		/>
+		<meta name="description" content={description} />
+		<meta name="keywords" content={keywords} />
+		<meta name="author" content="MedeaCup" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="robots" content="index, follow" />
+		<meta name="theme-color" content="#f5f2ec" />
+		<link rel="canonical" href={canonicalUrl} />
+		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content="MedeaCup" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:url" content={canonicalUrl} />
+		<meta property="og:image" content={new URL("/medeacup-logo.png", canonicalUrl).href} />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={new URL("/medeacup-logo.png", canonicalUrl).href} />
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
+		<script type="application/ld+json" set:html={JSON.stringify(organizationSchema)}></script>
+		<!-- Google tag (gtag.js) -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-KETSY0PH65"></script>
+		<script is:inline>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+			gtag('config', 'G-KETSY0PH65');
+		</script>
 	</head>
 	<body>
 		<Preloader />
