@@ -6,9 +6,8 @@ interface Props {
 }
 
 const {
-	title = "MedeaCup | Creative Intelligence & Growth Strategy Company",
-	description =
-		"Creative intelligence and growth strategy company helping brands turn market intelligence, creative ideas and customer experience into commercial growth.",
+	title = "Medeacup | Creative Intelligence Company",
+	description = "We bring a different taste of intelligence to brands.",
 	keywords =
 		"creative intelligence company, creative strategy, growth strategy, brand strategy, market intelligence, experience design, creative intelligence company in India, creative strategy and growth company, strategic growth partner for brands",
 } = Astro.props;
@@ -59,7 +58,7 @@ import ScreenSaver from "../components/ScreenSaver.astro";
 		<meta name="twitter:image" content={new URL("/medeacup-logo.png", canonicalUrl).href} />
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" type="image/png" href="/medeacup-favicon.png" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 		<script type="application/ld+json" set:html={JSON.stringify(organizationSchema)}></script>
